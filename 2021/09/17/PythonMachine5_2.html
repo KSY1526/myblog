@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>파이썬 머신러닝 완벽가이드 5장-2 | 나의 빅데이터 공부 기록</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="파이썬 머신러닝 완벽가이드 5장-2" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="An easy to use blogging platform with support for Jupyter Notebooks." />
+<meta property="og:description" content="An easy to use blogging platform with support for Jupyter Notebooks." />
+<link rel="canonical" href="https://ksy1526.github.io/myblog//myblog/2021/09/17/PythonMachine5_2.html" />
+<meta property="og:url" content="https://ksy1526.github.io/myblog//myblog/2021/09/17/PythonMachine5_2.html" />
+<meta property="og:site_name" content="나의 빅데이터 공부 기록" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-09-17T00:00:00-05:00" />
+<script type="application/ld+json">
+{"datePublished":"2021-09-17T00:00:00-05:00","url":"https://ksy1526.github.io/myblog//myblog/2021/09/17/PythonMachine5_2.html","@type":"BlogPosting","headline":"파이썬 머신러닝 완벽가이드 5장-2","dateModified":"2021-09-17T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://ksy1526.github.io/myblog//myblog/2021/09/17/PythonMachine5_2.html"},"description":"An easy to use blogging platform with support for Jupyter Notebooks.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/myblog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://ksy1526.github.io/myblog//myblog/feed.xml" title="나의 빅데이터 공부 기록" /><link rel="shortcut icon" type="image/x-icon" href="/myblog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/myblog/">나의 빅데이터 공부 기록</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/myblog/about/">About Me</a><a class="page-link" href="/myblog/search/">Search</a><a class="page-link" href="/myblog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">파이썬 머신러닝 완벽가이드 5장-2</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-09-17T00:00:00-05:00" itemprop="datePublished">
+        Sep 17, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      7 min read
+    
+</span></p>
+
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/KSY1526/KSY1526.github.io/tree/master/_notebooks/PythonMachine5_2.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/myblog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/KSY1526/KSY1526.github.io/master?filepath=_notebooks%2FPythonMachine5_2.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/myblog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/KSY1526/KSY1526.github.io/blob/master/_notebooks/PythonMachine5_2.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/myblog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/PythonMachine5_2.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="https://colab.research.google.com/github/KSY1526/myblog/blob/master/_notebooks/PythonMachine5_2.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#45796;&#54637;-&#54924;&#44480;">&#45796;&#54637; &#54924;&#44480;<a class="anchor-link" href="#&#45796;&#54637;-&#54924;&#44480;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># 행 부터 숫자 채워짐</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;일차 단항식 계수 피처: </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="n">poly</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">poly</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">poly_ftr</span> <span class="o">=</span> <span class="n">poly</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;변환된 2차 다항식 계수 피처: </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">poly_ftr</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>일차 단항식 계수 피처: 
+ [[0 1]
+ [2 3]]
+변환된 2차 다항식 계수 피처: 
+ [[1. 0. 1. 0. 0. 1.]
+ [1. 2. 3. 4. 6. 9.]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>2차 다항계수는 [1, x1, x2, x1^2, x1x2, x2^2] 로 구성되어 있습니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">polynomial_func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">x</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">x</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">**</span><span class="mi">3</span>
+    <span class="k">return</span> <span class="n">y</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">polynomial_func</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="n">poly_ftr</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;3차 다항식 계수 feature: </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">poly_ftr</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">poly_ftr</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;회귀 계수</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;회귀 shape&#39;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>3차 다항식 계수 feature: 
+ [[ 1.  0.  1.  0.  0.  1.  0.  0.  0.  1.]
+ [ 1.  2.  3.  4.  6.  9.  8. 12. 18. 27.]]
+회귀 계수
+ [0.   0.18 0.18 0.36 0.54 0.72 0.72 1.08 1.62 2.34]
+회귀 shape (10,)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>poly함수로 다항식 계수를 생성한 뒤 단순 선형 회귀 함수에 대입해줍니다.</p>
+<p>원하는 값인 [1,2,0,3,0,0,0,0,0,4] 와 다소 차이가 있긴 합니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#47551;&#51648;-&#54924;&#44480;">&#47551;&#51648; &#54924;&#44480;<a class="anchor-link" href="#&#47551;&#51648;-&#54924;&#44480;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([(</span><span class="s1">&#39;poly&#39;</span><span class="p">,</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">)),</span>
+                  <span class="p">(</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span> <span class="n">LinearRegression</span><span class="p">())])</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;회귀 계수</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">named_steps</span><span class="p">[</span><span class="s1">&#39;linear&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>회귀 계수
+ [0.   0.18 0.18 0.36 0.54 0.72 0.72 1.08 1.62 2.34]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>파이프 라인 함수로 다항식으로에 변환과 선형 회귀를 한번에 한 모습입니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_boston</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">boston</span> <span class="o">=</span> <span class="n">load_boston</span><span class="p">()</span>
+<span class="n">bostonDF</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">boston</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">boston</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
+<span class="n">bostonDF</span><span class="p">[</span><span class="s1">&#39;PRICE&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">boston</span><span class="o">.</span><span class="n">target</span>
+<span class="n">y_target</span> <span class="o">=</span> <span class="n">bostonDF</span><span class="p">[</span><span class="s1">&#39;PRICE&#39;</span><span class="p">]</span>
+<span class="n">x_data</span> <span class="o">=</span> <span class="n">bostonDF</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;PRICE&#39;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">ridge</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">neg_mse_scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">ridge</span><span class="p">,</span> <span class="n">x_data</span><span class="p">,</span> <span class="n">y_target</span><span class="p">,</span> <span class="n">scoring</span> <span class="o">=</span> <span class="s1">&#39;neg_mean_squared_error&#39;</span><span class="p">,</span> <span class="n">cv</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">rmse_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">neg_mse_scores</span><span class="p">)</span>
+<span class="n">avg_rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">rmse_scores</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;mse scores&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">neg_mse_scores</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;rmse scores&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">rmse_scores</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;평균 rmse score:&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">avg_rmse</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>mse scores [-11.42 -24.29 -28.14 -74.6  -28.52]
+rmse scores [3.38 4.93 5.31 8.64 5.34]
+평균 rmse score: 5.52
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>단순 선형회귀 모델 rmse 평균값이 5.84로 릿지 회귀가 더 좋은 퍼포먼스를 보입니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">alphas</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="n">alphas</span><span class="p">:</span>
+    <span class="n">ridge</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+    
+    <span class="n">neg_mse_scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">ridge</span><span class="p">,</span> <span class="n">x_data</span><span class="p">,</span> <span class="n">y_target</span><span class="p">,</span> <span class="n">scoring</span> <span class="o">=</span> <span class="s1">&#39;neg_mean_squared_error&#39;</span><span class="p">,</span> <span class="n">cv</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">avg_rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="n">neg_mse_scores</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;alpha 값 &#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="s1">&#39;일때 평균 rmse :&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">avg_rmse</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>alpha 값  0 일때 평균 rmse : 5.8287
+alpha 값  0.1 일때 평균 rmse : 5.7885
+alpha 값  1 일때 평균 rmse : 5.6526
+alpha 값  10 일때 평균 rmse : 5.5182
+alpha 값  100 일때 평균 rmse : 5.3296
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>alpha 값이 100일때가 가장 값이 좋습니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span> <span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">6</span><span class="p">),</span> <span class="n">nrows</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">coeff_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">pos</span><span class="p">,</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">alphas</span><span class="p">):</span>
+    <span class="n">ridge</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span><span class="p">)</span>
+    <span class="n">ridge</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_target</span><span class="p">)</span>
+
+    <span class="n">coeff</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">ridge</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="n">x_data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+    <span class="n">colname</span> <span class="o">=</span> <span class="s1">&#39;alpha:&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+    <span class="n">coeff_df</span><span class="p">[</span><span class="n">colname</span><span class="p">]</span> <span class="o">=</span> <span class="n">coeff</span>
+
+    <span class="n">coeff</span> <span class="o">=</span> <span class="n">coeff</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">colname</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">coeff</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">coeff</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="n">pos</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+" />
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>알파 값이 커지면(=규제가 세지면) 회귀계수 값이 전반적으로 작아집니다.</p>
+<p>다만 릿지 회귀에 경우 회귀 계수를 0으로 만들지는 않습니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#46972;&#50136;-&#54924;&#44480;">&#46972;&#50136; &#54924;&#44480;<a class="anchor-link" href="#&#46972;&#50136;-&#54924;&#44480;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Lasso</span><span class="p">,</span> <span class="n">ElasticNet</span>
+
+<span class="k">def</span> <span class="nf">get_linear_reg_eval</span><span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">params</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">x_data_n</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">y_target_n</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
+                        <span class="n">verbose</span><span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">return_coeff</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="n">coeff_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">verbose</span> <span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">model_name</span> <span class="o">==</span><span class="s1">&#39;Ridge&#39;</span> <span class="p">:</span> <span class="n">model</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">param</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">model_name</span> <span class="o">==</span><span class="s1">&#39;Lasso&#39;</span> <span class="p">:</span> <span class="n">model</span> <span class="o">=</span> <span class="n">Lasso</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">param</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">model_name</span> <span class="o">==</span><span class="s1">&#39;ElasticNet&#39;</span> <span class="p">:</span> <span class="n">model</span> <span class="o">=</span> <span class="n">ElasticNet</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">param</span><span class="p">,</span> <span class="n">l1_ratio</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+        <span class="n">neg_mse_scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x_data_n</span><span class="p">,</span> <span class="n">y_target_n</span><span class="p">,</span> 
+                                         <span class="n">scoring</span> <span class="o">=</span> <span class="s1">&#39;neg_mean_squared_error&#39;</span><span class="p">,</span> <span class="n">cv</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="n">avg_rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">neg_mse_scores</span><span class="p">))</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;alpha &#39;</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="s1">&#39;일때 평균 rmse:&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">avg_rmse</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+
+        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_data_n</span><span class="p">,</span> <span class="n">y_target_n</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">return_coeff</span><span class="p">:</span>
+            <span class="n">coeff</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="n">x_data_n</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+            <span class="n">colname</span> <span class="o">=</span> <span class="s1">&#39;alpha:&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+            <span class="n">coeff_df</span><span class="p">[</span><span class="n">colname</span><span class="p">]</span> <span class="o">=</span> <span class="n">coeff</span>
+
+    <span class="k">return</span> <span class="n">coeff_df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">lasso_alphas</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.07</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">coeff_lasso_df</span> <span class="o">=</span> <span class="n">get_linear_reg_eval</span><span class="p">(</span><span class="s1">&#39;Lasso&#39;</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="n">lasso_alphas</span><span class="p">,</span> <span class="n">x_data_n</span> <span class="o">=</span> <span class="n">x_data</span><span class="p">,</span> <span class="n">y_target_n</span><span class="o">=</span> <span class="n">y_target</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Lasso
+alpha  0.07 일때 평균 rmse: 5.61
+alpha  0.1 일때 평균 rmse: 5.62
+alpha  0.5 일때 평균 rmse: 5.67
+alpha  1 일때 평균 rmse: 5.78
+alpha  3 일때 평균 rmse: 6.19
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>알파 값이 0.07일때 최고 성능을 보여줍니다.</p>
+<p>앞서 한 릿지보다는 성능이 떨어지지만, 단순 선형 회귀 모델보다 값이 크므로 쓰임새가 있습니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">sort_column</span> <span class="o">=</span> <span class="s1">&#39;alpha:&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">lasso_alphas</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">coeff_lasso_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="n">sort_column</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>alpha:0.07</th>
+      <th>alpha:0.1</th>
+      <th>alpha:0.5</th>
+      <th>alpha:1</th>
+      <th>alpha:3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>RM</th>
+      <td>3.789725</td>
+      <td>3.703202</td>
+      <td>2.498212</td>
+      <td>0.949811</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>CHAS</th>
+      <td>1.434343</td>
+      <td>0.955190</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>RAD</th>
+      <td>0.270936</td>
+      <td>0.274707</td>
+      <td>0.277451</td>
+      <td>0.264206</td>
+      <td>0.061864</td>
+    </tr>
+    <tr>
+      <th>ZN</th>
+      <td>0.049059</td>
+      <td>0.049211</td>
+      <td>0.049544</td>
+      <td>0.049165</td>
+      <td>0.037231</td>
+    </tr>
+    <tr>
+      <th>B</th>
+      <td>0.010248</td>
+      <td>0.010249</td>
+      <td>0.009469</td>
+      <td>0.008247</td>
+      <td>0.006510</td>
+    </tr>
+    <tr>
+      <th>NOX</th>
+      <td>-0.000000</td>
+      <td>-0.000000</td>
+      <td>-0.000000</td>
+      <td>-0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>AGE</th>
+      <td>-0.011706</td>
+      <td>-0.010037</td>
+      <td>0.003604</td>
+      <td>0.020910</td>
+      <td>0.042495</td>
+    </tr>
+    <tr>
+      <th>TAX</th>
+      <td>-0.014290</td>
+      <td>-0.014570</td>
+      <td>-0.015442</td>
+      <td>-0.015212</td>
+      <td>-0.008602</td>
+    </tr>
+    <tr>
+      <th>INDUS</th>
+      <td>-0.042120</td>
+      <td>-0.036619</td>
+      <td>-0.005253</td>
+      <td>-0.000000</td>
+      <td>-0.000000</td>
+    </tr>
+    <tr>
+      <th>CRIM</th>
+      <td>-0.098193</td>
+      <td>-0.097894</td>
+      <td>-0.083289</td>
+      <td>-0.063437</td>
+      <td>-0.000000</td>
+    </tr>
+    <tr>
+      <th>LSTAT</th>
+      <td>-0.560431</td>
+      <td>-0.568769</td>
+      <td>-0.656290</td>
+      <td>-0.761115</td>
+      <td>-0.807679</td>
+    </tr>
+    <tr>
+      <th>PTRATIO</th>
+      <td>-0.765107</td>
+      <td>-0.770654</td>
+      <td>-0.758752</td>
+      <td>-0.722966</td>
+      <td>-0.265072</td>
+    </tr>
+    <tr>
+      <th>DIS</th>
+      <td>-1.176583</td>
+      <td>-1.160538</td>
+      <td>-0.936605</td>
+      <td>-0.668790</td>
+      <td>-0.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>계수가 0인것이 보입니다. 알파값이 커질수록 회귀 계수가 0인 것이 늘어납니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#50648;&#46972;&#49828;&#54001;-&#54924;&#44480;">&#50648;&#46972;&#49828;&#54001; &#54924;&#44480;<a class="anchor-link" href="#&#50648;&#46972;&#49828;&#54001;-&#54924;&#44480;"> </a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>다음은 엘라스틱 회귀 입니다. 쉽게 라쏘회귀 + 릿지 회귀로 볼 수 있습니다.</p>
+<p>라쏘 회귀에 경우 서로 상관관계가 높은 피처가 있으면 중요 피처를 제외하고 모두 회귀계수를 0으로 만듭니다.</p>
+<p>이를 다소 완화해주기 위한 목적으로 만들어졌습니다. 다만 수행시간이 다소 깁니다.</p>
+<p>여기서 알파는 알파1 + 알파 2 이며, l1_ratio는 말 그대로 l1규제(라쏘) 비율입니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">elastic_alphas</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.07</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">coeff_lasso_df</span> <span class="o">=</span> <span class="n">get_linear_reg_eval</span><span class="p">(</span><span class="s1">&#39;ElasticNet&#39;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">elastic_alphas</span><span class="p">,</span> <span class="n">x_data_n</span><span class="o">=</span> <span class="n">x_data</span><span class="p">,</span> <span class="n">y_target_n</span><span class="o">=</span> <span class="n">y_target</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ElasticNet
+alpha  0.07 일때 평균 rmse: 5.54
+alpha  0.1 일때 평균 rmse: 5.53
+alpha  0.5 일때 평균 rmse: 5.47
+alpha  1 일때 평균 rmse: 5.6
+alpha  3 일때 평균 rmse: 6.07
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>알파값이 0.5일때 가장 좋은 예측 성능을 보여줍니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">sort_column</span> <span class="o">=</span> <span class="s1">&#39;alpha:&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">elastic_alphas</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">coeff_lasso_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span> <span class="n">sort_column</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>alpha:0.07</th>
+      <th>alpha:0.1</th>
+      <th>alpha:0.5</th>
+      <th>alpha:1</th>
+      <th>alpha:3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>RM</th>
+      <td>3.574162</td>
+      <td>3.414154</td>
+      <td>1.918419</td>
+      <td>0.938789</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>CHAS</th>
+      <td>1.330724</td>
+      <td>0.979706</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>RAD</th>
+      <td>0.278880</td>
+      <td>0.283443</td>
+      <td>0.300761</td>
+      <td>0.289299</td>
+      <td>0.146846</td>
+    </tr>
+    <tr>
+      <th>ZN</th>
+      <td>0.050107</td>
+      <td>0.050617</td>
+      <td>0.052878</td>
+      <td>0.052136</td>
+      <td>0.038268</td>
+    </tr>
+    <tr>
+      <th>B</th>
+      <td>0.010122</td>
+      <td>0.010067</td>
+      <td>0.009114</td>
+      <td>0.008320</td>
+      <td>0.007020</td>
+    </tr>
+    <tr>
+      <th>AGE</th>
+      <td>-0.010116</td>
+      <td>-0.008276</td>
+      <td>0.007760</td>
+      <td>0.020348</td>
+      <td>0.043446</td>
+    </tr>
+    <tr>
+      <th>TAX</th>
+      <td>-0.014522</td>
+      <td>-0.014814</td>
+      <td>-0.016046</td>
+      <td>-0.016218</td>
+      <td>-0.011417</td>
+    </tr>
+    <tr>
+      <th>INDUS</th>
+      <td>-0.044855</td>
+      <td>-0.042719</td>
+      <td>-0.023252</td>
+      <td>-0.000000</td>
+      <td>-0.000000</td>
+    </tr>
+    <tr>
+      <th>CRIM</th>
+      <td>-0.099468</td>
+      <td>-0.099213</td>
+      <td>-0.089070</td>
+      <td>-0.073577</td>
+      <td>-0.019058</td>
+    </tr>
+    <tr>
+      <th>NOX</th>
+      <td>-0.175072</td>
+      <td>-0.000000</td>
+      <td>-0.000000</td>
+      <td>-0.000000</td>
+      <td>-0.000000</td>
+    </tr>
+    <tr>
+      <th>LSTAT</th>
+      <td>-0.574822</td>
+      <td>-0.587702</td>
+      <td>-0.693861</td>
+      <td>-0.760457</td>
+      <td>-0.800368</td>
+    </tr>
+    <tr>
+      <th>PTRATIO</th>
+      <td>-0.779498</td>
+      <td>-0.784725</td>
+      <td>-0.790969</td>
+      <td>-0.738672</td>
+      <td>-0.423065</td>
+    </tr>
+    <tr>
+      <th>DIS</th>
+      <td>-1.189438</td>
+      <td>-1.173647</td>
+      <td>-0.975902</td>
+      <td>-0.725174</td>
+      <td>-0.031208</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>라쏘모델에 비해 회귀계수를 0으로 만드는 개수가 다소 줄었습니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#49440;&#54805;-&#54924;&#44480;-&#47784;&#45944;&#51012;-&#50948;&#54620;-&#45936;&#51060;&#53552;-&#48320;&#54872;">&#49440;&#54805; &#54924;&#44480; &#47784;&#45944;&#51012; &#50948;&#54620; &#45936;&#51060;&#53552; &#48320;&#54872;<a class="anchor-link" href="#&#49440;&#54805;-&#54924;&#44480;-&#47784;&#45944;&#51012;-&#50948;&#54620;-&#45936;&#51060;&#53552;-&#48320;&#54872;"> </a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>선형 회귀에서 중요한 것 중 하나가 데이터 분포도의 정규화 입니다.</p>
+<p>특히 타깃값의 분포가 정규분포가 아닌 왜곡(skew)된 분포는 예측 성능에 부정적입니다.</p>
+<p>따라서 선형 회귀 모델을 적용하기 전 먼저 데이터 스케일링/정규화 작업을 수행해주어야 합니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span><span class="p">,</span> <span class="n">MinMaxScaler</span>
+
+<span class="k">def</span> <span class="nf">get_scaled_data</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;None&#39;</span><span class="p">,</span> <span class="n">p_degree</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">input_data</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;Standard&#39;</span><span class="p">:</span>
+        <span class="n">scaled_data</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;MinMax&#39;</span><span class="p">:</span>
+        <span class="n">scaled_data</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;Log&#39;</span><span class="p">:</span>
+        <span class="n">scaled_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">input_data</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">scaled_data</span> <span class="o">=</span> <span class="n">input_data</span>
+
+    <span class="k">if</span> <span class="n">p_degree</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">scaled_data</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="n">p_degree</span><span class="p">,</span> 
+                                         <span class="n">include_bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">scaled_data</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">scaled_data</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">alphas</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+
+<span class="n">scale_methods</span><span class="o">=</span><span class="p">[(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Standard&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Standard&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span>
+               <span class="p">(</span><span class="s1">&#39;MinMax&#39;</span><span class="p">,</span><span class="kc">None</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;MinMax&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Log&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)]</span>
+
+<span class="k">for</span> <span class="n">scale_method</span> <span class="ow">in</span> <span class="n">scale_methods</span><span class="p">:</span>
+    <span class="n">x_data_scaled</span> <span class="o">=</span> <span class="n">get_scaled_data</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">scale_method</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p_degree</span><span class="o">=</span><span class="n">scale_method</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> 
+                                    <span class="n">input_data</span><span class="o">=</span><span class="n">x_data</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> 변환유형:&#39;</span><span class="p">,</span> <span class="n">scale_method</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;, Polynomial Degree:&#39;</span><span class="p">,</span> <span class="n">scale_method</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">get_linear_reg_eval</span><span class="p">(</span><span class="s1">&#39;Ridge&#39;</span><span class="p">,</span> <span class="n">params</span> <span class="o">=</span> <span class="n">alphas</span><span class="p">,</span> <span class="n">x_data_n</span><span class="o">=</span><span class="n">x_data_scaled</span><span class="p">,</span> <span class="n">y_target_n</span><span class="o">=</span> <span class="n">y_target</span><span class="p">,</span> 
+                        <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_coeff</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+ 변환유형: None , Polynomial Degree: None
+alpha  0.1 일때 평균 rmse: 5.79
+alpha  1 일때 평균 rmse: 5.65
+alpha  10 일때 평균 rmse: 5.52
+alpha  100 일때 평균 rmse: 5.33
+
+ 변환유형: Standard , Polynomial Degree: None
+alpha  0.1 일때 평균 rmse: 5.79
+alpha  1 일때 평균 rmse: 5.65
+alpha  10 일때 평균 rmse: 5.52
+alpha  100 일때 평균 rmse: 5.33
+
+ 변환유형: Standard , Polynomial Degree: 2
+alpha  0.1 일때 평균 rmse: 9.14
+alpha  1 일때 평균 rmse: 8.94
+alpha  10 일때 평균 rmse: 10.56
+alpha  100 일때 평균 rmse: 10.57
+
+ 변환유형: MinMax , Polynomial Degree: None
+alpha  0.1 일때 평균 rmse: 5.79
+alpha  1 일때 평균 rmse: 5.65
+alpha  10 일때 평균 rmse: 5.52
+alpha  100 일때 평균 rmse: 5.33
+
+ 변환유형: MinMax , Polynomial Degree: 2
+alpha  0.1 일때 평균 rmse: 9.14
+alpha  1 일때 평균 rmse: 8.94
+alpha  10 일때 평균 rmse: 10.56
+alpha  100 일때 평균 rmse: 10.57
+
+ 변환유형: Log , Polynomial Degree: None
+alpha  0.1 일때 평균 rmse: 4.77
+alpha  1 일때 평균 rmse: 4.68
+alpha  10 일때 평균 rmse: 4.84
+alpha  100 일때 평균 rmse: 6.24
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>log 변환이 다른 변환에 비해 성능이 뛰어난 걸 볼 수 있습니다.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><a class="u-url" href="/myblog/2021/09/17/PythonMachine5_2.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/myblog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/myblog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/myblog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/https%3A%2F%2Fgithub.com%2FKSY1526%2FMyProject" title="https://github.com/KSY1526/MyProject"><svg class="svg-icon grey"><use xlink:href="/myblog/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
