@@ -93,7 +93,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      12 min read
+      13 min read
     
 </span></p>
 
@@ -142,10 +142,18 @@ window.onload = wrap_img;
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>xgboost모델이 튜닝하는데 시간이 걸리기 때문에 좀 더 간단한 모델을 시도해 볼까 합니다.</p>
-<p>바로 정규화된 선형 회귀 모델입니다.</p>
-<p>핵심 포인트는 숫자 변수 대부분이 치우쳐 있으므로 숫자 변수를 log_transform하는 것입니다.</p>
+<p><a href="https://www.kaggle.com/c/house-prices-advanced-regression-techniques">https://www.kaggle.com/c/house-prices-advanced-regression-techniques</a></p>
+<p>캐글에 있는 주택 가격 예측 데이터 분석입니다.</p>
+<p>부스팅 모델들이 튜닝하는데 시간이 걸리기 때문에 좀 더 간단한 선형 회귀 모델을 사용하겠습니다.</p>
+<p>분류 관련 공부를 조금 해본 경험으로, 회귀에 기본인 선형 회귀모델을 이번 데이터를 이용해 공부해보겠습니다.</p>
+<p>이번 분석에 핵심 포인트는 숫자 변수 대부분이 치우쳐 있으므로 숫자 변수를 log_transform하는 것입니다.</p>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#45936;&#51060;&#53552;-&#48520;&#47084;&#50724;&#44592;-&#48143;-&#46168;&#47084;&#48372;&#44592;">&#45936;&#51060;&#53552; &#48520;&#47084;&#50724;&#44592; &#48143; &#46168;&#47084;&#48372;&#44592;<a class="anchor-link" href="#&#45936;&#51060;&#53552;-&#48520;&#47084;&#50724;&#44592;-&#48143;-&#46168;&#47084;&#48372;&#44592;"> </a></h1>
 </div>
 </div>
 </div>
@@ -922,6 +930,13 @@ memory usage: 924.0+ KB
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>id(고유번호)와 설명변수를 뺀 나머지 변수들을 전처리를 위해 all_data 변수로 합쳐주었습니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="&#45936;&#51060;&#53552;-&#51204;&#52376;&#47532;">&#45936;&#51060;&#53552; &#51204;&#52376;&#47532;<a class="anchor-link" href="#&#45936;&#51060;&#53552;-&#51204;&#52376;&#47532;"> </a></h1>
 </div>
 </div>
@@ -941,7 +956,7 @@ memory usage: 924.0+ KB
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>데이터를 로그변환 해보기</p>
+<p>설명변수를 로그변환 해보기</p>
 
 </div>
 </div>
@@ -970,8 +985,8 @@ memory usage: 924.0+ KB
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>array([[&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fe7219878d0&gt;,
-        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fe72195b110&gt;]],
+<pre>array([[&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f3be1089890&gt;,
+        &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7f3be1052b10&gt;]],
       dtype=object)</pre>
 </div>
 
@@ -994,6 +1009,13 @@ memory usage: 924.0+ KB
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>로그변환 전 우측 꼬리가 두터운 느낌이였는데 잘 정규화 된 모습입니다.</p>
+
+</div>
+</div>
+</div>
     
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -1016,13 +1038,13 @@ memory usage: 924.0+ KB
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>MSSubClass       float64
+<pre>MSSubClass         int64
 MSZoning          object
 LotFrontage      float64
-LotArea          float64
+LotArea            int64
 Street            object
                   ...   
-MiscVal          float64
+MiscVal            int64
 MoSold             int64
 YrSold             int64
 SaleType          object
@@ -1091,6 +1113,7 @@ Length: 79, dtype: object</pre>
 <p>shew값이 큰 양수값이면 오른쪽으로 긴 꼬리를 가지는 분포를 가집니다.</p>
 <p>그러므로 shew값을 기준으로 로그변환을 할 변수를 찾을 수 있습니다.</p>
 <p>참고로 apply 함수는 파이썬 데이터 프레임에 적용하는 함수인데, 원하는 함수를 적용하고 싶을때 사용합니다.</p>
+<p>이때 apply 기본인자는 axis = 0이므로 열을 기준으로 함수를 적용합니다.</p>
 
 </div>
 </div>
@@ -1655,7 +1678,7 @@ Length: 79, dtype: object</pre>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>get_dummies 함수로 모든 object형 값이 원핫인코딩 됬습니다.</p>
+<p>get_dummies 함수로 모든 object형 값이 원핫인코딩 됐습니다.</p>
 <p>저번에 프로젝트 할 때 변수를 하나하나 입력했던 것이 생각나는데 더 편한 방식을 알게 되었습니다.</p>
 
 </div>
@@ -1681,7 +1704,7 @@ Length: 79, dtype: object</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>결측값이 있을때 각 열의 평균값으로 대체하는 일반적인 방식입니다.</p>
-<p>윗 코드와 마찬가지로 저번 프로젝트에서 열마다 함수를 돌려 사용했는데 더 편한 방식을 알게 됬습니다.</p>
+<p>윗 코드와 마찬가지로 저번 프로젝트에서 열마다 함수를 돌려 사용했는데 더 편한 방식을 알게 됐습니다.</p>
 
 </div>
 </div>
@@ -1734,7 +1757,7 @@ Length: 79, dtype: object</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span><span class="p">,</span> <span class="n">RidgeCV</span><span class="p">,</span> <span class="n">ElasticNet</span><span class="p">,</span> <span class="n">LassoCV</span><span class="p">,</span> <span class="n">LassoLarsCV</span>
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span><span class="p">,</span> <span class="n">RidgeCV</span><span class="p">,</span> <span class="n">ElasticNet</span><span class="p">,</span> <span class="n">LassoCV</span><span class="p">,</span> <span class="n">LassoLarsCV</span><span class="p">,</span> <span class="n">Lasso</span>
 <span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
 
 <span class="k">def</span> <span class="nf">rmse_cv</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
@@ -2212,7 +2235,7 @@ Length: 288, dtype: float64</pre>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fe70e093e50&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f3bd2529490&gt;</pre>
 </div>
 
 </div>
@@ -2248,11 +2271,13 @@ Length: 288, dtype: float64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">pred</span> <span class="o">=</span> <span class="n">model_lasso</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pred</span>
+<div class=" highlight hl-python"><pre><span></span><span class="n">model_lasso</span> <span class="o">=</span> <span class="n">Lasso</span><span class="p">(</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.0005</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">pred</span> <span class="o">=</span> <span class="n">model_lasso</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="n">pred2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pred2</span>
 <span class="n">X_test</span><span class="p">[</span><span class="s1">&#39;Id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">test</span><span class="p">[</span><span class="s1">&#39;Id&#39;</span><span class="p">]</span>
 <span class="n">final</span> <span class="o">=</span> <span class="n">X_test</span><span class="p">[[</span><span class="s1">&#39;Id&#39;</span><span class="p">,</span><span class="s1">&#39;SalePrice&#39;</span><span class="p">]]</span>
-<span class="n">final</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/houselasso.csv&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">final</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;/content/drive/MyDrive/houselasso2.csv&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -2265,18 +2290,18 @@ Length: 288, dtype: float64</pre>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>/usr/local/lib/python3.7/dist-packages/ipykernel_launcher.py:1: SettingWithCopyWarning: 
+<pre>/usr/local/lib/python3.7/dist-packages/ipykernel_launcher.py:4: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  &#34;&#34;&#34;Entry point for launching an IPython kernel.
-/usr/local/lib/python3.7/dist-packages/ipykernel_launcher.py:2: SettingWithCopyWarning: 
+  after removing the cwd from sys.path.
+/usr/local/lib/python3.7/dist-packages/ipykernel_launcher.py:5: SettingWithCopyWarning: 
 A value is trying to be set on a copy of a slice from a DataFrame.
 Try using .loc[row_indexer,col_indexer] = value instead
 
 See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-  
+  &#34;&#34;&#34;
 </pre>
 </div>
 </div>
@@ -2287,6 +2312,13 @@ See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stab
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>알파값 0.0005인 라쏘 모델로 모델을 적합시키고 그 모델로 예측 파일을 만들었습니다.</p>
+
+</div>
+</div>
+</div>
 </div>
 
 
