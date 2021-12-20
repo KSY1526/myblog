@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Do it 자연어) 2. 숫자 세계로 떠난 자연어 | 나의 빅데이터 공부 기록</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Do it 자연어) 2. 숫자 세계로 떠난 자연어" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="An easy to use blogging platform with support for Jupyter Notebooks." />
+<meta property="og:description" content="An easy to use blogging platform with support for Jupyter Notebooks." />
+<link rel="canonical" href="https://ksy1526.github.io/myblog//myblog/2021/12/21/Do_natural_language2.html" />
+<meta property="og:url" content="https://ksy1526.github.io/myblog//myblog/2021/12/21/Do_natural_language2.html" />
+<meta property="og:site_name" content="나의 빅데이터 공부 기록" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-12-21T00:00:00-06:00" />
+<script type="application/ld+json">
+{"datePublished":"2021-12-21T00:00:00-06:00","url":"https://ksy1526.github.io/myblog//myblog/2021/12/21/Do_natural_language2.html","@type":"BlogPosting","headline":"Do it 자연어) 2. 숫자 세계로 떠난 자연어","dateModified":"2021-12-21T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://ksy1526.github.io/myblog//myblog/2021/12/21/Do_natural_language2.html"},"description":"An easy to use blogging platform with support for Jupyter Notebooks.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/myblog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://ksy1526.github.io/myblog//myblog/feed.xml" title="나의 빅데이터 공부 기록" /><link rel="shortcut icon" type="image/x-icon" href="/myblog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/myblog/">나의 빅데이터 공부 기록</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/myblog/about/">About Me</a><a class="page-link" href="/myblog/search/">Search</a><a class="page-link" href="/myblog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Do it 자연어) 2. 숫자 세계로 떠난 자연어</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-12-21T00:00:00-06:00" itemprop="datePublished">
+        Dec 21, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      8 min read
+    
+</span></p>
+
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/KSY1526/KSY1526.github.io/tree/master/_notebooks/2021-12-21-Do_natural_language2.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/myblog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/KSY1526/KSY1526.github.io/master?filepath=_notebooks%2F2021-12-21-Do_natural_language2.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/myblog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/KSY1526/KSY1526.github.io/blob/master/_notebooks/2021-12-21-Do_natural_language2.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/myblog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-12-21-Do_natural_language2.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="https://colab.research.google.com/github/KSY1526/myblog/blob/master/_notebooks/2021-12-21-Do_natural_language2.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#49472;&#54532;-&#50612;&#53584;&#49440;-&#46041;&#51089;&#50896;&#47532;">&#49472;&#54532; &#50612;&#53584;&#49440; &#46041;&#51089;&#50896;&#47532;<a class="anchor-link" href="#&#49472;&#54532;-&#50612;&#53584;&#49440;-&#46041;&#51089;&#50896;&#47532;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span>
+    <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
+<span class="p">])</span>
+
+<span class="n">w_query</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span>
+    <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
+<span class="p">])</span>
+
+<span class="n">w_key</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span>
+    <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+<span class="p">])</span>
+
+<span class="n">w_value</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span>
+    <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+<span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>변수를 정의합니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">keys</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w_key</span><span class="p">)</span>
+<span class="n">querys</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w_query</span><span class="p">)</span>
+<span class="n">values</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w_value</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>쿼리, 키, 벨류를 만듭니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">attn_scores</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">querys</span><span class="p">,</span> <span class="n">keys</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="n">attn_scores</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[ 2.,  4.,  4.],
+        [ 4., 16., 12.],
+        [ 4., 12., 10.]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>어텐션 스코어를 만듭니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">torch.nn.functional</span> <span class="kn">import</span> <span class="n">softmax</span>
+<span class="n">key_dim_sqrt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">keys</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">attn_probs</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">attn_scores</span> <span class="o">/</span> <span class="n">key_dim_sqrt</span><span class="p">,</span> <span class="n">dim</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">attn_probs</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[1.3613e-01, 4.3194e-01, 4.3194e-01],
+        [8.9045e-04, 9.0884e-01, 9.0267e-02],
+        [7.4449e-03, 7.5471e-01, 2.3785e-01]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>소프트맥스 확률값을 만듭니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">weighted_values</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">attn_probs</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+<span class="n">weighted_values</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[1.8639, 6.3194, 1.7042],
+        [1.9991, 7.8141, 0.2735],
+        [1.9926, 7.4796, 0.7359]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>소프트맥스 확률과 밸류를 가중합 하였습니다. 셀프 어텐션에 최종 출력값 입니다.</p>
+<p>셀프 어텐션은 가중치 행렬(w_..) 3개를 학습 대상으로 생각하고 태스크를 잘 수행하는 방향으로 업데이트 됩니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#54588;&#46300;&#54252;&#50892;&#46300;-&#45684;&#47092;-&#45348;&#53944;&#50892;&#53356;-&#44228;&#49328;-&#50696;&#49884;">&#54588;&#46300;&#54252;&#50892;&#46300; &#45684;&#47092; &#45348;&#53944;&#50892;&#53356; &#44228;&#49328; &#50696;&#49884;<a class="anchor-link" href="#&#54588;&#46300;&#54252;&#50892;&#46300;-&#45684;&#47092;-&#45348;&#53944;&#50892;&#53356;-&#44228;&#49328;-&#50696;&#49884;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">w1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">b1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">w2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">b2</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>변수를 입력합니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">h_preact</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w1</span><span class="p">)</span> <span class="o">+</span> <span class="n">b1</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">h_preact</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">w2</span><span class="p">)</span> <span class="o">+</span> <span class="n">b2</span>
+
+<span class="n">y</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([-8, 12])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>결과 값 입니다. 여기서 w1, w2, b1, b2가 학습 대상이 됩니다.</p>
+<p>학습 대상은 태스크를 잘 수행하는 방향으로 업데이트 됩니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">p</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="nb">input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">m</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tensor([[ 0.3678,  1.6664,  1.6091,  0.1445,  0.9486,  2.0537,  2.4539,  1.4420,
+          0.9701, -0.2877]])
+tensor([[0.0000, 2.0830, 2.0113, 0.1806, 1.1858, 2.5672, 0.0000, 1.8025, 0.0000,
+         -0.0000]])
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>간단한 드롭다웃 예제입니다. p 확률 만큼 뉴련을 0으로 대치해 계산에서 제외합니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#47928;&#51109;&#51012;-&#48289;&#53552;&#47196;-&#48320;&#54872;&#54616;&#44592;">&#47928;&#51109;&#51012; &#48289;&#53552;&#47196; &#48320;&#54872;&#54616;&#44592;<a class="anchor-link" href="#&#47928;&#51109;&#51012;-&#48289;&#53552;&#47196;-&#48320;&#54872;&#54616;&#44592;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">ratsnlp</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Collecting ratsnlp
+  Downloading ratsnlp-0.0.9999-py3-none-any.whl (53 kB)
+     |████████████████████████████████| 53 kB 1.6 MB/s 
+Requirement already satisfied: flask&gt;=1.1.4 in /usr/local/lib/python3.7/dist-packages (from ratsnlp) (1.1.4)
+Requirement already satisfied: torch&gt;=1.9.0 in /usr/local/lib/python3.7/dist-packages (from ratsnlp) (1.10.0+cu111)
+Collecting pytorch-lightning==1.3.4
+  Downloading pytorch_lightning-1.3.4-py3-none-any.whl (806 kB)
+     |████████████████████████████████| 806 kB 15.9 MB/s 
+Collecting flask-cors&gt;=3.0.10
+  Downloading Flask_Cors-3.0.10-py2.py3-none-any.whl (14 kB)
+Collecting flask-ngrok&gt;=0.0.25
+  Downloading flask_ngrok-0.0.25-py3-none-any.whl (3.1 kB)
+Collecting Korpora&gt;=0.2.0
+  Downloading Korpora-0.2.0-py3-none-any.whl (57 kB)
+     |████████████████████████████████| 57 kB 6.4 MB/s 
+Collecting transformers==4.10.0
+  Downloading transformers-4.10.0-py3-none-any.whl (2.8 MB)
+     |████████████████████████████████| 2.8 MB 37.5 MB/s 
+Collecting PyYAML&lt;=5.4.1,&gt;=5.1
+  Downloading PyYAML-5.4.1-cp37-cp37m-manylinux1_x86_64.whl (636 kB)
+     |████████████████████████████████| 636 kB 56.2 MB/s 
+Requirement already satisfied: packaging in /usr/local/lib/python3.7/dist-packages (from pytorch-lightning==1.3.4-&gt;ratsnlp) (21.3)
+Requirement already satisfied: numpy&gt;=1.17.2 in /usr/local/lib/python3.7/dist-packages (from pytorch-lightning==1.3.4-&gt;ratsnlp) (1.19.5)
+Requirement already satisfied: tqdm&gt;=4.41.0 in /usr/local/lib/python3.7/dist-packages (from pytorch-lightning==1.3.4-&gt;ratsnlp) (4.62.3)
+Collecting future&gt;=0.17.1
+  Downloading future-0.18.2.tar.gz (829 kB)
+     |████████████████████████████████| 829 kB 59.2 MB/s 
+Collecting fsspec[http]&gt;=2021.4.0
+  Downloading fsspec-2021.11.1-py3-none-any.whl (132 kB)
+     |████████████████████████████████| 132 kB 52.0 MB/s 
+Requirement already satisfied: tensorboard!=2.5.0,&gt;=2.2.0 in /usr/local/lib/python3.7/dist-packages (from pytorch-lightning==1.3.4-&gt;ratsnlp) (2.7.0)
+Collecting torchmetrics&gt;=0.2.0
+  Downloading torchmetrics-0.6.2-py3-none-any.whl (332 kB)
+     |████████████████████████████████| 332 kB 64.2 MB/s 
+Collecting pyDeprecate==0.3.0
+  Downloading pyDeprecate-0.3.0-py3-none-any.whl (10 kB)
+Requirement already satisfied: filelock in /usr/local/lib/python3.7/dist-packages (from transformers==4.10.0-&gt;ratsnlp) (3.4.0)
+Requirement already satisfied: regex!=2019.12.17 in /usr/local/lib/python3.7/dist-packages (from transformers==4.10.0-&gt;ratsnlp) (2019.12.20)
+Requirement already satisfied: importlib-metadata in /usr/local/lib/python3.7/dist-packages (from transformers==4.10.0-&gt;ratsnlp) (4.8.2)
+Collecting sacremoses
+  Downloading sacremoses-0.0.46-py3-none-any.whl (895 kB)
+     |████████████████████████████████| 895 kB 44.7 MB/s 
+Collecting huggingface-hub&gt;=0.0.12
+  Downloading huggingface_hub-0.2.1-py3-none-any.whl (61 kB)
+     |████████████████████████████████| 61 kB 671 kB/s 
+Collecting tokenizers&lt;0.11,&gt;=0.10.1
+  Downloading tokenizers-0.10.3-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (3.3 MB)
+     |████████████████████████████████| 3.3 MB 48.7 MB/s 
+Requirement already satisfied: requests in /usr/local/lib/python3.7/dist-packages (from transformers==4.10.0-&gt;ratsnlp) (2.23.0)
+Requirement already satisfied: click&lt;8.0,&gt;=5.1 in /usr/local/lib/python3.7/dist-packages (from flask&gt;=1.1.4-&gt;ratsnlp) (7.1.2)
+Requirement already satisfied: Jinja2&lt;3.0,&gt;=2.10.1 in /usr/local/lib/python3.7/dist-packages (from flask&gt;=1.1.4-&gt;ratsnlp) (2.11.3)
+Requirement already satisfied: Werkzeug&lt;2.0,&gt;=0.15 in /usr/local/lib/python3.7/dist-packages (from flask&gt;=1.1.4-&gt;ratsnlp) (1.0.1)
+Requirement already satisfied: itsdangerous&lt;2.0,&gt;=0.24 in /usr/local/lib/python3.7/dist-packages (from flask&gt;=1.1.4-&gt;ratsnlp) (1.1.0)
+Requirement already satisfied: Six in /usr/local/lib/python3.7/dist-packages (from flask-cors&gt;=3.0.10-&gt;ratsnlp) (1.15.0)
+Collecting aiohttp
+  Downloading aiohttp-3.8.1-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (1.1 MB)
+     |████████████████████████████████| 1.1 MB 46.2 MB/s 
+Requirement already satisfied: typing-extensions&gt;=3.7.4.3 in /usr/local/lib/python3.7/dist-packages (from huggingface-hub&gt;=0.0.12-&gt;transformers==4.10.0-&gt;ratsnlp) (3.10.0.2)
+Requirement already satisfied: MarkupSafe&gt;=0.23 in /usr/local/lib/python3.7/dist-packages (from Jinja2&lt;3.0,&gt;=2.10.1-&gt;flask&gt;=1.1.4-&gt;ratsnlp) (2.0.1)
+Collecting xlrd&gt;=1.2.0
+  Downloading xlrd-2.0.1-py2.py3-none-any.whl (96 kB)
+     |████████████████████████████████| 96 kB 6.6 MB/s 
+Collecting dataclasses&gt;=0.6
+  Downloading dataclasses-0.6-py3-none-any.whl (14 kB)
+Requirement already satisfied: pyparsing!=3.0.5,&gt;=2.0.2 in /usr/local/lib/python3.7/dist-packages (from packaging-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (3.0.6)
+Requirement already satisfied: chardet&lt;4,&gt;=3.0.2 in /usr/local/lib/python3.7/dist-packages (from requests-&gt;transformers==4.10.0-&gt;ratsnlp) (3.0.4)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.7/dist-packages (from requests-&gt;transformers==4.10.0-&gt;ratsnlp) (2021.10.8)
+Requirement already satisfied: idna&lt;3,&gt;=2.5 in /usr/local/lib/python3.7/dist-packages (from requests-&gt;transformers==4.10.0-&gt;ratsnlp) (2.10)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,&lt;1.26,&gt;=1.21.1 in /usr/local/lib/python3.7/dist-packages (from requests-&gt;transformers==4.10.0-&gt;ratsnlp) (1.24.3)
+Requirement already satisfied: wheel&gt;=0.26 in /usr/local/lib/python3.7/dist-packages (from tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (0.37.0)
+Requirement already satisfied: absl-py&gt;=0.4 in /usr/local/lib/python3.7/dist-packages (from tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (0.12.0)
+Requirement already satisfied: tensorboard-data-server&lt;0.7.0,&gt;=0.6.0 in /usr/local/lib/python3.7/dist-packages (from tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (0.6.1)
+Requirement already satisfied: setuptools&gt;=41.0.0 in /usr/local/lib/python3.7/dist-packages (from tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (57.4.0)
+Requirement already satisfied: tensorboard-plugin-wit&gt;=1.6.0 in /usr/local/lib/python3.7/dist-packages (from tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (1.8.0)
+Requirement already satisfied: grpcio&gt;=1.24.3 in /usr/local/lib/python3.7/dist-packages (from tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (1.42.0)
+Requirement already satisfied: markdown&gt;=2.6.8 in /usr/local/lib/python3.7/dist-packages (from tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (3.3.6)
+Requirement already satisfied: google-auth-oauthlib&lt;0.5,&gt;=0.4.1 in /usr/local/lib/python3.7/dist-packages (from tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (0.4.6)
+Requirement already satisfied: protobuf&gt;=3.6.0 in /usr/local/lib/python3.7/dist-packages (from tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (3.17.3)
+Requirement already satisfied: google-auth&lt;3,&gt;=1.6.3 in /usr/local/lib/python3.7/dist-packages (from tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (1.35.0)
+Requirement already satisfied: cachetools&lt;5.0,&gt;=2.0.0 in /usr/local/lib/python3.7/dist-packages (from google-auth&lt;3,&gt;=1.6.3-&gt;tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (4.2.4)
+Requirement already satisfied: rsa&lt;5,&gt;=3.1.4 in /usr/local/lib/python3.7/dist-packages (from google-auth&lt;3,&gt;=1.6.3-&gt;tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (4.8)
+Requirement already satisfied: pyasn1-modules&gt;=0.2.1 in /usr/local/lib/python3.7/dist-packages (from google-auth&lt;3,&gt;=1.6.3-&gt;tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (0.2.8)
+Requirement already satisfied: requests-oauthlib&gt;=0.7.0 in /usr/local/lib/python3.7/dist-packages (from google-auth-oauthlib&lt;0.5,&gt;=0.4.1-&gt;tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (1.3.0)
+Requirement already satisfied: zipp&gt;=0.5 in /usr/local/lib/python3.7/dist-packages (from importlib-metadata-&gt;transformers==4.10.0-&gt;ratsnlp) (3.6.0)
+Requirement already satisfied: pyasn1&lt;0.5.0,&gt;=0.4.6 in /usr/local/lib/python3.7/dist-packages (from pyasn1-modules&gt;=0.2.1-&gt;google-auth&lt;3,&gt;=1.6.3-&gt;tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (0.4.8)
+Requirement already satisfied: oauthlib&gt;=3.0.0 in /usr/local/lib/python3.7/dist-packages (from requests-oauthlib&gt;=0.7.0-&gt;google-auth-oauthlib&lt;0.5,&gt;=0.4.1-&gt;tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (3.1.1)
+Collecting yarl&lt;2.0,&gt;=1.0
+  Downloading yarl-1.7.2-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (271 kB)
+     |████████████████████████████████| 271 kB 69.4 MB/s 
+Collecting multidict&lt;7.0,&gt;=4.5
+  Downloading multidict-5.2.0-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (160 kB)
+     |████████████████████████████████| 160 kB 57.9 MB/s 
+Requirement already satisfied: attrs&gt;=17.3.0 in /usr/local/lib/python3.7/dist-packages (from aiohttp-&gt;fsspec[http]&gt;=2021.4.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (21.2.0)
+Requirement already satisfied: charset-normalizer&lt;3.0,&gt;=2.0 in /usr/local/lib/python3.7/dist-packages (from aiohttp-&gt;fsspec[http]&gt;=2021.4.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (2.0.8)
+Collecting asynctest==0.13.0
+  Downloading asynctest-0.13.0-py3-none-any.whl (26 kB)
+Collecting async-timeout&lt;5.0,&gt;=4.0.0a3
+  Downloading async_timeout-4.0.2-py3-none-any.whl (5.8 kB)
+Collecting aiosignal&gt;=1.1.2
+  Downloading aiosignal-1.2.0-py3-none-any.whl (8.2 kB)
+Collecting frozenlist&gt;=1.1.1
+  Downloading frozenlist-1.2.0-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (192 kB)
+     |████████████████████████████████| 192 kB 71.0 MB/s 
+Requirement already satisfied: joblib in /usr/local/lib/python3.7/dist-packages (from sacremoses-&gt;transformers==4.10.0-&gt;ratsnlp) (1.1.0)
+Building wheels for collected packages: future
+  Building wheel for future (setup.py) ... done
+  Created wheel for future: filename=future-0.18.2-py3-none-any.whl size=491070 sha256=3cd467807e542363544f5ce4ef26f212f5b2dd8812ec646fa206e9b85b0c7b48
+  Stored in directory: /root/.cache/pip/wheels/56/b0/fe/4410d17b32f1f0c3cf54cdfb2bc04d7b4b8f4ae377e2229ba0
+Successfully built future
+Installing collected packages: multidict, frozenlist, yarl, asynctest, async-timeout, aiosignal, PyYAML, fsspec, aiohttp, xlrd, torchmetrics, tokenizers, sacremoses, pyDeprecate, huggingface-hub, future, dataclasses, transformers, pytorch-lightning, Korpora, flask-ngrok, flask-cors, ratsnlp
+  Attempting uninstall: PyYAML
+    Found existing installation: PyYAML 3.13
+    Uninstalling PyYAML-3.13:
+      Successfully uninstalled PyYAML-3.13
+  Attempting uninstall: xlrd
+    Found existing installation: xlrd 1.1.0
+    Uninstalling xlrd-1.1.0:
+      Successfully uninstalled xlrd-1.1.0
+  Attempting uninstall: future
+    Found existing installation: future 0.16.0
+    Uninstalling future-0.16.0:
+      Successfully uninstalled future-0.16.0
+Successfully installed Korpora-0.2.0 PyYAML-5.4.1 aiohttp-3.8.1 aiosignal-1.2.0 async-timeout-4.0.2 asynctest-0.13.0 dataclasses-0.6 flask-cors-3.0.10 flask-ngrok-0.0.25 frozenlist-1.2.0 fsspec-2021.11.1 future-0.18.2 huggingface-hub-0.2.1 multidict-5.2.0 pyDeprecate-0.3.0 pytorch-lightning-1.3.4 ratsnlp-0.0.9999 sacremoses-0.0.46 tokenizers-0.10.3 torchmetrics-0.6.2 transformers-4.10.0 xlrd-2.0.1 yarl-1.7.2
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BertTokenizer</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">BertTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="s1">&#39;beomi/kcbert-base&#39;</span><span class="p">,</span>
+    <span class="n">do_lower_case</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>BERT(kcbert-base) 모델이 쓰는 토크나이저를 선언합니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BertConfig</span><span class="p">,</span> <span class="n">BertModel</span>
+<span class="n">pretrained_model_config</span> <span class="o">=</span> <span class="n">BertConfig</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="s1">&#39;beomi/kcbert-base&#39;</span>
+<span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">BertModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="s1">&#39;beomi/kcbert-base&#39;</span><span class="p">,</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">pretrained_model_config</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Some weights of the model checkpoint at beomi/kcbert-base were not used when initializing BertModel: [&#39;cls.predictions.transform.LayerNorm.bias&#39;, &#39;cls.seq_relationship.weight&#39;, &#39;cls.predictions.transform.LayerNorm.weight&#39;, &#39;cls.predictions.transform.dense.bias&#39;, &#39;cls.predictions.decoder.weight&#39;, &#39;cls.seq_relationship.bias&#39;, &#39;cls.predictions.bias&#39;, &#39;cls.predictions.decoder.bias&#39;, &#39;cls.predictions.transform.dense.weight&#39;]
+- This IS expected if you are initializing BertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>BERT(kcbert-base) 모델을 읽어들입니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">pretrained_model_config</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>BertConfig {
+  &#34;_name_or_path&#34;: &#34;beomi/kcbert-base&#34;,
+  &#34;architectures&#34;: [
+    &#34;BertForMaskedLM&#34;
+  ],
+  &#34;attention_probs_dropout_prob&#34;: 0.1,
+  &#34;classifier_dropout&#34;: null,
+  &#34;directionality&#34;: &#34;bidi&#34;,
+  &#34;gradient_checkpointing&#34;: false,
+  &#34;hidden_act&#34;: &#34;gelu&#34;,
+  &#34;hidden_dropout_prob&#34;: 0.1,
+  &#34;hidden_size&#34;: 768,
+  &#34;initializer_range&#34;: 0.02,
+  &#34;intermediate_size&#34;: 3072,
+  &#34;layer_norm_eps&#34;: 1e-12,
+  &#34;max_position_embeddings&#34;: 300,
+  &#34;model_type&#34;: &#34;bert&#34;,
+  &#34;num_attention_heads&#34;: 12,
+  &#34;num_hidden_layers&#34;: 12,
+  &#34;pad_token_id&#34;: 0,
+  &#34;pooler_fc_size&#34;: 768,
+  &#34;pooler_num_attention_heads&#34;: 12,
+  &#34;pooler_num_fc_layers&#34;: 3,
+  &#34;pooler_size_per_head&#34;: 128,
+  &#34;pooler_type&#34;: &#34;first_token_transform&#34;,
+  &#34;position_embedding_type&#34;: &#34;absolute&#34;,
+  &#34;transformers_version&#34;: &#34;4.10.0&#34;,
+  &#34;type_vocab_size&#34;: 2,
+  &#34;use_cache&#34;: true,
+  &#34;vocab_size&#34;: 30000
+}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>pretrained_model_config은 BERT 모델을 프리트레인 할때 설정했던 내용이 있습니다.</p>
+<p>블록 수는 12개, 헤드 수는 12개, 어휘 집합 크기는 3만개 입니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;안녕하세요&#39;</span><span class="p">,</span> <span class="s1">&#39;하이!&#39;</span><span class="p">]</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span>
+    <span class="n">sentences</span><span class="p">,</span>
+    <span class="n">max_length</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="n">padding</span> <span class="o">=</span> <span class="s1">&#39;max_length&#39;</span><span class="p">,</span>
+    <span class="n">truncation</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">features</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;input_ids&#39;: [[2, 19017, 8482, 3, 0, 0, 0, 0, 0, 0], [2, 15830, 5, 3, 0, 0, 0, 0, 0, 0]], &#39;token_type_ids&#39;: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]], &#39;attention_mask&#39;: [[1, 1, 1, 1, 0, 0, 0, 0, 0, 0], [1, 1, 1, 1, 0, 0, 0, 0, 0, 0]]}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>BERT 모델의 입력값을 만듭니다. 앞서 배운 BERT 모델과 같이 3개의 변수가 나옵니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span> <span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">features</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>피처를 파이토치에 넣기 위해선 자료형이 텐서(tensor)이여야 하기 때문에 자료형을 변경했습니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">features</span><span class="p">)</span>
+<span class="n">outputs</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>BaseModelOutputWithPoolingAndCrossAttentions([(&#39;last_hidden_state&#39;,
+                                               tensor([[[-0.6969, -0.8248,  1.7512,  ..., -0.3732,  0.7399,  1.1907],
+                                                        [-1.4803, -0.4398,  0.9444,  ..., -0.7405, -0.0211,  1.3064],
+                                                        [-1.4299, -0.5033, -0.2069,  ...,  0.1285, -0.2611,  1.6057],
+                                                        ...,
+                                                        [-1.4406,  0.3431,  1.4043,  ..., -0.0565,  0.8450, -0.2170],
+                                                        [-1.3625, -0.2404,  1.1757,  ...,  0.8876, -0.1054,  0.0734],
+                                                        [-1.4244,  0.1518,  1.2920,  ...,  0.0245,  0.7572,  0.0080]],
+                                               
+                                                       [[ 0.9371, -1.4749,  1.7351,  ..., -0.3426,  0.8050,  0.4031],
+                                                        [ 1.6095, -1.7269,  2.7936,  ...,  0.3100, -0.4787, -1.2491],
+                                                        [ 0.4861, -0.4569,  0.5712,  ..., -0.1769,  1.1253, -0.2756],
+                                                        ...,
+                                                        [ 1.2362, -0.6181,  2.0906,  ...,  1.3677,  0.8132, -0.2742],
+                                                        [ 0.5409, -0.9652,  1.6237,  ...,  1.2395,  0.9185,  0.1782],
+                                                        [ 1.9001, -0.5859,  3.0156,  ...,  1.4967,  0.1924, -0.4448]]],
+                                                      grad_fn=&lt;NativeLayerNormBackward0&gt;)),
+                                              (&#39;pooler_output&#39;,
+                                               tensor([[-0.1594,  0.0547,  0.1101,  ...,  0.2684,  0.1596, -0.9828],
+                                                       [-0.9221,  0.2969, -0.0110,  ...,  0.4291,  0.0311, -0.9955]],
+                                                      grad_fn=&lt;TanhBackward0&gt;))])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>BERT 모델에 features를 적용했습니다. 두 개의 출력물 last_hidden_state, pooler_output이 나옵니다.</p>
+<p>전자를 단어수준 임베딩, 후자를 문장수준 임베딩이라고 부릅니다.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"0da59d6ac0b645eda02ff616b7971abc": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_5e9b2937df62419bb8e3f4ad63a28b41", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_284cb6ea06164678a231a39fa3badbbb", "IPY_MODEL_46b1632d624a41f981afc70b34c5d392", "IPY_MODEL_26f5bb5bb8244eecbc0244dd31a28c2b"]}}, "5e9b2937df62419bb8e3f4ad63a28b41": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "284cb6ea06164678a231a39fa3badbbb": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_446ef7dad7514a8087ccbdd9ebe26d24", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Downloading: 100%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_a68388898dc2432b8e294b2f32e9586f"}}, "46b1632d624a41f981afc70b34c5d392": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_0fba8a10be57420f8363008d64653824", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "success", "max": 249928, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 249928, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_b1bb0fab81e941d29e3ebb5a779e82bf"}}, "26f5bb5bb8244eecbc0244dd31a28c2b": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_028844b8fc734775bf57628c55a9c293", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 250k/250k [00:00&lt;00:00, 917kB/s]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_b8d048638b484f5ea10c72e7938b0f51"}}, "446ef7dad7514a8087ccbdd9ebe26d24": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "a68388898dc2432b8e294b2f32e9586f": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "0fba8a10be57420f8363008d64653824": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "b1bb0fab81e941d29e3ebb5a779e82bf": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "028844b8fc734775bf57628c55a9c293": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "b8d048638b484f5ea10c72e7938b0f51": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "dd9dcd7f424b43e88b3a3e16e8a3639e": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_e6cd704036dd4fa1a199ffd6d41d1f62", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_43e86ef55a20443e95fc26fdc9cd79be", "IPY_MODEL_d610bf4b890c4d2f9c0f971345139ecc", "IPY_MODEL_8fb2e7f455f74bc094c783f46ba52bc8"]}}, "e6cd704036dd4fa1a199ffd6d41d1f62": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "43e86ef55a20443e95fc26fdc9cd79be": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_24fc6b001d9645069b779f8bac5f59c6", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Downloading: 100%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_50da1d8d06a34ba1a790fc81821729d8"}}, "d610bf4b890c4d2f9c0f971345139ecc": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_9482dd905b0e4085bd481d3681a61620", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "success", "max": 49, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 49, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_fdeb78443ac64f059c9b2bf543c83b6a"}}, "8fb2e7f455f74bc094c783f46ba52bc8": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_2738d816d5a04dfcb69e43b6af2ff576", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 49.0/49.0 [00:00&lt;00:00, 529B/s]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_f2b3f7b94e3d41cb87b62d637c5f86fe"}}, "24fc6b001d9645069b779f8bac5f59c6": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "50da1d8d06a34ba1a790fc81821729d8": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "9482dd905b0e4085bd481d3681a61620": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "fdeb78443ac64f059c9b2bf543c83b6a": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "2738d816d5a04dfcb69e43b6af2ff576": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "f2b3f7b94e3d41cb87b62d637c5f86fe": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "f7a8baa0ecb24420bfc40b35df77339a": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_38122f3d9b614e3dac2c6049ac76968b", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_4400559eb05141fa8aee1f013fedc52d", "IPY_MODEL_64ed33614c1547788b1de9385a955165", "IPY_MODEL_191caf783cba49848736e27db7ab9d0b"]}}, "38122f3d9b614e3dac2c6049ac76968b": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "4400559eb05141fa8aee1f013fedc52d": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_0321a949977341eea10a059f5d85c7b5", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Downloading: 100%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_6105f05320044510aa00a7c3bc6aa6c0"}}, "64ed33614c1547788b1de9385a955165": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_8de698f138954695825bc0db7bdbffab", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "success", "max": 619, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 619, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_a143855565324b79b24a957e37ee2ba4"}}, "191caf783cba49848736e27db7ab9d0b": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_999a27b6e43740e9926209e0f6f830f2", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 619/619 [00:00&lt;00:00, 10.3kB/s]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_8e262095c706433baa5e1142815f3d24"}}, "0321a949977341eea10a059f5d85c7b5": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "6105f05320044510aa00a7c3bc6aa6c0": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "8de698f138954695825bc0db7bdbffab": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "a143855565324b79b24a957e37ee2ba4": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "999a27b6e43740e9926209e0f6f830f2": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "8e262095c706433baa5e1142815f3d24": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "87f604df177c464aafa141fab0d0873a": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_8e3ed55e7dc54de38f0eb342337ab88b", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_5144e40bfa544d7380d4b1fac6793eb9", "IPY_MODEL_115655484b534aa6935590b50567242d", "IPY_MODEL_9c1c9b5bff3842e0911431c325556ef7"]}}, "8e3ed55e7dc54de38f0eb342337ab88b": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "5144e40bfa544d7380d4b1fac6793eb9": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_762d024230684356a85c7a463ed2e62a", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Downloading: 100%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_466b433628fe4385a9ef5201302b1de7"}}, "115655484b534aa6935590b50567242d": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_a9c67eb8b0414ba9afd6f23bc650855a", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "success", "max": 438218004, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 438218004, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_3153910941f74f139b3f1394664adb40"}}, "9c1c9b5bff3842e0911431c325556ef7": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_c7ac4ae80e304ac5b3533dada8341abf", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 438M/438M [00:13&lt;00:00, 27.1MB/s]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_13c45824e4db480ca1fa79b3e69281cf"}}, "762d024230684356a85c7a463ed2e62a": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "466b433628fe4385a9ef5201302b1de7": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "a9c67eb8b0414ba9afd6f23bc650855a": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "3153910941f74f139b3f1394664adb40": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "c7ac4ae80e304ac5b3533dada8341abf": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "13c45824e4db480ca1fa79b3e69281cf": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}}
+</script>
+
+
+
+  </div><a class="u-url" href="/myblog/2021/12/21/Do_natural_language2.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/myblog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/myblog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/myblog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/https%3A%2F%2Fgithub.com%2FKSY1526%2FMyProject" title="https://github.com/KSY1526/MyProject"><svg class="svg-icon grey"><use xlink:href="/myblog/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
