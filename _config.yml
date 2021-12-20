@@ -7,10 +7,11 @@
 # https://learnxinyminutes.com/docs/yaml/
 
 title: 나의 빅데이터 공부 기록
-description: An easy to use blogging platform with support for Jupyter Notebooks.
+description: 다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다.
 github_username: KSY1526
 # you can comment the below line out if your repo name is not different than your baseurl
-github_repo: "KSY1526.github.io"
+# github_repo: "KSY1526.github.io"
+github_repo: "https://github.com/"
 
 # OPTIONAL: override baseurl and url if using a custom domain
 # Note: leave out the trailing / from this value. 
