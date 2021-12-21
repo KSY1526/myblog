@@ -4,8 +4,14 @@ title: About Me
 permalink: /about/
 ---
 
-This website is powered by **[fastpages](https://github.com/fastai/fastpages)** [^1].
+안녕하세요. 김성연이라고 합니다.
 
+현재 통계학과 재학중이며 머신러닝/딥러닝 관련 공부하고 있습니다.
 
+캐글 내 인기 코드를 제 시각에 맞추서 리뷰하거나, 머신러닝/딥러닝 책 예제 코드를 따라하며 공부하고 있습니다.
 
-[^1]:a blogging platform that natively supports Jupyter notebooks in addition to other formats.
+이 블로그는 제가 하는 공부를 기록하는 곳입니다. 방문하시는 분에게도 도움이 되었으면 좋겠습니다.
+
+혹시 질문 있으시면 댓글이나 제 메일(zan05134@naver.com) 으로 연락 부탁드립니다.
+
+감사합니다.
