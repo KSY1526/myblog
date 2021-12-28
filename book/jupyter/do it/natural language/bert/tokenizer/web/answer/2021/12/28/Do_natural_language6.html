@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>[Do it 자연어] 6. 질문에 답하는 웹 서비스 만들기 | 나의 빅데이터 공부 기록</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="[Do it 자연어] 6. 질문에 답하는 웹 서비스 만들기" />
+<meta name="author" content="Seong Yeon Kim" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다." />
+<meta property="og:description" content="다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다." />
+<link rel="canonical" href="https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/tokenizer/web/answer/2021/12/28/Do_natural_language6.html" />
+<meta property="og:url" content="https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/tokenizer/web/answer/2021/12/28/Do_natural_language6.html" />
+<meta property="og:site_name" content="나의 빅데이터 공부 기록" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-12-28T00:00:00-06:00" />
+<script type="application/ld+json">
+{"datePublished":"2021-12-28T00:00:00-06:00","url":"https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/tokenizer/web/answer/2021/12/28/Do_natural_language6.html","@type":"BlogPosting","headline":"[Do it 자연어] 6. 질문에 답하는 웹 서비스 만들기","dateModified":"2021-12-28T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/tokenizer/web/answer/2021/12/28/Do_natural_language6.html"},"author":{"@type":"Person","name":"Seong Yeon Kim"},"description":"다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/myblog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://ksy1526.github.io/myblog/feed.xml" title="나의 빅데이터 공부 기록" /><link rel="shortcut icon" type="image/x-icon" href="/myblog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/myblog/">나의 빅데이터 공부 기록</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/myblog/about/">About Me</a><a class="page-link" href="/myblog/search/">Search</a><a class="page-link" href="/myblog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">[Do it 자연어] 6. 질문에 답하는 웹 서비스 만들기</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-12-28T00:00:00-06:00" itemprop="datePublished">
+        Dec 28, 2021
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Seong Yeon Kim</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      67 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/myblog/categories/#book">book</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#jupyter">jupyter</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#Do it">Do it</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#natural language">natural language</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#BERT">BERT</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#tokenizer">tokenizer</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#web">web</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#answer">answer</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          
+          
+          
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-12-28-Do_natural_language6.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="https://colab.research.google.com/github/KSY1526/myblog/blob/master/_notebooks/2021-12-28-Do_natural_language6.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#47784;&#45944;-&#54872;&#44221;&#49444;&#51221;">&#47784;&#45944; &#54872;&#44221;&#49444;&#51221;<a class="anchor-link" href="#&#47784;&#45944;-&#54872;&#44221;&#49444;&#51221;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">ratsnlp</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Collecting ratsnlp
+  Downloading ratsnlp-0.0.9999-py3-none-any.whl (53 kB)
+     |████████████████████████████████| 53 kB 1.4 MB/s 
+Collecting Korpora&gt;=0.2.0
+  Downloading Korpora-0.2.0-py3-none-any.whl (57 kB)
+     |████████████████████████████████| 57 kB 4.8 MB/s 
+Collecting flask-cors&gt;=3.0.10
+  Downloading Flask_Cors-3.0.10-py2.py3-none-any.whl (14 kB)
+Collecting pytorch-lightning==1.3.4
+  Downloading pytorch_lightning-1.3.4-py3-none-any.whl (806 kB)
+     |████████████████████████████████| 806 kB 16.6 MB/s 
+Collecting flask-ngrok&gt;=0.0.25
+  Downloading flask_ngrok-0.0.25-py3-none-any.whl (3.1 kB)
+Requirement already satisfied: torch&gt;=1.9.0 in /usr/local/lib/python3.7/dist-packages (from ratsnlp) (1.10.0+cu111)
+Requirement already satisfied: flask&gt;=1.1.4 in /usr/local/lib/python3.7/dist-packages (from ratsnlp) (1.1.4)
+Collecting transformers==4.10.0
+  Downloading transformers-4.10.0-py3-none-any.whl (2.8 MB)
+     |████████████████████████████████| 2.8 MB 44.7 MB/s 
+Requirement already satisfied: numpy&gt;=1.17.2 in /usr/local/lib/python3.7/dist-packages (from pytorch-lightning==1.3.4-&gt;ratsnlp) (1.19.5)
+Collecting future&gt;=0.17.1
+  Downloading future-0.18.2.tar.gz (829 kB)
+     |████████████████████████████████| 829 kB 44.4 MB/s 
+Requirement already satisfied: tensorboard!=2.5.0,&gt;=2.2.0 in /usr/local/lib/python3.7/dist-packages (from pytorch-lightning==1.3.4-&gt;ratsnlp) (2.7.0)
+Collecting pyDeprecate==0.3.0
+  Downloading pyDeprecate-0.3.0-py3-none-any.whl (10 kB)
+Requirement already satisfied: tqdm&gt;=4.41.0 in /usr/local/lib/python3.7/dist-packages (from pytorch-lightning==1.3.4-&gt;ratsnlp) (4.62.3)
+Collecting fsspec[http]&gt;=2021.4.0
+  Downloading fsspec-2021.11.1-py3-none-any.whl (132 kB)
+     |████████████████████████████████| 132 kB 45.4 MB/s 
+Collecting torchmetrics&gt;=0.2.0
+  Downloading torchmetrics-0.6.2-py3-none-any.whl (332 kB)
+     |████████████████████████████████| 332 kB 53.9 MB/s 
+Requirement already satisfied: packaging in /usr/local/lib/python3.7/dist-packages (from pytorch-lightning==1.3.4-&gt;ratsnlp) (21.3)
+Collecting PyYAML&lt;=5.4.1,&gt;=5.1
+  Downloading PyYAML-5.4.1-cp37-cp37m-manylinux1_x86_64.whl (636 kB)
+     |████████████████████████████████| 636 kB 53.6 MB/s 
+Collecting tokenizers&lt;0.11,&gt;=0.10.1
+  Downloading tokenizers-0.10.3-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (3.3 MB)
+     |████████████████████████████████| 3.3 MB 25.7 MB/s 
+Requirement already satisfied: regex!=2019.12.17 in /usr/local/lib/python3.7/dist-packages (from transformers==4.10.0-&gt;ratsnlp) (2019.12.20)
+Requirement already satisfied: importlib-metadata in /usr/local/lib/python3.7/dist-packages (from transformers==4.10.0-&gt;ratsnlp) (4.8.2)
+Collecting huggingface-hub&gt;=0.0.12
+  Downloading huggingface_hub-0.2.1-py3-none-any.whl (61 kB)
+     |████████████████████████████████| 61 kB 550 kB/s 
+Requirement already satisfied: filelock in /usr/local/lib/python3.7/dist-packages (from transformers==4.10.0-&gt;ratsnlp) (3.4.0)
+Collecting sacremoses
+  Downloading sacremoses-0.0.46-py3-none-any.whl (895 kB)
+     |████████████████████████████████| 895 kB 51.6 MB/s 
+Requirement already satisfied: requests in /usr/local/lib/python3.7/dist-packages (from transformers==4.10.0-&gt;ratsnlp) (2.23.0)
+Requirement already satisfied: Jinja2&lt;3.0,&gt;=2.10.1 in /usr/local/lib/python3.7/dist-packages (from flask&gt;=1.1.4-&gt;ratsnlp) (2.11.3)
+Requirement already satisfied: Werkzeug&lt;2.0,&gt;=0.15 in /usr/local/lib/python3.7/dist-packages (from flask&gt;=1.1.4-&gt;ratsnlp) (1.0.1)
+Requirement already satisfied: itsdangerous&lt;2.0,&gt;=0.24 in /usr/local/lib/python3.7/dist-packages (from flask&gt;=1.1.4-&gt;ratsnlp) (1.1.0)
+Requirement already satisfied: click&lt;8.0,&gt;=5.1 in /usr/local/lib/python3.7/dist-packages (from flask&gt;=1.1.4-&gt;ratsnlp) (7.1.2)
+Requirement already satisfied: Six in /usr/local/lib/python3.7/dist-packages (from flask-cors&gt;=3.0.10-&gt;ratsnlp) (1.15.0)
+Collecting aiohttp
+  Downloading aiohttp-3.8.1-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (1.1 MB)
+     |████████████████████████████████| 1.1 MB 44.2 MB/s 
+Requirement already satisfied: typing-extensions&gt;=3.7.4.3 in /usr/local/lib/python3.7/dist-packages (from huggingface-hub&gt;=0.0.12-&gt;transformers==4.10.0-&gt;ratsnlp) (3.10.0.2)
+Requirement already satisfied: MarkupSafe&gt;=0.23 in /usr/local/lib/python3.7/dist-packages (from Jinja2&lt;3.0,&gt;=2.10.1-&gt;flask&gt;=1.1.4-&gt;ratsnlp) (2.0.1)
+Collecting dataclasses&gt;=0.6
+  Downloading dataclasses-0.6-py3-none-any.whl (14 kB)
+Collecting xlrd&gt;=1.2.0
+  Downloading xlrd-2.0.1-py2.py3-none-any.whl (96 kB)
+     |████████████████████████████████| 96 kB 6.2 MB/s 
+Requirement already satisfied: pyparsing!=3.0.5,&gt;=2.0.2 in /usr/local/lib/python3.7/dist-packages (from packaging-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (3.0.6)
+Requirement already satisfied: chardet&lt;4,&gt;=3.0.2 in /usr/local/lib/python3.7/dist-packages (from requests-&gt;transformers==4.10.0-&gt;ratsnlp) (3.0.4)
+Requirement already satisfied: idna&lt;3,&gt;=2.5 in /usr/local/lib/python3.7/dist-packages (from requests-&gt;transformers==4.10.0-&gt;ratsnlp) (2.10)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.7/dist-packages (from requests-&gt;transformers==4.10.0-&gt;ratsnlp) (2021.10.8)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,&lt;1.26,&gt;=1.21.1 in /usr/local/lib/python3.7/dist-packages (from requests-&gt;transformers==4.10.0-&gt;ratsnlp) (1.24.3)
+Requirement already satisfied: google-auth-oauthlib&lt;0.5,&gt;=0.4.1 in /usr/local/lib/python3.7/dist-packages (from tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (0.4.6)
+Requirement already satisfied: grpcio&gt;=1.24.3 in /usr/local/lib/python3.7/dist-packages (from tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (1.42.0)
+Requirement already satisfied: setuptools&gt;=41.0.0 in /usr/local/lib/python3.7/dist-packages (from tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (57.4.0)
+Requirement already satisfied: wheel&gt;=0.26 in /usr/local/lib/python3.7/dist-packages (from tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (0.37.0)
+Requirement already satisfied: tensorboard-data-server&lt;0.7.0,&gt;=0.6.0 in /usr/local/lib/python3.7/dist-packages (from tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (0.6.1)
+Requirement already satisfied: tensorboard-plugin-wit&gt;=1.6.0 in /usr/local/lib/python3.7/dist-packages (from tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (1.8.0)
+Requirement already satisfied: absl-py&gt;=0.4 in /usr/local/lib/python3.7/dist-packages (from tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (0.12.0)
+Requirement already satisfied: protobuf&gt;=3.6.0 in /usr/local/lib/python3.7/dist-packages (from tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (3.17.3)
+Requirement already satisfied: google-auth&lt;3,&gt;=1.6.3 in /usr/local/lib/python3.7/dist-packages (from tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (1.35.0)
+Requirement already satisfied: markdown&gt;=2.6.8 in /usr/local/lib/python3.7/dist-packages (from tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (3.3.6)
+Requirement already satisfied: pyasn1-modules&gt;=0.2.1 in /usr/local/lib/python3.7/dist-packages (from google-auth&lt;3,&gt;=1.6.3-&gt;tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (0.2.8)
+Requirement already satisfied: cachetools&lt;5.0,&gt;=2.0.0 in /usr/local/lib/python3.7/dist-packages (from google-auth&lt;3,&gt;=1.6.3-&gt;tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (4.2.4)
+Requirement already satisfied: rsa&lt;5,&gt;=3.1.4 in /usr/local/lib/python3.7/dist-packages (from google-auth&lt;3,&gt;=1.6.3-&gt;tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (4.8)
+Requirement already satisfied: requests-oauthlib&gt;=0.7.0 in /usr/local/lib/python3.7/dist-packages (from google-auth-oauthlib&lt;0.5,&gt;=0.4.1-&gt;tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (1.3.0)
+Requirement already satisfied: zipp&gt;=0.5 in /usr/local/lib/python3.7/dist-packages (from importlib-metadata-&gt;transformers==4.10.0-&gt;ratsnlp) (3.6.0)
+Requirement already satisfied: pyasn1&lt;0.5.0,&gt;=0.4.6 in /usr/local/lib/python3.7/dist-packages (from pyasn1-modules&gt;=0.2.1-&gt;google-auth&lt;3,&gt;=1.6.3-&gt;tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (0.4.8)
+Requirement already satisfied: oauthlib&gt;=3.0.0 in /usr/local/lib/python3.7/dist-packages (from requests-oauthlib&gt;=0.7.0-&gt;google-auth-oauthlib&lt;0.5,&gt;=0.4.1-&gt;tensorboard!=2.5.0,&gt;=2.2.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (3.1.1)
+Collecting async-timeout&lt;5.0,&gt;=4.0.0a3
+  Downloading async_timeout-4.0.2-py3-none-any.whl (5.8 kB)
+Collecting aiosignal&gt;=1.1.2
+  Downloading aiosignal-1.2.0-py3-none-any.whl (8.2 kB)
+Collecting multidict&lt;7.0,&gt;=4.5
+  Downloading multidict-5.2.0-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (160 kB)
+     |████████████████████████████████| 160 kB 51.0 MB/s 
+Collecting yarl&lt;2.0,&gt;=1.0
+  Downloading yarl-1.7.2-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (271 kB)
+     |████████████████████████████████| 271 kB 50.6 MB/s 
+Requirement already satisfied: charset-normalizer&lt;3.0,&gt;=2.0 in /usr/local/lib/python3.7/dist-packages (from aiohttp-&gt;fsspec[http]&gt;=2021.4.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (2.0.8)
+Collecting frozenlist&gt;=1.1.1
+  Downloading frozenlist-1.2.0-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (192 kB)
+     |████████████████████████████████| 192 kB 51.1 MB/s 
+Requirement already satisfied: attrs&gt;=17.3.0 in /usr/local/lib/python3.7/dist-packages (from aiohttp-&gt;fsspec[http]&gt;=2021.4.0-&gt;pytorch-lightning==1.3.4-&gt;ratsnlp) (21.2.0)
+Collecting asynctest==0.13.0
+  Downloading asynctest-0.13.0-py3-none-any.whl (26 kB)
+Requirement already satisfied: joblib in /usr/local/lib/python3.7/dist-packages (from sacremoses-&gt;transformers==4.10.0-&gt;ratsnlp) (1.1.0)
+Building wheels for collected packages: future
+  Building wheel for future (setup.py) ... done
+  Created wheel for future: filename=future-0.18.2-py3-none-any.whl size=491070 sha256=a5637edc2a6d78b74eca383b627dad92eef464234aac303f8617646dbc1f4c65
+  Stored in directory: /root/.cache/pip/wheels/56/b0/fe/4410d17b32f1f0c3cf54cdfb2bc04d7b4b8f4ae377e2229ba0
+Successfully built future
+Installing collected packages: multidict, frozenlist, yarl, asynctest, async-timeout, aiosignal, PyYAML, fsspec, aiohttp, xlrd, torchmetrics, tokenizers, sacremoses, pyDeprecate, huggingface-hub, future, dataclasses, transformers, pytorch-lightning, Korpora, flask-ngrok, flask-cors, ratsnlp
+  Attempting uninstall: PyYAML
+    Found existing installation: PyYAML 3.13
+    Uninstalling PyYAML-3.13:
+      Successfully uninstalled PyYAML-3.13
+  Attempting uninstall: xlrd
+    Found existing installation: xlrd 1.1.0
+    Uninstalling xlrd-1.1.0:
+      Successfully uninstalled xlrd-1.1.0
+  Attempting uninstall: future
+    Found existing installation: future 0.16.0
+    Uninstalling future-0.16.0:
+      Successfully uninstalled future-0.16.0
+Successfully installed Korpora-0.2.0 PyYAML-5.4.1 aiohttp-3.8.1 aiosignal-1.2.0 async-timeout-4.0.2 asynctest-0.13.0 dataclasses-0.6 flask-cors-3.0.10 flask-ngrok-0.0.25 frozenlist-1.2.0 fsspec-2021.11.1 future-0.18.2 huggingface-hub-0.2.1 multidict-5.2.0 pyDeprecate-0.3.0 pytorch-lightning-1.3.4 ratsnlp-0.0.9999 sacremoses-0.0.46 tokenizers-0.10.3 torchmetrics-0.6.2 transformers-4.10.0 xlrd-2.0.1 yarl-1.7.2
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/gdrive&#39;</span><span class="p">,</span> <span class="n">force_remount</span><span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Mounted at /gdrive
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">torch.cuda</span> <span class="kn">import</span> <span class="n">is_available</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">ratsnlp.nlpbook.qa</span> <span class="kn">import</span> <span class="n">QATrainArguments</span>
+
+<span class="n">args</span> <span class="o">=</span> <span class="n">QATrainArguments</span><span class="p">(</span>
+    <span class="n">pretrained_model_name</span><span class="o">=</span> <span class="s1">&#39;beomi/kcbert-base&#39;</span><span class="p">,</span> <span class="c1"># 프리트레인 모델</span>
+    <span class="n">downstream_corpus_name</span><span class="o">=</span><span class="s1">&#39;korquad-v1&#39;</span><span class="p">,</span> <span class="c1"># 입력 데이터</span>
+    <span class="n">downstream_model_dir</span><span class="o">=</span> <span class="s1">&#39;/gdrive/My Drive/nlpbook/checkpoing-qa&#39;</span><span class="p">,</span> <span class="c1"># 중간저장위치</span>
+    <span class="n">max_seq_length</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="c1"># 입력문장 최대 길이(질문+지문)</span>
+    <span class="n">max_query_length</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="c1"># 질문 최대 길이</span>
+    <span class="n">doc_stride</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span> <span class="c1"># 지문에서 몇개 토큰을 슬라이딩 해갈지? 결정</span>
+    <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">5e-5</span><span class="p">,</span>
+    <span class="n">epochs</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="n">tpu_cores</span><span class="o">=</span><span class="mi">0</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="n">seed</span> <span class="o">=</span> <span class="mi">7</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>kcbert-base 모델로 프리트레인을 하였습니다.</p>
+<p>LG CNS가 공개한 korqued 1.0 데이터를 활용해 모델을 구축하겠습니다.</p>
+<p>여기서 doc_stride은 만약 입력문장이 128보다 클 경우 지문 앞 부분을 입력값(64)만큼 제거하고 잘린 뒷부분을 가져와 붙입니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">ratsnlp</span> <span class="kn">import</span> <span class="n">nlpbook</span>
+<span class="n">nlpbook</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+<span class="n">nlpbook</span><span class="o">.</span><span class="n">set_logger</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>INFO:ratsnlp:Training/evaluation parameters QATrainArguments(pretrained_model_name=&#39;beomi/kcbert-base&#39;, downstream_corpus_name=&#39;korquad-v1&#39;, downstream_corpus_root_dir=&#39;/root/Korpora&#39;, downstream_model_dir=&#39;/gdrive/My Drive/nlpbook/checkpoing-qa&#39;, max_seq_length=128, doc_stride=64, max_query_length=32, threads=4, cpu_workers=2, save_top_k=1, monitor=&#39;min val_loss&#39;, seed=7, overwrite_cache=False, force_download=False, test_mode=False, learning_rate=5e-05, epochs=3, batch_size=32, fp16=False, tpu_cores=0, tqdm_enabled=True)
+INFO:ratsnlp:Training/evaluation parameters QATrainArguments(pretrained_model_name=&#39;beomi/kcbert-base&#39;, downstream_corpus_name=&#39;korquad-v1&#39;, downstream_corpus_root_dir=&#39;/root/Korpora&#39;, downstream_model_dir=&#39;/gdrive/My Drive/nlpbook/checkpoing-qa&#39;, max_seq_length=128, doc_stride=64, max_query_length=32, threads=4, cpu_workers=2, save_top_k=1, monitor=&#39;min val_loss&#39;, seed=7, overwrite_cache=False, force_download=False, test_mode=False, learning_rate=5e-05, epochs=3, batch_size=32, fp16=False, tpu_cores=0, tqdm_enabled=True)
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>set seed: 7
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>랜덤시드와 로거를 설정했습니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#47568;&#47945;&#52824;-&#45236;&#47140;&#48155;&#44592;">&#47568;&#47945;&#52824; &#45236;&#47140;&#48155;&#44592;<a class="anchor-link" href="#&#47568;&#47945;&#52824;-&#45236;&#47140;&#48155;&#44592;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">nlpbook</span><span class="o">.</span><span class="n">download_downstream_dataset</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Downloading: 38.5MB [00:00, 71.7MB/s]
+Downloading: 3.88MB [00:00, 60.6MB/s]                  
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>downstream_corpus_name='korquad-v1' 로 선언된 데이터를 내려받습니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BertTokenizer</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">BertTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">args</span><span class="o">.</span><span class="n">pretrained_model_name</span><span class="p">,</span>
+    <span class="n">do_lower_case</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>pretrained_model_name= 'beomi/kcbert-base' 로 프리트레인을 해서 토크나이저를 생성합니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#54617;&#49845;-&#45936;&#51060;&#53552;-&#44396;&#52629;">&#54617;&#49845; &#45936;&#51060;&#53552; &#44396;&#52629;<a class="anchor-link" href="#&#54617;&#49845;-&#45936;&#51060;&#53552;-&#44396;&#52629;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">ratsnlp.nlpbook.qa</span> <span class="kn">import</span> <span class="n">KorQuADV1Corpus</span><span class="p">,</span> <span class="n">QADataset</span>
+<span class="n">corpus</span> <span class="o">=</span> <span class="n">KorQuADV1Corpus</span><span class="p">()</span> <span class="c1"># JSON 포멧의 KorQuAD 데이터를 읽어옴.</span>
+<span class="n">train_dataset</span> <span class="o">=</span> <span class="n">QADataset</span><span class="p">(</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">args</span><span class="p">,</span>
+    <span class="n">corpus</span> <span class="o">=</span> <span class="n">corpus</span><span class="p">,</span>
+    <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">,</span>
+    <span class="n">mode</span> <span class="o">=</span> <span class="s1">&#39;train&#39;</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>INFO:ratsnlp:Creating features from train dataset file at /root/Korpora/korquad-v1
+INFO:ratsnlp:Creating features from train dataset file at /root/Korpora/korquad-v1
+100%|██████████| 1420/1420 [00:00&lt;00:00, 4333.43it/s]
+convert squad examples to features: 100%|██████████| 57688/57688 [07:46&lt;00:00, 123.67it/s]
+INFO:ratsnlp:*** Example ***
+INFO:ratsnlp:*** Example ***
+INFO:ratsnlp:question &amp; context: [CLS] 바 ##그 ##너 ##는 괴 ##테 ##의 파 ##우스 ##트를 읽고 무엇을 쓰고 ##자 했 ##는가 ? [SEP] 18 ##3 ##9년 바 ##그 ##너 ##는 괴 ##테 ##의 파 ##우스 ##트 ##을 처음 읽고 그 내용 ##에 마음이 끌려 이를 소재 ##로 해서 하나의 교 ##향 ##곡 ##을 쓰 ##려는 뜻을 갖 ##는다 . 이 시기 바 ##그 ##너 ##는 18 ##3 ##8년 ##에 빛 독 ##촉 ##으로 산 ##전 ##수 ##전을 다 걲 ##은 상황이 ##라 좌 ##절 ##과 실망 ##에 가득 ##했 ##으며 메 ##피 ##스 ##토 ##펠 ##레스 ##를 만나는 파 ##우스 ##트 ##의 심 ##경 ##에 공감 ##했다고 한다 . 또한 파리 ##에서 아 ##브 ##네 ##크 ##의 지휘 ##로 파리 음악 ##원 관 ##현 ##악 ##단이 연 ##주 ##하는 베 ##토 [SEP]
+INFO:ratsnlp:question &amp; context: [CLS] 바 ##그 ##너 ##는 괴 ##테 ##의 파 ##우스 ##트를 읽고 무엇을 쓰고 ##자 했 ##는가 ? [SEP] 18 ##3 ##9년 바 ##그 ##너 ##는 괴 ##테 ##의 파 ##우스 ##트 ##을 처음 읽고 그 내용 ##에 마음이 끌려 이를 소재 ##로 해서 하나의 교 ##향 ##곡 ##을 쓰 ##려는 뜻을 갖 ##는다 . 이 시기 바 ##그 ##너 ##는 18 ##3 ##8년 ##에 빛 독 ##촉 ##으로 산 ##전 ##수 ##전을 다 걲 ##은 상황이 ##라 좌 ##절 ##과 실망 ##에 가득 ##했 ##으며 메 ##피 ##스 ##토 ##펠 ##레스 ##를 만나는 파 ##우스 ##트 ##의 심 ##경 ##에 공감 ##했다고 한다 . 또한 파리 ##에서 아 ##브 ##네 ##크 ##의 지휘 ##로 파리 음악 ##원 관 ##현 ##악 ##단이 연 ##주 ##하는 베 ##토 [SEP]
+INFO:ratsnlp:answer: 교 ##향 ##곡
+INFO:ratsnlp:answer: 교 ##향 ##곡
+INFO:ratsnlp:features: QAFeatures(input_ids=[2, 1480, 4313, 4538, 4008, 336, 4065, 4042, 3231, 23243, 19143, 13985, 12449, 9194, 4105, 3385, 9411, 32, 3, 8601, 4633, 29697, 1480, 4313, 4538, 4008, 336, 4065, 4042, 3231, 23243, 4104, 4027, 8793, 13985, 391, 9132, 4113, 10966, 11728, 12023, 14657, 4091, 8598, 16639, 341, 4573, 4771, 4027, 2139, 8478, 14416, 214, 8202, 17, 2451, 13007, 1480, 4313, 4538, 4008, 8601, 4633, 22903, 4113, 1676, 868, 4913, 7965, 1789, 4203, 4110, 15031, 786, 250, 4057, 10878, 4007, 2593, 4094, 4128, 10289, 4113, 10958, 4062, 9511, 1355, 4600, 4103, 4775, 5602, 10770, 4180, 26732, 3231, 23243, 4104, 4042, 2015, 4012, 4113, 9198, 8763, 8129, 17, 10384, 23008, 7971, 2170, 4408, 4011, 4147, 4042, 17015, 4091, 23008, 21056, 4165, 323, 4175, 4158, 11413, 2273, 4043, 7966, 1543, 4775, 3], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], token_type_ids=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], start_positions=45, end_positions=47)
+INFO:ratsnlp:features: QAFeatures(input_ids=[2, 1480, 4313, 4538, 4008, 336, 4065, 4042, 3231, 23243, 19143, 13985, 12449, 9194, 4105, 3385, 9411, 32, 3, 8601, 4633, 29697, 1480, 4313, 4538, 4008, 336, 4065, 4042, 3231, 23243, 4104, 4027, 8793, 13985, 391, 9132, 4113, 10966, 11728, 12023, 14657, 4091, 8598, 16639, 341, 4573, 4771, 4027, 2139, 8478, 14416, 214, 8202, 17, 2451, 13007, 1480, 4313, 4538, 4008, 8601, 4633, 22903, 4113, 1676, 868, 4913, 7965, 1789, 4203, 4110, 15031, 786, 250, 4057, 10878, 4007, 2593, 4094, 4128, 10289, 4113, 10958, 4062, 9511, 1355, 4600, 4103, 4775, 5602, 10770, 4180, 26732, 3231, 23243, 4104, 4042, 2015, 4012, 4113, 9198, 8763, 8129, 17, 10384, 23008, 7971, 2170, 4408, 4011, 4147, 4042, 17015, 4091, 23008, 21056, 4165, 323, 4175, 4158, 11413, 2273, 4043, 7966, 1543, 4775, 3], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], token_type_ids=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], start_positions=45, end_positions=47)
+INFO:ratsnlp:*** Example ***
+INFO:ratsnlp:*** Example ***
+INFO:ratsnlp:question &amp; context: [CLS] 바 ##그 ##너 ##는 괴 ##테 ##의 파 ##우스 ##트를 읽고 무엇을 쓰고 ##자 했 ##는가 ? [SEP] 가득 ##했 ##으며 메 ##피 ##스 ##토 ##펠 ##레스 ##를 만나는 파 ##우스 ##트 ##의 심 ##경 ##에 공감 ##했다고 한다 . 또한 파리 ##에서 아 ##브 ##네 ##크 ##의 지휘 ##로 파리 음악 ##원 관 ##현 ##악 ##단이 연 ##주 ##하는 베 ##토 ##벤 ##의 교 ##향 ##곡 9 ##번 ##을 듣고 깊은 감 ##명을 받았는데 , 이것이 이 ##듬 ##해 1월 ##에 파 ##우스 ##트 ##의 서 ##곡 ##으로 쓰여 ##진 이 작품 ##에 조금이라도 영향을 끼 ##쳤 ##으리 ##라는 것은 의심 ##할 여지가 없다 . 여기 ##의 라 ##단 ##조 조성 ##의 경우 ##에도 그의 전기 ##에 적 ##혀 있는 것처럼 단순한 정신적 피로 ##나 [SEP]
+INFO:ratsnlp:question &amp; context: [CLS] 바 ##그 ##너 ##는 괴 ##테 ##의 파 ##우스 ##트를 읽고 무엇을 쓰고 ##자 했 ##는가 ? [SEP] 가득 ##했 ##으며 메 ##피 ##스 ##토 ##펠 ##레스 ##를 만나는 파 ##우스 ##트 ##의 심 ##경 ##에 공감 ##했다고 한다 . 또한 파리 ##에서 아 ##브 ##네 ##크 ##의 지휘 ##로 파리 음악 ##원 관 ##현 ##악 ##단이 연 ##주 ##하는 베 ##토 ##벤 ##의 교 ##향 ##곡 9 ##번 ##을 듣고 깊은 감 ##명을 받았는데 , 이것이 이 ##듬 ##해 1월 ##에 파 ##우스 ##트 ##의 서 ##곡 ##으로 쓰여 ##진 이 작품 ##에 조금이라도 영향을 끼 ##쳤 ##으리 ##라는 것은 의심 ##할 여지가 없다 . 여기 ##의 라 ##단 ##조 조성 ##의 경우 ##에도 그의 전기 ##에 적 ##혀 있는 것처럼 단순한 정신적 피로 ##나 [SEP]
+INFO:ratsnlp:answer: [CLS]
+INFO:ratsnlp:answer: [CLS]
+INFO:ratsnlp:features: QAFeatures(input_ids=[2, 1480, 4313, 4538, 4008, 336, 4065, 4042, 3231, 23243, 19143, 13985, 12449, 9194, 4105, 3385, 9411, 32, 3, 10958, 4062, 9511, 1355, 4600, 4103, 4775, 5602, 10770, 4180, 26732, 3231, 23243, 4104, 4042, 2015, 4012, 4113, 9198, 8763, 8129, 17, 10384, 23008, 7971, 2170, 4408, 4011, 4147, 4042, 17015, 4091, 23008, 21056, 4165, 323, 4175, 4158, 11413, 2273, 4043, 7966, 1543, 4775, 4170, 4042, 341, 4573, 4771, 28, 4566, 4027, 10599, 18907, 208, 9504, 24835, 15, 11060, 2451, 4780, 4032, 18548, 4113, 3231, 23243, 4104, 4042, 1843, 4771, 7965, 28987, 4153, 2451, 15489, 4113, 13928, 17283, 575, 4261, 26783, 8114, 8852, 9107, 4082, 28498, 8131, 17, 8225, 4042, 1114, 4281, 4194, 17138, 4042, 9961, 8222, 14041, 10892, 4113, 2524, 4443, 8032, 12710, 21602, 18625, 24569, 4136, 3], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], token_type_ids=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], start_positions=0, end_positions=0)
+INFO:ratsnlp:features: QAFeatures(input_ids=[2, 1480, 4313, 4538, 4008, 336, 4065, 4042, 3231, 23243, 19143, 13985, 12449, 9194, 4105, 3385, 9411, 32, 3, 10958, 4062, 9511, 1355, 4600, 4103, 4775, 5602, 10770, 4180, 26732, 3231, 23243, 4104, 4042, 2015, 4012, 4113, 9198, 8763, 8129, 17, 10384, 23008, 7971, 2170, 4408, 4011, 4147, 4042, 17015, 4091, 23008, 21056, 4165, 323, 4175, 4158, 11413, 2273, 4043, 7966, 1543, 4775, 4170, 4042, 341, 4573, 4771, 28, 4566, 4027, 10599, 18907, 208, 9504, 24835, 15, 11060, 2451, 4780, 4032, 18548, 4113, 3231, 23243, 4104, 4042, 1843, 4771, 7965, 28987, 4153, 2451, 15489, 4113, 13928, 17283, 575, 4261, 26783, 8114, 8852, 9107, 4082, 28498, 8131, 17, 8225, 4042, 1114, 4281, 4194, 17138, 4042, 9961, 8222, 14041, 10892, 4113, 2524, 4443, 8032, 12710, 21602, 18625, 24569, 4136, 3], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], token_type_ids=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], start_positions=0, end_positions=0)
+INFO:ratsnlp:*** Example ***
+INFO:ratsnlp:*** Example ***
+INFO:ratsnlp:question &amp; context: [CLS] 바 ##그 ##너 ##는 괴 ##테 ##의 파 ##우스 ##트를 읽고 무엇을 쓰고 ##자 했 ##는가 ? [SEP] 파 ##우스 ##트 ##의 서 ##곡 ##으로 쓰여 ##진 이 작품 ##에 조금이라도 영향을 끼 ##쳤 ##으리 ##라는 것은 의심 ##할 여지가 없다 . 여기 ##의 라 ##단 ##조 조성 ##의 경우 ##에도 그의 전기 ##에 적 ##혀 있는 것처럼 단순한 정신적 피로 ##나 실 ##의가 반영 ##된 것이 아니라 베 ##토 ##벤 ##의 합 ##창 ##교 ##향 ##곡 조성 ##의 영향을 받은 것을 볼 수 있다 . 그렇게 교 ##향 ##곡 작 ##곡 ##을 18 ##3 ##9년 ##부터 40년 ##에 걸 ##쳐 파리 ##에서 착 ##수 ##했 ##으나 1 ##악 ##장을 쓴 뒤에 중단 ##했다 . 또한 작품 ##의 완성 ##과 동시에 그는 이 서 ##곡 ( [SEP]
+INFO:ratsnlp:question &amp; context: [CLS] 바 ##그 ##너 ##는 괴 ##테 ##의 파 ##우스 ##트를 읽고 무엇을 쓰고 ##자 했 ##는가 ? [SEP] 파 ##우스 ##트 ##의 서 ##곡 ##으로 쓰여 ##진 이 작품 ##에 조금이라도 영향을 끼 ##쳤 ##으리 ##라는 것은 의심 ##할 여지가 없다 . 여기 ##의 라 ##단 ##조 조성 ##의 경우 ##에도 그의 전기 ##에 적 ##혀 있는 것처럼 단순한 정신적 피로 ##나 실 ##의가 반영 ##된 것이 아니라 베 ##토 ##벤 ##의 합 ##창 ##교 ##향 ##곡 조성 ##의 영향을 받은 것을 볼 수 있다 . 그렇게 교 ##향 ##곡 작 ##곡 ##을 18 ##3 ##9년 ##부터 40년 ##에 걸 ##쳐 파리 ##에서 착 ##수 ##했 ##으나 1 ##악 ##장을 쓴 뒤에 중단 ##했다 . 또한 작품 ##의 완성 ##과 동시에 그는 이 서 ##곡 ( [SEP]
+INFO:ratsnlp:answer: [CLS]
+INFO:ratsnlp:answer: [CLS]
+INFO:ratsnlp:features: QAFeatures(input_ids=[2, 1480, 4313, 4538, 4008, 336, 4065, 4042, 3231, 23243, 19143, 13985, 12449, 9194, 4105, 3385, 9411, 32, 3, 3231, 23243, 4104, 4042, 1843, 4771, 7965, 28987, 4153, 2451, 15489, 4113, 13928, 17283, 575, 4261, 26783, 8114, 8852, 9107, 4082, 28498, 8131, 17, 8225, 4042, 1114, 4281, 4194, 17138, 4042, 9961, 8222, 14041, 10892, 4113, 2524, 4443, 8032, 12710, 21602, 18625, 24569, 4136, 2009, 11012, 17068, 4130, 8544, 8141, 1543, 4775, 4170, 4042, 3367, 4183, 4267, 4573, 4771, 17138, 4042, 17283, 9838, 9153, 1576, 1931, 8120, 17, 8117, 341, 4573, 4771, 2478, 4771, 4027, 8601, 4633, 29697, 8042, 25305, 4113, 254, 4133, 23008, 7971, 2840, 4110, 4062, 10410, 20, 4158, 8915, 2141, 11726, 13014, 8258, 17, 10384, 15489, 4042, 16520, 4128, 15831, 20048, 2451, 1843, 4771, 11, 3], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], token_type_ids=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], start_positions=0, end_positions=0)
+INFO:ratsnlp:features: QAFeatures(input_ids=[2, 1480, 4313, 4538, 4008, 336, 4065, 4042, 3231, 23243, 19143, 13985, 12449, 9194, 4105, 3385, 9411, 32, 3, 3231, 23243, 4104, 4042, 1843, 4771, 7965, 28987, 4153, 2451, 15489, 4113, 13928, 17283, 575, 4261, 26783, 8114, 8852, 9107, 4082, 28498, 8131, 17, 8225, 4042, 1114, 4281, 4194, 17138, 4042, 9961, 8222, 14041, 10892, 4113, 2524, 4443, 8032, 12710, 21602, 18625, 24569, 4136, 2009, 11012, 17068, 4130, 8544, 8141, 1543, 4775, 4170, 4042, 3367, 4183, 4267, 4573, 4771, 17138, 4042, 17283, 9838, 9153, 1576, 1931, 8120, 17, 8117, 341, 4573, 4771, 2478, 4771, 4027, 8601, 4633, 29697, 8042, 25305, 4113, 254, 4133, 23008, 7971, 2840, 4110, 4062, 10410, 20, 4158, 8915, 2141, 11726, 13014, 8258, 17, 10384, 15489, 4042, 16520, 4128, 15831, 20048, 2451, 1843, 4771, 11, 3], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], token_type_ids=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], start_positions=0, end_positions=0)
+INFO:ratsnlp:*** Example ***
+INFO:ratsnlp:*** Example ***
+INFO:ratsnlp:question &amp; context: [CLS] 바 ##그 ##너 ##는 괴 ##테 ##의 파 ##우스 ##트를 읽고 무엇을 쓰고 ##자 했 ##는가 ? [SEP] 볼 수 있다 . 그렇게 교 ##향 ##곡 작 ##곡 ##을 18 ##3 ##9년 ##부터 40년 ##에 걸 ##쳐 파리 ##에서 착 ##수 ##했 ##으나 1 ##악 ##장을 쓴 뒤에 중단 ##했다 . 또한 작품 ##의 완성 ##과 동시에 그는 이 서 ##곡 ( 1 ##악 ##장 ) 을 파리 음악 ##원의 연 ##주 ##회에서 연 ##주 ##할 파 ##트 ##보 ##까지 준비 ##하였 ##으나 , 실제로는 이루어 ##지지 ##는 않았다 . 결국 초 ##연 ##은 4년 반 ##이 지난 후에 드 ##레스 ##덴 ##에서 연 ##주 ##되었고 재 ##연 ##도 이루어 ##졌지 ##만 , 이후에 그대로 방치 ##되고 말았 ##다 . 그 사이에 그는 리 ##엔 ##치 [SEP]
+INFO:ratsnlp:question &amp; context: [CLS] 바 ##그 ##너 ##는 괴 ##테 ##의 파 ##우스 ##트를 읽고 무엇을 쓰고 ##자 했 ##는가 ? [SEP] 볼 수 있다 . 그렇게 교 ##향 ##곡 작 ##곡 ##을 18 ##3 ##9년 ##부터 40년 ##에 걸 ##쳐 파리 ##에서 착 ##수 ##했 ##으나 1 ##악 ##장을 쓴 뒤에 중단 ##했다 . 또한 작품 ##의 완성 ##과 동시에 그는 이 서 ##곡 ( 1 ##악 ##장 ) 을 파리 음악 ##원의 연 ##주 ##회에서 연 ##주 ##할 파 ##트 ##보 ##까지 준비 ##하였 ##으나 , 실제로는 이루어 ##지지 ##는 않았다 . 결국 초 ##연 ##은 4년 반 ##이 지난 후에 드 ##레스 ##덴 ##에서 연 ##주 ##되었고 재 ##연 ##도 이루어 ##졌지 ##만 , 이후에 그대로 방치 ##되고 말았 ##다 . 그 사이에 그는 리 ##엔 ##치 [SEP]
+INFO:ratsnlp:answer: [CLS]
+INFO:ratsnlp:answer: [CLS]
+INFO:ratsnlp:features: QAFeatures(input_ids=[2, 1480, 4313, 4538, 4008, 336, 4065, 4042, 3231, 23243, 19143, 13985, 12449, 9194, 4105, 3385, 9411, 32, 3, 1576, 1931, 8120, 17, 8117, 341, 4573, 4771, 2478, 4771, 4027, 8601, 4633, 29697, 8042, 25305, 4113, 254, 4133, 23008, 7971, 2840, 4110, 4062, 10410, 20, 4158, 8915, 2141, 11726, 13014, 8258, 17, 10384, 15489, 4042, 16520, 4128, 15831, 20048, 2451, 1843, 4771, 11, 20, 4158, 4099, 12, 2424, 23008, 21056, 18639, 2273, 4043, 27703, 2273, 4043, 4082, 3231, 4104, 4010, 7999, 9242, 22504, 10410, 15, 26271, 11877, 8840, 4008, 12626, 17, 8340, 2906, 4132, 4057, 16243, 1483, 4017, 9403, 14180, 947, 10770, 5076, 7971, 2273, 4043, 24984, 2499, 4132, 4029, 11877, 23679, 4049, 15, 22395, 9341, 14218, 8593, 19696, 4020, 17, 391, 19237, 20048, 1279, 4484, 4077, 3], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], token_type_ids=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], start_positions=0, end_positions=0)
+INFO:ratsnlp:features: QAFeatures(input_ids=[2, 1480, 4313, 4538, 4008, 336, 4065, 4042, 3231, 23243, 19143, 13985, 12449, 9194, 4105, 3385, 9411, 32, 3, 1576, 1931, 8120, 17, 8117, 341, 4573, 4771, 2478, 4771, 4027, 8601, 4633, 29697, 8042, 25305, 4113, 254, 4133, 23008, 7971, 2840, 4110, 4062, 10410, 20, 4158, 8915, 2141, 11726, 13014, 8258, 17, 10384, 15489, 4042, 16520, 4128, 15831, 20048, 2451, 1843, 4771, 11, 20, 4158, 4099, 12, 2424, 23008, 21056, 18639, 2273, 4043, 27703, 2273, 4043, 4082, 3231, 4104, 4010, 7999, 9242, 22504, 10410, 15, 26271, 11877, 8840, 4008, 12626, 17, 8340, 2906, 4132, 4057, 16243, 1483, 4017, 9403, 14180, 947, 10770, 5076, 7971, 2273, 4043, 24984, 2499, 4132, 4029, 11877, 23679, 4049, 15, 22395, 9341, 14218, 8593, 19696, 4020, 17, 391, 19237, 20048, 1279, 4484, 4077, 3], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], token_type_ids=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], start_positions=0, end_positions=0)
+INFO:ratsnlp:*** Example ***
+INFO:ratsnlp:*** Example ***
+INFO:ratsnlp:question &amp; context: [CLS] 바 ##그 ##너 ##는 괴 ##테 ##의 파 ##우스 ##트를 읽고 무엇을 쓰고 ##자 했 ##는가 ? [SEP] ##으나 , 실제로는 이루어 ##지지 ##는 않았다 . 결국 초 ##연 ##은 4년 반 ##이 지난 후에 드 ##레스 ##덴 ##에서 연 ##주 ##되었고 재 ##연 ##도 이루어 ##졌지 ##만 , 이후에 그대로 방치 ##되고 말았 ##다 . 그 사이에 그는 리 ##엔 ##치 ##와 방 ##황 ##하는 네 ##덜 ##란드 ##인을 완성 ##하고 탄 ##호 ##이 ##저 ##에도 착 ##수 ##하는 등 분 ##주 ##한 시간을 보냈 ##는데 , 그런 바쁜 생활 ##이 이 곡 ##을 잊 ##게 한 것이 아닌가 하는 의견 ##도 있다 . [SEP] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD]
+INFO:ratsnlp:question &amp; context: [CLS] 바 ##그 ##너 ##는 괴 ##테 ##의 파 ##우스 ##트를 읽고 무엇을 쓰고 ##자 했 ##는가 ? [SEP] ##으나 , 실제로는 이루어 ##지지 ##는 않았다 . 결국 초 ##연 ##은 4년 반 ##이 지난 후에 드 ##레스 ##덴 ##에서 연 ##주 ##되었고 재 ##연 ##도 이루어 ##졌지 ##만 , 이후에 그대로 방치 ##되고 말았 ##다 . 그 사이에 그는 리 ##엔 ##치 ##와 방 ##황 ##하는 네 ##덜 ##란드 ##인을 완성 ##하고 탄 ##호 ##이 ##저 ##에도 착 ##수 ##하는 등 분 ##주 ##한 시간을 보냈 ##는데 , 그런 바쁜 생활 ##이 이 곡 ##을 잊 ##게 한 것이 아닌가 하는 의견 ##도 있다 . [SEP] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD]
+INFO:ratsnlp:answer: [CLS]
+INFO:ratsnlp:answer: [CLS]
+INFO:ratsnlp:features: QAFeatures(input_ids=[2, 1480, 4313, 4538, 4008, 336, 4065, 4042, 3231, 23243, 19143, 13985, 12449, 9194, 4105, 3385, 9411, 32, 3, 10410, 15, 26271, 11877, 8840, 4008, 12626, 17, 8340, 2906, 4132, 4057, 16243, 1483, 4017, 9403, 14180, 947, 10770, 5076, 7971, 2273, 4043, 24984, 2499, 4132, 4029, 11877, 23679, 4049, 15, 22395, 9341, 14218, 8593, 19696, 4020, 17, 391, 19237, 20048, 1279, 4484, 4077, 4196, 1497, 4432, 7966, 654, 4181, 27028, 9700, 16520, 7968, 3110, 4319, 4017, 4488, 8222, 2840, 4110, 7966, 963, 1614, 4043, 4047, 16381, 13079, 7972, 15, 8053, 15118, 9683, 4017, 2451, 304, 4027, 2471, 4199, 3354, 8544, 8260, 7996, 10040, 4029, 8120, 17, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], token_type_ids=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], start_positions=0, end_positions=0)
+INFO:ratsnlp:features: QAFeatures(input_ids=[2, 1480, 4313, 4538, 4008, 336, 4065, 4042, 3231, 23243, 19143, 13985, 12449, 9194, 4105, 3385, 9411, 32, 3, 10410, 15, 26271, 11877, 8840, 4008, 12626, 17, 8340, 2906, 4132, 4057, 16243, 1483, 4017, 9403, 14180, 947, 10770, 5076, 7971, 2273, 4043, 24984, 2499, 4132, 4029, 11877, 23679, 4049, 15, 22395, 9341, 14218, 8593, 19696, 4020, 17, 391, 19237, 20048, 1279, 4484, 4077, 4196, 1497, 4432, 7966, 654, 4181, 27028, 9700, 16520, 7968, 3110, 4319, 4017, 4488, 8222, 2840, 4110, 7966, 963, 1614, 4043, 4047, 16381, 13079, 7972, 15, 8053, 15118, 9683, 4017, 2451, 304, 4027, 2471, 4199, 3354, 8544, 8260, 7996, 10040, 4029, 8120, 17, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], token_type_ids=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], start_positions=0, end_positions=0)
+INFO:ratsnlp:*** Example ***
+INFO:ratsnlp:*** Example ***
+INFO:ratsnlp:question &amp; context: [CLS] 바 ##그 ##너 ##는 교 ##향 ##곡 작 ##곡 ##을 어디까지 쓴 뒤에 중단 ##했 ##는가 ? [SEP] 18 ##3 ##9년 바 ##그 ##너 ##는 괴 ##테 ##의 파 ##우스 ##트 ##을 처음 읽고 그 내용 ##에 마음이 끌려 이를 소재 ##로 해서 하나의 교 ##향 ##곡 ##을 쓰 ##려는 뜻을 갖 ##는다 . 이 시기 바 ##그 ##너 ##는 18 ##3 ##8년 ##에 빛 독 ##촉 ##으로 산 ##전 ##수 ##전을 다 걲 ##은 상황이 ##라 좌 ##절 ##과 실망 ##에 가득 ##했 ##으며 메 ##피 ##스 ##토 ##펠 ##레스 ##를 만나는 파 ##우스 ##트 ##의 심 ##경 ##에 공감 ##했다고 한다 . 또한 파리 ##에서 아 ##브 ##네 ##크 ##의 지휘 ##로 파리 음악 ##원 관 ##현 ##악 ##단이 연 ##주 ##하는 베 ##토 [SEP]
+INFO:ratsnlp:question &amp; context: [CLS] 바 ##그 ##너 ##는 교 ##향 ##곡 작 ##곡 ##을 어디까지 쓴 뒤에 중단 ##했 ##는가 ? [SEP] 18 ##3 ##9년 바 ##그 ##너 ##는 괴 ##테 ##의 파 ##우스 ##트 ##을 처음 읽고 그 내용 ##에 마음이 끌려 이를 소재 ##로 해서 하나의 교 ##향 ##곡 ##을 쓰 ##려는 뜻을 갖 ##는다 . 이 시기 바 ##그 ##너 ##는 18 ##3 ##8년 ##에 빛 독 ##촉 ##으로 산 ##전 ##수 ##전을 다 걲 ##은 상황이 ##라 좌 ##절 ##과 실망 ##에 가득 ##했 ##으며 메 ##피 ##스 ##토 ##펠 ##레스 ##를 만나는 파 ##우스 ##트 ##의 심 ##경 ##에 공감 ##했다고 한다 . 또한 파리 ##에서 아 ##브 ##네 ##크 ##의 지휘 ##로 파리 음악 ##원 관 ##현 ##악 ##단이 연 ##주 ##하는 베 ##토 [SEP]
+INFO:ratsnlp:answer: [CLS]
+INFO:ratsnlp:answer: [CLS]
+INFO:ratsnlp:features: QAFeatures(input_ids=[2, 1480, 4313, 4538, 4008, 341, 4573, 4771, 2478, 4771, 4027, 13655, 2141, 11726, 13014, 4062, 9411, 32, 3, 8601, 4633, 29697, 1480, 4313, 4538, 4008, 336, 4065, 4042, 3231, 23243, 4104, 4027, 8793, 13985, 391, 9132, 4113, 10966, 11728, 12023, 14657, 4091, 8598, 16639, 341, 4573, 4771, 4027, 2139, 8478, 14416, 214, 8202, 17, 2451, 13007, 1480, 4313, 4538, 4008, 8601, 4633, 22903, 4113, 1676, 868, 4913, 7965, 1789, 4203, 4110, 15031, 786, 250, 4057, 10878, 4007, 2593, 4094, 4128, 10289, 4113, 10958, 4062, 9511, 1355, 4600, 4103, 4775, 5602, 10770, 4180, 26732, 3231, 23243, 4104, 4042, 2015, 4012, 4113, 9198, 8763, 8129, 17, 10384, 23008, 7971, 2170, 4408, 4011, 4147, 4042, 17015, 4091, 23008, 21056, 4165, 323, 4175, 4158, 11413, 2273, 4043, 7966, 1543, 4775, 3], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], token_type_ids=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], start_positions=0, end_positions=0)
+INFO:ratsnlp:features: QAFeatures(input_ids=[2, 1480, 4313, 4538, 4008, 341, 4573, 4771, 2478, 4771, 4027, 13655, 2141, 11726, 13014, 4062, 9411, 32, 3, 8601, 4633, 29697, 1480, 4313, 4538, 4008, 336, 4065, 4042, 3231, 23243, 4104, 4027, 8793, 13985, 391, 9132, 4113, 10966, 11728, 12023, 14657, 4091, 8598, 16639, 341, 4573, 4771, 4027, 2139, 8478, 14416, 214, 8202, 17, 2451, 13007, 1480, 4313, 4538, 4008, 8601, 4633, 22903, 4113, 1676, 868, 4913, 7965, 1789, 4203, 4110, 15031, 786, 250, 4057, 10878, 4007, 2593, 4094, 4128, 10289, 4113, 10958, 4062, 9511, 1355, 4600, 4103, 4775, 5602, 10770, 4180, 26732, 3231, 23243, 4104, 4042, 2015, 4012, 4113, 9198, 8763, 8129, 17, 10384, 23008, 7971, 2170, 4408, 4011, 4147, 4042, 17015, 4091, 23008, 21056, 4165, 323, 4175, 4158, 11413, 2273, 4043, 7966, 1543, 4775, 3], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], token_type_ids=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], start_positions=0, end_positions=0)
+INFO:ratsnlp:*** Example ***
+INFO:ratsnlp:*** Example ***
+INFO:ratsnlp:question &amp; context: [CLS] 바 ##그 ##너 ##는 교 ##향 ##곡 작 ##곡 ##을 어디까지 쓴 뒤에 중단 ##했 ##는가 ? [SEP] 가득 ##했 ##으며 메 ##피 ##스 ##토 ##펠 ##레스 ##를 만나는 파 ##우스 ##트 ##의 심 ##경 ##에 공감 ##했다고 한다 . 또한 파리 ##에서 아 ##브 ##네 ##크 ##의 지휘 ##로 파리 음악 ##원 관 ##현 ##악 ##단이 연 ##주 ##하는 베 ##토 ##벤 ##의 교 ##향 ##곡 9 ##번 ##을 듣고 깊은 감 ##명을 받았는데 , 이것이 이 ##듬 ##해 1월 ##에 파 ##우스 ##트 ##의 서 ##곡 ##으로 쓰여 ##진 이 작품 ##에 조금이라도 영향을 끼 ##쳤 ##으리 ##라는 것은 의심 ##할 여지가 없다 . 여기 ##의 라 ##단 ##조 조성 ##의 경우 ##에도 그의 전기 ##에 적 ##혀 있는 것처럼 단순한 정신적 피로 ##나 [SEP]
+INFO:ratsnlp:question &amp; context: [CLS] 바 ##그 ##너 ##는 교 ##향 ##곡 작 ##곡 ##을 어디까지 쓴 뒤에 중단 ##했 ##는가 ? [SEP] 가득 ##했 ##으며 메 ##피 ##스 ##토 ##펠 ##레스 ##를 만나는 파 ##우스 ##트 ##의 심 ##경 ##에 공감 ##했다고 한다 . 또한 파리 ##에서 아 ##브 ##네 ##크 ##의 지휘 ##로 파리 음악 ##원 관 ##현 ##악 ##단이 연 ##주 ##하는 베 ##토 ##벤 ##의 교 ##향 ##곡 9 ##번 ##을 듣고 깊은 감 ##명을 받았는데 , 이것이 이 ##듬 ##해 1월 ##에 파 ##우스 ##트 ##의 서 ##곡 ##으로 쓰여 ##진 이 작품 ##에 조금이라도 영향을 끼 ##쳤 ##으리 ##라는 것은 의심 ##할 여지가 없다 . 여기 ##의 라 ##단 ##조 조성 ##의 경우 ##에도 그의 전기 ##에 적 ##혀 있는 것처럼 단순한 정신적 피로 ##나 [SEP]
+INFO:ratsnlp:answer: [CLS]
+INFO:ratsnlp:answer: [CLS]
+INFO:ratsnlp:features: QAFeatures(input_ids=[2, 1480, 4313, 4538, 4008, 341, 4573, 4771, 2478, 4771, 4027, 13655, 2141, 11726, 13014, 4062, 9411, 32, 3, 10958, 4062, 9511, 1355, 4600, 4103, 4775, 5602, 10770, 4180, 26732, 3231, 23243, 4104, 4042, 2015, 4012, 4113, 9198, 8763, 8129, 17, 10384, 23008, 7971, 2170, 4408, 4011, 4147, 4042, 17015, 4091, 23008, 21056, 4165, 323, 4175, 4158, 11413, 2273, 4043, 7966, 1543, 4775, 4170, 4042, 341, 4573, 4771, 28, 4566, 4027, 10599, 18907, 208, 9504, 24835, 15, 11060, 2451, 4780, 4032, 18548, 4113, 3231, 23243, 4104, 4042, 1843, 4771, 7965, 28987, 4153, 2451, 15489, 4113, 13928, 17283, 575, 4261, 26783, 8114, 8852, 9107, 4082, 28498, 8131, 17, 8225, 4042, 1114, 4281, 4194, 17138, 4042, 9961, 8222, 14041, 10892, 4113, 2524, 4443, 8032, 12710, 21602, 18625, 24569, 4136, 3], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], token_type_ids=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], start_positions=0, end_positions=0)
+INFO:ratsnlp:features: QAFeatures(input_ids=[2, 1480, 4313, 4538, 4008, 341, 4573, 4771, 2478, 4771, 4027, 13655, 2141, 11726, 13014, 4062, 9411, 32, 3, 10958, 4062, 9511, 1355, 4600, 4103, 4775, 5602, 10770, 4180, 26732, 3231, 23243, 4104, 4042, 2015, 4012, 4113, 9198, 8763, 8129, 17, 10384, 23008, 7971, 2170, 4408, 4011, 4147, 4042, 17015, 4091, 23008, 21056, 4165, 323, 4175, 4158, 11413, 2273, 4043, 7966, 1543, 4775, 4170, 4042, 341, 4573, 4771, 28, 4566, 4027, 10599, 18907, 208, 9504, 24835, 15, 11060, 2451, 4780, 4032, 18548, 4113, 3231, 23243, 4104, 4042, 1843, 4771, 7965, 28987, 4153, 2451, 15489, 4113, 13928, 17283, 575, 4261, 26783, 8114, 8852, 9107, 4082, 28498, 8131, 17, 8225, 4042, 1114, 4281, 4194, 17138, 4042, 9961, 8222, 14041, 10892, 4113, 2524, 4443, 8032, 12710, 21602, 18625, 24569, 4136, 3], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], token_type_ids=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], start_positions=0, end_positions=0)
+INFO:ratsnlp:*** Example ***
+INFO:ratsnlp:*** Example ***
+INFO:ratsnlp:question &amp; context: [CLS] 바 ##그 ##너 ##는 교 ##향 ##곡 작 ##곡 ##을 어디까지 쓴 뒤에 중단 ##했 ##는가 ? [SEP] 파 ##우스 ##트 ##의 서 ##곡 ##으로 쓰여 ##진 이 작품 ##에 조금이라도 영향을 끼 ##쳤 ##으리 ##라는 것은 의심 ##할 여지가 없다 . 여기 ##의 라 ##단 ##조 조성 ##의 경우 ##에도 그의 전기 ##에 적 ##혀 있는 것처럼 단순한 정신적 피로 ##나 실 ##의가 반영 ##된 것이 아니라 베 ##토 ##벤 ##의 합 ##창 ##교 ##향 ##곡 조성 ##의 영향을 받은 것을 볼 수 있다 . 그렇게 교 ##향 ##곡 작 ##곡 ##을 18 ##3 ##9년 ##부터 40년 ##에 걸 ##쳐 파리 ##에서 착 ##수 ##했 ##으나 1 ##악 ##장을 쓴 뒤에 중단 ##했다 . 또한 작품 ##의 완성 ##과 동시에 그는 이 서 ##곡 ( [SEP]
+INFO:ratsnlp:question &amp; context: [CLS] 바 ##그 ##너 ##는 교 ##향 ##곡 작 ##곡 ##을 어디까지 쓴 뒤에 중단 ##했 ##는가 ? [SEP] 파 ##우스 ##트 ##의 서 ##곡 ##으로 쓰여 ##진 이 작품 ##에 조금이라도 영향을 끼 ##쳤 ##으리 ##라는 것은 의심 ##할 여지가 없다 . 여기 ##의 라 ##단 ##조 조성 ##의 경우 ##에도 그의 전기 ##에 적 ##혀 있는 것처럼 단순한 정신적 피로 ##나 실 ##의가 반영 ##된 것이 아니라 베 ##토 ##벤 ##의 합 ##창 ##교 ##향 ##곡 조성 ##의 영향을 받은 것을 볼 수 있다 . 그렇게 교 ##향 ##곡 작 ##곡 ##을 18 ##3 ##9년 ##부터 40년 ##에 걸 ##쳐 파리 ##에서 착 ##수 ##했 ##으나 1 ##악 ##장을 쓴 뒤에 중단 ##했다 . 또한 작품 ##의 완성 ##과 동시에 그는 이 서 ##곡 ( [SEP]
+INFO:ratsnlp:answer: 1 ##악 ##장을
+INFO:ratsnlp:answer: 1 ##악 ##장을
+INFO:ratsnlp:features: QAFeatures(input_ids=[2, 1480, 4313, 4538, 4008, 341, 4573, 4771, 2478, 4771, 4027, 13655, 2141, 11726, 13014, 4062, 9411, 32, 3, 3231, 23243, 4104, 4042, 1843, 4771, 7965, 28987, 4153, 2451, 15489, 4113, 13928, 17283, 575, 4261, 26783, 8114, 8852, 9107, 4082, 28498, 8131, 17, 8225, 4042, 1114, 4281, 4194, 17138, 4042, 9961, 8222, 14041, 10892, 4113, 2524, 4443, 8032, 12710, 21602, 18625, 24569, 4136, 2009, 11012, 17068, 4130, 8544, 8141, 1543, 4775, 4170, 4042, 3367, 4183, 4267, 4573, 4771, 17138, 4042, 17283, 9838, 9153, 1576, 1931, 8120, 17, 8117, 341, 4573, 4771, 2478, 4771, 4027, 8601, 4633, 29697, 8042, 25305, 4113, 254, 4133, 23008, 7971, 2840, 4110, 4062, 10410, 20, 4158, 8915, 2141, 11726, 13014, 8258, 17, 10384, 15489, 4042, 16520, 4128, 15831, 20048, 2451, 1843, 4771, 11, 3], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], token_type_ids=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], start_positions=108, end_positions=110)
+INFO:ratsnlp:features: QAFeatures(input_ids=[2, 1480, 4313, 4538, 4008, 341, 4573, 4771, 2478, 4771, 4027, 13655, 2141, 11726, 13014, 4062, 9411, 32, 3, 3231, 23243, 4104, 4042, 1843, 4771, 7965, 28987, 4153, 2451, 15489, 4113, 13928, 17283, 575, 4261, 26783, 8114, 8852, 9107, 4082, 28498, 8131, 17, 8225, 4042, 1114, 4281, 4194, 17138, 4042, 9961, 8222, 14041, 10892, 4113, 2524, 4443, 8032, 12710, 21602, 18625, 24569, 4136, 2009, 11012, 17068, 4130, 8544, 8141, 1543, 4775, 4170, 4042, 3367, 4183, 4267, 4573, 4771, 17138, 4042, 17283, 9838, 9153, 1576, 1931, 8120, 17, 8117, 341, 4573, 4771, 2478, 4771, 4027, 8601, 4633, 29697, 8042, 25305, 4113, 254, 4133, 23008, 7971, 2840, 4110, 4062, 10410, 20, 4158, 8915, 2141, 11726, 13014, 8258, 17, 10384, 15489, 4042, 16520, 4128, 15831, 20048, 2451, 1843, 4771, 11, 3], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], token_type_ids=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], start_positions=108, end_positions=110)
+INFO:ratsnlp:*** Example ***
+INFO:ratsnlp:*** Example ***
+INFO:ratsnlp:question &amp; context: [CLS] 바 ##그 ##너 ##는 교 ##향 ##곡 작 ##곡 ##을 어디까지 쓴 뒤에 중단 ##했 ##는가 ? [SEP] 볼 수 있다 . 그렇게 교 ##향 ##곡 작 ##곡 ##을 18 ##3 ##9년 ##부터 40년 ##에 걸 ##쳐 파리 ##에서 착 ##수 ##했 ##으나 1 ##악 ##장을 쓴 뒤에 중단 ##했다 . 또한 작품 ##의 완성 ##과 동시에 그는 이 서 ##곡 ( 1 ##악 ##장 ) 을 파리 음악 ##원의 연 ##주 ##회에서 연 ##주 ##할 파 ##트 ##보 ##까지 준비 ##하였 ##으나 , 실제로는 이루어 ##지지 ##는 않았다 . 결국 초 ##연 ##은 4년 반 ##이 지난 후에 드 ##레스 ##덴 ##에서 연 ##주 ##되었고 재 ##연 ##도 이루어 ##졌지 ##만 , 이후에 그대로 방치 ##되고 말았 ##다 . 그 사이에 그는 리 ##엔 ##치 [SEP]
+INFO:ratsnlp:question &amp; context: [CLS] 바 ##그 ##너 ##는 교 ##향 ##곡 작 ##곡 ##을 어디까지 쓴 뒤에 중단 ##했 ##는가 ? [SEP] 볼 수 있다 . 그렇게 교 ##향 ##곡 작 ##곡 ##을 18 ##3 ##9년 ##부터 40년 ##에 걸 ##쳐 파리 ##에서 착 ##수 ##했 ##으나 1 ##악 ##장을 쓴 뒤에 중단 ##했다 . 또한 작품 ##의 완성 ##과 동시에 그는 이 서 ##곡 ( 1 ##악 ##장 ) 을 파리 음악 ##원의 연 ##주 ##회에서 연 ##주 ##할 파 ##트 ##보 ##까지 준비 ##하였 ##으나 , 실제로는 이루어 ##지지 ##는 않았다 . 결국 초 ##연 ##은 4년 반 ##이 지난 후에 드 ##레스 ##덴 ##에서 연 ##주 ##되었고 재 ##연 ##도 이루어 ##졌지 ##만 , 이후에 그대로 방치 ##되고 말았 ##다 . 그 사이에 그는 리 ##엔 ##치 [SEP]
+INFO:ratsnlp:answer: 1 ##악 ##장을
+INFO:ratsnlp:answer: 1 ##악 ##장을
+INFO:ratsnlp:features: QAFeatures(input_ids=[2, 1480, 4313, 4538, 4008, 341, 4573, 4771, 2478, 4771, 4027, 13655, 2141, 11726, 13014, 4062, 9411, 32, 3, 1576, 1931, 8120, 17, 8117, 341, 4573, 4771, 2478, 4771, 4027, 8601, 4633, 29697, 8042, 25305, 4113, 254, 4133, 23008, 7971, 2840, 4110, 4062, 10410, 20, 4158, 8915, 2141, 11726, 13014, 8258, 17, 10384, 15489, 4042, 16520, 4128, 15831, 20048, 2451, 1843, 4771, 11, 20, 4158, 4099, 12, 2424, 23008, 21056, 18639, 2273, 4043, 27703, 2273, 4043, 4082, 3231, 4104, 4010, 7999, 9242, 22504, 10410, 15, 26271, 11877, 8840, 4008, 12626, 17, 8340, 2906, 4132, 4057, 16243, 1483, 4017, 9403, 14180, 947, 10770, 5076, 7971, 2273, 4043, 24984, 2499, 4132, 4029, 11877, 23679, 4049, 15, 22395, 9341, 14218, 8593, 19696, 4020, 17, 391, 19237, 20048, 1279, 4484, 4077, 3], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], token_type_ids=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], start_positions=44, end_positions=46)
+INFO:ratsnlp:features: QAFeatures(input_ids=[2, 1480, 4313, 4538, 4008, 341, 4573, 4771, 2478, 4771, 4027, 13655, 2141, 11726, 13014, 4062, 9411, 32, 3, 1576, 1931, 8120, 17, 8117, 341, 4573, 4771, 2478, 4771, 4027, 8601, 4633, 29697, 8042, 25305, 4113, 254, 4133, 23008, 7971, 2840, 4110, 4062, 10410, 20, 4158, 8915, 2141, 11726, 13014, 8258, 17, 10384, 15489, 4042, 16520, 4128, 15831, 20048, 2451, 1843, 4771, 11, 20, 4158, 4099, 12, 2424, 23008, 21056, 18639, 2273, 4043, 27703, 2273, 4043, 4082, 3231, 4104, 4010, 7999, 9242, 22504, 10410, 15, 26271, 11877, 8840, 4008, 12626, 17, 8340, 2906, 4132, 4057, 16243, 1483, 4017, 9403, 14180, 947, 10770, 5076, 7971, 2273, 4043, 24984, 2499, 4132, 4029, 11877, 23679, 4049, 15, 22395, 9341, 14218, 8593, 19696, 4020, 17, 391, 19237, 20048, 1279, 4484, 4077, 3], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], token_type_ids=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], start_positions=44, end_positions=46)
+INFO:ratsnlp:*** Example ***
+INFO:ratsnlp:*** Example ***
+INFO:ratsnlp:question &amp; context: [CLS] 바 ##그 ##너 ##는 교 ##향 ##곡 작 ##곡 ##을 어디까지 쓴 뒤에 중단 ##했 ##는가 ? [SEP] ##으나 , 실제로는 이루어 ##지지 ##는 않았다 . 결국 초 ##연 ##은 4년 반 ##이 지난 후에 드 ##레스 ##덴 ##에서 연 ##주 ##되었고 재 ##연 ##도 이루어 ##졌지 ##만 , 이후에 그대로 방치 ##되고 말았 ##다 . 그 사이에 그는 리 ##엔 ##치 ##와 방 ##황 ##하는 네 ##덜 ##란드 ##인을 완성 ##하고 탄 ##호 ##이 ##저 ##에도 착 ##수 ##하는 등 분 ##주 ##한 시간을 보냈 ##는데 , 그런 바쁜 생활 ##이 이 곡 ##을 잊 ##게 한 것이 아닌가 하는 의견 ##도 있다 . [SEP] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD]
+INFO:ratsnlp:question &amp; context: [CLS] 바 ##그 ##너 ##는 교 ##향 ##곡 작 ##곡 ##을 어디까지 쓴 뒤에 중단 ##했 ##는가 ? [SEP] ##으나 , 실제로는 이루어 ##지지 ##는 않았다 . 결국 초 ##연 ##은 4년 반 ##이 지난 후에 드 ##레스 ##덴 ##에서 연 ##주 ##되었고 재 ##연 ##도 이루어 ##졌지 ##만 , 이후에 그대로 방치 ##되고 말았 ##다 . 그 사이에 그는 리 ##엔 ##치 ##와 방 ##황 ##하는 네 ##덜 ##란드 ##인을 완성 ##하고 탄 ##호 ##이 ##저 ##에도 착 ##수 ##하는 등 분 ##주 ##한 시간을 보냈 ##는데 , 그런 바쁜 생활 ##이 이 곡 ##을 잊 ##게 한 것이 아닌가 하는 의견 ##도 있다 . [SEP] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD] [PAD]
+INFO:ratsnlp:answer: [CLS]
+INFO:ratsnlp:answer: [CLS]
+INFO:ratsnlp:features: QAFeatures(input_ids=[2, 1480, 4313, 4538, 4008, 341, 4573, 4771, 2478, 4771, 4027, 13655, 2141, 11726, 13014, 4062, 9411, 32, 3, 10410, 15, 26271, 11877, 8840, 4008, 12626, 17, 8340, 2906, 4132, 4057, 16243, 1483, 4017, 9403, 14180, 947, 10770, 5076, 7971, 2273, 4043, 24984, 2499, 4132, 4029, 11877, 23679, 4049, 15, 22395, 9341, 14218, 8593, 19696, 4020, 17, 391, 19237, 20048, 1279, 4484, 4077, 4196, 1497, 4432, 7966, 654, 4181, 27028, 9700, 16520, 7968, 3110, 4319, 4017, 4488, 8222, 2840, 4110, 7966, 963, 1614, 4043, 4047, 16381, 13079, 7972, 15, 8053, 15118, 9683, 4017, 2451, 304, 4027, 2471, 4199, 3354, 8544, 8260, 7996, 10040, 4029, 8120, 17, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], token_type_ids=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], start_positions=0, end_positions=0)
+INFO:ratsnlp:features: QAFeatures(input_ids=[2, 1480, 4313, 4538, 4008, 341, 4573, 4771, 2478, 4771, 4027, 13655, 2141, 11726, 13014, 4062, 9411, 32, 3, 10410, 15, 26271, 11877, 8840, 4008, 12626, 17, 8340, 2906, 4132, 4057, 16243, 1483, 4017, 9403, 14180, 947, 10770, 5076, 7971, 2273, 4043, 24984, 2499, 4132, 4029, 11877, 23679, 4049, 15, 22395, 9341, 14218, 8593, 19696, 4020, 17, 391, 19237, 20048, 1279, 4484, 4077, 4196, 1497, 4432, 7966, 654, 4181, 27028, 9700, 16520, 7968, 3110, 4319, 4017, 4488, 8222, 2840, 4110, 7966, 963, 1614, 4043, 4047, 16381, 13079, 7972, 15, 8053, 15118, 9683, 4017, 2451, 304, 4027, 2471, 4199, 3354, 8544, 8260, 7996, 10040, 4029, 8120, 17, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], attention_mask=[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], token_type_ids=[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], start_positions=0, end_positions=0)
+INFO:ratsnlp:Saving features into cached file, it could take a lot of time...
+INFO:ratsnlp:Saving features into cached file, it could take a lot of time...
+INFO:ratsnlp:Saving features into cached file /root/Korpora/korquad-v1/cached_train_BertTokenizer_maxlen-128_maxquerylen-32_docstride-64_korquad-v1_question-answering [took 33.918 s]
+INFO:ratsnlp:Saving features into cached file /root/Korpora/korquad-v1/cached_train_BertTokenizer_maxlen-128_maxquerylen-32_docstride-64_korquad-v1_question-answering [took 33.918 s]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>KorQuADV1Corpus 클레스로 KorQuAD 데이터를 QAExample 형식으로 읽어옵니다.</p>
+<p>여기서 QAExample은 질문, 지문, 정답, 정답의 시작 인덱스로 구성됩니다.</p>
+<p>QADataset에서는 QAExample 형식으로 입력된 값들을 QAFeatures 형태로 가공해서 모델이 학습할 수 있도록 변환해줍니다.</p>
+<p>여기서 QAFeatures은 input_ids(입력 시퀀스), attention_mask(패딩 여부), token_type_ids(세그먼트 정보, 질문은 0/지문은 1), start(or end)_positions(정답 문장 위치) 총 5개로 구성됩니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span><span class="p">,</span> <span class="n">RandomSampler</span>
+<span class="n">train_dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span>
+    <span class="n">train_dataset</span><span class="p">,</span>
+    <span class="n">batch_size</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span>
+    <span class="n">sampler</span> <span class="o">=</span> <span class="n">RandomSampler</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span> <span class="n">replacement</span> <span class="o">=</span> <span class="kc">False</span><span class="p">),</span>
+    <span class="n">collate_fn</span> <span class="o">=</span> <span class="n">nlpbook</span><span class="o">.</span><span class="n">data_collator</span><span class="p">,</span>
+    <span class="n">drop_last</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">num_workers</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">cpu_workers</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>데이터 로더를 구축했습니다. 일정 배치 크기만큼 뽑아서 모델을 학습시킬 수 있어요.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#54217;&#44032;-&#45936;&#51060;&#53552;-&#44396;&#52629;">&#54217;&#44032; &#45936;&#51060;&#53552; &#44396;&#52629;<a class="anchor-link" href="#&#54217;&#44032;-&#45936;&#51060;&#53552;-&#44396;&#52629;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">SequentialSampler</span>
+
+<span class="n">val_dataset</span> <span class="o">=</span> <span class="n">QADataset</span><span class="p">(</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">args</span><span class="p">,</span>
+    <span class="n">corpus</span> <span class="o">=</span> <span class="n">corpus</span><span class="p">,</span>
+    <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">,</span>
+    <span class="n">mode</span> <span class="o">=</span> <span class="s1">&#39;val&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">val_dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span>
+    <span class="n">val_dataset</span><span class="p">,</span>
+    <span class="n">batch_size</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span>
+    <span class="n">sampler</span> <span class="o">=</span> <span class="n">SequentialSampler</span><span class="p">(</span><span class="n">val_dataset</span><span class="p">),</span>
+    <span class="n">collate_fn</span> <span class="o">=</span> <span class="n">nlpbook</span><span class="o">.</span><span class="n">data_collator</span><span class="p">,</span>
+    <span class="n">drop_last</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">num_workers</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">cpu_workers</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>INFO:ratsnlp:Loading features from cached file /root/Korpora/korquad-v1/cached_val_BertTokenizer_maxlen-128_maxquerylen-32_docstride-64_korquad-v1_question-answering [took 4.527 s]
+INFO:ratsnlp:Loading features from cached file /root/Korpora/korquad-v1/cached_val_BertTokenizer_maxlen-128_maxquerylen-32_docstride-64_korquad-v1_question-answering [took 4.527 s]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>테스트용 데이터와 로더를 만들었습니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#47784;&#45944;-&#54617;&#49845;">&#47784;&#45944; &#54617;&#49845;<a class="anchor-link" href="#&#47784;&#45944;-&#54617;&#49845;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BertConfig</span><span class="p">,</span> <span class="n">BertForQuestionAnswering</span>
+<span class="n">pretrained_model_config</span> <span class="o">=</span> <span class="n">BertConfig</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">args</span><span class="o">.</span><span class="n">pretrained_model_name</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">BertForQuestionAnswering</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">args</span><span class="o">.</span><span class="n">pretrained_model_name</span><span class="p">,</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">pretrained_model_config</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Some weights of the model checkpoint at beomi/kcbert-base were not used when initializing BertForQuestionAnswering: [&#39;cls.seq_relationship.weight&#39;, &#39;cls.predictions.decoder.bias&#39;, &#39;cls.predictions.transform.dense.weight&#39;, &#39;cls.predictions.transform.LayerNorm.weight&#39;, &#39;cls.predictions.bias&#39;, &#39;cls.predictions.transform.LayerNorm.bias&#39;, &#39;cls.seq_relationship.bias&#39;, &#39;cls.predictions.decoder.weight&#39;, &#39;cls.predictions.transform.dense.bias&#39;]
+- This IS expected if you are initializing BertForQuestionAnswering from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertForQuestionAnswering from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+Some weights of BertForQuestionAnswering were not initialized from the model checkpoint at beomi/kcbert-base and are newly initialized: [&#39;qa_outputs.bias&#39;, &#39;qa_outputs.weight&#39;]
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>윗 코드는 BERT 모델을 프리트레인 했고, 아랫 코드는 윗 코드로 만든 모델에 질의응답용 태스크 모듈을 덧붙힌 모델을 만들었습니다.</p>
+<p>지금 만든 모델은 빈 껍데기(초기 모델) 입니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">ratsnlp.nlpbook.qa</span> <span class="kn">import</span> <span class="n">QATask</span>
+<span class="n">task</span> <span class="o">=</span> <span class="n">QATask</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">nlpbook</span><span class="o">.</span><span class="n">get_trainer</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>GPU available: True, used: True
+TPU available: False, using: 0 TPU cores
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>옵티마이저와 러닝레이트를 정한 태스크를 만들어줍니다.</p>
+<p>그 후 트레이너를 정의하는데 모델에 세부 설정을 해줍니다.(GPU, 체크포인트 등)</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">task</span><span class="p">,</span>
+    <span class="n">train_dataloader</span> <span class="o">=</span> <span class="n">train_dataloader</span><span class="p">,</span>
+    <span class="n">val_dataloaders</span> <span class="o">=</span> <span class="n">val_dataloader</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name  | Type                     | Params
+---------------------------------------------------
+0 | model | BertForQuestionAnswering | 108 M 
+---------------------------------------------------
+108 M     Trainable params
+0         Non-trainable params
+108 M     Total params
+433.318   Total estimated model params size (MB)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#51656;&#47928;&#50640;-&#45813;&#54616;&#45716;-&#50937;-&#49436;&#48708;&#49828;-&#47564;&#46308;&#44592;">&#51656;&#47928;&#50640; &#45813;&#54616;&#45716; &#50937; &#49436;&#48708;&#49828; &#47564;&#46308;&#44592;<a class="anchor-link" href="#&#51656;&#47928;&#50640;-&#45813;&#54616;&#45716;-&#50937;-&#49436;&#48708;&#49828;-&#47564;&#46308;&#44592;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">ratsnlp.nlpbook.ner</span> <span class="kn">import</span> <span class="n">QADeployArguments</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">QADeployArguments</span><span class="p">(</span>
+    <span class="n">pretrained_model_name</span><span class="o">=</span> <span class="s1">&#39;beomi/kcbert-base&#39;</span><span class="p">,</span>
+    <span class="n">downstream_model_dir</span><span class="o">=</span><span class="s1">&#39;/gdrive/My Drive/nlpbook/checkpoint-ner&#39;</span><span class="p">,</span>
+    <span class="n">max_seq_length</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>
+    <span class="n">max_query_length</span> <span class="o">=</span> <span class="mi">32</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BertTokenizer</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">BertTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">args</span><span class="o">.</span><span class="n">pretrained_model_name</span><span class="p">,</span>
+    <span class="n">do_lower_case</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>인퍼런스 설정, 토크나이저 초기화를 합니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BertConfig</span><span class="p">,</span> <span class="n">BertForQuestionAnswering</span>
+<span class="n">fine_tuned_model_ckpt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
+    <span class="n">args</span><span class="o">.</span><span class="n">downstream_model_checkpoint_fpath</span><span class="p">,</span>
+    <span class="n">map_location</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cpu&#39;</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">pretrained_model_config</span> <span class="o">=</span> <span class="n">BertConfig</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">args</span><span class="o">.</span><span class="n">pretrained_model_name</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">BertForQuestionAnswering</span><span class="p">(</span><span class="n">pretrained_model_config</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>체크포인트 로드, BERT 설정 로드, BERT 모델 초기화를 했습니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">({</span><span class="n">k</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;model.&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">):</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">fine_tuned_model_ckpt</span><span class="p">[</span><span class="s1">&#39;state_dict&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">ithes</span><span class="p">()})</span>
+<span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>체크포인트를 주입하고 모델을 평가모드로 바꿉니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">inference_fn</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">question</span> <span class="ow">and</span> <span class="n">context</span><span class="p">:</span>
+        <span class="c1"># 질문을 토큰화하고 인덱싱. max_query_length보다 길면 자르기</span>
+        <span class="n">truncated_query</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
+            <span class="n">question</span><span class="p">,</span>
+            <span class="n">add_special_tokens</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="n">truncation</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+            <span class="n">max_length</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">max_query_length</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># 앞서 처리한 질문을 지문과 함께 토큰화하고 인덱싱. max_seq_length보다 길면 자르기</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">encode_plus</span><span class="p">(</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">truncated_query</span><span class="p">,</span>
+            <span class="n">text_pair</span> <span class="o">=</span> <span class="n">context</span><span class="p">,</span>
+            <span class="n">truncation</span> <span class="o">=</span> <span class="s1">&#39;only_second&#39;</span><span class="p">,</span>
+            <span class="n">padding</span> <span class="o">=</span> <span class="s1">&#39;max_length&#39;</span><span class="p">,</span>
+            <span class="n">max_length</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">max_seq_length</span><span class="p">,</span>
+            <span class="n">return_token_type_ids</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">v</span><span class="p">])</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">inputs</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span>
+            <span class="n">start_pred</span> <span class="o">=</span> <span class="n">outputs</span><span class="o">.</span><span class="n">start_logits</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="n">end_pred</span> <span class="o">=</span> <span class="n">outputs</span><span class="o">.</span><span class="n">end_logits</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+            <span class="c1"># 정답 시작부터 끝까지 토큰들을 이어붙여서 정답 만들기</span>
+            <span class="n">pred_text</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">inputs</span><span class="p">[</span><span class="s1">&#39;input_ids&#39;</span><span class="p">][</span><span class="n">start_pred</span><span class="p">:</span><span class="n">end_pred</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">pred_text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">return</span><span class="p">{</span>
+        <span class="s1">&#39;question&#39;</span><span class="p">:</span><span class="n">question</span><span class="p">,</span>
+        <span class="s1">&#39;context&#39;</span><span class="p">:</span><span class="n">context</span><span class="p">,</span>
+        <span class="s1">&#39;answer&#39;</span><span class="p">:</span><span class="n">pred_text</span><span class="p">,</span>
+    <span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>실제 값이 들어왔을때 처리해주는 함수입니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">ratsnlp.nlpbook.ner</span> <span class="kn">import</span> <span class="n">get_web_service_app</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">get_web_service_app</span><span class="p">(</span><span class="n">inference_fn</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>웹 서비스를 구현합니다.</p>
+<p>(이쪽 개념을 잘 몰라서 실제 구현에는 실패했습니다.)</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"46696850ce2a4d68aaa60d600079fb92": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_a9a02725ee8b4eadb92fb8ea9a7f0b8f", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_d87580695a3040779a071dbb2e40e8a0", "IPY_MODEL_3e7228911cf74f298cbd4f85714a3022", "IPY_MODEL_a1951c84165d4a99b6ba8fd16258e849"]}}, "a9a02725ee8b4eadb92fb8ea9a7f0b8f": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "d87580695a3040779a071dbb2e40e8a0": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_b8a352f8905a43628d2dc00a2e26054e", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Downloading: 100%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_8623a6f0762a472181eb05536bae3751"}}, "3e7228911cf74f298cbd4f85714a3022": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_99f71831998b4268ab015941f8d9b485", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "success", "max": 249928, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 249928, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_3abb8da492fd44089e35561f50a56b4d"}}, "a1951c84165d4a99b6ba8fd16258e849": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_7bcb5f3313e2497da81bb0f59d3f602f", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 250k/250k [00:00&lt;00:00, 1.13MB/s]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_01d4ac73ad8442aeb1ea782547451fac"}}, "b8a352f8905a43628d2dc00a2e26054e": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "8623a6f0762a472181eb05536bae3751": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "99f71831998b4268ab015941f8d9b485": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "3abb8da492fd44089e35561f50a56b4d": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "7bcb5f3313e2497da81bb0f59d3f602f": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "01d4ac73ad8442aeb1ea782547451fac": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "5b008a106dff48e28151eb3e69f5312c": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_d5808f1374fd4115a64375f0cf409698", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_6d4e7b013b0147ba8355e37c1a616c1b", "IPY_MODEL_dd607abc4f064f2e9eec82fbea06eeb3", "IPY_MODEL_f44e307d9ce9489396161cd88b7c8e5e"]}}, "d5808f1374fd4115a64375f0cf409698": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "6d4e7b013b0147ba8355e37c1a616c1b": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_0fe8f3fbbb6749e08416b9fa95a882a5", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Downloading: 100%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_f6e76c79a44e4249a1a439b3eae5d262"}}, "dd607abc4f064f2e9eec82fbea06eeb3": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_abb0e4940ffb4a0695adb89964c3390f", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "success", "max": 49, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 49, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_bb20f976fe8149a59bbc17e6f617b41f"}}, "f44e307d9ce9489396161cd88b7c8e5e": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_a1fb0ca078a44564a547459c4c260c35", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 49.0/49.0 [00:00&lt;00:00, 645B/s]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_5f090b2c932c4bd3a412d62297b44e3d"}}, "0fe8f3fbbb6749e08416b9fa95a882a5": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "f6e76c79a44e4249a1a439b3eae5d262": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "abb0e4940ffb4a0695adb89964c3390f": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "bb20f976fe8149a59bbc17e6f617b41f": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "a1fb0ca078a44564a547459c4c260c35": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "5f090b2c932c4bd3a412d62297b44e3d": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "fc0e234784674729bc75102b6e09ad3a": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_6f3065d68230488e82ca8f87d0f6db42", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_1f8b3066de6e4916b6b547f6972241fe", "IPY_MODEL_5c9a0acd0d3141139b738456b933d070", "IPY_MODEL_8bbf51333b5f4e7385048b0224c7515a"]}}, "6f3065d68230488e82ca8f87d0f6db42": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "1f8b3066de6e4916b6b547f6972241fe": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_ad649a8d4f2946849ff9b2959d1e1a13", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Downloading: 100%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_a794f9caf8fe432699294356f5562437"}}, "5c9a0acd0d3141139b738456b933d070": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_a1faa535f66e4f2b9cdf447009e01fc2", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "success", "max": 619, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 619, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_15c859d8e3da45518238295c2decb98a"}}, "8bbf51333b5f4e7385048b0224c7515a": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_9eb6fba608eb405ab56632e52f79a54d", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 619/619 [00:00&lt;00:00, 4.91kB/s]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_83f746cee3ad43a1ae9690c0691f0792"}}, "ad649a8d4f2946849ff9b2959d1e1a13": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "a794f9caf8fe432699294356f5562437": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "a1faa535f66e4f2b9cdf447009e01fc2": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "15c859d8e3da45518238295c2decb98a": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "9eb6fba608eb405ab56632e52f79a54d": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "83f746cee3ad43a1ae9690c0691f0792": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "ed8f3d17762146659b25ddf39d0c7ada": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_576366fdf2cf4c10b713fcd75403049b", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_922536f37f8f41b68ed23de0dbf1c3d3", "IPY_MODEL_aa73eb82730d4a8580f37ff2e3df878c", "IPY_MODEL_badcc6a9dc0744319af31ec64e7e1fa6"]}}, "576366fdf2cf4c10b713fcd75403049b": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "922536f37f8f41b68ed23de0dbf1c3d3": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_63301f587e09459d8ba555857087b59e", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Downloading: 100%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_148516eefd4d4ae78b8129bc3467083d"}}, "aa73eb82730d4a8580f37ff2e3df878c": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_b03f526de0d746bd8b90fc52d5ae0d7d", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "success", "max": 438218004, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 438218004, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_a95f75654a114e8b94e76978cc5d40df"}}, "badcc6a9dc0744319af31ec64e7e1fa6": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_8489f71a9bbe49c29c886edec0f64e11", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 438M/438M [00:26&lt;00:00, 17.6MB/s]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_8334da008b694a2d8947106bd49eca9b"}}, "63301f587e09459d8ba555857087b59e": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "148516eefd4d4ae78b8129bc3467083d": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "b03f526de0d746bd8b90fc52d5ae0d7d": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "a95f75654a114e8b94e76978cc5d40df": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "8489f71a9bbe49c29c886edec0f64e11": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "8334da008b694a2d8947106bd49eca9b": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "6971d9fcf02d45a6b1ed2ac65262fc12": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_291e0c24cf0c4997ad690f8e517c6d3b", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_8ecfebe4e0624ee6959b0d7197a68069", "IPY_MODEL_ca46563235604b61892273f76da63306", "IPY_MODEL_9910af2a8d72460fbebe512a692a0f31"]}}, "291e0c24cf0c4997ad690f8e517c6d3b": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": "row wrap", "width": "100%", "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": "inline-flex", "left": null}}, "8ecfebe4e0624ee6959b0d7197a68069": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_34eb698b44d94f8c8118c6bcce44eba7", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Epoch 0:  11%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_f50b1ab3af3a405d81e5838cac0fb74a"}}, "ca46563235604b61892273f76da63306": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_76e9346ef56a4afd9c4178dc17d41fe5", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "", "max": 7688, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 880, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_c179f760bfa74b57998acfde4659fb00"}}, "9910af2a8d72460fbebe512a692a0f31": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_a13ba714615c49e7929b8b97fa7be101", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 880/7688 [23:00&lt;2:57:59,  1.57s/it, loss=0.727, v_num=0, acc=0.797]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_c120066249084b458819fef57b5835b7"}}, "34eb698b44d94f8c8118c6bcce44eba7": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "f50b1ab3af3a405d81e5838cac0fb74a": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "76e9346ef56a4afd9c4178dc17d41fe5": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "c179f760bfa74b57998acfde4659fb00": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": "2", "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "a13ba714615c49e7929b8b97fa7be101": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "c120066249084b458819fef57b5835b7": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}}
+</script>
+
+
+
+  </div><script src="https://utteranc.es/client.js"
+        repo="KSY1526/myblog"
+        issue-term="pathname"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+  <a class="u-url" href="/myblog/book/jupyter/do%20it/natural%20language/bert/tokenizer/web/answer/2021/12/28/Do_natural_language6.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/myblog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/myblog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/myblog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/https%3A%2F%2Fgithub.com%2FKSY1526%2FMyProject" title="https://github.com/KSY1526/MyProject"><svg class="svg-icon grey"><use xlink:href="/myblog/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
