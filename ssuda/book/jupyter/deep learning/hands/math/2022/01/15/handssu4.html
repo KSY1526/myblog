@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>[SSUDA] 텐서플로로 데이터 적재하기1 | 나의 빅데이터 공부 기록</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="[SSUDA] 텐서플로로 데이터 적재하기1" />
+<meta name="author" content="Seong Yeon Kim" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다." />
+<meta property="og:description" content="다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다." />
+<link rel="canonical" href="https://ksy1526.github.io/myblog/ssuda/book/jupyter/deep%20learning/hands/math/2022/01/15/handssu4.html" />
+<meta property="og:url" content="https://ksy1526.github.io/myblog/ssuda/book/jupyter/deep%20learning/hands/math/2022/01/15/handssu4.html" />
+<meta property="og:site_name" content="나의 빅데이터 공부 기록" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-01-15T00:00:00-06:00" />
+<script type="application/ld+json">
+{"datePublished":"2022-01-15T00:00:00-06:00","url":"https://ksy1526.github.io/myblog/ssuda/book/jupyter/deep%20learning/hands/math/2022/01/15/handssu4.html","@type":"BlogPosting","headline":"[SSUDA] 텐서플로로 데이터 적재하기1","dateModified":"2022-01-15T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://ksy1526.github.io/myblog/ssuda/book/jupyter/deep%20learning/hands/math/2022/01/15/handssu4.html"},"author":{"@type":"Person","name":"Seong Yeon Kim"},"description":"다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/myblog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://ksy1526.github.io/myblog/feed.xml" title="나의 빅데이터 공부 기록" /><link rel="shortcut icon" type="image/x-icon" href="/myblog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/myblog/">나의 빅데이터 공부 기록</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/myblog/about/">About Me</a><a class="page-link" href="/myblog/search/">Search</a><a class="page-link" href="/myblog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">[SSUDA] 텐서플로로 데이터 적재하기1</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-01-15T00:00:00-06:00" itemprop="datePublished">
+        Jan 15, 2022
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Seong Yeon Kim</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      7 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/myblog/categories/#SSUDA">SSUDA</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#book">book</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#jupyter">jupyter</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#Deep Learning">Deep Learning</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#hands">hands</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#math">math</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          
+          
+          
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/handssu4.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="https://colab.research.google.com/github/KSY1526/myblog/blob/master/_notebooks/handssu4.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#45936;&#51060;&#53552;-API">&#45936;&#51060;&#53552; API<a class="anchor-link" href="#&#45936;&#51060;&#53552;-API"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">sklearn</span>
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">from_tensor_slices</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="c1"># 주어진 데이터 소스를 여러 텐서로 자릅니다.</span>
+<span class="n">dataset</span> <span class="c1"># tf.data.Dataset.range(10)과 동등함.</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;TensorSliceDataset shapes: (), types: tf.int32&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tf.Tensor(0, shape=(), dtype=int32)
+tf.Tensor(1, shape=(), dtype=int32)
+tf.Tensor(2, shape=(), dtype=int32)
+tf.Tensor(3, shape=(), dtype=int32)
+tf.Tensor(4, shape=(), dtype=int32)
+tf.Tensor(5, shape=(), dtype=int32)
+tf.Tensor(6, shape=(), dtype=int32)
+tf.Tensor(7, shape=(), dtype=int32)
+tf.Tensor(8, shape=(), dtype=int32)
+tf.Tensor(9, shape=(), dtype=int32)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>from_tensor_slices 함수는 텐서를 받아 10개의 아이템(0~9)으로 쪼갭니다.</p>
+<p>이 때 shapes가 () 인것은 크기가 1인 텐서 10개로 쪼개졌다는 것을 의미합니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tf.Tensor([0 1 2 3 4 5 6], shape=(7,), dtype=int32)
+tf.Tensor([7 8 9 0 1 2 3], shape=(7,), dtype=int32)
+tf.Tensor([4 5 6 7 8 9 0], shape=(7,), dtype=int32)
+tf.Tensor([1 2 3 4 5 6 7], shape=(7,), dtype=int32)
+tf.Tensor([8 9], shape=(2,), dtype=int32)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>원래 dataset에 repeat 함수를 적용하면 원본 데이터 아이템을 세차레 반복하는 새로운 데이터셋을 반환합니다.</p>
+<p>그 뒤 batch 함수를 적용하면 아이템을 7개씩 그룹으로 묶습니다. 이 때 마지막 데이터셋은 2개가 됩니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tf.Tensor([ 0  2  4  6  8 10 12], shape=(7,), dtype=int32)
+tf.Tensor([14 16 18  0  2  4  6], shape=(7,), dtype=int32)
+tf.Tensor([ 8 10 12 14 16 18  0], shape=(7,), dtype=int32)
+tf.Tensor([ 2  4  6  8 10 12 14], shape=(7,), dtype=int32)
+tf.Tensor([16 18], shape=(2,), dtype=int32)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>map 함수로 데이터 셋 내 아이템을 변환할 수 있습니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">buffer_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">seed</span> <span class="o">=</span> <span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tf.Tensor([0 1 6 5 7 3 9], shape=(7,), dtype=int64)
+tf.Tensor([8 2 1 0 4 6 4], shape=(7,), dtype=int64)
+tf.Tensor([7 2 5 9 2 1 3], shape=(7,), dtype=int64)
+tf.Tensor([4 3 8 7 9 5 0], shape=(7,), dtype=int64)
+tf.Tensor([8 6], shape=(2,), dtype=int64)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>buffer_size 만큼 버퍼를 만든 뒤 데이터를 앞 부분부터 순서대로 버퍼 최대 크기만큼 뽑아 버퍼를 채웁니다. 그 후 버퍼 중 한 개 데이터를 뽑습니다.</p>
+<p>뽑은 데이터는 첫번째 결과값으로 지정하고 다시 데이터 셋에서 다음 순서 데이터를 뽑아 버퍼를 채웁니다.</p>
+<p>그 후 버퍼 중 렌덤하게 한 개 데이터를 뽑아 두번째 결과값으로 지정합니다. 이 과정을 반복하면 데이터가 셔플하게 됩니다.</p>
+<p>하지만 여전히 앞 부분 데이터는 앞 부분에 있을 확률이 커 셔플이 됬다고 하기 어렵습니다. 버퍼 크기가 현저히 작을 경우 그런 경향이 더 심합니다.</p>
+<p>이를 해결하기 위해 원본 데이터를 에포크마다 한번씩 섞어줘야 합니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#50668;&#47084;-CSV-&#54028;&#51068;&#50640;&#49436;-&#54620;-&#51460;&#50473;-&#48264;&#44040;&#50500;-&#51069;&#44592;">&#50668;&#47084; CSV &#54028;&#51068;&#50640;&#49436; &#54620; &#51460;&#50473; &#48264;&#44040;&#50500; &#51069;&#44592;<a class="anchor-link" href="#&#50668;&#47084;-CSV-&#54028;&#51068;&#50640;&#49436;-&#54620;-&#51460;&#50473;-&#48264;&#44040;&#50500;-&#51069;&#44592;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_california_housing</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="n">housing</span> <span class="o">=</span> <span class="n">fetch_california_housing</span><span class="p">()</span>
+<span class="n">X_train_full</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train_full</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">housing</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">housing</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_valid</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_valid</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X_train_full</span><span class="p">,</span> <span class="n">y_train_full</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">scaler</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_mean</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">mean_</span>
+<span class="n">X_std</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">scale_</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>주택 데이터셋을 다운받습니다. 훈련/검증/테스트 로 나누고 스케일을 조정합니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">save_to_multiple_csv_files</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">name_prefix</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n_parts</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">housing_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;datasets&quot;</span><span class="p">,</span> <span class="s2">&quot;housing&quot;</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">housing_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">path_format</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">housing_dir</span><span class="p">,</span> <span class="s2">&quot;my_</span><span class="si">{}</span><span class="s2">_</span><span class="si">{:02d}</span><span class="s2">.csv&quot;</span><span class="p">)</span>
+
+    <span class="n">filepaths</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">file_idx</span><span class="p">,</span> <span class="n">row_indices</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array_split</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">m</span><span class="p">),</span> <span class="n">n_parts</span><span class="p">)):</span>
+        <span class="n">part_csv</span> <span class="o">=</span> <span class="n">path_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name_prefix</span><span class="p">,</span> <span class="n">file_idx</span><span class="p">)</span>
+        <span class="n">filepaths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">part_csv</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">part_csv</span><span class="p">,</span> <span class="s2">&quot;wt&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">header</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">row_idx</span> <span class="ow">in</span> <span class="n">row_indices</span><span class="p">:</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">repr</span><span class="p">(</span><span class="n">col</span><span class="p">)</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">data</span><span class="p">[</span><span class="n">row_idx</span><span class="p">]]))</span>
+                <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">filepaths</span>
+
+<span class="n">train_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">]</span>
+<span class="n">valid_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">X_valid</span><span class="p">,</span> <span class="n">y_valid</span><span class="p">]</span>
+<span class="n">test_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">]</span>
+<span class="n">header_cols</span> <span class="o">=</span> <span class="n">housing</span><span class="o">.</span><span class="n">feature_names</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;MedianHouseValue&quot;</span><span class="p">]</span>
+<span class="n">header</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">header_cols</span><span class="p">)</span>
+
+<span class="n">train_filepaths</span> <span class="o">=</span> <span class="n">save_to_multiple_csv_files</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">header</span><span class="p">,</span> <span class="n">n_parts</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">valid_filepaths</span> <span class="o">=</span> <span class="n">save_to_multiple_csv_files</span><span class="p">(</span><span class="n">valid_data</span><span class="p">,</span> <span class="s2">&quot;valid&quot;</span><span class="p">,</span> <span class="n">header</span><span class="p">,</span> <span class="n">n_parts</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">test_filepaths</span> <span class="o">=</span> <span class="n">save_to_multiple_csv_files</span><span class="p">(</span><span class="n">test_data</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="n">header</span><span class="p">,</span> <span class="n">n_parts</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>데이터를 여러개의 CSV파일로 쪼갰습니다. (이 부분은 핸즈온머신러닝 깃허브 코드를 복사했습니다.)</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">train_filepaths</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;datasets/housing/my_train_00.csv&#39;,
+ &#39;datasets/housing/my_train_01.csv&#39;,
+ &#39;datasets/housing/my_train_02.csv&#39;,
+ &#39;datasets/housing/my_train_03.csv&#39;,
+ &#39;datasets/housing/my_train_04.csv&#39;,
+ &#39;datasets/housing/my_train_05.csv&#39;,
+ &#39;datasets/housing/my_train_06.csv&#39;,
+ &#39;datasets/housing/my_train_07.csv&#39;,
+ &#39;datasets/housing/my_train_08.csv&#39;,
+ &#39;datasets/housing/my_train_09.csv&#39;,
+ &#39;datasets/housing/my_train_10.csv&#39;,
+ &#39;datasets/housing/my_train_11.csv&#39;,
+ &#39;datasets/housing/my_train_12.csv&#39;,
+ &#39;datasets/housing/my_train_13.csv&#39;,
+ &#39;datasets/housing/my_train_14.csv&#39;,
+ &#39;datasets/housing/my_train_15.csv&#39;,
+ &#39;datasets/housing/my_train_16.csv&#39;,
+ &#39;datasets/housing/my_train_17.csv&#39;,
+ &#39;datasets/housing/my_train_18.csv&#39;,
+ &#39;datasets/housing/my_train_19.csv&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>분할된 CSV파일 저장 경로 리스트 입니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">filepath_dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">list_files</span><span class="p">(</span><span class="n">train_filepaths</span><span class="p">,</span> <span class="n">seed</span> <span class="o">=</span> <span class="mi">42</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">filepath</span> <span class="ow">in</span> <span class="n">filepath_dataset</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tf.Tensor(b&#39;datasets/housing/my_train_15.csv&#39;, shape=(), dtype=string)
+tf.Tensor(b&#39;datasets/housing/my_train_08.csv&#39;, shape=(), dtype=string)
+tf.Tensor(b&#39;datasets/housing/my_train_03.csv&#39;, shape=(), dtype=string)
+tf.Tensor(b&#39;datasets/housing/my_train_01.csv&#39;, shape=(), dtype=string)
+tf.Tensor(b&#39;datasets/housing/my_train_10.csv&#39;, shape=(), dtype=string)
+tf.Tensor(b&#39;datasets/housing/my_train_05.csv&#39;, shape=(), dtype=string)
+tf.Tensor(b&#39;datasets/housing/my_train_19.csv&#39;, shape=(), dtype=string)
+tf.Tensor(b&#39;datasets/housing/my_train_16.csv&#39;, shape=(), dtype=string)
+tf.Tensor(b&#39;datasets/housing/my_train_02.csv&#39;, shape=(), dtype=string)
+tf.Tensor(b&#39;datasets/housing/my_train_09.csv&#39;, shape=(), dtype=string)
+tf.Tensor(b&#39;datasets/housing/my_train_00.csv&#39;, shape=(), dtype=string)
+tf.Tensor(b&#39;datasets/housing/my_train_07.csv&#39;, shape=(), dtype=string)
+tf.Tensor(b&#39;datasets/housing/my_train_12.csv&#39;, shape=(), dtype=string)
+tf.Tensor(b&#39;datasets/housing/my_train_04.csv&#39;, shape=(), dtype=string)
+tf.Tensor(b&#39;datasets/housing/my_train_17.csv&#39;, shape=(), dtype=string)
+tf.Tensor(b&#39;datasets/housing/my_train_11.csv&#39;, shape=(), dtype=string)
+tf.Tensor(b&#39;datasets/housing/my_train_14.csv&#39;, shape=(), dtype=string)
+tf.Tensor(b&#39;datasets/housing/my_train_18.csv&#39;, shape=(), dtype=string)
+tf.Tensor(b&#39;datasets/housing/my_train_06.csv&#39;, shape=(), dtype=string)
+tf.Tensor(b&#39;datasets/housing/my_train_13.csv&#39;, shape=(), dtype=string)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>list_files 함수는 파일 경로를 섞은 데이터셋을 반환합니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">n_readers</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">filepath_dataset</span><span class="o">.</span><span class="n">interleave</span><span class="p">(</span>
+    <span class="k">lambda</span> <span class="n">filepath</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">TextLineDataset</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># 파일의 첫번째 줄은 열이름이므로 skip함.</span>
+    <span class="n">cycle_length</span> <span class="o">=</span> <span class="n">n_readers</span>
+<span class="p">)</span>
+
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>b&#39;4.6477,38.0,5.03728813559322,0.911864406779661,745.0,2.5254237288135593,32.64,-117.07,1.504&#39;
+b&#39;8.72,44.0,6.163179916317992,1.0460251046025104,668.0,2.794979079497908,34.2,-118.18,4.159&#39;
+b&#39;3.8456,35.0,5.461346633416459,0.9576059850374065,1154.0,2.8778054862842892,37.96,-122.05,1.598&#39;
+b&#39;3.3456,37.0,4.514084507042254,0.9084507042253521,458.0,3.2253521126760565,36.67,-121.7,2.526&#39;
+b&#39;3.6875,44.0,4.524475524475524,0.993006993006993,457.0,3.195804195804196,34.04,-118.15,1.625&#39;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>interleave 함수는 데이터셋(파일경로) 내 다섯 개에서 데이터를 읽는 데이터셋을 만듭니다.</p>
+<p>이 때 함수 내 lambda 함수를 이용해 새로운 데이터셋을 만들 것입니다.</p>
+<p>인터러브 데이터셋을 반복 구문에 적용하면 다섯 개의 TextLineDataset을 순회하고, 모든 데이터셋의 아이템이 소진될때까지 한 줄씩 읽습니다.</p>
+<p>출력된 값은 바이트 스트링입니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#45936;&#51060;&#53552;-&#51204;&#52376;&#47532;-&#54616;&#44592;">&#45936;&#51060;&#53552; &#51204;&#52376;&#47532; &#54616;&#44592;<a class="anchor-link" href="#&#45936;&#51060;&#53552;-&#51204;&#52376;&#47532;-&#54616;&#44592;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="p">[</span><span class="mf">0.</span><span class="p">]</span> <span class="o">*</span> <span class="mi">8</span> <span class="o">+</span> <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([],</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0.0,
+ 0.0,
+ 0.0,
+ 0.0,
+ 0.0,
+ 0.0,
+ 0.0,
+ 0.0,
+ &lt;tf.Tensor: shape=(0,), dtype=float32, numpy=array([], dtype=float32)&gt;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">n_inputs</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">preprocess</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+    <span class="n">defs</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_inputs</span> <span class="o">+</span> <span class="p">[</span><span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([],</span> <span class="n">dtype</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)]</span> <span class="c1"># 디폴트값 텐서 형태로 만들기</span>
+    <span class="n">fields</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">decode_csv</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">record_defaults</span><span class="o">=</span><span class="n">defs</span><span class="p">)</span> <span class="c1"># 스칼라 텐서의 리스트를 반환</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">fields</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># 마지막 전까지</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">fields</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:])</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">X_mean</span><span class="p">)</span> <span class="o">/</span> <span class="n">X_std</span><span class="p">,</span> <span class="n">y</span>
+
+<span class="n">preprocess</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;4.6477,38.0,5.03728813559322,0.911864406779661,745.0,2.5254237288135593,32.64,-117.07,1.504&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(&lt;tf.Tensor: shape=(8,), dtype=float32, numpy=
+ array([ 0.39593136,  0.74167496, -0.16415128, -0.40340805, -0.6199179 ,
+        -0.18355484, -1.4084505 ,  1.2565969 ], dtype=float32)&gt;,
+ &lt;tf.Tensor: shape=(1,), dtype=float32, numpy=array([1.504], dtype=float32)&gt;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>전처리 하는 함수를 만들었습니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#45936;&#51060;&#53552;-&#51201;&#51116;,-&#51204;&#52376;&#47532;-&#54632;&#49688;-&#47564;&#46308;&#44592;">&#45936;&#51060;&#53552; &#51201;&#51116;, &#51204;&#52376;&#47532; &#54632;&#49688; &#47564;&#46308;&#44592;<a class="anchor-link" href="#&#45936;&#51060;&#53552;-&#51201;&#51116;,-&#51204;&#52376;&#47532;-&#54632;&#49688;-&#47564;&#46308;&#44592;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">csv_reader_dataset</span><span class="p">(</span><span class="n">filepaths</span><span class="p">,</span> <span class="n">repeat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_readers</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+                       <span class="n">n_read_threads</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">shuffle_buffer_size</span> <span class="o">=</span> <span class="mi">10000</span><span class="p">,</span>
+                       <span class="n">n_parse_threads</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span><span class="p">):</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="o">.</span><span class="n">list_files</span><span class="p">(</span><span class="n">filepaths</span><span class="p">)</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">repeat</span><span class="p">)</span>
+    <span class="c1"># 파일 경로를 섞은 데이터셋 반환</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">interleave</span><span class="p">(</span> <span class="c1"># 한번에 n_readers 파일 수만큼 한 줄씩 번갈아 읽음.</span>
+        <span class="k">lambda</span> <span class="n">filepath</span><span class="p">:</span> <span class="n">tf</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">TextLineDataset</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># 첫줄은 열이름이므로 제외.</span>
+        <span class="n">cycle_length</span> <span class="o">=</span> <span class="n">n_readers</span><span class="p">,</span> <span class="n">num_parallel_calls</span> <span class="o">=</span> <span class="n">n_read_threads</span> <span class="c1"># 여러파일에서 병렬로 읽고싶을때 사용.</span>
+    <span class="p">)</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">shuffle_buffer_size</span><span class="p">)</span> <span class="c1"># 데이터를 셔플합니다. 버퍼는 shuffle_buffer_size만큼.</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">preprocess</span><span class="p">,</span> <span class="n">num_parallel_calls</span> <span class="o">=</span> <span class="n">n_parse_threads</span><span class="p">)</span> <span class="c1"># preprocess 함수를 데이터 내 적용.</span>
+
+    <span class="k">return</span> <span class="n">dataset</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span><span class="o">.</span><span class="n">prefetch</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># batch_size만큼 배치 함수를 이용해 데이터를 묶습니다.</span>
+    <span class="c1"># 프리페치는 속도를 향상시킵니다.</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>데이터를 적재하고 전처리 하는 부분까지 한번에 하는 함수를 구현했습니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">tf</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">train_set</span> <span class="o">=</span> <span class="n">csv_reader_dataset</span><span class="p">(</span><span class="n">train_filepaths</span><span class="p">,</span> <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">X_batch</span><span class="p">,</span> <span class="n">y_batch</span> <span class="ow">in</span> <span class="n">train_set</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;X = &#39;</span><span class="p">,</span> <span class="n">X_batch</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;y =&#39;</span><span class="p">,</span> <span class="n">y_batch</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>X =  tf.Tensor(
+[[ 0.5804519  -0.20762321  0.05616303 -0.15191229  0.01343246  0.00604472
+   1.2525111  -1.3671792 ]
+ [ 5.818099    1.8491895   1.1784915   0.28173092 -1.2496178  -0.3571987
+   0.7231292  -1.0023477 ]
+ [-0.9253566   0.5834586  -0.7807257  -0.28213993 -0.36530012  0.27389365
+  -0.76194876  0.72684526]], shape=(3, 8), dtype=float32)
+y = tf.Tensor(
+[[1.752]
+ [1.313]
+ [1.535]], shape=(3, 1), dtype=float32)
+X =  tf.Tensor(
+[[-0.8324941   0.6625668  -0.20741376 -0.18699841 -0.14536144  0.09635526
+   0.9807942  -0.67250353]
+ [-0.62183803  0.5834586  -0.19862501 -0.3500319  -1.1437552  -0.3363751
+   1.107282   -0.8674123 ]
+ [ 0.8683102   0.02970133  0.3427381  -0.29872298  0.7124906   0.28026953
+  -0.72915536  0.86178064]], shape=(3, 8), dtype=float32)
+y = tf.Tensor(
+[[0.919]
+ [1.028]
+ [2.182]], shape=(3, 1), dtype=float32)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>직접 구현한 함수를 통해 여러개로 나누어진 csv의 경로를 랜덤하게 배치 사이즈만큼 적재하고 전처리한 모습입니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">train_set</span> <span class="o">=</span> <span class="n">csv_reader_dataset</span><span class="p">(</span><span class="n">train_filepaths</span><span class="p">,</span> <span class="n">repeat</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">valid_set</span> <span class="o">=</span> <span class="n">csv_reader_dataset</span><span class="p">(</span><span class="n">valid_filepaths</span><span class="p">)</span>
+<span class="n">test_set</span> <span class="o">=</span> <span class="n">csv_reader_dataset</span><span class="p">(</span><span class="n">test_filepaths</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span>
+    <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;relu&quot;</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span>
+    <span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+<span class="p">])</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s2">&quot;mse&quot;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>csv 경로를 이용해 데이터셋을 적재하고 전처리 한 뒤 케라스로 간단한 딥러닝 모델을 구축합니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_set</span><span class="p">,</span> <span class="n">steps_per_epoch</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span> <span class="o">//</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+          <span class="n">validation_data</span><span class="o">=</span><span class="n">valid_set</span><span class="p">)</span> 
+        <span class="c1"># steps_per_epoch 은 한 에포크당 몇번 진행하는지. 입력값이 train_set이기 때문에 확실히 모름.</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Epoch 1/10
+362/362 [==============================] - 1s 3ms/step - loss: 2.3908 - val_loss: 1.7373
+Epoch 2/10
+362/362 [==============================] - 1s 3ms/step - loss: 0.8812 - val_loss: 0.7719
+Epoch 3/10
+362/362 [==============================] - 1s 2ms/step - loss: 0.7535 - val_loss: 0.7118
+Epoch 4/10
+362/362 [==============================] - 1s 2ms/step - loss: 0.7236 - val_loss: 1.0734
+Epoch 5/10
+362/362 [==============================] - 1s 2ms/step - loss: 0.6724 - val_loss: 0.6422
+Epoch 6/10
+362/362 [==============================] - 1s 3ms/step - loss: 0.6682 - val_loss: 0.6402
+Epoch 7/10
+362/362 [==============================] - 1s 3ms/step - loss: 0.6197 - val_loss: 0.8125
+Epoch 8/10
+362/362 [==============================] - 1s 3ms/step - loss: 0.6181 - val_loss: 0.5822
+Epoch 9/10
+362/362 [==============================] - 1s 3ms/step - loss: 0.5769 - val_loss: 1.0522
+Epoch 10/10
+362/362 [==============================] - 1s 3ms/step - loss: 0.5596 - val_loss: 0.6446
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;keras.callbacks.History at 0x7fa4918802d0&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>잘 진행되는 모습입니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#45712;&#45184;&#51216;">&#45712;&#45184;&#51216;<a class="anchor-link" href="#&#45712;&#45184;&#51216;"> </a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>데이터 API를 이용해 텐서플로에서 데이터 적재하는 방법을 간단히 알아봤습니다.</p>
+<p>실제로 대용량 데이터를 저장하고 효율적으로 읽기 위해선 TFRecord를 활용한다고 하는데 이후에 추가로 공부해보겠습니다.</p>
+<p>딥러닝에 대해 지금까지 가볍게 공부하고 있는데 솔직히 막연하다는 생각이 듭니다. 실전 경험이 없어서일까요.</p>
+<p>이와 별개로 개인적으로 스스로에게 휴식을 주고자 합니다. 몸상태가 좋지 못하고, 학기종강 이후 쉼을 못준 것 같네요.</p>
+<p>아마 당분간은 주 1회 SSUDA 스터디 코드만 올라갈 것 같습니다.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><script src="https://utteranc.es/client.js"
+        repo="KSY1526/myblog"
+        issue-term="pathname"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+  <a class="u-url" href="/myblog/ssuda/book/jupyter/deep%20learning/hands/math/2022/01/15/handssu4.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/myblog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/myblog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/myblog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/https%3A%2F%2Fgithub.com%2FKSY1526%2FMyProject" target="_blank" title="https://github.com/KSY1526/MyProject"><svg class="svg-icon grey"><use xlink:href="/myblog/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
