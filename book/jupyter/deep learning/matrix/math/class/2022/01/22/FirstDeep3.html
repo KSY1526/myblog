@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>[처음 시작하는 딥러닝] 3. 밑바닥부터 만들어보는 CNN | 나의 빅데이터 공부 기록</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="[처음 시작하는 딥러닝] 3. 밑바닥부터 만들어보는 CNN" />
+<meta name="author" content="Seong Yeon Kim" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다." />
+<meta property="og:description" content="다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다." />
+<link rel="canonical" href="https://ksy1526.github.io/myblog/book/jupyter/deep%20learning/matrix/math/class/2022/01/22/FirstDeep3.html" />
+<meta property="og:url" content="https://ksy1526.github.io/myblog/book/jupyter/deep%20learning/matrix/math/class/2022/01/22/FirstDeep3.html" />
+<meta property="og:site_name" content="나의 빅데이터 공부 기록" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-01-22T00:00:00-06:00" />
+<script type="application/ld+json">
+{"datePublished":"2022-01-22T00:00:00-06:00","url":"https://ksy1526.github.io/myblog/book/jupyter/deep%20learning/matrix/math/class/2022/01/22/FirstDeep3.html","@type":"BlogPosting","headline":"[처음 시작하는 딥러닝] 3. 밑바닥부터 만들어보는 CNN","dateModified":"2022-01-22T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://ksy1526.github.io/myblog/book/jupyter/deep%20learning/matrix/math/class/2022/01/22/FirstDeep3.html"},"author":{"@type":"Person","name":"Seong Yeon Kim"},"description":"다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/myblog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://ksy1526.github.io/myblog/feed.xml" title="나의 빅데이터 공부 기록" /><link rel="shortcut icon" type="image/x-icon" href="/myblog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/myblog/">나의 빅데이터 공부 기록</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/myblog/about/">About Me</a><a class="page-link" href="/myblog/search/">Search</a><a class="page-link" href="/myblog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">[처음 시작하는 딥러닝] 3. 밑바닥부터 만들어보는 CNN</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-01-22T00:00:00-06:00" itemprop="datePublished">
+        Jan 22, 2022
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Seong Yeon Kim</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      8 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/myblog/categories/#book">book</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#jupyter">jupyter</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#Deep Learning">Deep Learning</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#matrix">matrix</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#math">math</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#class">class</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          
+          
+          
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/FirstDeep3.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="https://colab.research.google.com/github/KSY1526/myblog/blob/master/_notebooks/FirstDeep3.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#44592;&#48376;-&#49464;&#54021;">&#44592;&#48376; &#49464;&#54021;<a class="anchor-link" href="#&#44592;&#48376;-&#49464;&#54021;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">ndarray</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">assert_same_shape</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">output_grad</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">output</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">output_grad</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> \
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    두 ndarray의 모양이 같아야 하는데,</span>
+<span class="sd">    첫 번째 ndarray의 모양은 {0}이고</span>
+<span class="sd">    두 번째 ndarray의 모양은 {1}이다.</span>
+<span class="sd">    &#39;&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">output_grad</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+    <span class="k">return</span> <span class="kc">None</span>
+
+<span class="k">def</span> <span class="nf">assert_dim</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">dim</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="n">dim</span><span class="p">,</span> \
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    이 텐서는 {0}차원이어야 하는데, {1}차원이다.</span>
+<span class="sd">    &#39;&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dim</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+    <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>필요한 차원을 잘 입력했는지 확인하는 함수를 선언합니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="1&#52264;&#50896;-&#54633;&#49457;-&#44273;">1&#52264;&#50896; &#54633;&#49457; &#44273;<a class="anchor-link" href="#1&#52264;&#50896;-&#54633;&#49457;-&#44273;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">input_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">param_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">_pad_1d</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span> <span class="c1"># 원래 데이터와 패딩 길이 입력</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">z</span><span class="p">,</span> <span class="n">inp</span><span class="p">,</span> <span class="n">z</span><span class="p">])</span>
+
+<span class="n">_pad_1d</span><span class="p">(</span><span class="n">input_1d</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([0, 1, 2, 3, 4, 5, 0])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>간단한 함수로 1차원 데이터를 패딩한 모습입니다.</p>
+<p>입력 데이터와 합성곱 연산을 한 출력 데이터의 크기를 같게하기 위해선 벗어나는 범위에 대해서 0 값을 채워주는 패딩을 하게 됩니다.</p>
+<p>패딩 크기는 필터 크기를 2로 나눈 값에 정수부분이 입력과 출력을 같게하는 패딩의 크기가 됩니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">conv_1d</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span> <span class="c1"># 입력 값과 필터 값 입력</span>
+    <span class="c1"># 1차원 입력인지 확인합니다</span>
+    <span class="n">assert_dim</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">assert_dim</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># 입력 값에 패딩을 덧붙입니다.</span>
+    <span class="n">param_len</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">param_mid</span> <span class="o">=</span> <span class="n">param_len</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">input_pad</span> <span class="o">=</span> <span class="n">_pad_1d</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">param_mid</span><span class="p">)</span>
+
+    <span class="c1"># 초기값 부여</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">inp</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="c1"># 1차원 합성곱 연산 수행</span>
+    <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">param_len</span><span class="p">):</span>
+            <span class="n">out</span><span class="p">[</span><span class="n">o</span><span class="p">]</span> <span class="o">+=</span> <span class="n">param</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">*</span> <span class="n">input_pad</span><span class="p">[</span><span class="n">o</span><span class="o">+</span><span class="n">p</span><span class="p">]</span>
+
+    <span class="c1"># 출력 모양이 입력과 동일한지 확인</span>
+    <span class="n">assert_same_shape</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">out</span>
+
+<span class="n">conv_1d</span><span class="p">(</span><span class="n">input_1d</span><span class="p">,</span> <span class="n">param_1d</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 3.,  6.,  9., 12.,  9.])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>가중치가 [1,1,1] 인 간단한 합성곱 연산을 진행했습니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">conv_1d_sum</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span> 
+    <span class="n">out</span> <span class="o">=</span> <span class="n">conv_1d</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+
+<span class="n">input_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">input_1d_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">])</span>
+<span class="n">input_1d_3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+
+<span class="n">param_1d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">param_1d_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">conv_1d_sum</span><span class="p">(</span><span class="n">input_1d</span><span class="p">,</span> <span class="n">param_1d</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">conv_1d_sum</span><span class="p">(</span><span class="n">input_1d_2</span><span class="p">,</span> <span class="n">param_1d</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">conv_1d_sum</span><span class="p">(</span><span class="n">input_1d_3</span><span class="p">,</span> <span class="n">param_1d</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">conv_1d_sum</span><span class="p">(</span><span class="n">input_1d</span><span class="p">,</span> <span class="n">param_1d_2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>39.0
+41.0
+42.0
+49.0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>입력값과 필터값이 달라짐에 따라 출력값의 합이 어떻게 바뀌는지 비교했습니다.</p>
+<p>끝 쪽 입력값이 1 증가할때는 출력값의 합이 2증가, 가운데 쪽 입력값(패딩 영향 안받는)이 1 증가할때는 출력값의 합이 3증가합니다.</p>
+<p>또 필터값이 1 증가할때 출력값의 합이 10 증가합니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">_param_grad_1d</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">output_grad</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># 입력값 패딩 추가</span>
+    <span class="n">param_len</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">param_mid</span> <span class="o">=</span> <span class="n">param_len</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">input_pad</span> <span class="o">=</span> <span class="n">_pad_1d</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">param_mid</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">output_grad</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># 출력값의 기울기를 입력하지 않으면 1로 초기화.</span>
+        <span class="c1"># 왜냐하면 출력값의 합의 기울기이기 때문에 기울기를 유지하는 1을 쓰면됨.</span>
+        <span class="n">output_grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">assert_same_shape</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">output_grad</span><span class="p">)</span>
+
+    <span class="c1"># 모든 기울기의 초기값을 0으로 줍니다.</span>
+    <span class="n">param_grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+    <span class="n">input_grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">inp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span> <span class="c1"># 0~4</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span> <span class="c1"># 0~2</span>
+            <span class="c1"># 필터값의 기울기는 실제 영향을 받는 입력값의 합으로 됨</span>
+            <span class="n">param_grad</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">+=</span> <span class="n">input_pad</span><span class="p">[</span><span class="n">o</span><span class="o">+</span><span class="n">p</span><span class="p">]</span> <span class="o">*</span> <span class="n">output_grad</span><span class="p">[</span><span class="n">o</span><span class="p">]</span>
+    
+    <span class="n">assert_same_shape</span><span class="p">(</span><span class="n">param_grad</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">param_grad</span>
+
+<span class="n">_param_grad_1d</span><span class="p">(</span><span class="n">input_1d</span><span class="p">,</span> <span class="n">param_1d</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([10, 15, 14])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>1차원 합성 곱의 역방향 함수중 먼저 필터(파라미터) 기울기를 구하는 함수 입니다.</p>
+<p>조금 어려운데 결과값을 간단히 해석하면 파라미터가 1 증가했을때 출력값의 합이 각각 10, 15, 14 증가한다는 것 입니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">_input_grad_1d</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">output_grad</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># 입력값 패딩 추가</span>
+    <span class="n">param_len</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">param_mid</span> <span class="o">=</span> <span class="n">param_len</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">input_pad</span> <span class="o">=</span> <span class="n">_pad_1d</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">param_mid</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">output_grad</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># 출력값의 기울기를 입력하지 않으면 1로 초기화.</span>
+        <span class="c1"># 왜냐하면 출력값의 합의 기울기이기 때문에 기울기를 유지하는 1을 쓰면됨.</span>
+        <span class="n">output_grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">assert_same_shape</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">output_grad</span><span class="p">)</span>
+
+    <span class="c1"># 원할한 연산을 위해 범위 내 값은 1을, 범위를 벗어나는 것들은 0으로함.</span>
+    <span class="c1"># 패딩도 같은 효과를 냄.</span>
+    <span class="n">output_pad</span> <span class="o">=</span> <span class="n">_pad_1d</span><span class="p">(</span><span class="n">output_grad</span><span class="p">,</span> <span class="n">param_mid</span><span class="p">)</span>
+
+    <span class="c1"># 모든 기울기의 초기값을 0으로 줍니다.</span>
+    <span class="n">param_grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+    <span class="n">input_grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">inp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span> <span class="c1"># 0~4</span>
+        <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span> <span class="c1"># 0~2</span>
+            <span class="c1"># 입력값의 기울기는 실제 영향을 받는 필터값의 합으로 됨</span>
+            <span class="n">input_grad</span><span class="p">[</span><span class="n">o</span><span class="p">]</span> <span class="o">+=</span> <span class="n">output_pad</span><span class="p">[</span><span class="n">o</span> <span class="o">+</span> <span class="n">param_len</span> <span class="o">-</span> <span class="n">f</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">param</span><span class="p">[</span><span class="n">f</span><span class="p">]</span>
+    
+    <span class="n">assert_same_shape</span><span class="p">(</span><span class="n">param_grad</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">input_grad</span>
+
+<span class="n">_input_grad_1d</span><span class="p">(</span><span class="n">input_1d</span><span class="p">,</span> <span class="n">param_1d</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([2, 3, 3, 3, 2])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>입력값에 따른 출력값의 변동이 얼마나 되는지를 나타내는 함수 입니다.</p>
+<p>첫번째와 마지막은 입력값이 1 증가할때 크기가 1 작은 2만큼 증가하고 나머지 값들은 3만큼 증가합니다.</p>
+<p>패딩한 것에 영향받는 값을 제외하고 필터의 개수(3)만큼 영향력이 있다고 생각하면 됩니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#48176;&#52824;-&#51077;&#47141;-&#51201;&#50857;&#54616;&#44592;">&#48176;&#52824; &#51077;&#47141; &#51201;&#50857;&#54616;&#44592;<a class="anchor-link" href="#&#48176;&#52824;-&#51077;&#47141;-&#51201;&#50857;&#54616;&#44592;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">input_1d_batch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span>
+                           <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">]])</span>
+
+<span class="k">def</span> <span class="nf">_pad_1d_batch</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+    <span class="n">outs</span> <span class="o">=</span> <span class="p">[</span><span class="n">_pad_1d</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span> <span class="k">for</span> <span class="n">obs</span> <span class="ow">in</span> <span class="n">inp</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">outs</span><span class="p">)</span>
+
+<span class="n">_pad_1d_batch</span><span class="p">(</span><span class="n">input_1d_batch</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[0, 0, 1, 2, 3, 4, 5, 6, 0],
+       [0, 1, 2, 3, 4, 5, 6, 7, 0]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>입력값이 2개 이상인 배치에도 적용하기 위해 기존 구현한 함수를 확장하겠습니다.</p>
+<p>패딩의 경우 기존함수를 반복문을 이용해서 여러번 호출하면 됩니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">conv_1d_batch</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    <span class="n">outs</span> <span class="o">=</span> <span class="p">[</span><span class="n">conv_1d</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span> <span class="k">for</span> <span class="n">obs</span> <span class="ow">in</span> <span class="n">inp</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">outs</span><span class="p">)</span>
+
+<span class="n">conv_1d_batch</span><span class="p">(</span><span class="n">input_1d_batch</span><span class="p">,</span> <span class="n">param_1d</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[ 1.,  3.,  6.,  9., 12., 15., 11.],
+       [ 3.,  6.,  9., 12., 15., 18., 13.]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>순방향 계산에 경우에도 같은 방식으로 확장했습니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">input_grad_1d_batch</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">conv_1d_batch</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+    <span class="n">out_grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="c1"># 출력기울기 값의 형태가 배치이므로 이에 맞게 조정</span>
+    <span class="n">batch_size</span> <span class="o">=</span> <span class="n">out_grad</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># 배치 크기가 나옴</span>
+    <span class="n">grads</span> <span class="o">=</span> <span class="p">[</span><span class="n">_input_grad_1d</span><span class="p">(</span><span class="n">inp</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">param</span><span class="p">,</span> <span class="n">out_grad</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">grads</span><span class="p">)</span>
+
+<span class="n">input_grad_1d_batch</span><span class="p">(</span><span class="n">input_1d_batch</span><span class="p">,</span> <span class="n">param_1d</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[2, 3, 3, 3, 3, 3, 2],
+       [2, 3, 3, 3, 3, 3, 2]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>입력값에 따른 출력값이 얼마나 되는지 구하는 함수를 배치로 확장했습니다.</p>
+<p>기울기는 입력값에 영향이 있지 않기 때문에 어느 입력값이 입력되던 그대로 출력됩니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">param_grad_1d_batch</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    <span class="n">output_grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
+    <span class="c1"># 단순 합의 기울기이기 때문에 모든 값을 1로 둡니다.</span>
+
+    <span class="n">inp_pad</span> <span class="o">=</span> <span class="n">_pad_1d_batch</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">out_pad</span> <span class="o">=</span> <span class="n">_pad_1d_batch</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">param_grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">inp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span> <span class="c1"># 배치 크기만큼</span>
+        <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">inp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span> <span class="c1"># 인풋 길이만큼</span>
+            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span> <span class="c1"># 필터 길이만큼</span>
+                <span class="c1"># 전부 합해줍니다.</span>
+                <span class="n">param_grad</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">+=</span> <span class="n">inp_pad</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">o</span><span class="o">+</span><span class="n">p</span><span class="p">]</span> <span class="o">*</span> <span class="n">output_grad</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">o</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">param_grad</span>
+
+<span class="n">param_grad_1d_batch</span><span class="p">(</span><span class="n">input_1d_batch</span><span class="p">,</span> <span class="n">param_1d</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([36, 49, 48])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>필터값에 따른 출력값이 얼마나 변하는지를 구하는 함수를 배치로 확장했습니다.</p>
+<p>이때 필터에 대한 기울기는 배치 단위인데 필터는 모든 관찰과 합성곱 연선이 이뤄지므로 모든 값을 다 더해야합니다.</p>
+<p>즉 모든 요소의 합이 필터 값이 바뀜에 따라서 얼마나 바뀌는지를 구하는 것 입니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="2&#52264;&#50896;-&#54633;&#49457;&#44273;">2&#52264;&#50896; &#54633;&#49457;&#44273;<a class="anchor-link" href="#2&#52264;&#50896;-&#54633;&#49457;&#44273;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">imgs_2d_batch</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)</span>
+<span class="n">param_2d</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_pad_2d_obs</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+    <span class="c1"># 가로 단위로 앞 뒷 값 각각 패딩</span>
+    <span class="n">inp_pad</span> <span class="o">=</span> <span class="n">_pad_1d_batch</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+    <span class="c1"># 가로로 윗 2줄, 아래 2줄 패딩</span>
+    <span class="n">other</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">num</span><span class="p">,</span> <span class="n">inp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">num</span> <span class="o">*</span> <span class="mi">2</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">other</span><span class="p">,</span> <span class="n">inp_pad</span><span class="p">,</span> <span class="n">other</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">_pad_2d</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+    <span class="c1"># 첫번째 차원은 배치 크기에 해당함.</span>
+    <span class="n">outs</span> <span class="o">=</span> <span class="p">[</span><span class="n">_pad_2d_obs</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span> <span class="k">for</span> <span class="n">obs</span> <span class="ow">in</span> <span class="n">inp</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">outs</span><span class="p">)</span>
+
+<span class="n">_pad_2d</span><span class="p">(</span><span class="n">imgs_2d_batch</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(3, 30, 30)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>2차원 단위에 입력값을 가지고 패딩을 진행했습니다.</p>
+<p>_pad_2d_obs 함수는 패딩을 실질적으로 진행하는 함수이고, _pad_2d 함수는 배치 단위로 확장하는 함수 입니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">_compute_output_obs_2d</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    <span class="n">param_mid</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span>
+    
+    <span class="n">obs_pad</span> <span class="o">=</span> <span class="n">_pad_2d_obs</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">param_mid</span><span class="p">)</span>
+
+    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+
+    <span class="c1"># 2차원 필터를 거처 출력값을 만듭니다.</span>
+    <span class="k">for</span> <span class="n">o_w</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span> <span class="c1"># 출력값 가로길이</span>
+        <span class="k">for</span> <span class="n">o_h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">out</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span> <span class="c1"># 출력값 세로길이</span>
+            <span class="k">for</span> <span class="n">p_w</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span> <span class="c1"># 필터 가로길이</span>
+                <span class="k">for</span> <span class="n">p_h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span> <span class="c1"># 필터 세로길이</span>
+                    <span class="n">out</span><span class="p">[</span><span class="n">o_w</span><span class="p">][</span><span class="n">o_h</span><span class="p">]</span> <span class="o">+=</span> <span class="n">param</span><span class="p">[</span><span class="n">p_w</span><span class="p">][</span><span class="n">p_h</span><span class="p">]</span> <span class="o">*</span> <span class="n">obs_pad</span><span class="p">[</span><span class="n">o_w</span><span class="o">+</span><span class="n">p_w</span><span class="p">][</span><span class="n">o_h</span><span class="o">+</span><span class="n">p_h</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="n">out</span>
+
+<span class="k">def</span> <span class="nf">_compute_output_2d</span><span class="p">(</span><span class="n">img_batch</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    <span class="n">assert_dim</span><span class="p">(</span><span class="n">img_batch</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+    <span class="n">outs</span> <span class="o">=</span> <span class="p">[</span><span class="n">_compute_output_obs_2d</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span> <span class="k">for</span> <span class="n">obs</span> <span class="ow">in</span> <span class="n">img_batch</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">outs</span><span class="p">)</span>
+
+<span class="n">_compute_output_2d</span><span class="p">(</span><span class="n">imgs_2d_batch</span><span class="p">,</span> <span class="n">param_2d</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(3, 28, 28)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>2차원 단위에 순방향 계산입니다. 패딩을 먼저 시킨 뒤 2차원 필터를 통과시켜 모든 값을 합친 값을 출력해줍니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">_compute_grads_obs_2d</span><span class="p">(</span><span class="n">input_obs</span><span class="p">,</span> <span class="n">output_grad_obs</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    <span class="c1"># 입력을 나타내는 2차원값, 출력 기울기를 나타내는 2차원값(여기선 모두 1을 사용), 2차원 필터</span>
+
+    <span class="n">param_size</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># 2차원 필터의 가로 세로가 같다고 가정합니다.</span>
+
+    <span class="c1"># 출력 기울기에 패딩을 먼저 덧붙입니다. 원본값은 1로, 나머지 값은 0으로하여 원본값만 유지하게 합니다.</span>
+    <span class="n">output_obs_pad</span> <span class="o">=</span> <span class="n">_pad_2d_obs</span><span class="p">(</span><span class="n">output_grad_obs</span><span class="p">,</span> <span class="n">param_size</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">input_grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">input_obs</span><span class="p">)</span> <span class="c1"># 초기 기울기는 0으로 합니다.</span>
+
+    <span class="k">for</span> <span class="n">i_w</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">input_obs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span> <span class="c1"># 입력값 가로길이</span>
+        <span class="k">for</span> <span class="n">i_h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">input_obs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span> <span class="c1"># 입력값 세로길이</span>
+            <span class="k">for</span> <span class="n">p_w</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">param_size</span><span class="p">):</span> <span class="c1"># 필터 가로길이</span>
+                <span class="k">for</span> <span class="n">p_h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">param_size</span><span class="p">):</span> <span class="c1"># 필터 세로길이</span>
+                    <span class="n">input_grad</span><span class="p">[</span><span class="n">i_w</span><span class="p">][</span><span class="n">i_h</span><span class="p">]</span> <span class="o">+=</span> <span class="n">output_obs_pad</span><span class="p">[</span><span class="n">i_w</span> <span class="o">+</span> <span class="n">param_size</span> <span class="o">-</span> <span class="n">p_w</span> <span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">i_h</span> <span class="o">+</span> <span class="n">param_size</span> <span class="o">-</span> <span class="n">p_h</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">param</span><span class="p">[</span><span class="n">p_w</span><span class="p">][</span><span class="n">p_h</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">input_grad</span>
+
+<span class="k">def</span> <span class="nf">_compute_grads_2d</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">output_grad</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    
+    <span class="n">grads</span> <span class="o">=</span> <span class="p">[</span><span class="n">_compute_grads_obs_2d</span><span class="p">(</span><span class="n">inp</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">output_grad</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">param</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">output_grad</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">grads</span><span class="p">)</span>
+
+<span class="n">img_grads</span> <span class="o">=</span> <span class="n">_compute_grads_2d</span><span class="p">(</span><span class="n">imgs_2d_batch</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">imgs_2d_batch</span><span class="p">),</span> <span class="n">param_2d</span><span class="p">)</span>
+<span class="n">img_grads</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(3, 28, 28)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>역방향 계산을 2차원으로 구현했습니다. 그 중 입력 기울기를 계산하는 절차인데요.</p>
+<p>출력 기울기에 패딩을 덧붙이고 해당하는 가중치와의 합 연산을 하면 입력 기울기를 계산할 수 있습니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">_param_grad_2d</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">output_grad</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    <span class="c1"># 입력을 나타내는 3차원값, 출력 기울기를 나타내는 3차원값(여기선 모두 1을 사용), 2차원 필터</span>
+
+    <span class="n">param_size</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># 2차원 필터의 가로 세로가 같다고 가정합니다.</span>
+    <span class="n">inp_pad</span> <span class="o">=</span> <span class="n">_pad_2d</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">param_size</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># 입력 값을 패딩합니다.</span>
+
+    <span class="n">param_grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="c1"># 초기 가중치 기울기를 0으로 합니다.</span>
+    <span class="n">img_shape</span> <span class="o">=</span> <span class="n">output_grad</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="c1"># 첫 값은 배치크기이므로 빼고 실행하기 위해.</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">inp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span> <span class="c1"># 배치 크기</span>
+        <span class="k">for</span> <span class="n">o_w</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">img_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span> <span class="c1"># 입력값 가로길이</span>
+            <span class="k">for</span> <span class="n">o_h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">img_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span> <span class="c1"># 입력값 세로길이</span>
+                <span class="k">for</span> <span class="n">p_w</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">param_size</span><span class="p">):</span> <span class="c1"># 필터 가로길이</span>
+                    <span class="k">for</span> <span class="n">p_h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">param_size</span><span class="p">):</span> <span class="c1"># 필터 세로길이</span>
+                        <span class="n">param_grad</span><span class="p">[</span><span class="n">p_w</span><span class="p">][</span><span class="n">p_h</span><span class="p">]</span> <span class="o">+=</span> <span class="n">inp_pad</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">o_w</span><span class="o">+</span><span class="n">p_w</span><span class="p">][</span><span class="n">o_h</span><span class="o">+</span><span class="n">p_h</span><span class="p">]</span> <span class="o">*</span> <span class="n">output_grad</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">o_w</span><span class="p">][</span><span class="n">o_h</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">param_grad</span>
+
+<span class="n">param_grad</span> <span class="o">=</span> <span class="n">_param_grad_2d</span><span class="p">(</span><span class="n">imgs_2d_batch</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">imgs_2d_batch</span><span class="p">),</span> <span class="n">param_2d</span><span class="p">)</span>
+<span class="n">param_grad</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[108.03493534, 116.92134058, 112.40044695],
+       [112.79682302, 122.16317892, 122.1838074 ],
+       [106.24163816, 116.07072373, 116.86259153]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>역방향 계산 중 필터 기울기를 구하는 부분을 2차원으로 구현했습니다.</p>
+<p>여기서는 입력값에 패딩을 덧붙이고 합 연산을 했는데, 1차원하고 크게 다를게 없습니다.</p>
+<p>배치 연산까지 한번에 진행하는 함수를 구현했는데 모든 배치의 입력값을 순회합니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#52292;&#45328;-&#52628;&#44032;&#54616;&#44592;">&#52292;&#45328; &#52628;&#44032;&#54616;&#44592;<a class="anchor-link" href="#&#52292;&#45328;-&#52628;&#44032;&#54616;&#44592;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">_compute_output_obs</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    <span class="n">assert_dim</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">assert_dim</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    
+    <span class="n">param_size</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">param_mid</span> <span class="o">=</span> <span class="n">param_size</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">obs_pad</span> <span class="o">=</span> <span class="n">_pad_2d_channel</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">param_mid</span><span class="p">)</span>
+    
+    <span class="n">in_channels</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">out_channels</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">img_size</span> <span class="o">=</span> <span class="n">obs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">out_channels</span><span class="p">,)</span> <span class="o">+</span> <span class="n">obs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+    <span class="k">for</span> <span class="n">c_in</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">in_channels</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">c_out</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">out_channels</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">o_w</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">img_size</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">o_h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">img_size</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">p_w</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">param_size</span><span class="p">):</span>
+                        <span class="k">for</span> <span class="n">p_h</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">param_size</span><span class="p">):</span>
+                            <span class="n">out</span><span class="p">[</span><span class="n">c_out</span><span class="p">][</span><span class="n">o_w</span><span class="p">][</span><span class="n">o_h</span><span class="p">]</span> <span class="o">+=</span> \
+                            <span class="n">param</span><span class="p">[</span><span class="n">c_in</span><span class="p">][</span><span class="n">c_out</span><span class="p">][</span><span class="n">p_w</span><span class="p">][</span><span class="n">p_h</span><span class="p">]</span> <span class="o">*</span> <span class="n">obs_pad</span><span class="p">[</span><span class="n">c_in</span><span class="p">][</span><span class="n">o_w</span><span class="o">+</span><span class="n">p_w</span><span class="p">][</span><span class="n">o_h</span><span class="o">+</span><span class="n">p_h</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">out</span>
+ 
+
+<span class="k">def</span> <span class="nf">_output</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+    <span class="n">outs</span> <span class="o">=</span> <span class="p">[</span><span class="n">_compute_output_obs</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span> <span class="k">for</span> <span class="n">obs</span> <span class="ow">in</span> <span class="n">inp</span><span class="p">]</span>    
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">outs</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>합성곱층은 2차원으로 서로 엮인 뉴런 외에도 특징 맵과 같은 수의 채널을 갖습니다.</p>
+<p>이런식으로 입력된 데이터를 다루기 위해 채널이 있는 순방향 연산을 구현했습니다. 역방향 연산은 생략합니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#44592;&#53440;-&#44032;&#48316;&#50868;-&#51060;&#47200;">&#44592;&#53440; &#44032;&#48316;&#50868; &#51060;&#47200;<a class="anchor-link" href="#&#44592;&#53440;-&#44032;&#48316;&#50868;-&#51060;&#47200;"> </a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>이미지 데이터에서는 서로 가까운 픽셀 간에 유의미한 의미가 있는 조합이 나올 가능성이 높습니다.</p>
+<p>즉 픽셀간 얼마나 공간적으로 가까운지를 나타내기 위해 합성곱 연산을 수행합니다.</p>
+<p>풀링이란 각 특징 맵을 다운샘플링하여 데이터의 크기를 줄이는 방법입니다. 예시로 각 영역 픽셀 값의 최대값을 사용할 수 있습니다.</p>
+<p>계산양 감소라는 이점이 있으나, 정보 손실또한 크기 때문에 이 방법을 쓰는데 다양한 의견이 있습니다.</p>
+<p>스트라이드란 필터가 움직이는 간격이 지금까지는 1이였는데 이 값을 의미하는 용어로 커질수록 다운샘플링 효과가 커집니다.</p>
+<p>최근 제안되는 고급 합성곱 신경망 구조에서는 풀링 대신 스트라이드를 2이상으로 설정해 다운샘플링 효과를 얻습니다.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><script src="https://utteranc.es/client.js"
+        repo="KSY1526/myblog"
+        issue-term="pathname"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+  <a class="u-url" href="/myblog/book/jupyter/deep%20learning/matrix/math/class/2022/01/22/FirstDeep3.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/myblog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/myblog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/myblog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/https%3A%2F%2Fgithub.com%2FKSY1526%2FMyProject" target="_blank" title="https://github.com/KSY1526/MyProject"><svg class="svg-icon grey"><use xlink:href="/myblog/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
