@@ -1776,7 +1776,7 @@ Successfully installed APScheduler-3.6.3 PyJWT-2.4.0 SecretStorage-3.3.2 cacheto
 
         <span class="k">return</span> <span class="n">preds</span>
     
-    <span class="nd">@discord_sender</span><span class="p">(</span><span class="n">webhook_url</span><span class="o">=</span><span class="s2">&quot;https://discordapp.com/api/webhooks/981010214407004210/ZA7CFHRxqKeGG7WyRU36PIVksNLp8O-SNUdSX5BVBiuPPj9gw0QCyo3fUYfVz2jWg7if&quot;</span><span class="p">)</span>
+    <span class="nd">@discord_sender</span><span class="p">(</span><span class="n">webhook_url</span><span class="o">=</span><span class="s2">&quot;https://discordapp.com/api/webhooks/9810o3fUYfVz2jWg7if&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code1</span><span class="p">,</span> <span class="n">code2</span><span class="p">):</span>
         <span class="n">preds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">code1</span><span class="p">,</span> <span class="n">code2</span><span class="p">)</span>
         <span class="n">preds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">preds</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -2439,7 +2439,7 @@ The default value for the training argument `--report_to` will change in v5 (fro
     <span class="n">compute_metrics</span> <span class="o">=</span> <span class="n">metric_fn</span>
 <span class="p">)</span>
 
-<span class="nd">@discord_sender</span><span class="p">(</span><span class="n">webhook_url</span><span class="o">=</span><span class="s2">&quot;https://discordapp.com/api/webhooks/981010214407004210/ZA7CFHRxqKeGG7WyRU36PIVksNLp8O-SNUdSX5BVBiuPPj9gw0QCyo3fUYfVz2jWg7if&quot;</span><span class="p">)</span>
+<span class="nd">@discord_sender</span><span class="p">(</span><span class="n">webhook_url</span><span class="o">=</span><span class="s2">&quot;https://discordapp.com/api/webhooks/98101yo3fUYfVz2jWg7if&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">tem</span><span class="p">():</span>
     <span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
 
