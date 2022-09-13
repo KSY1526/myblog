@@ -1,15 +1,446 @@
-<!DOCTYPE html> <html lang="en-US"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title>Your Brand - [SSUDA] 심장병 데이터 분석</title> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"> <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" media="print" onload="this.media='all'"> <noscript> <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"> </noscript> <link rel="shortcut icon" href="/myblog/assets/img/favicons/favicon.ico"> <link rel="icon" type="image/png" sizes="32x32" href="/myblog/assets/img/favicons/favicon-32x32.png"> <link rel="icon" type="image/png" sizes="16x16" href="/myblog/assets/img/favicons/favicon-16x16.png"> <link rel="apple-touch-icon" sizes="180x180" href="/myblog/assets/img/favicons/apple-touch-icon.png"> <link rel="manifest" href="/myblog/assets/manifest.json"> <meta name="mobile-web-app-capable" content="yes"> <meta name="theme-color" content="#f0f0f0"> <meta name="apple-mobile-web-app-capable" content="yes"> <meta name="apple-mobile-web-app-title" content="Your Brand's App"> <meta name="apple-mobile-web-app-status-bar-style" content="default"> <meta name="msapplication-TileColor" content="#2d89ef"> <meta name="msapplication-starturl" content="/myblog/"> <meta name="application-name" content="Your Brand's App"> <meta name="msapplication-config" content="/myblog/assets/img/favicons/browserconfig.xml"> <meta name="keywords" content=""> <meta name="description" content="Your meta description."> <meta name="robots" content="index, follow"> <meta name="twitter:card" content="summary"> <meta name="twitter:title" content="[SSUDA] 심장병 데이터 분석"> <meta name="twitter:description" content="Your meta description."> <meta name="twitter:image" content="https://ksy1526.github.io/myblog/assets/img/about/about.jpg"> <meta property="og:site_name" content="Your Brand"> <meta property="og:type" content="website"> <meta property="og:title" content="[SSUDA] 심장병 데이터 분석"> <meta property="og:description" content="Your meta description."> <meta property="og:url" content="https://ksy1526.github.io/myblog/ssuda/jupyter/kaggle/logistic/scale/keras/regression/2021/09/24/kagglessu2.html"> <meta property="og:image" content="https://ksy1526.github.io/myblog/assets/img/about/about.jpg"> <script type="application/ld+json">{ "@context": "https://schema.org" ,"@graph": [ { "@type": "Person" ,"@id": "https://ksy1526.github.io/myblog/#person" ,"name": "Seong Yeon Kim" ,"url": "" ,"image": "https://ksy1526.github.io/myblog/assets/img/about/about.jpg" ,"description": "Your meta description." },{ "@type": "WebSite" ,"@id": "https://ksy1526.github.io/myblog/#website" ,"url": "https://ksy1526.github.io/myblog/" ,"name": "Your Brand" ,"description": "Your meta description." ,"publisher": {"@id": "https://ksy1526.github.io/myblog/#person"} ,"inLanguage": "en-US" ,"copyrightHolder" : {"@id": "https://ksy1526.github.io/myblog/#person"} ,"copyrightYear" : "2022" },{ "@type": "WebPage" ,"@id": "https://ksy1526.github.io/myblog/ssuda/jupyter/kaggle/logistic/scale/keras/regression/2021/09/24/kagglessu2.html#webpage" ,"url": "https://ksy1526.github.io/myblog/ssuda/jupyter/kaggle/logistic/scale/keras/regression/2021/09/24/kagglessu2.html" ,"name": "[SSUDA] 심장병 데이터 분석" ,"isPartOf": {"@id": "https://ksy1526.github.io/myblog/#website"} ,"breadcrumb": {"@id": "https://ksy1526.github.io/myblog/ssuda/jupyter/kaggle/logistic/scale/keras/regression/2021/09/24/kagglessu2.html#breadcrumb"} ,"primaryImageOfPage": "https://ksy1526.github.io/myblog/assets/img/about/about.jpg" ,"description": "Your meta description." ,"inLanguage": "en-US" ,"potentialAction": { "@type": "ReadAction" ,"target": "https://ksy1526.github.io/myblog/ssuda/jupyter/kaggle/logistic/scale/keras/regression/2021/09/24/kagglessu2.html" } },{ "@type": "BreadcrumbList", "@id": "https://ksy1526.github.io/myblog/ssuda/jupyter/kaggle/logistic/scale/keras/regression/2021/09/24/kagglessu2.html#breadcrumb", "itemListElement": [ { "@type": "ListItem" ,"position": 1 ,"name": "Home" ,"item": "https://ksy1526.github.io/myblog/" }, { "@type": "ListItem" ,"position": 2 ,"name": "[SSUDA] 심장병 데이터 분석" } ] } ] }</script> <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <link href="/myblog/assets/css/main.css" rel="stylesheet"><link href="/myblog/assets/css/nav-media.css" rel="stylesheet"> </head> <body > <script src="/myblog/assets/js/color-scheme-attr-init.js" data-mode="false"></script> <nav class="navbar navbar-default top-nav"> <div class="navbar-header"> <button type="button" class="navbar-toggle collapsed pull-left top-nav-menu-toggle" data-toggle="collapse" data-target="#id_top-nav-menu-toggle" aria-expanded="false"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand top-nav-brand" href="/myblog/" translate="no">Your Brand</a> </div> <div class="color_scheme_switch_top_holder" data-toggle="tooltip" data-placement="bottom" title="Color scheme"> <label class="color-scheme-switch hover-effect"> <input type="checkbox" class="checkbox_color_switch" /> <span></span> </label> </div> </nav> <nav id="side-nav-container"> <div class="side-nav"> <div class="side-nav-brand"> <img src="/myblog/assets/img/posts/post_pic1.jpg" alt=""> <div class="brand-holder"> <a href="/myblog/" translate="no">Your Brand</a> </div> <p>&nbsp;Sample</p> <br> </div> <br> <a href="javascript:void(0);" class="side-nav-close"> <i class="fa fa-angle-double-left fa-2x" aria-hidden="true"></i> </a> <hr> <br> <div class="side-nav-buttons"> <ul class="nav nav-pills nav-stacked"> <li ><a href="/myblog/" class=" hover-effect"><i class="fa-fw fa fa-home" aria-hidden="true"></i>Home</a></li><li ><a href="/myblog/page2/" class=" hover-effect"><i class="fa-fw fa fa-home" aria-hidden="true"></i>Home</a></li><li ><a href="/myblog/page3/" class=" hover-effect"><i class="fa-fw fa fa-home" aria-hidden="true"></i>Home</a></li><li ><a href="/myblog/page4/" class=" hover-effect"><i class="fa-fw fa fa-home" aria-hidden="true"></i>Home</a></li><li ><a href="/myblog/page5/" class=" hover-effect"><i class="fa-fw fa fa-home" aria-hidden="true"></i>Home</a></li><li ><a href="/myblog/page6/" class=" hover-effect"><i class="fa-fw fa fa-home" aria-hidden="true"></i>Home</a></li></ul> </div> <br> <br> <hr id="toc-view-top"> <div class="side-nav-footer" translate="no"> <p>&copy; 2022 Your Brand.</p> </div> </div> <div class="side-nav-bottom-buttons-container"> <hr> <ul> <li><div class="color_scheme_switch_side_holder" data-toggle="tooltip" data-placement="top" title="Color scheme"> <label class="color-scheme-switch hover-effect"> <input type="checkbox" class="checkbox_color_switch" /> <span></span> </label> </div> </li><li><div class="cookie-icon hover-effect" onclick="CookieConsent.showSettings();" data-toggle="tooltip" data-placement="top" title="Cookie settings"> <div class="cookie-wrapper"> <i class="fa fa-circle bitten-cookie" aria-hidden="true"></i> <i class="fa fa-circle small-ellipse-icon" aria-hidden="true"></i> <i class="fa fa-spinner inner-icon" aria-hidden="true"></i> <i class="fa fa-circle-thin outer-icon" aria-hidden="true"></i> </div> </div> </li></ul> </div></nav> <div id="main-wrapper"> <div class="main-container"><article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting"> <header class="post-header"> <h1 class="post-title p-name" itemprop="name headline">[SSUDA] 심장병 데이터 분석</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-09-24T00:00:00-05:00" itemprop="datePublished"> Sep 24, 2021 </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"> <span class="p-author h-card" itemprop="name">Seong Yeon Kim</span></span> • <span class="read-time" title="Estimated read time"> 8 min read </span></p> <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> <a class="category-tags-link" href="/myblog/categories/#SSUDA">SSUDA</a> &nbsp; <a class="category-tags-link" href="/myblog/categories/#jupyter">jupyter</a> &nbsp; <a class="category-tags-link" href="/myblog/categories/#kaggle">kaggle</a> &nbsp; <a class="category-tags-link" href="/myblog/categories/#logistic">logistic</a> &nbsp; <a class="category-tags-link" href="/myblog/categories/#scale">scale</a> &nbsp; <a class="category-tags-link" href="/myblog/categories/#keras">keras</a> &nbsp; <a class="category-tags-link" href="/myblog/categories/#Regression">Regression</a> </p> <div class="pb-5 d-flex flex-wrap flex-justify-end"> </div> </header> <div class="post-content e-content" itemprop="articleBody"> <!-- ################################################# ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ### ################################################# # file to edit: _notebooks/2021-09-24-kagglessu2.ipynb --> <div class="container" id="notebook-container"> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p><a href="https://colab.research.google.com/github/KSY1526/myblog/blob/master/_notebooks/kagglessu2.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a></p> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h1 id="&#45936;&#51060;&#53552;-&#48520;&#47084;&#50724;&#44592;">&#45936;&#51060;&#53552; &#48520;&#47084;&#50724;&#44592;<a class="anchor-link" href="#&#45936;&#51060;&#53552;-&#48520;&#47084;&#50724;&#44592;"> </a></h1> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>[SSUDA] 심장병 데이터 분석 | 나의 빅데이터 공부 기록</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="[SSUDA] 심장병 데이터 분석" />
+<meta name="author" content="Seong Yeon Kim" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다." />
+<meta property="og:description" content="다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다." />
+<link rel="canonical" href="https://ksy1526.github.io/myblog/ssuda/jupyter/kaggle/logistic/scale/keras/regression/2021/09/24/kagglessu2.html" />
+<meta property="og:url" content="https://ksy1526.github.io/myblog/ssuda/jupyter/kaggle/logistic/scale/keras/regression/2021/09/24/kagglessu2.html" />
+<meta property="og:site_name" content="나의 빅데이터 공부 기록" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-09-24T00:00:00-05:00" />
+<script type="application/ld+json">
+{"datePublished":"2021-09-24T00:00:00-05:00","url":"https://ksy1526.github.io/myblog/ssuda/jupyter/kaggle/logistic/scale/keras/regression/2021/09/24/kagglessu2.html","@type":"BlogPosting","headline":"[SSUDA] 심장병 데이터 분석","dateModified":"2021-09-24T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://ksy1526.github.io/myblog/ssuda/jupyter/kaggle/logistic/scale/keras/regression/2021/09/24/kagglessu2.html"},"author":{"@type":"Person","name":"Seong Yeon Kim"},"description":"다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/myblog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://ksy1526.github.io/myblog/feed.xml" title="나의 빅데이터 공부 기록" /><link rel="shortcut icon" type="image/x-icon" href="/myblog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/myblog/">나의 빅데이터 공부 기록</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/myblog/about/">About Me</a><a class="page-link" href="/myblog/search/">Search</a><a class="page-link" href="/myblog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">[SSUDA] 심장병 데이터 분석</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-09-24T00:00:00-05:00" itemprop="datePublished">
+        Sep 24, 2021
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Seong Yeon Kim</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      8 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/myblog/categories/#SSUDA">SSUDA</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#jupyter">jupyter</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#kaggle">kaggle</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#logistic">logistic</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#scale">scale</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#keras">keras</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#Regression">Regression</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          
+          
+          
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-09-24-kagglessu2.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="https://colab.research.google.com/github/KSY1526/myblog/blob/master/_notebooks/kagglessu2.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#45936;&#51060;&#53552;-&#48520;&#47084;&#50724;&#44592;">&#45936;&#51060;&#53552; &#48520;&#47084;&#50724;&#44592;<a class="anchor-link" href="#&#45936;&#51060;&#53552;-&#48520;&#47084;&#50724;&#44592;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
 <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_subarea output_stream output_stdout output_text"><pre>Mounted at /content/drive
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Mounted at /content/drive
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/content/drive/MyDrive/heart.csv&quot;</span><span class="p">)</span>
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h1 id="Verson-1.-&#49900;&#54540;&#54620;-&#47196;&#51648;&#49828;&#54001;-&#54924;&#44480;-&#47784;&#54805;">Verson 1. &#49900;&#54540;&#54620; &#47196;&#51648;&#49828;&#54001; &#54924;&#44480; &#47784;&#54805;<a class="anchor-link" href="#Verson-1.-&#49900;&#54540;&#54620;-&#47196;&#51648;&#49828;&#54001;-&#54924;&#44480;-&#47784;&#54805;"> </a></h1> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h1 id="&#45936;&#51060;&#53552;-&#51060;&#54644;">&#45936;&#51060;&#53552; &#51060;&#54644;<a class="anchor-link" href="#&#45936;&#51060;&#53552;-&#51060;&#54644;"> </a></h1> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Verson-1.-&#49900;&#54540;&#54620;-&#47196;&#51648;&#49828;&#54001;-&#54924;&#44480;-&#47784;&#54805;">Verson 1. &#49900;&#54540;&#54620; &#47196;&#51648;&#49828;&#54001; &#54924;&#44480; &#47784;&#54805;<a class="anchor-link" href="#Verson-1.-&#49900;&#54540;&#54620;-&#47196;&#51648;&#49828;&#54001;-&#54924;&#44480;-&#47784;&#54805;"> </a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#45936;&#51060;&#53552;-&#51060;&#54644;">&#45936;&#51060;&#53552; &#51060;&#54644;<a class="anchor-link" href="#&#45936;&#51060;&#53552;-&#51060;&#54644;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_html rendered_html output_subarea output_execute_result"> <div> <style scoped=""> .dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .dataframe thead th { text-align: right; } </style> <table border="1" class="dataframe"> <thead> <tr style="text-align: right;"> <th></th> <th>age</th> <th>sex</th> <th>cp</th> <th>trtbps</th> <th>chol</th> <th>fbs</th> <th>restecg</th> <th>thalachh</th> <th>exng</th> <th>oldpeak</th> <th>slp</th> <th>caa</th> <th>thall</th> <th>output</th> </tr> </thead> <tbody> <tr> <th>0</th> <td>63</td> <td>1</td> <td>3</td> <td>145</td> <td>233</td> <td>1</td> <td>0</td> <td>150</td> <td>0</td> <td>2.3</td> <td>0</td> <td>0</td> <td>1</td> <td>1</td> </tr> <tr> <th>1</th> <td>37</td> <td>1</td> <td>2</td> <td>130</td> <td>250</td> <td>0</td> <td>1</td> <td>187</td> <td>0</td> <td>3.5</td> <td>0</td> <td>0</td> <td>2</td> <td>1</td> </tr> <tr> <th>2</th> <td>41</td> <td>0</td> <td>1</td> <td>130</td> <td>204</td> <td>0</td> <td>0</td> <td>172</td> <td>0</td> <td>1.4</td> <td>2</td> <td>0</td> <td>2</td> <td>1</td> </tr> <tr> <th>3</th> <td>56</td> <td>1</td> <td>1</td> <td>120</td> <td>236</td> <td>0</td> <td>1</td> <td>178</td> <td>0</td> <td>0.8</td> <td>2</td> <td>0</td> <td>2</td> <td>1</td> </tr> <tr> <th>4</th> <td>57</td> <td>0</td> <td>0</td> <td>120</td> <td>354</td> <td>0</td> <td>1</td> <td>163</td> <td>1</td> <td>0.6</td> <td>2</td> <td>0</td> <td>2</td> <td>1</td> </tr> </tbody> </table> </div> </div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>디폴트 값은 5입니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_text output_subarea output_execute_result"><pre>Index([&#39;age&#39;, &#39;sex&#39;, &#39;cp&#39;, &#39;trtbps&#39;, &#39;chol&#39;, &#39;fbs&#39;, &#39;restecg&#39;, &#39;thalachh&#39;,
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>sex</th>
+      <th>cp</th>
+      <th>trtbps</th>
+      <th>chol</th>
+      <th>fbs</th>
+      <th>restecg</th>
+      <th>thalachh</th>
+      <th>exng</th>
+      <th>oldpeak</th>
+      <th>slp</th>
+      <th>caa</th>
+      <th>thall</th>
+      <th>output</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>63</td>
+      <td>1</td>
+      <td>3</td>
+      <td>145</td>
+      <td>233</td>
+      <td>1</td>
+      <td>0</td>
+      <td>150</td>
+      <td>0</td>
+      <td>2.3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>37</td>
+      <td>1</td>
+      <td>2</td>
+      <td>130</td>
+      <td>250</td>
+      <td>0</td>
+      <td>1</td>
+      <td>187</td>
+      <td>0</td>
+      <td>3.5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>41</td>
+      <td>0</td>
+      <td>1</td>
+      <td>130</td>
+      <td>204</td>
+      <td>0</td>
+      <td>0</td>
+      <td>172</td>
+      <td>0</td>
+      <td>1.4</td>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>56</td>
+      <td>1</td>
+      <td>1</td>
+      <td>120</td>
+      <td>236</td>
+      <td>0</td>
+      <td>1</td>
+      <td>178</td>
+      <td>0</td>
+      <td>0.8</td>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>57</td>
+      <td>0</td>
+      <td>0</td>
+      <td>120</td>
+      <td>354</td>
+      <td>0</td>
+      <td>1</td>
+      <td>163</td>
+      <td>1</td>
+      <td>0.6</td>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>디폴트 값은 5입니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Index([&#39;age&#39;, &#39;sex&#39;, &#39;cp&#39;, &#39;trtbps&#39;, &#39;chol&#39;, &#39;fbs&#39;, &#39;restecg&#39;, &#39;thalachh&#39;,
        &#39;exng&#39;, &#39;oldpeak&#39;, &#39;slp&#39;, &#39;caa&#39;, &#39;thall&#39;, &#39;output&#39;],
-      dtype=&#39;object&#39;)</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_text output_subarea output_execute_result"><pre>[&#39;age&#39;,
+      dtype=&#39;object&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;age&#39;,
  &#39;sex&#39;,
  &#39;cp&#39;,
  &#39;trtbps&#39;,
@@ -22,10 +453,86 @@
  &#39;slp&#39;,
  &#39;caa&#39;,
  &#39;thall&#39;,
- &#39;output&#39;]</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>컬럼은 이런 방식으로 확인할 수 있습니다.</p> <p>밑에 DataFrame.columns.values.tolist() 함수는 컬럼 추출 중 가장 런타임이 빠르다고 합니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape is&#39;</span><span class="p">,</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_subarea output_stream output_stdout output_text"><pre>Shape is (303, 14)
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>303개 데이터, 14개 특성값이 있습니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_text output_subarea output_execute_result"><pre>age         0
+ &#39;output&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>컬럼은 이런 방식으로 확인할 수 있습니다.</p>
+<p>밑에 DataFrame.columns.values.tolist() 함수는 컬럼 추출 중 가장 런타임이 빠르다고 합니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Shape is&#39;</span><span class="p">,</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Shape is (303, 14)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>303개 데이터, 14개 특성값이 있습니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>age         0
 sex         0
 cp          0
 trtbps      0
@@ -39,8 +546,38 @@ slp         0
 caa         0
 thall       0
 output      0
-dtype: int64</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_subarea output_stream output_stdout output_text"><pre>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
 RangeIndex: 303 entries, 0 to 302
 Data columns (total 14 columns):
  #   Column    Non-Null Count  Dtype  
@@ -61,14 +598,489 @@ Data columns (total 14 columns):
  13  output    303 non-null    int64  
 dtypes: float64(1), int64(13)
 memory usage: 33.3 KB
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>글쓴이는 윗방식으로 null값 유무를 체크했습니다.</p> <p>그러나 df.info() 방식이 여러가지 정보를 같이 줘 더 효율적입니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_html rendered_html output_subarea output_execute_result"> <div> <style scoped=""> .dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .dataframe thead th { text-align: right; } </style> <table border="1" class="dataframe"> <thead> <tr style="text-align: right;"> <th></th> <th>age</th> <th>sex</th> <th>cp</th> <th>trtbps</th> <th>chol</th> <th>fbs</th> <th>restecg</th> <th>thalachh</th> <th>exng</th> <th>oldpeak</th> <th>slp</th> <th>caa</th> <th>thall</th> <th>output</th> </tr> </thead> <tbody> <tr> <th>count</th> <td>303.000000</td> <td>303.000000</td> <td>303.000000</td> <td>303.000000</td> <td>303.000000</td> <td>303.000000</td> <td>303.000000</td> <td>303.000000</td> <td>303.000000</td> <td>303.000000</td> <td>303.000000</td> <td>303.000000</td> <td>303.000000</td> <td>303.000000</td> </tr> <tr> <th>mean</th> <td>54.366337</td> <td>0.683168</td> <td>0.966997</td> <td>131.623762</td> <td>246.264026</td> <td>0.148515</td> <td>0.528053</td> <td>149.646865</td> <td>0.326733</td> <td>1.039604</td> <td>1.399340</td> <td>0.729373</td> <td>2.313531</td> <td>0.544554</td> </tr> <tr> <th>std</th> <td>9.082101</td> <td>0.466011</td> <td>1.032052</td> <td>17.538143</td> <td>51.830751</td> <td>0.356198</td> <td>0.525860</td> <td>22.905161</td> <td>0.469794</td> <td>1.161075</td> <td>0.616226</td> <td>1.022606</td> <td>0.612277</td> <td>0.498835</td> </tr> <tr> <th>min</th> <td>29.000000</td> <td>0.000000</td> <td>0.000000</td> <td>94.000000</td> <td>126.000000</td> <td>0.000000</td> <td>0.000000</td> <td>71.000000</td> <td>0.000000</td> <td>0.000000</td> <td>0.000000</td> <td>0.000000</td> <td>0.000000</td> <td>0.000000</td> </tr> <tr> <th>25%</th> <td>47.500000</td> <td>0.000000</td> <td>0.000000</td> <td>120.000000</td> <td>211.000000</td> <td>0.000000</td> <td>0.000000</td> <td>133.500000</td> <td>0.000000</td> <td>0.000000</td> <td>1.000000</td> <td>0.000000</td> <td>2.000000</td> <td>0.000000</td> </tr> <tr> <th>50%</th> <td>55.000000</td> <td>1.000000</td> <td>1.000000</td> <td>130.000000</td> <td>240.000000</td> <td>0.000000</td> <td>1.000000</td> <td>153.000000</td> <td>0.000000</td> <td>0.800000</td> <td>1.000000</td> <td>0.000000</td> <td>2.000000</td> <td>1.000000</td> </tr> <tr> <th>75%</th> <td>61.000000</td> <td>1.000000</td> <td>2.000000</td> <td>140.000000</td> <td>274.500000</td> <td>0.000000</td> <td>1.000000</td> <td>166.000000</td> <td>1.000000</td> <td>1.600000</td> <td>2.000000</td> <td>1.000000</td> <td>3.000000</td> <td>1.000000</td> </tr> <tr> <th>max</th> <td>77.000000</td> <td>1.000000</td> <td>3.000000</td> <td>200.000000</td> <td>564.000000</td> <td>1.000000</td> <td>2.000000</td> <td>202.000000</td> <td>1.000000</td> <td>6.200000</td> <td>2.000000</td> <td>4.000000</td> <td>3.000000</td> <td>1.000000</td> </tr> </tbody> </table> </div> </div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>데이터를 보면 어느정도 스케일링이 필요하다는 것을 알 수 있습니다.</p> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h1 id="&#53945;&#49457;-&#49828;&#52992;&#51068;&#47553;">&#53945;&#49457; &#49828;&#52992;&#51068;&#47553;<a class="anchor-link" href="#&#53945;&#49457;-&#49828;&#52992;&#51068;&#47553;"> </a></h1> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">/</span><span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">])</span>
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>글쓴이는 윗방식으로 null값 유무를 체크했습니다.</p>
+<p>그러나 df.info() 방식이 여러가지 정보를 같이 줘 더 효율적입니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>sex</th>
+      <th>cp</th>
+      <th>trtbps</th>
+      <th>chol</th>
+      <th>fbs</th>
+      <th>restecg</th>
+      <th>thalachh</th>
+      <th>exng</th>
+      <th>oldpeak</th>
+      <th>slp</th>
+      <th>caa</th>
+      <th>thall</th>
+      <th>output</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>303.000000</td>
+      <td>303.000000</td>
+      <td>303.000000</td>
+      <td>303.000000</td>
+      <td>303.000000</td>
+      <td>303.000000</td>
+      <td>303.000000</td>
+      <td>303.000000</td>
+      <td>303.000000</td>
+      <td>303.000000</td>
+      <td>303.000000</td>
+      <td>303.000000</td>
+      <td>303.000000</td>
+      <td>303.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>54.366337</td>
+      <td>0.683168</td>
+      <td>0.966997</td>
+      <td>131.623762</td>
+      <td>246.264026</td>
+      <td>0.148515</td>
+      <td>0.528053</td>
+      <td>149.646865</td>
+      <td>0.326733</td>
+      <td>1.039604</td>
+      <td>1.399340</td>
+      <td>0.729373</td>
+      <td>2.313531</td>
+      <td>0.544554</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>9.082101</td>
+      <td>0.466011</td>
+      <td>1.032052</td>
+      <td>17.538143</td>
+      <td>51.830751</td>
+      <td>0.356198</td>
+      <td>0.525860</td>
+      <td>22.905161</td>
+      <td>0.469794</td>
+      <td>1.161075</td>
+      <td>0.616226</td>
+      <td>1.022606</td>
+      <td>0.612277</td>
+      <td>0.498835</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>29.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>94.000000</td>
+      <td>126.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>71.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>47.500000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>120.000000</td>
+      <td>211.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>133.500000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>2.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>55.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>130.000000</td>
+      <td>240.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>153.000000</td>
+      <td>0.000000</td>
+      <td>0.800000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>2.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>61.000000</td>
+      <td>1.000000</td>
+      <td>2.000000</td>
+      <td>140.000000</td>
+      <td>274.500000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>166.000000</td>
+      <td>1.000000</td>
+      <td>1.600000</td>
+      <td>2.000000</td>
+      <td>1.000000</td>
+      <td>3.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>77.000000</td>
+      <td>1.000000</td>
+      <td>3.000000</td>
+      <td>200.000000</td>
+      <td>564.000000</td>
+      <td>1.000000</td>
+      <td>2.000000</td>
+      <td>202.000000</td>
+      <td>1.000000</td>
+      <td>6.200000</td>
+      <td>2.000000</td>
+      <td>4.000000</td>
+      <td>3.000000</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>데이터를 보면 어느정도 스케일링이 필요하다는 것을 알 수 있습니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#53945;&#49457;-&#49828;&#52992;&#51068;&#47553;">&#53945;&#49457; &#49828;&#52992;&#51068;&#47553;<a class="anchor-link" href="#&#53945;&#49457;-&#49828;&#52992;&#51068;&#47553;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">/</span><span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">])</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cp&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;cp&#39;</span><span class="p">]</span><span class="o">/</span><span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;cp&#39;</span><span class="p">])</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;trtbps&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;trtbps&#39;</span><span class="p">]</span><span class="o">/</span><span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;trtbps&#39;</span><span class="p">])</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;chol&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;chol&#39;</span><span class="p">]</span><span class="o">/</span><span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;chol&#39;</span><span class="p">])</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;thalachh&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;thalachh&#39;</span><span class="p">]</span><span class="o">/</span><span class="nb">max</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;thalachh&#39;</span><span class="p">])</span>
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_html rendered_html output_subarea output_execute_result"> <div> <style scoped=""> .dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .dataframe thead th { text-align: right; } </style> <table border="1" class="dataframe"> <thead> <tr style="text-align: right;"> <th></th> <th>age</th> <th>sex</th> <th>cp</th> <th>trtbps</th> <th>chol</th> <th>fbs</th> <th>restecg</th> <th>thalachh</th> <th>exng</th> <th>oldpeak</th> <th>slp</th> <th>caa</th> <th>thall</th> <th>output</th> </tr> </thead> <tbody> <tr> <th>count</th> <td>303.000000</td> <td>303.000000</td> <td>303.000000</td> <td>303.000000</td> <td>303.000000</td> <td>303.000000</td> <td>303.000000</td> <td>303.000000</td> <td>303.000000</td> <td>303.000000</td> <td>303.000000</td> <td>303.000000</td> <td>303.000000</td> <td>303.000000</td> </tr> <tr> <th>mean</th> <td>0.706056</td> <td>0.683168</td> <td>0.322332</td> <td>0.658119</td> <td>0.436638</td> <td>0.148515</td> <td>0.528053</td> <td>0.740826</td> <td>0.326733</td> <td>1.039604</td> <td>1.399340</td> <td>0.729373</td> <td>2.313531</td> <td>0.544554</td> </tr> <tr> <th>std</th> <td>0.117949</td> <td>0.466011</td> <td>0.344017</td> <td>0.087691</td> <td>0.091898</td> <td>0.356198</td> <td>0.525860</td> <td>0.113392</td> <td>0.469794</td> <td>1.161075</td> <td>0.616226</td> <td>1.022606</td> <td>0.612277</td> <td>0.498835</td> </tr> <tr> <th>min</th> <td>0.376623</td> <td>0.000000</td> <td>0.000000</td> <td>0.470000</td> <td>0.223404</td> <td>0.000000</td> <td>0.000000</td> <td>0.351485</td> <td>0.000000</td> <td>0.000000</td> <td>0.000000</td> <td>0.000000</td> <td>0.000000</td> <td>0.000000</td> </tr> <tr> <th>25%</th> <td>0.616883</td> <td>0.000000</td> <td>0.000000</td> <td>0.600000</td> <td>0.374113</td> <td>0.000000</td> <td>0.000000</td> <td>0.660891</td> <td>0.000000</td> <td>0.000000</td> <td>1.000000</td> <td>0.000000</td> <td>2.000000</td> <td>0.000000</td> </tr> <tr> <th>50%</th> <td>0.714286</td> <td>1.000000</td> <td>0.333333</td> <td>0.650000</td> <td>0.425532</td> <td>0.000000</td> <td>1.000000</td> <td>0.757426</td> <td>0.000000</td> <td>0.800000</td> <td>1.000000</td> <td>0.000000</td> <td>2.000000</td> <td>1.000000</td> </tr> <tr> <th>75%</th> <td>0.792208</td> <td>1.000000</td> <td>0.666667</td> <td>0.700000</td> <td>0.486702</td> <td>0.000000</td> <td>1.000000</td> <td>0.821782</td> <td>1.000000</td> <td>1.600000</td> <td>2.000000</td> <td>1.000000</td> <td>3.000000</td> <td>1.000000</td> </tr> <tr> <th>max</th> <td>1.000000</td> <td>1.000000</td> <td>1.000000</td> <td>1.000000</td> <td>1.000000</td> <td>1.000000</td> <td>2.000000</td> <td>1.000000</td> <td>1.000000</td> <td>6.200000</td> <td>2.000000</td> <td>4.000000</td> <td>3.000000</td> <td>1.000000</td> </tr> </tbody> </table> </div> </div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>이전과 달리 특성 스케일이 확실히 비슷해졌습니다.</p> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h1 id="&#45936;&#51060;&#53552;-&#47784;&#45944;&#47553;">&#45936;&#51060;&#53552; &#47784;&#45944;&#47553;<a class="anchor-link" href="#&#45936;&#51060;&#53552;-&#47784;&#45944;&#47553;"> </a></h1> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>sex</th>
+      <th>cp</th>
+      <th>trtbps</th>
+      <th>chol</th>
+      <th>fbs</th>
+      <th>restecg</th>
+      <th>thalachh</th>
+      <th>exng</th>
+      <th>oldpeak</th>
+      <th>slp</th>
+      <th>caa</th>
+      <th>thall</th>
+      <th>output</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>303.000000</td>
+      <td>303.000000</td>
+      <td>303.000000</td>
+      <td>303.000000</td>
+      <td>303.000000</td>
+      <td>303.000000</td>
+      <td>303.000000</td>
+      <td>303.000000</td>
+      <td>303.000000</td>
+      <td>303.000000</td>
+      <td>303.000000</td>
+      <td>303.000000</td>
+      <td>303.000000</td>
+      <td>303.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.706056</td>
+      <td>0.683168</td>
+      <td>0.322332</td>
+      <td>0.658119</td>
+      <td>0.436638</td>
+      <td>0.148515</td>
+      <td>0.528053</td>
+      <td>0.740826</td>
+      <td>0.326733</td>
+      <td>1.039604</td>
+      <td>1.399340</td>
+      <td>0.729373</td>
+      <td>2.313531</td>
+      <td>0.544554</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.117949</td>
+      <td>0.466011</td>
+      <td>0.344017</td>
+      <td>0.087691</td>
+      <td>0.091898</td>
+      <td>0.356198</td>
+      <td>0.525860</td>
+      <td>0.113392</td>
+      <td>0.469794</td>
+      <td>1.161075</td>
+      <td>0.616226</td>
+      <td>1.022606</td>
+      <td>0.612277</td>
+      <td>0.498835</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.376623</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.470000</td>
+      <td>0.223404</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.351485</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.616883</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.600000</td>
+      <td>0.374113</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.660891</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>2.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.714286</td>
+      <td>1.000000</td>
+      <td>0.333333</td>
+      <td>0.650000</td>
+      <td>0.425532</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.757426</td>
+      <td>0.000000</td>
+      <td>0.800000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>2.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.792208</td>
+      <td>1.000000</td>
+      <td>0.666667</td>
+      <td>0.700000</td>
+      <td>0.486702</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>0.821782</td>
+      <td>1.000000</td>
+      <td>1.600000</td>
+      <td>2.000000</td>
+      <td>1.000000</td>
+      <td>3.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>2.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>6.200000</td>
+      <td>2.000000</td>
+      <td>4.000000</td>
+      <td>3.000000</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>이전과 달리 특성 스케일이 확실히 비슷해졌습니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#45936;&#51060;&#53552;-&#47784;&#45944;&#47553;">&#45936;&#51060;&#53552; &#47784;&#45944;&#47553;<a class="anchor-link" href="#&#45936;&#51060;&#53552;-&#47784;&#45944;&#47553;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 
 <span class="c1">#splitting data into training data and testing data</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
@@ -78,7 +1090,30 @@ memory usage: 33.3 KB
     <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
     <span class="n">stratify</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">output</span>
 <span class="p">)</span>
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>stratify 속성 =&gt; y값의 공평한 분배를 위해 사용하는 속성입니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>stratify 속성 =&gt; y값의 공평한 분배를 위해 사용하는 속성입니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
 <span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
 <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 
@@ -87,13 +1122,115 @@ memory usage: 33.3 KB
 <span class="n">Y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 <span class="n">acc</span><span class="o">=</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">Y_pred</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Accuracy is&#39;</span><span class="p">,</span><span class="nb">round</span><span class="p">(</span><span class="n">acc</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="s1">&#39;%&#39;</span><span class="p">)</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_subarea output_stream output_stdout output_text"><pre>Accuracy is 89.0 %
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>로지스틱 회귀 모형을 별다른 튜닝 없이 사용했습니다.</p> <p>정확도 측면에서만 보면 캐글에 있는 다른 코드와 별반 다르지 않습니다.</p> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h1 id="Verson-2.-&#49900;&#54540;&#54620;-&#46373;&#47084;&#45789;-&#47784;&#54805;">Verson 2. &#49900;&#54540;&#54620; &#46373;&#47084;&#45789; &#47784;&#54805;<a class="anchor-link" href="#Verson-2.-&#49900;&#54540;&#54620;-&#46373;&#47084;&#45789;-&#47784;&#54805;"> </a></h1> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h1 id="&#45936;&#51060;&#53552;-&#51060;&#54644;2">&#45936;&#51060;&#53552; &#51060;&#54644;2<a class="anchor-link" href="#&#45936;&#51060;&#53552;-&#51060;&#54644;2"> </a></h1> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Accuracy is 89.0 %
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>로지스틱 회귀 모형을 별다른 튜닝 없이 사용했습니다.</p>
+<p>정확도 측면에서만 보면 캐글에 있는 다른 코드와 별반 다르지 않습니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Verson-2.-&#49900;&#54540;&#54620;-&#46373;&#47084;&#45789;-&#47784;&#54805;">Verson 2. &#49900;&#54540;&#54620; &#46373;&#47084;&#45789; &#47784;&#54805;<a class="anchor-link" href="#Verson-2.-&#49900;&#54540;&#54620;-&#46373;&#47084;&#45789;-&#47784;&#54805;"> </a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#45936;&#51060;&#53552;-&#51060;&#54644;2">&#45936;&#51060;&#53552; &#51060;&#54644;2<a class="anchor-link" href="#&#45936;&#51060;&#53552;-&#51060;&#54644;2"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">df</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_text output_subarea output_execute_result"><pre>1    165
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>1    165
 0    138
-Name: output, dtype: int64</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>이전 모델에서 생략(?)된 부분인거 같은데 1과 0 값의 비율이 조금 차이가 있습니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">abs</span><span class="p">()[</span><span class="s1">&#39;output&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_text output_subarea output_execute_result"><pre>output      1.000000
+Name: output, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>이전 모델에서 생략(?)된 부분인거 같은데 1과 0 값의 비율이 조금 차이가 있습니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">abs</span><span class="p">()[</span><span class="s1">&#39;output&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>output      1.000000
 exng        0.436757
 cp          0.433798
 oldpeak     0.430696
@@ -107,7 +1244,38 @@ trtbps      0.144931
 restecg     0.137230
 chol        0.085239
 fbs         0.028046
-Name: output, dtype: float64</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>Y값과의 상관계수가 어느정도 되는지 확인해보았습니다.</p> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h1 id="&#45936;&#51060;&#53552;-&#47784;&#45944;&#47553;2">&#45936;&#51060;&#53552; &#47784;&#45944;&#47553;2<a class="anchor-link" href="#&#45936;&#51060;&#53552;-&#47784;&#45944;&#47553;2"> </a></h1> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+Name: output, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Y값과의 상관계수가 어느정도 되는지 확인해보았습니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#45936;&#51060;&#53552;-&#47784;&#45944;&#47553;2">&#45936;&#51060;&#53552; &#47784;&#45944;&#47553;2<a class="anchor-link" href="#&#45936;&#51060;&#53552;-&#47784;&#45944;&#47553;2"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
 
 <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;output&#39;</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
@@ -115,11 +1283,67 @@ Name: output, dtype: float64</pre></div> </div> </div> </div> </div> <div class=
 
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">42</span><span class="p">)</span>
 <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_text output_subarea output_execute_result"><pre>(242, 13)</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(242, 13)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
 <span class="n">sc</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
 <span class="n">X_train</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
 <span class="n">X_test</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>여기서는 StandardScaler를 사용해 스케일링을 했습니다.</p> <p>평균 0, 분산 1로 조정합니다. 이 스케일링은 이상치가 있을때 잘 작용하지 않을 수 있습니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>여기서는 StandardScaler를 사용해 스케일링을 했습니다.</p>
+<p>평균 0, 분산 1로 조정합니다. 이 스케일링은 이상치가 있을때 잘 작용하지 않을 수 있습니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
     <span class="p">[</span>
@@ -134,7 +1358,19 @@ Name: output, dtype: float64</pre></div> </div> </div> </div> </div> <div class=
     <span class="p">]</span>
 <span class="p">)</span>
 <span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_subarea output_stream output_stdout output_text"><pre>Model: &#34;sequential_5&#34;
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Model: &#34;sequential_5&#34;
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #   
 =================================================================
@@ -154,7 +1390,36 @@ Total params: 161,790
 Trainable params: 161,790
 Non-trainable params: 0
 _________________________________________________________________
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>활성화 함수로 제일 많이 사용하는 relu와 sigmoid함수를 사용했습니다.</p> <p>relu함수 : 입력이 양수일 경우 그대로 반환, 음수일경우 0으로 만듭니다.</p> <p>sigmoid함수 : 1 / (1 + e^z) 함수. 값을 0에서 1 사이로 변환합니다.</p> <p>첫번째 구간에 아웃풋 값을 256개 주었는데, 변수값이 13개임으로 모수가 14개입니다.</p> <p>그래서 256*14 = 3584개 파라미터가 나오게 된 것입니다.</p> <p>중간에 있는 드롭아웃은 일정 비율만큼 뉴런을 랜덤하게 꺼서 과대적합을 막는 역할을 합니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span> <span class="o">=</span> <span class="s1">&#39;Adam&#39;</span><span class="p">,</span> <span class="n">loss</span> <span class="o">=</span> <span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">,</span> <span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;binary_accuracy&#39;</span><span class="p">])</span>
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>활성화 함수로 제일 많이 사용하는 relu와 sigmoid함수를 사용했습니다.</p>
+<p>relu함수 : 입력이 양수일 경우 그대로 반환, 음수일경우 0으로 만듭니다.</p>
+<p>sigmoid함수 : 1 / (1 + e^z) 함수. 값을 0에서 1 사이로 변환합니다.</p>
+<p>첫번째 구간에 아웃풋 값을 256개 주었는데, 변수값이 13개임으로 모수가 14개입니다.</p>
+<p>그래서 256*14 = 3584개 파라미터가 나오게 된 것입니다.</p>
+<p>중간에 있는 드롭아웃은 일정 비율만큼 뉴런을 랜덤하게 꺼서 과대적합을 막는 역할을 합니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span> <span class="o">=</span> <span class="s1">&#39;Adam&#39;</span><span class="p">,</span> <span class="n">loss</span> <span class="o">=</span> <span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">,</span> <span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;binary_accuracy&#39;</span><span class="p">])</span>
 
 <span class="n">early_stopping</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">callbacks</span><span class="o">.</span><span class="n">EarlyStopping</span><span class="p">(</span> <span class="n">patience</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">min_delta</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">,</span>
                                                <span class="n">restore_best_weights</span> <span class="o">=</span><span class="kc">True</span> <span class="p">)</span>
@@ -166,7 +1431,19 @@ _________________________________________________________________
     <span class="n">callbacks</span> <span class="o">=</span> <span class="p">[</span><span class="n">early_stopping</span><span class="p">],</span>
     <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
 <span class="p">)</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_subarea output_stream output_stdout output_text"><pre>Epoch 1/50
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Epoch 1/50
 17/17 [==============================] - 1s 15ms/step - loss: 0.5500 - binary_accuracy: 0.7190 - val_loss: 0.3814 - val_binary_accuracy: 0.8852
 Epoch 2/50
 17/17 [==============================] - 0s 6ms/step - loss: 0.3823 - binary_accuracy: 0.8347 - val_loss: 0.3797 - val_binary_accuracy: 0.8852
@@ -210,13 +1487,120 @@ Epoch 21/50
 17/17 [==============================] - 0s 7ms/step - loss: 0.0366 - binary_accuracy: 0.9959 - val_loss: 1.1617 - val_binary_accuracy: 0.8525
 Epoch 22/50
 17/17 [==============================] - 0s 6ms/step - loss: 0.0407 - binary_accuracy: 0.9876 - val_loss: 1.2300 - val_binary_accuracy: 0.8361
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_subarea output_stream output_stdout output_text"><pre>2/2 [==============================] - 0s 7ms/step - loss: 0.3797 - binary_accuracy: 0.8852
-</pre></div> </div> <div class="output_area"> <div class="output_text output_subarea output_execute_result"><pre>[0.3796648383140564, 0.8852459192276001]</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">predictions</span> <span class="o">=</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span><span class="o">&gt;</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;int32&quot;</span><span class="p">)</span>
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>2/2 [==============================] - 0s 7ms/step - loss: 0.3797 - binary_accuracy: 0.8852
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0.3796648383140564, 0.8852459192276001]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">predictions</span> <span class="o">=</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span><span class="o">&gt;</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;int32&quot;</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span><span class="p">,</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">accuracy_score</span>
 <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_text output_subarea output_execute_result"><pre>0.8852459016393442</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>아까 결과와 비슷한 수치를 보입니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_subarea output_stream output_stdout output_text"><pre>              precision    recall  f1-score   support
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.8852459016393442</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>아까 결과와 비슷한 수치를 보입니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>              precision    recall  f1-score   support
 
            0       0.00      0.00      0.00        29
            1       0.52      1.00      0.69        32
@@ -225,4 +1609,83 @@ Epoch 22/50
    macro avg       0.26      0.50      0.34        61
 weighted avg       0.28      0.52      0.36        61
 
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>classification_report 함수가 상당히 유용한 걸 알 수있습니다.</p> <p>한번에 정밀도, 재현율, f1-score 값 까지 보여줍니다.</p> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h1 id="&#45712;&#45184;&#51216;">&#45712;&#45184;&#51216;<a class="anchor-link" href="#&#45712;&#45184;&#51216;"> </a></h1> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>분류에 기본적인 로지스틱 회귀모형과 단순한 딥러닝 코드를 따라해봤습니다.</p> <p>특히 딥러닝 부분에 경우 정말 기본적인 것밖에 몰라 코드 해석에 시간이 많이 걸렸네요.</p> <p>여러가지로 코드를 만져가며 느낀점은 이번 데이터에 경우 스케일링이 많이 중요한 것 같습니다.</p> <p>스케일링 종류에 따라서 정확도 값이 크게 변하는 것을 관찰했습니다.</p> <p>특히 트리기반 부스팅 모델이 아니라 더 그런 것 같습니다.</p> <p>너무 복잡한 모델을 급하게 이해하기 보다, 이해할 수 있는 모델을 관찰하며 데이터 분석은 어떤 과정으로 하는가를 살펴봤습니다.</p> </div> </div> </div> </div> </div><script src="https://utteranc.es/client.js" repo="KSY1526/myblog" issue-term="pathname" theme="github-dark" crossorigin="anonymous" async> </script> <a class="u-url" href="/myblog/ssuda/jupyter/kaggle/logistic/scale/keras/regression/2021/09/24/kagglessu2.html" hidden></a> </article> </div><div class="footer-wrapper"> <div class="footer-container"> <footer translate="no"> <div class="footer-text footer-text-centered long-copyright"> <p>&copy; 2022 Your Brand. </p><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en" target="_blank" rel="noopener noreferrer" data-toggle="tooltip" data-placement="top" data-tooltip-no-hide title="Except where otherwise noted, content on this web site is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License."> <img src="/myblog/assets/img/default/cc/cc.svg" alt="cc" width="12" height="12">&nbsp;<img src="/myblog/assets/img/default/cc/by.svg" alt="by" width="12" height="12">&nbsp;<img src="/myblog/assets/img/default/cc/sa.svg" alt="sa" width="12" height="12">&nbsp;<p>Some rights reserved.</p> </a></div> <p class="footer-powered"><span>Pwrd by </span><a href="https://github.com/MrGreensWorkshop/MrGreen-JekyllTheme" target="_blank" rel="noopener noreferrer">Mr. Green</a></p> </footer> </div> </div> <div class="scroll-to-top-container"> <a id="scroll-to-top" href="#main-wrapper" class="hover-effect"><i class="fa fa-angle-up"></i></a> </div></div> <div class="searchbox-container"> <form id="searchbox-form" autocomplete="off"> <input type="search" id="search-box" placeholder="Search" onkeyup="if(this.value!==''){document.getElementById('search-results').style.display = 'block';}" onfocusout="this.value='';" onblur="setTimeout(function(){ document.getElementById('search-results').style.display = 'none'; }, 100);"> <ul id="search-results" ></ul> </form> </div> <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> <script src="/myblog/assets/js/main.js"></script> <script src="/myblog/assets/js/simple-jekyll-search-1.9.2.min.js"></script><script> function loadSearch(jsonData, searchParam) { if (!jsonData) jsonData = '/myblog'; var searchInput = document.getElementById('search-box'); const simpleJekyllSearch = SimpleJekyllSearch({ searchInput: searchInput ,resultsContainer: document.getElementById('search-results') ,json: jsonData ,searchResultTemplate: '<li> <a href="{url}"> <div> <div class="title">{title}</div> <div class="date">{date}</div> <div style="clear: both;"></div> </div> </a></li>' ,noResultsText: '<li>No results found.</li>' ,limit: 10 ,fuzzy: false ,formSubmit: document.getElementById('searchbox-form') }); if (searchParam) { searchInput.value = searchParam; searchInput.focus(); searchInput.disabled=false; setTimeout(function(){ simpleJekyllSearch.search(searchParam); }, 400); } } </script> <script> function isEmpty(value) { if (value === "" || value === null || typeof value === "undefined") return true; return false; } function getQueryParam (param, mach = true) { var queryString = window.location.search.substring(1); if (isEmpty(queryString)) return null; var queries = queryString.split("&"); for (var i in queries) { var pair = decodeURIComponent(queries[i]).split("="); if (mach == true){ if (pair[0] == param) { if (isEmpty(pair[1]) === false) return pair[1]; } }else{ return pair; } break; } return null; } const searchParam = getQueryParam('search'); (async () => { let resp = await fetch('/myblog'); if (!resp.ok) return; let jsonData = await resp.json(); loadSearch(jsonData, searchParam); })(); </script> <script> CookieConsent.consentSettingHtml = "<h5>Cookie settings</h5> <br> <p class=\"info-text\">This website uses cookies to optimize site functionality. It will be activated with your approval. Please click each item below for cookie policy. </p> <table> <tr> <td onclick=\"$('.info[data-consent-info=necessary]').slideToggle();$(this).children('i').toggleClass('fa-plus-square-o').toggleClass('fa-minus-square-o')\"> <i class=\"fa-fw fa fa-plus-square-o\" aria-hidden=\"true\"></i> <p>Strictly necessary cookies</p> </td> <td> <span class=\"active_text\">Always active</span></td> </tr> </table> <div class=\"info\" data-consent-info=\"necessary\"> <p>These cookies are essential for the website function and cannot be disable. They are usually set when site function like color scheme etc. is changed. These cookies do not store any personally identifiable information. Enables storage related to security such as authentication functionality, fraud prevention, and other user protection. </p> </div> <table> <tr> <td onclick=\"$('.info[data-consent-info=analytics]').slideToggle();$(this).children('i').toggleClass('fa-plus-square-o').toggleClass('fa-minus-square-o')\"> <i class=\"fa-fw fa fa-plus-square-o\" aria-hidden=\"true\"></i> <p>Performance cookies</p> </td> <td> <label class=\"slide-switch\"> <input type=\"checkbox\" class=\"checkbox_switch\" checked=\"checked\" data-consent=\"analytics\"> <span class=\"slider\"></span> </label></td> </tr> </table> <div class=\"info\" data-consent-info=\"analytics\"> <p>Enables storage (such as cookies) related to analytics e.g. visit duration. </p> </div> <table> <tr> <td onclick=\"$('.info[data-consent-info=preferences]').slideToggle();$(this).children('i').toggleClass('fa-plus-square-o').toggleClass('fa-minus-square-o')\"> <i class=\"fa-fw fa fa-plus-square-o\" aria-hidden=\"true\"></i> <p>Functionality cookies</p> </td> <td> <label class=\"slide-switch\"> <input type=\"checkbox\" class=\"checkbox_switch\" data-consent=\"preferences\"> <span class=\"slider\"></span> </label></td> </tr> </table> <div class=\"info\" data-consent-info=\"preferences\"> <p>Enables storage that supports the functionality of the website or app e.g. language settings. Enables storage related to personalization e.g. video recommendations. </p> </div> <table> <tr> <td onclick=\"$('.info[data-consent-info=advertising]').slideToggle();$(this).children('i').toggleClass('fa-plus-square-o').toggleClass('fa-minus-square-o')\"> <i class=\"fa-fw fa fa-plus-square-o\" aria-hidden=\"true\"></i> <p>Targeting and advertising cookies</p> </td> <td> <label class=\"slide-switch\"> <input type=\"checkbox\" class=\"checkbox_switch\" data-consent=\"advertising\"> <span class=\"slider\"></span> </label></td> </tr> </table> <div class=\"info\" data-consent-info=\"advertising\"> <p>Enables storage (such as cookies) related to advertising. </p> </div> <br> <div class=\"button-holder\"> <a href=\"javascript:void(0);\" class=\"btn-base btn-left\" onclick=\"CookieConsent.consentSettingDone('deny');\" role=\"button\">Deny</a> <a href=\"javascript:void(0);\" class=\"btn-base btn-priority\" onclick=\"CookieConsent.consentSettingDone('accept');\" role=\"button\">Allow all</a> <a href=\"javascript:void(0);\" class=\"btn-base \" onclick=\"CookieConsent.consentSettingDone('save');\" role=\"button\">Allow selection</a> </div>"; CookieConsent.consentBarHtml = "<div class=\"consent-bar\"> <a class=\"close-button\" href=\"javascript:void(0);\" onclick=\"CookieConsent.hideConsentBar();\"><i class=\"fa-fw fa fa-times\"></i></a> <p>This website uses cookies to optimize site functionality. It will be activated with your approval. </p> <a href=\"javascript:void(0);\" class=\"btn-base \" onclick=\"CookieConsent.consentBarDone('deny');\" role=\"button\">Deny</a> <a href=\"javascript:void(0);\" class=\"btn-base \" onclick=\"CookieConsent.consentBarDone('settings');\" role=\"button\">Customize</a> <a href=\"javascript:void(0);\" class=\"btn-base btn-priority\" onclick=\"CookieConsent.consentBarDone('accept');\" role=\"button\">Allow all</a> </div>"; CookieConsent.consent_items = JSON.parse('{"necessary":{"group":["security_storage"],"value":"granted","wait_for_update":500,"cookie_domain":"","no_check_box":true},"analytics":{"group":["analytics_storage"],"value":"denied"},"preferences":{"group":["functionality_storage","personalization_storage"],"value":"denied"},"advertising":{"group":["ad_storage"],"value":"denied"}}'); CookieConsent.hideConsentBarWithSaveButton = true; const consent_settings = CookieConsent.getConsentSettings(); const default_configs = JSON.parse('{"anonymize_ip":true,"ads_data_redaction":true,"cookie_flags":"SameSite=None;Secure"}'); </script> <script> SlidingMsgBox.html = "<div class=\"slideBox slideBoxTopToDown\"> <a class=\"close-button\" href=\"javascript:void(0);\"><i class=\"fa-fw fa fa-times\"></i></a> </div>"; </script> <script> LangOfferMsgBox.currentPageLng = "en"; LangOfferMsgBox.supportedLngList = [["en","En","/myblog/","View this page in English.","To English home page","Language"],["ja","Jp","/myblog/ja","このページを日本語で表示する。","日本語ホームへ","言語"]]; LangOfferMsgBox.existLng = []; LangOfferMsgBox.disableExtTranslationOffer = true; </script> </body> </html>
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>classification_report 함수가 상당히 유용한 걸 알 수있습니다.</p>
+<p>한번에 정밀도, 재현율, f1-score 값 까지 보여줍니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#45712;&#45184;&#51216;">&#45712;&#45184;&#51216;<a class="anchor-link" href="#&#45712;&#45184;&#51216;"> </a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>분류에 기본적인 로지스틱 회귀모형과 단순한 딥러닝 코드를 따라해봤습니다.</p>
+<p>특히 딥러닝 부분에 경우 정말 기본적인 것밖에 몰라 코드 해석에 시간이 많이 걸렸네요.</p>
+<p>여러가지로 코드를 만져가며 느낀점은 이번 데이터에 경우 스케일링이 많이 중요한 것 같습니다.</p>
+<p>스케일링 종류에 따라서 정확도 값이 크게 변하는 것을 관찰했습니다.</p>
+<p>특히 트리기반 부스팅 모델이 아니라 더 그런 것 같습니다.</p>
+<p>너무 복잡한 모델을 급하게 이해하기 보다, 이해할 수 있는 모델을 관찰하며 데이터 분석은 어떤 과정으로 하는가를 살펴봤습니다.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><script src="https://utteranc.es/client.js"
+        repo="KSY1526/myblog"
+        issue-term="pathname"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+  <a class="u-url" href="/myblog/ssuda/jupyter/kaggle/logistic/scale/keras/regression/2021/09/24/kagglessu2.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/myblog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/myblog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/myblog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/https%3A%2F%2Fgithub.com%2FKSY1526%2FMyProject" target="_blank" title="https://github.com/KSY1526/MyProject"><svg class="svg-icon grey"><use xlink:href="/myblog/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,7 +1,205 @@
-<!DOCTYPE html> <html lang="en-US"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title>Your Brand - [DACON] 파이토치 항공사 고객 만족도 데이터로 연습하기</title> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"> <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" media="print" onload="this.media='all'"> <noscript> <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"> </noscript> <link rel="shortcut icon" href="/myblog/assets/img/favicons/favicon.ico"> <link rel="icon" type="image/png" sizes="32x32" href="/myblog/assets/img/favicons/favicon-32x32.png"> <link rel="icon" type="image/png" sizes="16x16" href="/myblog/assets/img/favicons/favicon-16x16.png"> <link rel="apple-touch-icon" sizes="180x180" href="/myblog/assets/img/favicons/apple-touch-icon.png"> <link rel="manifest" href="/myblog/assets/manifest.json"> <meta name="mobile-web-app-capable" content="yes"> <meta name="theme-color" content="#f0f0f0"> <meta name="apple-mobile-web-app-capable" content="yes"> <meta name="apple-mobile-web-app-title" content="Your Brand's App"> <meta name="apple-mobile-web-app-status-bar-style" content="default"> <meta name="msapplication-TileColor" content="#2d89ef"> <meta name="msapplication-starturl" content="/myblog/"> <meta name="application-name" content="Your Brand's App"> <meta name="msapplication-config" content="/myblog/assets/img/favicons/browserconfig.xml"> <meta name="keywords" content=""> <meta name="description" content="Your meta description."> <meta name="robots" content="index, follow"> <meta name="twitter:card" content="summary"> <meta name="twitter:title" content="[DACON] 파이토치 항공사 고객 만족도 데이터로 연습하기"> <meta name="twitter:description" content="Your meta description."> <meta name="twitter:image" content="https://ksy1526.github.io/myblog/assets/img/about/about.jpg"> <meta property="og:site_name" content="Your Brand"> <meta property="og:type" content="website"> <meta property="og:title" content="[DACON] 파이토치 항공사 고객 만족도 데이터로 연습하기"> <meta property="og:description" content="Your meta description."> <meta property="og:url" content="https://ksy1526.github.io/myblog/ssuda/jupyter/deep%20learning/pytorch/dacon/2022/02/19/torch2.html"> <meta property="og:image" content="https://ksy1526.github.io/myblog/assets/img/about/about.jpg"> <script type="application/ld+json">{ "@context": "https://schema.org" ,"@graph": [ { "@type": "Person" ,"@id": "https://ksy1526.github.io/myblog/#person" ,"name": "Seong Yeon Kim" ,"url": "" ,"image": "https://ksy1526.github.io/myblog/assets/img/about/about.jpg" ,"description": "Your meta description." },{ "@type": "WebSite" ,"@id": "https://ksy1526.github.io/myblog/#website" ,"url": "https://ksy1526.github.io/myblog/" ,"name": "Your Brand" ,"description": "Your meta description." ,"publisher": {"@id": "https://ksy1526.github.io/myblog/#person"} ,"inLanguage": "en-US" ,"copyrightHolder" : {"@id": "https://ksy1526.github.io/myblog/#person"} ,"copyrightYear" : "2022" },{ "@type": "WebPage" ,"@id": "https://ksy1526.github.io/myblog/ssuda/jupyter/deep%20learning/pytorch/dacon/2022/02/19/torch2.html#webpage" ,"url": "https://ksy1526.github.io/myblog/ssuda/jupyter/deep%20learning/pytorch/dacon/2022/02/19/torch2.html" ,"name": "[DACON] 파이토치 항공사 고객 만족도 데이터로 연습하기" ,"isPartOf": {"@id": "https://ksy1526.github.io/myblog/#website"} ,"breadcrumb": {"@id": "https://ksy1526.github.io/myblog/ssuda/jupyter/deep%20learning/pytorch/dacon/2022/02/19/torch2.html#breadcrumb"} ,"primaryImageOfPage": "https://ksy1526.github.io/myblog/assets/img/about/about.jpg" ,"description": "Your meta description." ,"inLanguage": "en-US" ,"potentialAction": { "@type": "ReadAction" ,"target": "https://ksy1526.github.io/myblog/ssuda/jupyter/deep%20learning/pytorch/dacon/2022/02/19/torch2.html" } },{ "@type": "BreadcrumbList", "@id": "https://ksy1526.github.io/myblog/ssuda/jupyter/deep%20learning/pytorch/dacon/2022/02/19/torch2.html#breadcrumb", "itemListElement": [ { "@type": "ListItem" ,"position": 1 ,"name": "Home" ,"item": "https://ksy1526.github.io/myblog/" }, { "@type": "ListItem" ,"position": 2 ,"name": "[DACON] 파이토치 항공사 고객 만족도 데이터로 연습하기" } ] } ] }</script> <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <link href="/myblog/assets/css/main.css" rel="stylesheet"><link href="/myblog/assets/css/nav-media.css" rel="stylesheet"> </head> <body > <script src="/myblog/assets/js/color-scheme-attr-init.js" data-mode="false"></script> <nav class="navbar navbar-default top-nav"> <div class="navbar-header"> <button type="button" class="navbar-toggle collapsed pull-left top-nav-menu-toggle" data-toggle="collapse" data-target="#id_top-nav-menu-toggle" aria-expanded="false"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand top-nav-brand" href="/myblog/" translate="no">Your Brand</a> </div> <div class="color_scheme_switch_top_holder" data-toggle="tooltip" data-placement="bottom" title="Color scheme"> <label class="color-scheme-switch hover-effect"> <input type="checkbox" class="checkbox_color_switch" /> <span></span> </label> </div> </nav> <nav id="side-nav-container"> <div class="side-nav"> <div class="side-nav-brand"> <img src="/myblog/assets/img/posts/post_pic1.jpg" alt=""> <div class="brand-holder"> <a href="/myblog/" translate="no">Your Brand</a> </div> <p>&nbsp;Sample</p> <br> </div> <br> <a href="javascript:void(0);" class="side-nav-close"> <i class="fa fa-angle-double-left fa-2x" aria-hidden="true"></i> </a> <hr> <br> <div class="side-nav-buttons"> <ul class="nav nav-pills nav-stacked"> <li ><a href="/myblog/" class=" hover-effect"><i class="fa-fw fa fa-home" aria-hidden="true"></i>Home</a></li><li ><a href="/myblog/page2/" class=" hover-effect"><i class="fa-fw fa fa-home" aria-hidden="true"></i>Home</a></li><li ><a href="/myblog/page3/" class=" hover-effect"><i class="fa-fw fa fa-home" aria-hidden="true"></i>Home</a></li><li ><a href="/myblog/page4/" class=" hover-effect"><i class="fa-fw fa fa-home" aria-hidden="true"></i>Home</a></li><li ><a href="/myblog/page5/" class=" hover-effect"><i class="fa-fw fa fa-home" aria-hidden="true"></i>Home</a></li><li ><a href="/myblog/page6/" class=" hover-effect"><i class="fa-fw fa fa-home" aria-hidden="true"></i>Home</a></li></ul> </div> <br> <br> <hr id="toc-view-top"> <div class="side-nav-footer" translate="no"> <p>&copy; 2022 Your Brand.</p> </div> </div> <div class="side-nav-bottom-buttons-container"> <hr> <ul> <li><div class="color_scheme_switch_side_holder" data-toggle="tooltip" data-placement="top" title="Color scheme"> <label class="color-scheme-switch hover-effect"> <input type="checkbox" class="checkbox_color_switch" /> <span></span> </label> </div> </li><li><div class="cookie-icon hover-effect" onclick="CookieConsent.showSettings();" data-toggle="tooltip" data-placement="top" title="Cookie settings"> <div class="cookie-wrapper"> <i class="fa fa-circle bitten-cookie" aria-hidden="true"></i> <i class="fa fa-circle small-ellipse-icon" aria-hidden="true"></i> <i class="fa fa-spinner inner-icon" aria-hidden="true"></i> <i class="fa fa-circle-thin outer-icon" aria-hidden="true"></i> </div> </div> </li></ul> </div></nav> <div id="main-wrapper"> <div class="main-container"><article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting"> <header class="post-header"> <h1 class="post-title p-name" itemprop="name headline">[DACON] 파이토치 항공사 고객 만족도 데이터로 연습하기</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-02-19T00:00:00-06:00" itemprop="datePublished"> Feb 19, 2022 </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"> <span class="p-author h-card" itemprop="name">Seong Yeon Kim</span></span> • <span class="read-time" title="Estimated read time"> 9 min read </span></p> <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> <a class="category-tags-link" href="/myblog/categories/#SSUDA">SSUDA</a> &nbsp; <a class="category-tags-link" href="/myblog/categories/#jupyter">jupyter</a> &nbsp; <a class="category-tags-link" href="/myblog/categories/#Deep Learning">Deep Learning</a> &nbsp; <a class="category-tags-link" href="/myblog/categories/#Pytorch">Pytorch</a> &nbsp; <a class="category-tags-link" href="/myblog/categories/#DACON">DACON</a> </p> <div class="pb-5 d-flex flex-wrap flex-justify-end"> </div> </header> <div class="post-content e-content" itemprop="articleBody"> <!-- ################################################# ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ### ################################################# # file to edit: _notebooks/2022-02-19-torch2.ipynb --> <div class="container" id="notebook-container"> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p><a href="https://colab.research.google.com/github/KSY1526/myblog/blob/master/_notebooks/2022-02-19-torch2.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a></p> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h1 id="&#54596;&#50836;&#54620;-&#54056;&#53412;&#51648;&#50752;-&#45936;&#51060;&#53552;-&#48520;&#47084;&#50724;&#44592;">&#54596;&#50836;&#54620; &#54056;&#53412;&#51648;&#50752; &#45936;&#51060;&#53552; &#48520;&#47084;&#50724;&#44592;<a class="anchor-link" href="#&#54596;&#50836;&#54620;-&#54056;&#53412;&#51648;&#50752;-&#45936;&#51060;&#53552;-&#48520;&#47084;&#50724;&#44592;"> </a></h1> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>[DACON] 파이토치 항공사 고객 만족도 데이터로 연습하기 | 나의 빅데이터 공부 기록</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="[DACON] 파이토치 항공사 고객 만족도 데이터로 연습하기" />
+<meta name="author" content="Seong Yeon Kim" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다." />
+<meta property="og:description" content="다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다." />
+<link rel="canonical" href="https://ksy1526.github.io/myblog/ssuda/jupyter/deep%20learning/pytorch/dacon/2022/02/19/torch2.html" />
+<meta property="og:url" content="https://ksy1526.github.io/myblog/ssuda/jupyter/deep%20learning/pytorch/dacon/2022/02/19/torch2.html" />
+<meta property="og:site_name" content="나의 빅데이터 공부 기록" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-02-19T00:00:00-06:00" />
+<script type="application/ld+json">
+{"datePublished":"2022-02-19T00:00:00-06:00","url":"https://ksy1526.github.io/myblog/ssuda/jupyter/deep%20learning/pytorch/dacon/2022/02/19/torch2.html","@type":"BlogPosting","headline":"[DACON] 파이토치 항공사 고객 만족도 데이터로 연습하기","dateModified":"2022-02-19T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://ksy1526.github.io/myblog/ssuda/jupyter/deep%20learning/pytorch/dacon/2022/02/19/torch2.html"},"author":{"@type":"Person","name":"Seong Yeon Kim"},"description":"다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/myblog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://ksy1526.github.io/myblog/feed.xml" title="나의 빅데이터 공부 기록" /><link rel="shortcut icon" type="image/x-icon" href="/myblog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/myblog/">나의 빅데이터 공부 기록</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/myblog/about/">About Me</a><a class="page-link" href="/myblog/search/">Search</a><a class="page-link" href="/myblog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">[DACON] 파이토치 항공사 고객 만족도 데이터로 연습하기</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-02-19T00:00:00-06:00" itemprop="datePublished">
+        Feb 19, 2022
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Seong Yeon Kim</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      9 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/myblog/categories/#SSUDA">SSUDA</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#jupyter">jupyter</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#Deep Learning">Deep Learning</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#Pytorch">Pytorch</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#DACON">DACON</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          
+          
+          
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2022-02-19-torch2.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="https://colab.research.google.com/github/KSY1526/myblog/blob/master/_notebooks/2022-02-19-torch2.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#54596;&#50836;&#54620;-&#54056;&#53412;&#51648;&#50752;-&#45936;&#51060;&#53552;-&#48520;&#47084;&#50724;&#44592;">&#54596;&#50836;&#54620; &#54056;&#53412;&#51648;&#50752; &#45936;&#51060;&#53552; &#48520;&#47084;&#50724;&#44592;<a class="anchor-link" href="#&#54596;&#50836;&#54620;-&#54056;&#53412;&#51648;&#50752;-&#45936;&#51060;&#53552;-&#48520;&#47084;&#50724;&#44592;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
 <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_subarea output_stream output_stdout output_text"><pre>Drive already mounted at /content/drive; to attempt to forcibly remount, call drive.mount(&#34;/content/drive&#34;, force_remount=True).
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>데이터가 저장되어 있는 구글 드라이브와 연동합니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Drive already mounted at /content/drive; to attempt to forcibly remount, call drive.mount(&#34;/content/drive&#34;, force_remount=True).
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>데이터가 저장되어 있는 구글 드라이브와 연동합니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
 <span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
 <span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="nn">optim</span>
@@ -15,7 +213,30 @@
 
 <span class="k">if</span> <span class="n">device</span> <span class="o">==</span> <span class="s1">&#39;cuda&#39;</span><span class="p">:</span>
     <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">manual_seed_all</span><span class="p">(</span><span class="mi">777</span><span class="p">)</span>
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>파이토치 관련 모듈들을 임포트합니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>파이토치 관련 모듈들을 임포트합니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
@@ -30,12 +251,378 @@
 <span class="n">test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;test.csv&#39;</span><span class="p">)</span>
 <span class="n">sample_submission</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s1">&#39;sample_submission.csv&#39;</span><span class="p">)</span>
 <span class="n">train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_html rendered_html output_subarea output_execute_result"> <div id="df-5888b9a7-47ca-4b6e-a0e3-ec54714966b6"> <div class="colab-df-container"> <div> <style scoped=""> .dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .dataframe thead th { text-align: right; } </style> <table border="1" class="dataframe"> <thead> <tr style="text-align: right;"> <th></th> <th>id</th> <th>Gender</th> <th>Customer Type</th> <th>Age</th> <th>Type of Travel</th> <th>Class</th> <th>Flight Distance</th> <th>Seat comfort</th> <th>Departure/Arrival time convenient</th> <th>Food and drink</th> <th>Gate location</th> <th>Inflight wifi service</th> <th>Inflight entertainment</th> <th>Online support</th> <th>Ease of Online booking</th> <th>On-board service</th> <th>Leg room service</th> <th>Baggage handling</th> <th>Checkin service</th> <th>Cleanliness</th> <th>Online boarding</th> <th>Departure Delay in Minutes</th> <th>Arrival Delay in Minutes</th> <th>target</th> </tr> </thead> <tbody> <tr> <th>0</th> <td>1</td> <td>Female</td> <td>disloyal Customer</td> <td>22</td> <td>Business travel</td> <td>Eco</td> <td>1599</td> <td>3</td> <td>0</td> <td>3</td> <td>3</td> <td>4</td> <td>3</td> <td>4</td> <td>4</td> <td>5</td> <td>4</td> <td>4</td> <td>4</td> <td>5</td> <td>4</td> <td>0</td> <td>0.0</td> <td>0</td> </tr> <tr> <th>1</th> <td>2</td> <td>Female</td> <td>Loyal Customer</td> <td>37</td> <td>Business travel</td> <td>Business</td> <td>2810</td> <td>2</td> <td>4</td> <td>4</td> <td>4</td> <td>1</td> <td>4</td> <td>3</td> <td>5</td> <td>5</td> <td>4</td> <td>2</td> <td>1</td> <td>5</td> <td>2</td> <td>18</td> <td>18.0</td> <td>0</td> </tr> <tr> <th>2</th> <td>3</td> <td>Male</td> <td>Loyal Customer</td> <td>46</td> <td>Business travel</td> <td>Business</td> <td>2622</td> <td>1</td> <td>1</td> <td>1</td> <td>1</td> <td>4</td> <td>5</td> <td>5</td> <td>4</td> <td>4</td> <td>4</td> <td>4</td> <td>5</td> <td>4</td> <td>3</td> <td>0</td> <td>0.0</td> <td>1</td> </tr> <tr> <th>3</th> <td>4</td> <td>Female</td> <td>disloyal Customer</td> <td>24</td> <td>Business travel</td> <td>Eco</td> <td>2348</td> <td>3</td> <td>3</td> <td>3</td> <td>3</td> <td>3</td> <td>3</td> <td>3</td> <td>3</td> <td>2</td> <td>4</td> <td>5</td> <td>3</td> <td>4</td> <td>3</td> <td>10</td> <td>2.0</td> <td>0</td> </tr> <tr> <th>4</th> <td>5</td> <td>Female</td> <td>Loyal Customer</td> <td>58</td> <td>Business travel</td> <td>Business</td> <td>105</td> <td>3</td> <td>3</td> <td>3</td> <td>3</td> <td>4</td> <td>4</td> <td>5</td> <td>4</td> <td>4</td> <td>4</td> <td>4</td> <td>4</td> <td>4</td> <td>5</td> <td>0</td> <td>0.0</td> <td>1</td> </tr> </tbody> </table> </div> <button class="colab-df-convert" onclick="convertToInteractive('df-5888b9a7-47ca-4b6e-a0e3-ec54714966b6')" title="Convert this dataframe to an interactive table." style="display:none;"> &lt;svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24" width="24px"&gt; <path d="M0 0h24v24H0V0z" fill="none" /> <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z" /><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z" /> &lt;/svg&gt; </button> <style> .colab-df-container { display:flex; flex-wrap:wrap; gap: 12px; } .colab-df-convert { background-color: #E8F0FE; border: none; border-radius: 50%; cursor: pointer; display: none; fill: #1967D2; height: 32px; padding: 0 0 0 0; width: 32px; } .colab-df-convert:hover { background-color: #E2EBFA; box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15); fill: #174EA6; } [theme=dark] .colab-df-convert { background-color: #3B4455; fill: #D2E3FC; } [theme=dark] .colab-df-convert:hover { background-color: #434B5C; box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15); filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3)); fill: #FFFFFF; } </style> <script> const buttonEl = document.querySelector('#df-5888b9a7-47ca-4b6e-a0e3-ec54714966b6 button.colab-df-convert'); buttonEl.style.display = google.colab.kernel.accessAllowed ? 'block' : 'none'; async function convertToInteractive(key) { const element = document.querySelector('#df-5888b9a7-47ca-4b6e-a0e3-ec54714966b6'); const dataTable = await google.colab.kernel.invokeFunction('convertToInteractive', [key], {}); if (!dataTable) return; const docLinkHtml = 'Like what you see? Visit the ' + '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>' + ' to learn more about interactive tables.'; element.innerHTML = ''; dataTable['output_type'] = 'display_data'; await google.colab.output.renderOutput(dataTable, element); const docLink = document.createElement('div'); docLink.innerHTML = docLinkHtml; element.appendChild(docLink); } </script> </div> </div> </div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>데이터 분석에 기본적으로 필요한 패키지를 임포트하고, 데이터 csv 파일 또한 임포트 합니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;target&#39;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+  <div id="df-5888b9a7-47ca-4b6e-a0e3-ec54714966b6">
+    <div class="colab-df-container">
+      <div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>Gender</th>
+      <th>Customer Type</th>
+      <th>Age</th>
+      <th>Type of Travel</th>
+      <th>Class</th>
+      <th>Flight Distance</th>
+      <th>Seat comfort</th>
+      <th>Departure/Arrival time convenient</th>
+      <th>Food and drink</th>
+      <th>Gate location</th>
+      <th>Inflight wifi service</th>
+      <th>Inflight entertainment</th>
+      <th>Online support</th>
+      <th>Ease of Online booking</th>
+      <th>On-board service</th>
+      <th>Leg room service</th>
+      <th>Baggage handling</th>
+      <th>Checkin service</th>
+      <th>Cleanliness</th>
+      <th>Online boarding</th>
+      <th>Departure Delay in Minutes</th>
+      <th>Arrival Delay in Minutes</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Female</td>
+      <td>disloyal Customer</td>
+      <td>22</td>
+      <td>Business travel</td>
+      <td>Eco</td>
+      <td>1599</td>
+      <td>3</td>
+      <td>0</td>
+      <td>3</td>
+      <td>3</td>
+      <td>4</td>
+      <td>3</td>
+      <td>4</td>
+      <td>4</td>
+      <td>5</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>5</td>
+      <td>4</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Female</td>
+      <td>Loyal Customer</td>
+      <td>37</td>
+      <td>Business travel</td>
+      <td>Business</td>
+      <td>2810</td>
+      <td>2</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>1</td>
+      <td>4</td>
+      <td>3</td>
+      <td>5</td>
+      <td>5</td>
+      <td>4</td>
+      <td>2</td>
+      <td>1</td>
+      <td>5</td>
+      <td>2</td>
+      <td>18</td>
+      <td>18.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Male</td>
+      <td>Loyal Customer</td>
+      <td>46</td>
+      <td>Business travel</td>
+      <td>Business</td>
+      <td>2622</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>5</td>
+      <td>5</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>5</td>
+      <td>4</td>
+      <td>3</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Female</td>
+      <td>disloyal Customer</td>
+      <td>24</td>
+      <td>Business travel</td>
+      <td>Eco</td>
+      <td>2348</td>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+      <td>2</td>
+      <td>4</td>
+      <td>5</td>
+      <td>3</td>
+      <td>4</td>
+      <td>3</td>
+      <td>10</td>
+      <td>2.0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Female</td>
+      <td>Loyal Customer</td>
+      <td>58</td>
+      <td>Business travel</td>
+      <td>Business</td>
+      <td>105</td>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+      <td>4</td>
+      <td>4</td>
+      <td>5</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>5</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-5888b9a7-47ca-4b6e-a0e3-ec54714966b6')" title="Convert this dataframe to an interactive table." style="display:none;">
+        
+  &lt;svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px"&gt;
+    <path d="M0 0h24v24H0V0z" fill="none" />
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z" /><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z" />
+  &lt;/svg&gt;
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-5888b9a7-47ca-4b6e-a0e3-ec54714966b6 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-5888b9a7-47ca-4b6e-a0e3-ec54714966b6');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>데이터 분석에 기본적으로 필요한 패키지를 임포트하고, 데이터 csv 파일 또한 임포트 합니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;target&#39;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_text output_subarea output_execute_result"><pre>(3000, 22)</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>id랑 target은 분석하는데 필요하지 않거나, 라벨 값이기 때문에 제거합니다.</p> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h1 id="&#45936;&#51060;&#53552;-&#51333;&#47448;&#48324;&#47196;-&#44033;&#44033;-&#51204;&#52376;&#47532;&#54616;&#44592;">&#45936;&#51060;&#53552; &#51333;&#47448;&#48324;&#47196; &#44033;&#44033; &#51204;&#52376;&#47532;&#54616;&#44592;<a class="anchor-link" href="#&#45936;&#51060;&#53552;-&#51333;&#47448;&#48324;&#47196;-&#44033;&#44033;-&#51204;&#52376;&#47532;&#54616;&#44592;"> </a></h1> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">binary_obj_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">,</span> <span class="s1">&#39;Customer Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Type of Travel&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(3000, 22)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>id랑 target은 분석하는데 필요하지 않거나, 라벨 값이기 때문에 제거합니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#45936;&#51060;&#53552;-&#51333;&#47448;&#48324;&#47196;-&#44033;&#44033;-&#51204;&#52376;&#47532;&#54616;&#44592;">&#45936;&#51060;&#53552; &#51333;&#47448;&#48324;&#47196; &#44033;&#44033; &#51204;&#52376;&#47532;&#54616;&#44592;<a class="anchor-link" href="#&#45936;&#51060;&#53552;-&#51333;&#47448;&#48324;&#47196;-&#44033;&#44033;-&#51204;&#52376;&#47532;&#54616;&#44592;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">binary_obj_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Gender&#39;</span><span class="p">,</span> <span class="s1">&#39;Customer Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Type of Travel&#39;</span><span class="p">]</span>
 <span class="n">numerical_columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">,</span> <span class="s1">&#39;Departure Delay in Minutes&#39;</span><span class="p">,</span> <span class="s1">&#39;Arrival Delay in Minutes&#39;</span><span class="p">,</span> <span class="s1">&#39;Flight Distance&#39;</span><span class="p">]</span>
 <span class="n">multical_obj_columns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">binary_obj_columns</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">numerical_columns</span><span class="p">))</span>
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>데이터를 이진분류가 되는 데이터, 두 개를 넘는 항목이 존재하는 데이터, 연속형 데이터 세개로 나눠서 정리합니다.</p> <p>이진분류 데이터는 그대로 유지하고 다중분류 데이터는 라벨인코딩, 연속형 데이터는 4개의 항목으로 그룹핑 하겠습니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">X_train_num</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>데이터를 이진분류가 되는 데이터, 두 개를 넘는 항목이 존재하는 데이터, 연속형 데이터 세개로 나눠서 정리합니다.</p>
+<p>이진분류 데이터는 그대로 유지하고 다중분류 데이터는 라벨인코딩, 연속형 데이터는 4개의 항목으로 그룹핑 하겠습니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">X_train_num</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 <span class="n">X_test_num</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 
 <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">binary_obj_columns</span> <span class="p">:</span> 
@@ -67,7 +654,300 @@
 
 
 <span class="n">X_train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_html rendered_html output_subarea output_execute_result"> <div id="df-aa82b96f-49c2-41f9-9181-1c47b10f12bd"> <div class="colab-df-container"> <div> <style scoped=""> .dataframe tbody tr th:only-of-type { vertical-align: middle; } .dataframe tbody tr th { vertical-align: top; } .dataframe thead th { text-align: right; } </style> <table border="1" class="dataframe"> <thead> <tr style="text-align: right;"> <th></th> <th>Gender</th> <th>Customer Type</th> <th>Type of Travel</th> <th>Age_group</th> <th>Departure Delay in Minutes_group</th> <th>Arrival Delay in Minutes_group</th> <th>Flight Distance_group</th> <th>Leg room service</th> <th>Inflight entertainment</th> <th>Seat comfort</th> <th>On-board service</th> <th>Class</th> <th>Baggage handling</th> <th>Ease of Online booking</th> <th>Cleanliness</th> <th>Checkin service</th> <th>Online support</th> <th>Online boarding</th> <th>Gate location</th> <th>Food and drink</th> <th>Departure/Arrival time convenient</th> <th>Inflight wifi service</th> </tr> </thead> <tbody> <tr> <th>0</th> <td>0</td> <td>0</td> <td>0</td> <td>1</td> <td>1</td> <td>1</td> <td>2</td> <td>4</td> <td>3</td> <td>3</td> <td>4</td> <td>1</td> <td>3</td> <td>4</td> <td>4</td> <td>3</td> <td>3</td> <td>4</td> <td>2</td> <td>3</td> <td>0</td> <td>4</td> </tr> <tr> <th>1</th> <td>0</td> <td>1</td> <td>0</td> <td>2</td> <td>2</td> <td>2</td> <td>4</td> <td>4</td> <td>4</td> <td>2</td> <td>4</td> <td>0</td> <td>1</td> <td>5</td> <td>4</td> <td>0</td> <td>2</td> <td>2</td> <td>3</td> <td>4</td> <td>4</td> <td>1</td> </tr> <tr> <th>2</th> <td>1</td> <td>1</td> <td>0</td> <td>3</td> <td>1</td> <td>1</td> <td>4</td> <td>4</td> <td>5</td> <td>1</td> <td>3</td> <td>0</td> <td>3</td> <td>4</td> <td>3</td> <td>4</td> <td>4</td> <td>3</td> <td>0</td> <td>1</td> <td>1</td> <td>4</td> </tr> <tr> <th>3</th> <td>0</td> <td>0</td> <td>0</td> <td>1</td> <td>1</td> <td>1</td> <td>3</td> <td>4</td> <td>3</td> <td>3</td> <td>1</td> <td>1</td> <td>4</td> <td>3</td> <td>3</td> <td>2</td> <td>2</td> <td>3</td> <td>2</td> <td>3</td> <td>3</td> <td>3</td> </tr> <tr> <th>4</th> <td>0</td> <td>1</td> <td>0</td> <td>4</td> <td>1</td> <td>1</td> <td>1</td> <td>4</td> <td>4</td> <td>3</td> <td>3</td> <td>0</td> <td>3</td> <td>4</td> <td>3</td> <td>3</td> <td>4</td> <td>5</td> <td>2</td> <td>3</td> <td>3</td> <td>4</td> </tr> </tbody> </table> </div> <button class="colab-df-convert" onclick="convertToInteractive('df-aa82b96f-49c2-41f9-9181-1c47b10f12bd')" title="Convert this dataframe to an interactive table." style="display:none;"> &lt;svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24" width="24px"&gt; <path d="M0 0h24v24H0V0z" fill="none" /> <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z" /><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z" /> &lt;/svg&gt; </button> <style> .colab-df-container { display:flex; flex-wrap:wrap; gap: 12px; } .colab-df-convert { background-color: #E8F0FE; border: none; border-radius: 50%; cursor: pointer; display: none; fill: #1967D2; height: 32px; padding: 0 0 0 0; width: 32px; } .colab-df-convert:hover { background-color: #E2EBFA; box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15); fill: #174EA6; } [theme=dark] .colab-df-convert { background-color: #3B4455; fill: #D2E3FC; } [theme=dark] .colab-df-convert:hover { background-color: #434B5C; box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15); filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3)); fill: #FFFFFF; } </style> <script> const buttonEl = document.querySelector('#df-aa82b96f-49c2-41f9-9181-1c47b10f12bd button.colab-df-convert'); buttonEl.style.display = google.colab.kernel.accessAllowed ? 'block' : 'none'; async function convertToInteractive(key) { const element = document.querySelector('#df-aa82b96f-49c2-41f9-9181-1c47b10f12bd'); const dataTable = await google.colab.kernel.invokeFunction('convertToInteractive', [key], {}); if (!dataTable) return; const docLinkHtml = 'Like what you see? Visit the ' + '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>' + ' to learn more about interactive tables.'; element.innerHTML = ''; dataTable['output_type'] = 'display_data'; await google.colab.output.renderOutput(dataTable, element); const docLink = document.createElement('div'); docLink.innerHTML = docLinkHtml; element.appendChild(docLink); } </script> </div> </div> </div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>앞서 말한 방식대로 데이터 종류별로 전처리를 진행했습니다.</p> <p>문자 형식 데이터의 경우 enumerate 함수를 통해 딕셔너리 형태로 바꾼 뒤 map 함수로 매핑시켜 라벨인코딩을 진행했습니다.</p> <p>연속형 데이터의 경우 판다스 내 qcut 함수를 이용해 항목 내 데이터를 4등분하고, apply 함수로 값을 넣어주었습니다.</p> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h1 id="&#45936;&#51060;&#53552;-&#47196;&#45908;-&#47564;&#46308;&#44592;">&#45936;&#51060;&#53552; &#47196;&#45908; &#47564;&#46308;&#44592;<a class="anchor-link" href="#&#45936;&#51060;&#53552;-&#47196;&#45908;-&#47564;&#46308;&#44592;"> </a></h1> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="k">class</span> <span class="nc">CustomDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+  <div id="df-aa82b96f-49c2-41f9-9181-1c47b10f12bd">
+    <div class="colab-df-container">
+      <div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Gender</th>
+      <th>Customer Type</th>
+      <th>Type of Travel</th>
+      <th>Age_group</th>
+      <th>Departure Delay in Minutes_group</th>
+      <th>Arrival Delay in Minutes_group</th>
+      <th>Flight Distance_group</th>
+      <th>Leg room service</th>
+      <th>Inflight entertainment</th>
+      <th>Seat comfort</th>
+      <th>On-board service</th>
+      <th>Class</th>
+      <th>Baggage handling</th>
+      <th>Ease of Online booking</th>
+      <th>Cleanliness</th>
+      <th>Checkin service</th>
+      <th>Online support</th>
+      <th>Online boarding</th>
+      <th>Gate location</th>
+      <th>Food and drink</th>
+      <th>Departure/Arrival time convenient</th>
+      <th>Inflight wifi service</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>4</td>
+      <td>3</td>
+      <td>3</td>
+      <td>4</td>
+      <td>1</td>
+      <td>3</td>
+      <td>4</td>
+      <td>4</td>
+      <td>3</td>
+      <td>3</td>
+      <td>4</td>
+      <td>2</td>
+      <td>3</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>4</td>
+      <td>4</td>
+      <td>4</td>
+      <td>2</td>
+      <td>4</td>
+      <td>0</td>
+      <td>1</td>
+      <td>5</td>
+      <td>4</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>3</td>
+      <td>4</td>
+      <td>4</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>4</td>
+      <td>5</td>
+      <td>1</td>
+      <td>3</td>
+      <td>0</td>
+      <td>3</td>
+      <td>4</td>
+      <td>3</td>
+      <td>4</td>
+      <td>4</td>
+      <td>3</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+      <td>4</td>
+      <td>3</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>3</td>
+      <td>3</td>
+      <td>2</td>
+      <td>2</td>
+      <td>3</td>
+      <td>2</td>
+      <td>3</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>4</td>
+      <td>3</td>
+      <td>3</td>
+      <td>0</td>
+      <td>3</td>
+      <td>4</td>
+      <td>3</td>
+      <td>3</td>
+      <td>4</td>
+      <td>5</td>
+      <td>2</td>
+      <td>3</td>
+      <td>3</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-aa82b96f-49c2-41f9-9181-1c47b10f12bd')" title="Convert this dataframe to an interactive table." style="display:none;">
+        
+  &lt;svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px"&gt;
+    <path d="M0 0h24v24H0V0z" fill="none" />
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z" /><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z" />
+  &lt;/svg&gt;
+      </button>
+      
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-aa82b96f-49c2-41f9-9181-1c47b10f12bd button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-aa82b96f-49c2-41f9-9181-1c47b10f12bd');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+  
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>앞서 말한 방식대로 데이터 종류별로 전처리를 진행했습니다.</p>
+<p>문자 형식 데이터의 경우 enumerate 함수를 통해 딕셔너리 형태로 바꾼 뒤 map 함수로 매핑시켜 라벨인코딩을 진행했습니다.</p>
+<p>연속형 데이터의 경우 판다스 내 qcut 함수를 이용해 항목 내 데이터를 4등분하고, apply 함수로 값을 넣어주었습니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#45936;&#51060;&#53552;-&#47196;&#45908;-&#47564;&#46308;&#44592;">&#45936;&#51060;&#53552; &#47196;&#45908; &#47564;&#46308;&#44592;<a class="anchor-link" href="#&#45936;&#51060;&#53552;-&#47196;&#45908;-&#47564;&#46308;&#44592;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">class</span> <span class="nc">CustomDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cat_cols</span><span class="p">,</span> <span class="n">num_cols</span><span class="p">):</span>
         <span class="c1"># 데이터 셋 정의하는 곳</span>
@@ -82,7 +962,32 @@
     <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
         <span class="c1"># 특정 1개 샘플 가져오는 곳</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_cat</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_num</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>torch.utils.data 내 Dataset 클래스를 상속받아 나만의 데이터 셋 클래스를 만들었습니다.</p> <p>len과 getitem 함수만 정의해준다면 클래스 형식은 자유로우며, 데이터 셋을 x/y로 분류해서 저장할 수 있습니다.</p> <p>이렇게 데이터 셋을 Dataset 클래스를 상속받아 정의한다면 torch.utils.data 내 DataLoader를 사용할 수 있는 것 또한 장점입니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>torch.utils.data 내 Dataset 클래스를 상속받아 나만의 데이터 셋 클래스를 만들었습니다.</p>
+<p>len과 getitem 함수만 정의해준다면 클래스 형식은 자유로우며, 데이터 셋을 x/y로 분류해서 저장할 수 있습니다.</p>
+<p>이렇게 데이터 셋을 Dataset 클래스를 상속받아 정의한다면 torch.utils.data 내 DataLoader를 사용할 수 있는 것 또한 장점입니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 
 <span class="k">def</span> <span class="nf">return_dataloaders</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
     
@@ -109,13 +1014,65 @@
 
 <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span>
 <span class="n">dataloaders</span> <span class="o">=</span> <span class="n">return_dataloaders</span><span class="p">(</span><span class="n">batch_size</span><span class="p">)</span>
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>앞서 정의한 나만의 데이터 셋 CustomDataset 클래스를 이용해 파이토치에서 지원하는 DataLoader를 정의했습니다.</p> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h1 id="&#47784;&#45944;-&#51221;&#51032;">&#47784;&#45944; &#51221;&#51032;<a class="anchor-link" href="#&#47784;&#45944;-&#51221;&#51032;"> </a></h1> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">weights_init</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>앞서 정의한 나만의 데이터 셋 CustomDataset 클래스를 이용해 파이토치에서 지원하는 DataLoader를 정의했습니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#47784;&#45944;-&#51221;&#51032;">&#47784;&#45944; &#51221;&#51032;<a class="anchor-link" href="#&#47784;&#45944;-&#51221;&#51032;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">weights_init</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
     <span class="n">classname</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
     <span class="k">if</span> <span class="n">classname</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;BatchNorm&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="c1"># 클레스의 이름이 BatchNorm 이라면</span>
         <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">normal_</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">)</span>
         <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">constant_</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">bias</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello world!&#39;</span><span class="p">)</span>
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>코드 작성자가 정의한 함수입니다. 가중치 초기값을 주는 함수인 것 같은데 조금 더 공부해야겠습니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="k">class</span> <span class="nc">FC_Block</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>코드 작성자가 정의한 함수입니다. 가중치 초기값을 주는 함수인 것 같은데 조금 더 공부해야겠습니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">class</span> <span class="nc">FC_Block</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inp_dim</span><span class="p">,</span> <span class="n">out_dim</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">FC_Block</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">linear</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">inp_dim</span><span class="p">,</span> <span class="n">out_dim</span><span class="p">)</span>
@@ -125,7 +1082,31 @@
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">x</span>
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>nn.Module 클래스를 상속받아 FC_Block 클래스를 만들었습니다.</p> <p>이 클래스는 inp, out 두 입력값을 받아 히든층을 구현한 뒤 배치 정규화를 진행합니다. 한번에 사용하면 편리하겠죠?</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">inp_oup_dims</span> <span class="o">=</span> <span class="p">[[</span><span class="n">x</span> <span class="p">,</span> <span class="n">x</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X_train</span><span class="p">[</span><span class="n">cat_cols</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>nn.Module 클래스를 상속받아 FC_Block 클래스를 만들었습니다.</p>
+<p>이 클래스는 inp, out 두 입력값을 받아 히든층을 구현한 뒤 배치 정규화를 진행합니다. 한번에 사용하면 편리하겠죠?</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">inp_oup_dims</span> <span class="o">=</span> <span class="p">[[</span><span class="n">x</span> <span class="p">,</span> <span class="n">x</span><span class="o">//</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X_train</span><span class="p">[</span><span class="n">cat_cols</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()]</span>
 <span class="c1"># nunique() 함수는 데이터 프레임 내 항목 개수를 출력해줍니다.</span>
 <span class="c1"># 범주형 변수 항목 수, 항목 수의 절반으로 구성됩니다.</span>
 
@@ -170,7 +1151,37 @@
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">FFC</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>범주형 변수들을 특정 층에 먼저 통과시켜 임베딩을 진행 한 뒤 연속형 변수들과 합쳐줍니다. 그 이후 히든층을 진행시킵니다.</p> <p>부분 부분마다 각주를 달아놓았습니다.</p> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h1 id="&#47784;&#45944;-&#54617;&#49845;">&#47784;&#45944; &#54617;&#49845;<a class="anchor-link" href="#&#47784;&#45944;-&#54617;&#49845;"> </a></h1> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">train_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">dataloader</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">num_epoch</span><span class="p">,</span> <span class="n">early_stop</span><span class="p">,</span> <span class="n">model_path</span><span class="p">):</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>범주형 변수들을 특정 층에 먼저 통과시켜 임베딩을 진행 한 뒤 연속형 변수들과 합쳐줍니다. 그 이후 히든층을 진행시킵니다.</p>
+<p>부분 부분마다 각주를 달아놓았습니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#47784;&#45944;-&#54617;&#49845;">&#47784;&#45944; &#54617;&#49845;<a class="anchor-link" href="#&#47784;&#45944;-&#54617;&#49845;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">train_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">dataloader</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">num_epoch</span><span class="p">,</span> <span class="n">early_stop</span><span class="p">,</span> <span class="n">model_path</span><span class="p">):</span>
 
     <span class="n">best_val_loss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>
     <span class="n">early_stop_epoch</span> <span class="o">=</span> <span class="mi">0</span>
@@ -229,7 +1240,31 @@
 
     <span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">model</span>
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>모델을 실제로 실행시켜주는 함수를 구현했습니다. 짚고 넘어갈 건 데이터와 모델 모두 디바이스에 실어줘야 한다는 점 입니다.</p> <p>상세한 코드 설명은 주석을 달았습니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>모델을 실제로 실행시켜주는 함수를 구현했습니다. 짚고 넘어갈 건 데이터와 모델 모두 디바이스에 실어줘야 한다는 점 입니다.</p>
+<p>상세한 코드 설명은 주석을 달았습니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">model</span><span class="p">):</span>
     <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span> <span class="c1"># 평가하는 부분이기 때문에 가중치 업데이트 기능은 꺼둡니다.</span>
         <span class="n">test_cat</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="n">cat_cols</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="c1"># int 형 데이터</span>
         <span class="n">test_num</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">FloatTensor</span><span class="p">(</span><span class="n">X_test</span><span class="p">[</span><span class="n">num_cols</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="c1"># 실수형 데이터</span>
@@ -238,7 +1273,30 @@
         <span class="n">pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">test_cat</span><span class="p">,</span> <span class="n">test_num</span><span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span> 
 
         <span class="k">return</span> <span class="n">pred</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>테스트 데이터를 평가하는 부분을 함수로 구현했습니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">return_pred_with_random_state</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">:</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>테스트 데이터를 평가하는 부분을 함수로 구현했습니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">return_pred_with_random_state</span><span class="p">(</span><span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">:</span> 
     <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">EMBNN</span><span class="p">(</span><span class="n">inp_oup_dims</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">num_cols</span><span class="p">))</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
     <span class="n">model</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">weights_init</span><span class="p">)</span>
@@ -250,11 +1308,127 @@
                                 <span class="n">num_epoch</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="n">early_stop</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">model_path</span> <span class="o">=</span> <span class="s1">&#39;EMBNN.pth&#39;</span><span class="p">)</span>
     <span class="n">pred</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">trained_model</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">pred</span>
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>배치 사이즈를 정하고, 모델 정의하고, 배치 정규화시 초기 가중치를 넣어주고 데이터를 로더화 시켰습니다.</p> <p>다음으로 옵티마이저 아담을 정의하고, BCELoss 손실함수를 사용했습니다. 그 후 train_model 함수를 이용해 모델 학습을 시켰습니다.</p> <p>마지막으로 predict 함수를 사용해 테스트 데이터의 라벨값을 추출합니다. 작성자가 함수화 한 덕에 이해가 한번에 됩니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">pred</span> <span class="o">=</span> <span class="n">return_pred_with_random_state</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>배치 사이즈를 정하고, 모델 정의하고, 배치 정규화시 초기 가중치를 넣어주고 데이터를 로더화 시켰습니다.</p>
+<p>다음으로 옵티마이저 아담을 정의하고, BCELoss 손실함수를 사용했습니다. 그 후  train_model 함수를 이용해 모델 학습을 시켰습니다.</p>
+<p>마지막으로 predict 함수를 사용해 테스트 데이터의 라벨값을 추출합니다. 작성자가 함수화 한 덕에 이해가 한번에 됩니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">pred</span> <span class="o">=</span> <span class="n">return_pred_with_random_state</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">sample_submission</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pred</span><span class="o">.</span><span class="n">round</span><span class="p">()</span>
 <span class="n">sample_submission</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;airport.csv&#39;</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_subarea output_stream output_stdout output_text"><pre>hello world!
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>hello world!
 hello world!
 hello world!
 On Epoch 29, Best Model Saved with Valid Loss 0.007403 and Acc 90.53%
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>방금 정의한 함수를 사용하기만 하면 결과물이 바로 나옵니다.</p> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h1 id="&#45712;&#45184;&#51216;">&#45712;&#45184;&#51216;<a class="anchor-link" href="#&#45712;&#45184;&#51216;"> </a></h1> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>파이토치를 연습하고자 그동안 튜토리얼 위주로 공부했는데, 실제 대회 데이터에 적용된 코드를 공부하니 느낌이 달랐습니다.</p> <p>이상적으로 잘 전처리 된 튜토리얼 내 데이터와 달리 딥러닝에 적용하기 위해 쓰는 전처리 과정에서 많이 공부 했습니다.</p> <p>실제 데이터 분석은 깨끗한 데이터로 하는 경우는 많이 없으니깐요.</p> <p>100% 이해하지 못한 부분도 일부 존재하는데, 이번이 끝이 아니고 계속 공부할 것이기 때문에 열심히 해보겠습니다.</p> <p>다음에는 자연어 처리 부분을 파이토치를 이용한 공부를 해보겠습니다.</p> <p>끝으로 코드 출처를 밝힙니다. 작성자분에게 감사드립니다.</p> <p><a href="https://dacon.io/competitions/official/235871/codeshare/4517?page=2&amp;dtype=recent">https://dacon.io/competitions/official/235871/codeshare/4517?page=2&amp;dtype=recent</a></p> </div> </div> </div> </div> </div><script src="https://utteranc.es/client.js" repo="KSY1526/myblog" issue-term="pathname" theme="github-dark" crossorigin="anonymous" async> </script> <a class="u-url" href="/myblog/ssuda/jupyter/deep%20learning/pytorch/dacon/2022/02/19/torch2.html" hidden></a> </article> </div><div class="footer-wrapper"> <div class="footer-container"> <footer translate="no"> <div class="footer-text footer-text-centered long-copyright"> <p>&copy; 2022 Your Brand. </p><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en" target="_blank" rel="noopener noreferrer" data-toggle="tooltip" data-placement="top" data-tooltip-no-hide title="Except where otherwise noted, content on this web site is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License."> <img src="/myblog/assets/img/default/cc/cc.svg" alt="cc" width="12" height="12">&nbsp;<img src="/myblog/assets/img/default/cc/by.svg" alt="by" width="12" height="12">&nbsp;<img src="/myblog/assets/img/default/cc/sa.svg" alt="sa" width="12" height="12">&nbsp;<p>Some rights reserved.</p> </a></div> <p class="footer-powered"><span>Pwrd by </span><a href="https://github.com/MrGreensWorkshop/MrGreen-JekyllTheme" target="_blank" rel="noopener noreferrer">Mr. Green</a></p> </footer> </div> </div> <div class="scroll-to-top-container"> <a id="scroll-to-top" href="#main-wrapper" class="hover-effect"><i class="fa fa-angle-up"></i></a> </div></div> <div class="searchbox-container"> <form id="searchbox-form" autocomplete="off"> <input type="search" id="search-box" placeholder="Search" onkeyup="if(this.value!==''){document.getElementById('search-results').style.display = 'block';}" onfocusout="this.value='';" onblur="setTimeout(function(){ document.getElementById('search-results').style.display = 'none'; }, 100);"> <ul id="search-results" ></ul> </form> </div> <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> <script src="/myblog/assets/js/main.js"></script> <script src="/myblog/assets/js/simple-jekyll-search-1.9.2.min.js"></script><script> function loadSearch(jsonData, searchParam) { if (!jsonData) jsonData = '/myblog'; var searchInput = document.getElementById('search-box'); const simpleJekyllSearch = SimpleJekyllSearch({ searchInput: searchInput ,resultsContainer: document.getElementById('search-results') ,json: jsonData ,searchResultTemplate: '<li> <a href="{url}"> <div> <div class="title">{title}</div> <div class="date">{date}</div> <div style="clear: both;"></div> </div> </a></li>' ,noResultsText: '<li>No results found.</li>' ,limit: 10 ,fuzzy: false ,formSubmit: document.getElementById('searchbox-form') }); if (searchParam) { searchInput.value = searchParam; searchInput.focus(); searchInput.disabled=false; setTimeout(function(){ simpleJekyllSearch.search(searchParam); }, 400); } } </script> <script> function isEmpty(value) { if (value === "" || value === null || typeof value === "undefined") return true; return false; } function getQueryParam (param, mach = true) { var queryString = window.location.search.substring(1); if (isEmpty(queryString)) return null; var queries = queryString.split("&"); for (var i in queries) { var pair = decodeURIComponent(queries[i]).split("="); if (mach == true){ if (pair[0] == param) { if (isEmpty(pair[1]) === false) return pair[1]; } }else{ return pair; } break; } return null; } const searchParam = getQueryParam('search'); (async () => { let resp = await fetch('/myblog'); if (!resp.ok) return; let jsonData = await resp.json(); loadSearch(jsonData, searchParam); })(); </script> <script> CookieConsent.consentSettingHtml = "<h5>Cookie settings</h5> <br> <p class=\"info-text\">This website uses cookies to optimize site functionality. It will be activated with your approval. Please click each item below for cookie policy. </p> <table> <tr> <td onclick=\"$('.info[data-consent-info=necessary]').slideToggle();$(this).children('i').toggleClass('fa-plus-square-o').toggleClass('fa-minus-square-o')\"> <i class=\"fa-fw fa fa-plus-square-o\" aria-hidden=\"true\"></i> <p>Strictly necessary cookies</p> </td> <td> <span class=\"active_text\">Always active</span></td> </tr> </table> <div class=\"info\" data-consent-info=\"necessary\"> <p>These cookies are essential for the website function and cannot be disable. They are usually set when site function like color scheme etc. is changed. These cookies do not store any personally identifiable information. Enables storage related to security such as authentication functionality, fraud prevention, and other user protection. </p> </div> <table> <tr> <td onclick=\"$('.info[data-consent-info=analytics]').slideToggle();$(this).children('i').toggleClass('fa-plus-square-o').toggleClass('fa-minus-square-o')\"> <i class=\"fa-fw fa fa-plus-square-o\" aria-hidden=\"true\"></i> <p>Performance cookies</p> </td> <td> <label class=\"slide-switch\"> <input type=\"checkbox\" class=\"checkbox_switch\" checked=\"checked\" data-consent=\"analytics\"> <span class=\"slider\"></span> </label></td> </tr> </table> <div class=\"info\" data-consent-info=\"analytics\"> <p>Enables storage (such as cookies) related to analytics e.g. visit duration. </p> </div> <table> <tr> <td onclick=\"$('.info[data-consent-info=preferences]').slideToggle();$(this).children('i').toggleClass('fa-plus-square-o').toggleClass('fa-minus-square-o')\"> <i class=\"fa-fw fa fa-plus-square-o\" aria-hidden=\"true\"></i> <p>Functionality cookies</p> </td> <td> <label class=\"slide-switch\"> <input type=\"checkbox\" class=\"checkbox_switch\" data-consent=\"preferences\"> <span class=\"slider\"></span> </label></td> </tr> </table> <div class=\"info\" data-consent-info=\"preferences\"> <p>Enables storage that supports the functionality of the website or app e.g. language settings. Enables storage related to personalization e.g. video recommendations. </p> </div> <table> <tr> <td onclick=\"$('.info[data-consent-info=advertising]').slideToggle();$(this).children('i').toggleClass('fa-plus-square-o').toggleClass('fa-minus-square-o')\"> <i class=\"fa-fw fa fa-plus-square-o\" aria-hidden=\"true\"></i> <p>Targeting and advertising cookies</p> </td> <td> <label class=\"slide-switch\"> <input type=\"checkbox\" class=\"checkbox_switch\" data-consent=\"advertising\"> <span class=\"slider\"></span> </label></td> </tr> </table> <div class=\"info\" data-consent-info=\"advertising\"> <p>Enables storage (such as cookies) related to advertising. </p> </div> <br> <div class=\"button-holder\"> <a href=\"javascript:void(0);\" class=\"btn-base btn-left\" onclick=\"CookieConsent.consentSettingDone('deny');\" role=\"button\">Deny</a> <a href=\"javascript:void(0);\" class=\"btn-base btn-priority\" onclick=\"CookieConsent.consentSettingDone('accept');\" role=\"button\">Allow all</a> <a href=\"javascript:void(0);\" class=\"btn-base \" onclick=\"CookieConsent.consentSettingDone('save');\" role=\"button\">Allow selection</a> </div>"; CookieConsent.consentBarHtml = "<div class=\"consent-bar\"> <a class=\"close-button\" href=\"javascript:void(0);\" onclick=\"CookieConsent.hideConsentBar();\"><i class=\"fa-fw fa fa-times\"></i></a> <p>This website uses cookies to optimize site functionality. It will be activated with your approval. </p> <a href=\"javascript:void(0);\" class=\"btn-base \" onclick=\"CookieConsent.consentBarDone('deny');\" role=\"button\">Deny</a> <a href=\"javascript:void(0);\" class=\"btn-base \" onclick=\"CookieConsent.consentBarDone('settings');\" role=\"button\">Customize</a> <a href=\"javascript:void(0);\" class=\"btn-base btn-priority\" onclick=\"CookieConsent.consentBarDone('accept');\" role=\"button\">Allow all</a> </div>"; CookieConsent.consent_items = JSON.parse('{"necessary":{"group":["security_storage"],"value":"granted","wait_for_update":500,"cookie_domain":"","no_check_box":true},"analytics":{"group":["analytics_storage"],"value":"denied"},"preferences":{"group":["functionality_storage","personalization_storage"],"value":"denied"},"advertising":{"group":["ad_storage"],"value":"denied"}}'); CookieConsent.hideConsentBarWithSaveButton = true; const consent_settings = CookieConsent.getConsentSettings(); const default_configs = JSON.parse('{"anonymize_ip":true,"ads_data_redaction":true,"cookie_flags":"SameSite=None;Secure"}'); </script> <script> SlidingMsgBox.html = "<div class=\"slideBox slideBoxTopToDown\"> <a class=\"close-button\" href=\"javascript:void(0);\"><i class=\"fa-fw fa fa-times\"></i></a> </div>"; </script> <script> LangOfferMsgBox.currentPageLng = "en"; LangOfferMsgBox.supportedLngList = [["en","En","/myblog/","View this page in English.","To English home page","Language"],["ja","Jp","/myblog/ja","このページを日本語で表示する。","日本語ホームへ","言語"]]; LangOfferMsgBox.existLng = []; LangOfferMsgBox.disableExtTranslationOffer = true; </script> </body> </html>
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>방금 정의한 함수를 사용하기만 하면 결과물이 바로 나옵니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#45712;&#45184;&#51216;">&#45712;&#45184;&#51216;<a class="anchor-link" href="#&#45712;&#45184;&#51216;"> </a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>파이토치를 연습하고자 그동안 튜토리얼 위주로 공부했는데, 실제 대회 데이터에 적용된 코드를 공부하니 느낌이 달랐습니다.</p>
+<p>이상적으로 잘 전처리 된 튜토리얼 내 데이터와 달리 딥러닝에 적용하기 위해 쓰는 전처리 과정에서 많이 공부 했습니다.</p>
+<p>실제 데이터 분석은 깨끗한 데이터로 하는 경우는 많이 없으니깐요.</p>
+<p>100% 이해하지 못한 부분도 일부 존재하는데, 이번이 끝이 아니고 계속 공부할 것이기 때문에 열심히 해보겠습니다.</p>
+<p>다음에는 자연어 처리 부분을 파이토치를 이용한 공부를 해보겠습니다.</p>
+<p>끝으로 코드 출처를 밝힙니다. 작성자분에게 감사드립니다.</p>
+<p><a href="https://dacon.io/competitions/official/235871/codeshare/4517?page=2&amp;dtype=recent">https://dacon.io/competitions/official/235871/codeshare/4517?page=2&amp;dtype=recent</a></p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><script src="https://utteranc.es/client.js"
+        repo="KSY1526/myblog"
+        issue-term="pathname"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+  <a class="u-url" href="/myblog/ssuda/jupyter/deep%20learning/pytorch/dacon/2022/02/19/torch2.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/myblog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/myblog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/myblog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/https%3A%2F%2Fgithub.com%2FKSY1526%2FMyProject" target="_blank" title="https://github.com/KSY1526/MyProject"><svg class="svg-icon grey"><use xlink:href="/myblog/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

@@ -1,4 +1,172 @@
-<!DOCTYPE html> <html lang="en-US"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title>Your Brand - [Do it 자연어] 2. 숫자 세계로 떠난 자연어</title> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"> <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" media="print" onload="this.media='all'"> <noscript> <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"> </noscript> <link rel="shortcut icon" href="/myblog/assets/img/favicons/favicon.ico"> <link rel="icon" type="image/png" sizes="32x32" href="/myblog/assets/img/favicons/favicon-32x32.png"> <link rel="icon" type="image/png" sizes="16x16" href="/myblog/assets/img/favicons/favicon-16x16.png"> <link rel="apple-touch-icon" sizes="180x180" href="/myblog/assets/img/favicons/apple-touch-icon.png"> <link rel="manifest" href="/myblog/assets/manifest.json"> <meta name="mobile-web-app-capable" content="yes"> <meta name="theme-color" content="#f0f0f0"> <meta name="apple-mobile-web-app-capable" content="yes"> <meta name="apple-mobile-web-app-title" content="Your Brand's App"> <meta name="apple-mobile-web-app-status-bar-style" content="default"> <meta name="msapplication-TileColor" content="#2d89ef"> <meta name="msapplication-starturl" content="/myblog/"> <meta name="application-name" content="Your Brand's App"> <meta name="msapplication-config" content="/myblog/assets/img/favicons/browserconfig.xml"> <meta name="keywords" content=""> <meta name="description" content="Your meta description."> <meta name="robots" content="index, follow"> <meta name="twitter:card" content="summary"> <meta name="twitter:title" content="[Do it 자연어] 2. 숫자 세계로 떠난 자연어"> <meta name="twitter:description" content="Your meta description."> <meta name="twitter:image" content="https://ksy1526.github.io/myblog/assets/img/about/about.jpg"> <meta property="og:site_name" content="Your Brand"> <meta property="og:type" content="website"> <meta property="og:title" content="[Do it 자연어] 2. 숫자 세계로 떠난 자연어"> <meta property="og:description" content="Your meta description."> <meta property="og:url" content="https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/self-attention/tokenizer/2021/12/21/Do_natural_language2.html"> <meta property="og:image" content="https://ksy1526.github.io/myblog/assets/img/about/about.jpg"> <script type="application/ld+json">{ "@context": "https://schema.org" ,"@graph": [ { "@type": "Person" ,"@id": "https://ksy1526.github.io/myblog/#person" ,"name": "Seong Yeon Kim" ,"url": "" ,"image": "https://ksy1526.github.io/myblog/assets/img/about/about.jpg" ,"description": "Your meta description." },{ "@type": "WebSite" ,"@id": "https://ksy1526.github.io/myblog/#website" ,"url": "https://ksy1526.github.io/myblog/" ,"name": "Your Brand" ,"description": "Your meta description." ,"publisher": {"@id": "https://ksy1526.github.io/myblog/#person"} ,"inLanguage": "en-US" ,"copyrightHolder" : {"@id": "https://ksy1526.github.io/myblog/#person"} ,"copyrightYear" : "2022" },{ "@type": "WebPage" ,"@id": "https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/self-attention/tokenizer/2021/12/21/Do_natural_language2.html#webpage" ,"url": "https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/self-attention/tokenizer/2021/12/21/Do_natural_language2.html" ,"name": "[Do it 자연어] 2. 숫자 세계로 떠난 자연어" ,"isPartOf": {"@id": "https://ksy1526.github.io/myblog/#website"} ,"breadcrumb": {"@id": "https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/self-attention/tokenizer/2021/12/21/Do_natural_language2.html#breadcrumb"} ,"primaryImageOfPage": "https://ksy1526.github.io/myblog/assets/img/about/about.jpg" ,"description": "Your meta description." ,"inLanguage": "en-US" ,"potentialAction": { "@type": "ReadAction" ,"target": "https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/self-attention/tokenizer/2021/12/21/Do_natural_language2.html" } },{ "@type": "BreadcrumbList", "@id": "https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/self-attention/tokenizer/2021/12/21/Do_natural_language2.html#breadcrumb", "itemListElement": [ { "@type": "ListItem" ,"position": 1 ,"name": "Home" ,"item": "https://ksy1526.github.io/myblog/" }, { "@type": "ListItem" ,"position": 2 ,"name": "[Do it 자연어] 2. 숫자 세계로 떠난 자연어" } ] } ] }</script> <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <link href="/myblog/assets/css/main.css" rel="stylesheet"><link href="/myblog/assets/css/nav-media.css" rel="stylesheet"> </head> <body > <script src="/myblog/assets/js/color-scheme-attr-init.js" data-mode="false"></script> <nav class="navbar navbar-default top-nav"> <div class="navbar-header"> <button type="button" class="navbar-toggle collapsed pull-left top-nav-menu-toggle" data-toggle="collapse" data-target="#id_top-nav-menu-toggle" aria-expanded="false"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand top-nav-brand" href="/myblog/" translate="no">Your Brand</a> </div> <div class="color_scheme_switch_top_holder" data-toggle="tooltip" data-placement="bottom" title="Color scheme"> <label class="color-scheme-switch hover-effect"> <input type="checkbox" class="checkbox_color_switch" /> <span></span> </label> </div> </nav> <nav id="side-nav-container"> <div class="side-nav"> <div class="side-nav-brand"> <img src="/myblog/assets/img/posts/post_pic1.jpg" alt=""> <div class="brand-holder"> <a href="/myblog/" translate="no">Your Brand</a> </div> <p>&nbsp;Sample</p> <br> </div> <br> <a href="javascript:void(0);" class="side-nav-close"> <i class="fa fa-angle-double-left fa-2x" aria-hidden="true"></i> </a> <hr> <br> <div class="side-nav-buttons"> <ul class="nav nav-pills nav-stacked"> <li ><a href="/myblog/" class=" hover-effect"><i class="fa-fw fa fa-home" aria-hidden="true"></i>Home</a></li><li ><a href="/myblog/page2/" class=" hover-effect"><i class="fa-fw fa fa-home" aria-hidden="true"></i>Home</a></li><li ><a href="/myblog/page3/" class=" hover-effect"><i class="fa-fw fa fa-home" aria-hidden="true"></i>Home</a></li><li ><a href="/myblog/page4/" class=" hover-effect"><i class="fa-fw fa fa-home" aria-hidden="true"></i>Home</a></li><li ><a href="/myblog/page5/" class=" hover-effect"><i class="fa-fw fa fa-home" aria-hidden="true"></i>Home</a></li><li ><a href="/myblog/page6/" class=" hover-effect"><i class="fa-fw fa fa-home" aria-hidden="true"></i>Home</a></li></ul> </div> <br> <br> <hr id="toc-view-top"> <div class="side-nav-footer" translate="no"> <p>&copy; 2022 Your Brand.</p> </div> </div> <div class="side-nav-bottom-buttons-container"> <hr> <ul> <li><div class="color_scheme_switch_side_holder" data-toggle="tooltip" data-placement="top" title="Color scheme"> <label class="color-scheme-switch hover-effect"> <input type="checkbox" class="checkbox_color_switch" /> <span></span> </label> </div> </li><li><div class="cookie-icon hover-effect" onclick="CookieConsent.showSettings();" data-toggle="tooltip" data-placement="top" title="Cookie settings"> <div class="cookie-wrapper"> <i class="fa fa-circle bitten-cookie" aria-hidden="true"></i> <i class="fa fa-circle small-ellipse-icon" aria-hidden="true"></i> <i class="fa fa-spinner inner-icon" aria-hidden="true"></i> <i class="fa fa-circle-thin outer-icon" aria-hidden="true"></i> </div> </div> </li></ul> </div></nav> <div id="main-wrapper"> <div class="main-container"><article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting"> <header class="post-header"> <h1 class="post-title p-name" itemprop="name headline">[Do it 자연어] 2. 숫자 세계로 떠난 자연어</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-12-21T00:00:00-06:00" itemprop="datePublished"> Dec 21, 2021 </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"> <span class="p-author h-card" itemprop="name">Seong Yeon Kim</span></span> • <span class="read-time" title="Estimated read time"> 8 min read </span></p> <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> <a class="category-tags-link" href="/myblog/categories/#book">book</a> &nbsp; <a class="category-tags-link" href="/myblog/categories/#jupyter">jupyter</a> &nbsp; <a class="category-tags-link" href="/myblog/categories/#Do it">Do it</a> &nbsp; <a class="category-tags-link" href="/myblog/categories/#natural language">natural language</a> &nbsp; <a class="category-tags-link" href="/myblog/categories/#BERT">BERT</a> &nbsp; <a class="category-tags-link" href="/myblog/categories/#self-attention">self-attention</a> &nbsp; <a class="category-tags-link" href="/myblog/categories/#tokenizer">tokenizer</a> </p> <div class="pb-5 d-flex flex-wrap flex-justify-end"> </div> </header> <div class="post-content e-content" itemprop="articleBody"> <!-- ################################################# ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ### ################################################# # file to edit: _notebooks/2021-12-21-Do_natural_language2.ipynb --> <div class="container" id="notebook-container"> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p><a href="https://colab.research.google.com/github/KSY1526/myblog/blob/master/_notebooks/2021-12-21-Do_natural_language2.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a></p> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h1 id="&#49472;&#54532;-&#50612;&#53584;&#49440;-&#46041;&#51089;&#50896;&#47532;">&#49472;&#54532; &#50612;&#53584;&#49440; &#46041;&#51089;&#50896;&#47532;<a class="anchor-link" href="#&#49472;&#54532;-&#50612;&#53584;&#49440;-&#46041;&#51089;&#50896;&#47532;"> </a></h1> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>[Do it 자연어] 2. 숫자 세계로 떠난 자연어 | 나의 빅데이터 공부 기록</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="[Do it 자연어] 2. 숫자 세계로 떠난 자연어" />
+<meta name="author" content="Seong Yeon Kim" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다." />
+<meta property="og:description" content="다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다." />
+<link rel="canonical" href="https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/self-attention/tokenizer/2021/12/21/Do_natural_language2.html" />
+<meta property="og:url" content="https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/self-attention/tokenizer/2021/12/21/Do_natural_language2.html" />
+<meta property="og:site_name" content="나의 빅데이터 공부 기록" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-12-21T00:00:00-06:00" />
+<script type="application/ld+json">
+{"datePublished":"2021-12-21T00:00:00-06:00","url":"https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/self-attention/tokenizer/2021/12/21/Do_natural_language2.html","@type":"BlogPosting","headline":"[Do it 자연어] 2. 숫자 세계로 떠난 자연어","dateModified":"2021-12-21T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/self-attention/tokenizer/2021/12/21/Do_natural_language2.html"},"author":{"@type":"Person","name":"Seong Yeon Kim"},"description":"다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/myblog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://ksy1526.github.io/myblog/feed.xml" title="나의 빅데이터 공부 기록" /><link rel="shortcut icon" type="image/x-icon" href="/myblog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/myblog/">나의 빅데이터 공부 기록</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/myblog/about/">About Me</a><a class="page-link" href="/myblog/search/">Search</a><a class="page-link" href="/myblog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">[Do it 자연어] 2. 숫자 세계로 떠난 자연어</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-12-21T00:00:00-06:00" itemprop="datePublished">
+        Dec 21, 2021
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Seong Yeon Kim</span></span>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      8 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/myblog/categories/#book">book</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#jupyter">jupyter</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#Do it">Do it</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#natural language">natural language</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#BERT">BERT</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#self-attention">self-attention</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#tokenizer">tokenizer</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          
+          
+          
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2021-12-21-Do_natural_language2.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="https://colab.research.google.com/github/KSY1526/myblog/blob/master/_notebooks/2021-12-21-Do_natural_language2.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#49472;&#54532;-&#50612;&#53584;&#49440;-&#46041;&#51089;&#50896;&#47532;">&#49472;&#54532; &#50612;&#53584;&#49440; &#46041;&#51089;&#50896;&#47532;<a class="anchor-link" href="#&#49472;&#54532;-&#50612;&#53584;&#49440;-&#46041;&#51089;&#50896;&#47532;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span>
     <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
     <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span>
@@ -25,47 +193,334 @@
     <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">],</span>
     <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
 <span class="p">])</span>
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>변수를 정의합니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">keys</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w_key</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>변수를 정의합니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">keys</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w_key</span><span class="p">)</span>
 <span class="n">querys</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w_query</span><span class="p">)</span>
 <span class="n">values</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w_value</span><span class="p">)</span>
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>쿼리, 키, 벨류를 만듭니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">attn_scores</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">querys</span><span class="p">,</span> <span class="n">keys</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>쿼리, 키, 벨류를 만듭니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">attn_scores</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">querys</span><span class="p">,</span> <span class="n">keys</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
 <span class="n">attn_scores</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_text output_subarea output_execute_result"><pre>tensor([[ 2.,  4.,  4.],
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[ 2.,  4.,  4.],
         [ 4., 16., 12.],
-        [ 4., 12., 10.]])</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>어텐션 스코어를 만듭니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+        [ 4., 12., 10.]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>어텐션 스코어를 만듭니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">torch.nn.functional</span> <span class="kn">import</span> <span class="n">softmax</span>
 <span class="n">key_dim_sqrt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">keys</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">attn_probs</span> <span class="o">=</span> <span class="n">softmax</span><span class="p">(</span><span class="n">attn_scores</span> <span class="o">/</span> <span class="n">key_dim_sqrt</span><span class="p">,</span> <span class="n">dim</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">attn_probs</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_text output_subarea output_execute_result"><pre>tensor([[1.3613e-01, 4.3194e-01, 4.3194e-01],
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[1.3613e-01, 4.3194e-01, 4.3194e-01],
         [8.9045e-04, 9.0884e-01, 9.0267e-02],
-        [7.4449e-03, 7.5471e-01, 2.3785e-01]])</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>소프트맥스 확률값을 만듭니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">weighted_values</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">attn_probs</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+        [7.4449e-03, 7.5471e-01, 2.3785e-01]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>소프트맥스 확률값을 만듭니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">weighted_values</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">attn_probs</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
 <span class="n">weighted_values</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_text output_subarea output_execute_result"><pre>tensor([[1.8639, 6.3194, 1.7042],
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[1.8639, 6.3194, 1.7042],
         [1.9991, 7.8141, 0.2735],
-        [1.9926, 7.4796, 0.7359]])</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>소프트맥스 확률과 밸류를 가중합 하였습니다. 셀프 어텐션에 최종 출력값 입니다.</p> <p>셀프 어텐션은 가중치 행렬(w_..) 3개를 학습 대상으로 생각하고 태스크를 잘 수행하는 방향으로 업데이트 됩니다.</p> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h1 id="&#54588;&#46300;&#54252;&#50892;&#46300;-&#45684;&#47092;-&#45348;&#53944;&#50892;&#53356;-&#44228;&#49328;-&#50696;&#49884;">&#54588;&#46300;&#54252;&#50892;&#46300; &#45684;&#47092; &#45348;&#53944;&#50892;&#53356; &#44228;&#49328; &#50696;&#49884;<a class="anchor-link" href="#&#54588;&#46300;&#54252;&#50892;&#46300;-&#45684;&#47092;-&#45348;&#53944;&#50892;&#53356;-&#44228;&#49328;-&#50696;&#49884;"> </a></h1> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+        [1.9926, 7.4796, 0.7359]])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>소프트맥스 확률과 밸류를 가중합 하였습니다. 셀프 어텐션에 최종 출력값 입니다.</p>
+<p>셀프 어텐션은 가중치 행렬(w_..) 3개를 학습 대상으로 생각하고 태스크를 잘 수행하는 방향으로 업데이트 됩니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#54588;&#46300;&#54252;&#50892;&#46300;-&#45684;&#47092;-&#45348;&#53944;&#50892;&#53356;-&#44228;&#49328;-&#50696;&#49884;">&#54588;&#46300;&#54252;&#50892;&#46300; &#45684;&#47092; &#45348;&#53944;&#50892;&#53356; &#44228;&#49328; &#50696;&#49884;<a class="anchor-link" href="#&#54588;&#46300;&#54252;&#50892;&#46300;-&#45684;&#47092;-&#45348;&#53944;&#50892;&#53356;-&#44228;&#49328;-&#50696;&#49884;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">w1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
 <span class="n">b1</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">w2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
 <span class="n">b2</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>변수를 입력합니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">h_preact</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w1</span><span class="p">)</span> <span class="o">+</span> <span class="n">b1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>변수를 입력합니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">h_preact</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w1</span><span class="p">)</span> <span class="o">+</span> <span class="n">b1</span>
 <span class="n">h</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">h_preact</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">w2</span><span class="p">)</span> <span class="o">+</span> <span class="n">b2</span>
 
 <span class="n">y</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_text output_subarea output_execute_result"><pre>tensor([-8, 12])</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>결과 값 입니다. 여기서 w1, w2, b1, b2가 학습 대상이 됩니다.</p> <p>학습 대상은 태스크를 잘 수행하는 방향으로 업데이트 됩니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">p</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([-8, 12])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>결과 값 입니다. 여기서 w1, w2, b1, b2가 학습 대상이 됩니다.</p>
+<p>학습 대상은 태스크를 잘 수행하는 방향으로 업데이트 됩니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">p</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">)</span>
 <span class="nb">input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">output</span> <span class="o">=</span> <span class="n">m</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_subarea output_stream output_stdout output_text"><pre>tensor([[ 0.3678,  1.6664,  1.6091,  0.1445,  0.9486,  2.0537,  2.4539,  1.4420,
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tensor([[ 0.3678,  1.6664,  1.6091,  0.1445,  0.9486,  2.0537,  2.4539,  1.4420,
           0.9701, -0.2877]])
 tensor([[0.0000, 2.0830, 2.0113, 0.1806, 1.1858, 2.5672, 0.0000, 1.8025, 0.0000,
          -0.0000]])
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>간단한 드롭다웃 예제입니다. p 확률 만큼 뉴련을 0으로 대치해 계산에서 제외합니다.</p> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h1 id="&#47928;&#51109;&#51012;-&#48289;&#53552;&#47196;-&#48320;&#54872;&#54616;&#44592;">&#47928;&#51109;&#51012; &#48289;&#53552;&#47196; &#48320;&#54872;&#54616;&#44592;<a class="anchor-link" href="#&#47928;&#51109;&#51012;-&#48289;&#53552;&#47196;-&#48320;&#54872;&#54616;&#44592;"> </a></h1> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">ratsnlp</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_subarea output_stream output_stdout output_text"><pre>Collecting ratsnlp
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>간단한 드롭다웃 예제입니다. p 확률 만큼 뉴련을 0으로 대치해 계산에서 제외합니다.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="&#47928;&#51109;&#51012;-&#48289;&#53552;&#47196;-&#48320;&#54872;&#54616;&#44592;">&#47928;&#51109;&#51012; &#48289;&#53552;&#47196; &#48320;&#54872;&#54616;&#44592;<a class="anchor-link" href="#&#47928;&#51109;&#51012;-&#48289;&#53552;&#47196;-&#48320;&#54872;&#54616;&#44592;"> </a></h1>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">ratsnlp</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Collecting ratsnlp
   Downloading ratsnlp-0.0.9999-py3-none-any.whl (53 kB)
      |████████████████████████████████| 53 kB 1.6 MB/s 
 Requirement already satisfied: flask&gt;=1.1.4 in /usr/local/lib/python3.7/dist-packages (from ratsnlp) (1.1.4)
@@ -188,12 +643,59 @@ Installing collected packages: multidict, frozenlist, yarl, asynctest, async-tim
     Uninstalling future-0.16.0:
       Successfully uninstalled future-0.16.0
 Successfully installed Korpora-0.2.0 PyYAML-5.4.1 aiohttp-3.8.1 aiosignal-1.2.0 async-timeout-4.0.2 asynctest-0.13.0 dataclasses-0.6 flask-cors-3.0.10 flask-ngrok-0.0.25 frozenlist-1.2.0 fsspec-2021.11.1 future-0.18.2 huggingface-hub-0.2.1 multidict-5.2.0 pyDeprecate-0.3.0 pytorch-lightning-1.3.4 ratsnlp-0.0.9999 sacremoses-0.0.46 tokenizers-0.10.3 torchmetrics-0.6.2 transformers-4.10.0 xlrd-2.0.1 yarl-1.7.2
-</pre></div> </div> <div class="output_area"> </div> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BertTokenizer</span>
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BertTokenizer</span>
 <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">BertTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
     <span class="s1">&#39;beomi/kcbert-base&#39;</span><span class="p">,</span>
     <span class="n">do_lower_case</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span>
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>BERT(kcbert-base) 모델이 쓰는 토크나이저를 선언합니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BertConfig</span><span class="p">,</span> <span class="n">BertModel</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>BERT(kcbert-base) 모델이 쓰는 토크나이저를 선언합니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BertConfig</span><span class="p">,</span> <span class="n">BertModel</span>
 <span class="n">pretrained_model_config</span> <span class="o">=</span> <span class="n">BertConfig</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
     <span class="s1">&#39;beomi/kcbert-base&#39;</span>
 <span class="p">)</span>
@@ -201,11 +703,61 @@ Successfully installed Korpora-0.2.0 PyYAML-5.4.1 aiohttp-3.8.1 aiosignal-1.2.0 
     <span class="s1">&#39;beomi/kcbert-base&#39;</span><span class="p">,</span>
     <span class="n">config</span> <span class="o">=</span> <span class="n">pretrained_model_config</span><span class="p">,</span>
 <span class="p">)</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_subarea output_stream output_stderr output_text"><pre>Some weights of the model checkpoint at beomi/kcbert-base were not used when initializing BertModel: [&#39;cls.predictions.transform.LayerNorm.bias&#39;, &#39;cls.seq_relationship.weight&#39;, &#39;cls.predictions.transform.LayerNorm.weight&#39;, &#39;cls.predictions.transform.dense.bias&#39;, &#39;cls.predictions.decoder.weight&#39;, &#39;cls.seq_relationship.bias&#39;, &#39;cls.predictions.bias&#39;, &#39;cls.predictions.decoder.bias&#39;, &#39;cls.predictions.transform.dense.weight&#39;]
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Some weights of the model checkpoint at beomi/kcbert-base were not used when initializing BertModel: [&#39;cls.predictions.transform.LayerNorm.bias&#39;, &#39;cls.seq_relationship.weight&#39;, &#39;cls.predictions.transform.LayerNorm.weight&#39;, &#39;cls.predictions.transform.dense.bias&#39;, &#39;cls.predictions.decoder.weight&#39;, &#39;cls.seq_relationship.bias&#39;, &#39;cls.predictions.bias&#39;, &#39;cls.predictions.decoder.bias&#39;, &#39;cls.predictions.transform.dense.weight&#39;]
 - This IS expected if you are initializing BertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
 - This IS NOT expected if you are initializing BertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>BERT(kcbert-base) 모델을 읽어들입니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">pretrained_model_config</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_text output_subarea output_execute_result"><pre>BertConfig {
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>BERT(kcbert-base) 모델을 읽어들입니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">pretrained_model_config</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>BertConfig {
   &#34;_name_or_path&#34;: &#34;beomi/kcbert-base&#34;,
   &#34;architectures&#34;: [
     &#34;BertForMaskedLM&#34;
@@ -235,7 +787,33 @@ Successfully installed Korpora-0.2.0 PyYAML-5.4.1 aiohttp-3.8.1 aiosignal-1.2.0 
   &#34;type_vocab_size&#34;: 2,
   &#34;use_cache&#34;: true,
   &#34;vocab_size&#34;: 30000
-}</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>pretrained_model_config은 BERT 모델을 프리트레인 할때 설정했던 내용이 있습니다.</p> <p>블록 수는 12개, 헤드 수는 12개, 어휘 집합 크기는 3만개 입니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;안녕하세요&#39;</span><span class="p">,</span> <span class="s1">&#39;하이!&#39;</span><span class="p">]</span>
+}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>pretrained_model_config은 BERT 모델을 프리트레인 할때 설정했던 내용이 있습니다.</p>
+<p>블록 수는 12개, 헤드 수는 12개, 어휘 집합 크기는 3만개 입니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;안녕하세요&#39;</span><span class="p">,</span> <span class="s1">&#39;하이!&#39;</span><span class="p">]</span>
 <span class="n">features</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span>
     <span class="n">sentences</span><span class="p">,</span>
     <span class="n">max_length</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
@@ -243,10 +821,86 @@ Successfully installed Korpora-0.2.0 PyYAML-5.4.1 aiohttp-3.8.1 aiosignal-1.2.0 
     <span class="n">truncation</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">features</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_text output_subarea output_execute_result"><pre>{&#39;input_ids&#39;: [[2, 19017, 8482, 3, 0, 0, 0, 0, 0, 0], [2, 15830, 5, 3, 0, 0, 0, 0, 0, 0]], &#39;token_type_ids&#39;: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]], &#39;attention_mask&#39;: [[1, 1, 1, 1, 0, 0, 0, 0, 0, 0], [1, 1, 1, 1, 0, 0, 0, 0, 0, 0]]}</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>BERT 모델의 입력값을 만듭니다. 앞서 배운 BERT 모델과 같이 3개의 변수가 나옵니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span> <span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">features</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
-</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>피처를 파이토치에 넣기 위해선 자료형이 텐서(tensor)이여야 하기 때문에 자료형을 변경했습니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">features</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;input_ids&#39;: [[2, 19017, 8482, 3, 0, 0, 0, 0, 0, 0], [2, 15830, 5, 3, 0, 0, 0, 0, 0, 0]], &#39;token_type_ids&#39;: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]], &#39;attention_mask&#39;: [[1, 1, 1, 1, 0, 0, 0, 0, 0, 0], [1, 1, 1, 1, 0, 0, 0, 0, 0, 0]]}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>BERT 모델의 입력값을 만듭니다. 앞서 배운 BERT 모델과 같이 3개의 변수가 나옵니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span> <span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">features</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>피처를 파이토치에 넣기 위해선 자료형이 텐서(tensor)이여야 하기 때문에 자료형을 변경했습니다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">features</span><span class="p">)</span>
 <span class="n">outputs</span>
-</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_text output_subarea output_execute_result"><pre>BaseModelOutputWithPoolingAndCrossAttentions([(&#39;last_hidden_state&#39;,
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>BaseModelOutputWithPoolingAndCrossAttentions([(&#39;last_hidden_state&#39;,
                                                tensor([[[-0.6969, -0.8248,  1.7512,  ..., -0.3732,  0.7399,  1.1907],
                                                         [-1.4803, -0.4398,  0.9444,  ..., -0.7405, -0.0211,  1.3064],
                                                         [-1.4299, -0.5033, -0.2069,  ...,  0.1285, -0.2611,  1.6057],
@@ -266,4 +920,70 @@ Successfully installed Korpora-0.2.0 PyYAML-5.4.1 aiohttp-3.8.1 aiosignal-1.2.0 
                                               (&#39;pooler_output&#39;,
                                                tensor([[-0.1594,  0.0547,  0.1101,  ...,  0.2684,  0.1596, -0.9828],
                                                        [-0.9221,  0.2969, -0.0110,  ...,  0.4291,  0.0311, -0.9955]],
-                                                      grad_fn=&lt;TanhBackward0&gt;))])</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>BERT 모델에 features를 적용했습니다. 두 개의 출력물 last_hidden_state, pooler_output이 나옵니다.</p> <p>전자를 단어수준 임베딩, 후자를 문장수준 임베딩이라고 부릅니다.</p> </div> </div> </div> </div> <script type="application/vnd.jupyter.widget-state+json"> {"0da59d6ac0b645eda02ff616b7971abc": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_5e9b2937df62419bb8e3f4ad63a28b41", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_284cb6ea06164678a231a39fa3badbbb", "IPY_MODEL_46b1632d624a41f981afc70b34c5d392", "IPY_MODEL_26f5bb5bb8244eecbc0244dd31a28c2b"]}}, "5e9b2937df62419bb8e3f4ad63a28b41": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "284cb6ea06164678a231a39fa3badbbb": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_446ef7dad7514a8087ccbdd9ebe26d24", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Downloading: 100%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_a68388898dc2432b8e294b2f32e9586f"}}, "46b1632d624a41f981afc70b34c5d392": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_0fba8a10be57420f8363008d64653824", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "success", "max": 249928, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 249928, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_b1bb0fab81e941d29e3ebb5a779e82bf"}}, "26f5bb5bb8244eecbc0244dd31a28c2b": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_028844b8fc734775bf57628c55a9c293", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 250k/250k [00:00&lt;00:00, 917kB/s]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_b8d048638b484f5ea10c72e7938b0f51"}}, "446ef7dad7514a8087ccbdd9ebe26d24": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "a68388898dc2432b8e294b2f32e9586f": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "0fba8a10be57420f8363008d64653824": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "b1bb0fab81e941d29e3ebb5a779e82bf": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "028844b8fc734775bf57628c55a9c293": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "b8d048638b484f5ea10c72e7938b0f51": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "dd9dcd7f424b43e88b3a3e16e8a3639e": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_e6cd704036dd4fa1a199ffd6d41d1f62", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_43e86ef55a20443e95fc26fdc9cd79be", "IPY_MODEL_d610bf4b890c4d2f9c0f971345139ecc", "IPY_MODEL_8fb2e7f455f74bc094c783f46ba52bc8"]}}, "e6cd704036dd4fa1a199ffd6d41d1f62": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "43e86ef55a20443e95fc26fdc9cd79be": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_24fc6b001d9645069b779f8bac5f59c6", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Downloading: 100%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_50da1d8d06a34ba1a790fc81821729d8"}}, "d610bf4b890c4d2f9c0f971345139ecc": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_9482dd905b0e4085bd481d3681a61620", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "success", "max": 49, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 49, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_fdeb78443ac64f059c9b2bf543c83b6a"}}, "8fb2e7f455f74bc094c783f46ba52bc8": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_2738d816d5a04dfcb69e43b6af2ff576", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 49.0/49.0 [00:00&lt;00:00, 529B/s]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_f2b3f7b94e3d41cb87b62d637c5f86fe"}}, "24fc6b001d9645069b779f8bac5f59c6": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "50da1d8d06a34ba1a790fc81821729d8": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "9482dd905b0e4085bd481d3681a61620": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "fdeb78443ac64f059c9b2bf543c83b6a": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "2738d816d5a04dfcb69e43b6af2ff576": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "f2b3f7b94e3d41cb87b62d637c5f86fe": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "f7a8baa0ecb24420bfc40b35df77339a": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_38122f3d9b614e3dac2c6049ac76968b", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_4400559eb05141fa8aee1f013fedc52d", "IPY_MODEL_64ed33614c1547788b1de9385a955165", "IPY_MODEL_191caf783cba49848736e27db7ab9d0b"]}}, "38122f3d9b614e3dac2c6049ac76968b": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "4400559eb05141fa8aee1f013fedc52d": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_0321a949977341eea10a059f5d85c7b5", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Downloading: 100%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_6105f05320044510aa00a7c3bc6aa6c0"}}, "64ed33614c1547788b1de9385a955165": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_8de698f138954695825bc0db7bdbffab", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "success", "max": 619, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 619, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_a143855565324b79b24a957e37ee2ba4"}}, "191caf783cba49848736e27db7ab9d0b": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_999a27b6e43740e9926209e0f6f830f2", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 619/619 [00:00&lt;00:00, 10.3kB/s]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_8e262095c706433baa5e1142815f3d24"}}, "0321a949977341eea10a059f5d85c7b5": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "6105f05320044510aa00a7c3bc6aa6c0": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "8de698f138954695825bc0db7bdbffab": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "a143855565324b79b24a957e37ee2ba4": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "999a27b6e43740e9926209e0f6f830f2": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "8e262095c706433baa5e1142815f3d24": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "87f604df177c464aafa141fab0d0873a": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_8e3ed55e7dc54de38f0eb342337ab88b", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_5144e40bfa544d7380d4b1fac6793eb9", "IPY_MODEL_115655484b534aa6935590b50567242d", "IPY_MODEL_9c1c9b5bff3842e0911431c325556ef7"]}}, "8e3ed55e7dc54de38f0eb342337ab88b": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "5144e40bfa544d7380d4b1fac6793eb9": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_762d024230684356a85c7a463ed2e62a", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Downloading: 100%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_466b433628fe4385a9ef5201302b1de7"}}, "115655484b534aa6935590b50567242d": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_a9c67eb8b0414ba9afd6f23bc650855a", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "success", "max": 438218004, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 438218004, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_3153910941f74f139b3f1394664adb40"}}, "9c1c9b5bff3842e0911431c325556ef7": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_c7ac4ae80e304ac5b3533dada8341abf", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 438M/438M [00:13&lt;00:00, 27.1MB/s]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_13c45824e4db480ca1fa79b3e69281cf"}}, "762d024230684356a85c7a463ed2e62a": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "466b433628fe4385a9ef5201302b1de7": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "a9c67eb8b0414ba9afd6f23bc650855a": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "3153910941f74f139b3f1394664adb40": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "c7ac4ae80e304ac5b3533dada8341abf": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "13c45824e4db480ca1fa79b3e69281cf": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}} </script> </div><script src="https://utteranc.es/client.js" repo="KSY1526/myblog" issue-term="pathname" theme="github-dark" crossorigin="anonymous" async> </script> <a class="u-url" href="/myblog/book/jupyter/do%20it/natural%20language/bert/self-attention/tokenizer/2021/12/21/Do_natural_language2.html" hidden></a> </article> </div><div class="footer-wrapper"> <div class="footer-container"> <footer translate="no"> <div class="footer-text footer-text-centered long-copyright"> <p>&copy; 2022 Your Brand. </p><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en" target="_blank" rel="noopener noreferrer" data-toggle="tooltip" data-placement="top" data-tooltip-no-hide title="Except where otherwise noted, content on this web site is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License."> <img src="/myblog/assets/img/default/cc/cc.svg" alt="cc" width="12" height="12">&nbsp;<img src="/myblog/assets/img/default/cc/by.svg" alt="by" width="12" height="12">&nbsp;<img src="/myblog/assets/img/default/cc/sa.svg" alt="sa" width="12" height="12">&nbsp;<p>Some rights reserved.</p> </a></div> <p class="footer-powered"><span>Pwrd by </span><a href="https://github.com/MrGreensWorkshop/MrGreen-JekyllTheme" target="_blank" rel="noopener noreferrer">Mr. Green</a></p> </footer> </div> </div> <div class="scroll-to-top-container"> <a id="scroll-to-top" href="#main-wrapper" class="hover-effect"><i class="fa fa-angle-up"></i></a> </div></div> <div class="searchbox-container"> <form id="searchbox-form" autocomplete="off"> <input type="search" id="search-box" placeholder="Search" onkeyup="if(this.value!==''){document.getElementById('search-results').style.display = 'block';}" onfocusout="this.value='';" onblur="setTimeout(function(){ document.getElementById('search-results').style.display = 'none'; }, 100);"> <ul id="search-results" ></ul> </form> </div> <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> <script src="/myblog/assets/js/main.js"></script> <script src="/myblog/assets/js/simple-jekyll-search-1.9.2.min.js"></script><script> function loadSearch(jsonData, searchParam) { if (!jsonData) jsonData = '/myblog'; var searchInput = document.getElementById('search-box'); const simpleJekyllSearch = SimpleJekyllSearch({ searchInput: searchInput ,resultsContainer: document.getElementById('search-results') ,json: jsonData ,searchResultTemplate: '<li> <a href="{url}"> <div> <div class="title">{title}</div> <div class="date">{date}</div> <div style="clear: both;"></div> </div> </a></li>' ,noResultsText: '<li>No results found.</li>' ,limit: 10 ,fuzzy: false ,formSubmit: document.getElementById('searchbox-form') }); if (searchParam) { searchInput.value = searchParam; searchInput.focus(); searchInput.disabled=false; setTimeout(function(){ simpleJekyllSearch.search(searchParam); }, 400); } } </script> <script> function isEmpty(value) { if (value === "" || value === null || typeof value === "undefined") return true; return false; } function getQueryParam (param, mach = true) { var queryString = window.location.search.substring(1); if (isEmpty(queryString)) return null; var queries = queryString.split("&"); for (var i in queries) { var pair = decodeURIComponent(queries[i]).split("="); if (mach == true){ if (pair[0] == param) { if (isEmpty(pair[1]) === false) return pair[1]; } }else{ return pair; } break; } return null; } const searchParam = getQueryParam('search'); (async () => { let resp = await fetch('/myblog'); if (!resp.ok) return; let jsonData = await resp.json(); loadSearch(jsonData, searchParam); })(); </script> <script> CookieConsent.consentSettingHtml = "<h5>Cookie settings</h5> <br> <p class=\"info-text\">This website uses cookies to optimize site functionality. It will be activated with your approval. Please click each item below for cookie policy. </p> <table> <tr> <td onclick=\"$('.info[data-consent-info=necessary]').slideToggle();$(this).children('i').toggleClass('fa-plus-square-o').toggleClass('fa-minus-square-o')\"> <i class=\"fa-fw fa fa-plus-square-o\" aria-hidden=\"true\"></i> <p>Strictly necessary cookies</p> </td> <td> <span class=\"active_text\">Always active</span></td> </tr> </table> <div class=\"info\" data-consent-info=\"necessary\"> <p>These cookies are essential for the website function and cannot be disable. They are usually set when site function like color scheme etc. is changed. These cookies do not store any personally identifiable information. Enables storage related to security such as authentication functionality, fraud prevention, and other user protection. </p> </div> <table> <tr> <td onclick=\"$('.info[data-consent-info=analytics]').slideToggle();$(this).children('i').toggleClass('fa-plus-square-o').toggleClass('fa-minus-square-o')\"> <i class=\"fa-fw fa fa-plus-square-o\" aria-hidden=\"true\"></i> <p>Performance cookies</p> </td> <td> <label class=\"slide-switch\"> <input type=\"checkbox\" class=\"checkbox_switch\" checked=\"checked\" data-consent=\"analytics\"> <span class=\"slider\"></span> </label></td> </tr> </table> <div class=\"info\" data-consent-info=\"analytics\"> <p>Enables storage (such as cookies) related to analytics e.g. visit duration. </p> </div> <table> <tr> <td onclick=\"$('.info[data-consent-info=preferences]').slideToggle();$(this).children('i').toggleClass('fa-plus-square-o').toggleClass('fa-minus-square-o')\"> <i class=\"fa-fw fa fa-plus-square-o\" aria-hidden=\"true\"></i> <p>Functionality cookies</p> </td> <td> <label class=\"slide-switch\"> <input type=\"checkbox\" class=\"checkbox_switch\" data-consent=\"preferences\"> <span class=\"slider\"></span> </label></td> </tr> </table> <div class=\"info\" data-consent-info=\"preferences\"> <p>Enables storage that supports the functionality of the website or app e.g. language settings. Enables storage related to personalization e.g. video recommendations. </p> </div> <table> <tr> <td onclick=\"$('.info[data-consent-info=advertising]').slideToggle();$(this).children('i').toggleClass('fa-plus-square-o').toggleClass('fa-minus-square-o')\"> <i class=\"fa-fw fa fa-plus-square-o\" aria-hidden=\"true\"></i> <p>Targeting and advertising cookies</p> </td> <td> <label class=\"slide-switch\"> <input type=\"checkbox\" class=\"checkbox_switch\" data-consent=\"advertising\"> <span class=\"slider\"></span> </label></td> </tr> </table> <div class=\"info\" data-consent-info=\"advertising\"> <p>Enables storage (such as cookies) related to advertising. </p> </div> <br> <div class=\"button-holder\"> <a href=\"javascript:void(0);\" class=\"btn-base btn-left\" onclick=\"CookieConsent.consentSettingDone('deny');\" role=\"button\">Deny</a> <a href=\"javascript:void(0);\" class=\"btn-base btn-priority\" onclick=\"CookieConsent.consentSettingDone('accept');\" role=\"button\">Allow all</a> <a href=\"javascript:void(0);\" class=\"btn-base \" onclick=\"CookieConsent.consentSettingDone('save');\" role=\"button\">Allow selection</a> </div>"; CookieConsent.consentBarHtml = "<div class=\"consent-bar\"> <a class=\"close-button\" href=\"javascript:void(0);\" onclick=\"CookieConsent.hideConsentBar();\"><i class=\"fa-fw fa fa-times\"></i></a> <p>This website uses cookies to optimize site functionality. It will be activated with your approval. </p> <a href=\"javascript:void(0);\" class=\"btn-base \" onclick=\"CookieConsent.consentBarDone('deny');\" role=\"button\">Deny</a> <a href=\"javascript:void(0);\" class=\"btn-base \" onclick=\"CookieConsent.consentBarDone('settings');\" role=\"button\">Customize</a> <a href=\"javascript:void(0);\" class=\"btn-base btn-priority\" onclick=\"CookieConsent.consentBarDone('accept');\" role=\"button\">Allow all</a> </div>"; CookieConsent.consent_items = JSON.parse('{"necessary":{"group":["security_storage"],"value":"granted","wait_for_update":500,"cookie_domain":"","no_check_box":true},"analytics":{"group":["analytics_storage"],"value":"denied"},"preferences":{"group":["functionality_storage","personalization_storage"],"value":"denied"},"advertising":{"group":["ad_storage"],"value":"denied"}}'); CookieConsent.hideConsentBarWithSaveButton = true; const consent_settings = CookieConsent.getConsentSettings(); const default_configs = JSON.parse('{"anonymize_ip":true,"ads_data_redaction":true,"cookie_flags":"SameSite=None;Secure"}'); </script> <script> SlidingMsgBox.html = "<div class=\"slideBox slideBoxTopToDown\"> <a class=\"close-button\" href=\"javascript:void(0);\"><i class=\"fa-fw fa fa-times\"></i></a> </div>"; </script> <script> LangOfferMsgBox.currentPageLng = "en"; LangOfferMsgBox.supportedLngList = [["en","En","/myblog/","View this page in English.","To English home page","Language"],["ja","Jp","/myblog/ja","このページを日本語で表示する。","日本語ホームへ","言語"]]; LangOfferMsgBox.existLng = []; LangOfferMsgBox.disableExtTranslationOffer = true; </script> </body> </html>
+                                                      grad_fn=&lt;TanhBackward0&gt;))])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>BERT 모델에 features를 적용했습니다. 두 개의 출력물 last_hidden_state, pooler_output이 나옵니다.</p>
+<p>전자를 단어수준 임베딩, 후자를 문장수준 임베딩이라고 부릅니다.</p>
+
+</div>
+</div>
+</div>
+</div>
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"0da59d6ac0b645eda02ff616b7971abc": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_5e9b2937df62419bb8e3f4ad63a28b41", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_284cb6ea06164678a231a39fa3badbbb", "IPY_MODEL_46b1632d624a41f981afc70b34c5d392", "IPY_MODEL_26f5bb5bb8244eecbc0244dd31a28c2b"]}}, "5e9b2937df62419bb8e3f4ad63a28b41": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "284cb6ea06164678a231a39fa3badbbb": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_446ef7dad7514a8087ccbdd9ebe26d24", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Downloading: 100%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_a68388898dc2432b8e294b2f32e9586f"}}, "46b1632d624a41f981afc70b34c5d392": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_0fba8a10be57420f8363008d64653824", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "success", "max": 249928, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 249928, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_b1bb0fab81e941d29e3ebb5a779e82bf"}}, "26f5bb5bb8244eecbc0244dd31a28c2b": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_028844b8fc734775bf57628c55a9c293", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 250k/250k [00:00&lt;00:00, 917kB/s]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_b8d048638b484f5ea10c72e7938b0f51"}}, "446ef7dad7514a8087ccbdd9ebe26d24": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "a68388898dc2432b8e294b2f32e9586f": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "0fba8a10be57420f8363008d64653824": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "b1bb0fab81e941d29e3ebb5a779e82bf": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "028844b8fc734775bf57628c55a9c293": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "b8d048638b484f5ea10c72e7938b0f51": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "dd9dcd7f424b43e88b3a3e16e8a3639e": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_e6cd704036dd4fa1a199ffd6d41d1f62", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_43e86ef55a20443e95fc26fdc9cd79be", "IPY_MODEL_d610bf4b890c4d2f9c0f971345139ecc", "IPY_MODEL_8fb2e7f455f74bc094c783f46ba52bc8"]}}, "e6cd704036dd4fa1a199ffd6d41d1f62": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "43e86ef55a20443e95fc26fdc9cd79be": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_24fc6b001d9645069b779f8bac5f59c6", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Downloading: 100%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_50da1d8d06a34ba1a790fc81821729d8"}}, "d610bf4b890c4d2f9c0f971345139ecc": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_9482dd905b0e4085bd481d3681a61620", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "success", "max": 49, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 49, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_fdeb78443ac64f059c9b2bf543c83b6a"}}, "8fb2e7f455f74bc094c783f46ba52bc8": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_2738d816d5a04dfcb69e43b6af2ff576", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 49.0/49.0 [00:00&lt;00:00, 529B/s]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_f2b3f7b94e3d41cb87b62d637c5f86fe"}}, "24fc6b001d9645069b779f8bac5f59c6": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "50da1d8d06a34ba1a790fc81821729d8": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "9482dd905b0e4085bd481d3681a61620": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "fdeb78443ac64f059c9b2bf543c83b6a": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "2738d816d5a04dfcb69e43b6af2ff576": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "f2b3f7b94e3d41cb87b62d637c5f86fe": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "f7a8baa0ecb24420bfc40b35df77339a": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_38122f3d9b614e3dac2c6049ac76968b", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_4400559eb05141fa8aee1f013fedc52d", "IPY_MODEL_64ed33614c1547788b1de9385a955165", "IPY_MODEL_191caf783cba49848736e27db7ab9d0b"]}}, "38122f3d9b614e3dac2c6049ac76968b": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "4400559eb05141fa8aee1f013fedc52d": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_0321a949977341eea10a059f5d85c7b5", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Downloading: 100%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_6105f05320044510aa00a7c3bc6aa6c0"}}, "64ed33614c1547788b1de9385a955165": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_8de698f138954695825bc0db7bdbffab", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "success", "max": 619, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 619, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_a143855565324b79b24a957e37ee2ba4"}}, "191caf783cba49848736e27db7ab9d0b": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_999a27b6e43740e9926209e0f6f830f2", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 619/619 [00:00&lt;00:00, 10.3kB/s]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_8e262095c706433baa5e1142815f3d24"}}, "0321a949977341eea10a059f5d85c7b5": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "6105f05320044510aa00a7c3bc6aa6c0": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "8de698f138954695825bc0db7bdbffab": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "a143855565324b79b24a957e37ee2ba4": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "999a27b6e43740e9926209e0f6f830f2": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "8e262095c706433baa5e1142815f3d24": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "87f604df177c464aafa141fab0d0873a": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_8e3ed55e7dc54de38f0eb342337ab88b", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_5144e40bfa544d7380d4b1fac6793eb9", "IPY_MODEL_115655484b534aa6935590b50567242d", "IPY_MODEL_9c1c9b5bff3842e0911431c325556ef7"]}}, "8e3ed55e7dc54de38f0eb342337ab88b": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "5144e40bfa544d7380d4b1fac6793eb9": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_762d024230684356a85c7a463ed2e62a", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Downloading: 100%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_466b433628fe4385a9ef5201302b1de7"}}, "115655484b534aa6935590b50567242d": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_a9c67eb8b0414ba9afd6f23bc650855a", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "success", "max": 438218004, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 438218004, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_3153910941f74f139b3f1394664adb40"}}, "9c1c9b5bff3842e0911431c325556ef7": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_c7ac4ae80e304ac5b3533dada8341abf", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 438M/438M [00:13&lt;00:00, 27.1MB/s]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_13c45824e4db480ca1fa79b3e69281cf"}}, "762d024230684356a85c7a463ed2e62a": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "466b433628fe4385a9ef5201302b1de7": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "a9c67eb8b0414ba9afd6f23bc650855a": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "3153910941f74f139b3f1394664adb40": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "c7ac4ae80e304ac5b3533dada8341abf": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "13c45824e4db480ca1fa79b3e69281cf": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}}
+</script>
+
+
+
+  </div><script src="https://utteranc.es/client.js"
+        repo="KSY1526/myblog"
+        issue-term="pathname"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+  <a class="u-url" href="/myblog/book/jupyter/do%20it/natural%20language/bert/self-attention/tokenizer/2021/12/21/Do_natural_language2.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/myblog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/myblog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/myblog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/https%3A%2F%2Fgithub.com%2FKSY1526%2FMyProject" target="_blank" title="https://github.com/KSY1526/MyProject"><svg class="svg-icon grey"><use xlink:href="/myblog/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
