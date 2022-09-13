@@ -1,188 +1,5 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>[Do it 자연어] 6. 질문에 답하는 웹 서비스 만들기 | 나의 빅데이터 공부 기록</title>
-<meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="[Do it 자연어] 6. 질문에 답하는 웹 서비스 만들기" />
-<meta name="author" content="Seong Yeon Kim" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다." />
-<meta property="og:description" content="다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다." />
-<link rel="canonical" href="https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/tokenizer/web/answer/2021/12/28/Do_natural_language6.html" />
-<meta property="og:url" content="https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/tokenizer/web/answer/2021/12/28/Do_natural_language6.html" />
-<meta property="og:site_name" content="나의 빅데이터 공부 기록" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-12-28T00:00:00-06:00" />
-<script type="application/ld+json">
-{"datePublished":"2021-12-28T00:00:00-06:00","url":"https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/tokenizer/web/answer/2021/12/28/Do_natural_language6.html","@type":"BlogPosting","headline":"[Do it 자연어] 6. 질문에 답하는 웹 서비스 만들기","dateModified":"2021-12-28T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/tokenizer/web/answer/2021/12/28/Do_natural_language6.html"},"author":{"@type":"Person","name":"Seong Yeon Kim"},"description":"다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다.","@context":"https://schema.org"}</script>
-<!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/myblog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://ksy1526.github.io/myblog/feed.xml" title="나의 빅데이터 공부 기록" /><link rel="shortcut icon" type="image/x-icon" href="/myblog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        renderMathInElement( document.body, {
-        delimiters: [
-            {left: "$$", right: "$$", display: true},
-            {left: "[%", right: "%]", display: true},
-            {left: "$", right: "$", display: false}
-        ]}
-        );
-    });
-    </script>
-
-
-<script>
-function wrap_img(fn) {
-    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
-        var elements = document.querySelectorAll(".post img");
-        Array.prototype.forEach.call(elements, function(el, i) {
-            if (el.getAttribute("title") && (el.className != "emoji")) {
-                const caption = document.createElement('figcaption');
-                var node = document.createTextNode(el.getAttribute("title"));
-                caption.appendChild(node);
-                const wrapper = document.createElement('figure');
-                wrapper.className = 'image';
-                el.parentNode.insertBefore(wrapper, el);
-                el.parentNode.removeChild(el);
-                wrapper.appendChild(el);
-                wrapper.appendChild(caption);
-            }
-        });
-    } else { document.addEventListener('DOMContentLoaded', fn); }
-}
-window.onload = wrap_img;
-</script>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function(){
-    // add link icon to anchor tags
-    var elem = document.querySelectorAll(".anchor-link")
-    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
-    });
-</script>
-</head>
-<body><header class="site-header">
-
-  <div class="wrapper"><a class="site-title" rel="author" href="/myblog/">나의 빅데이터 공부 기록</a><nav class="site-nav">
-        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
-        <label for="nav-trigger">
-          <span class="menu-icon">
-            <svg viewBox="0 0 18 15" width="18px" height="15px">
-              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
-            </svg>
-          </span>
-        </label>
-
-        <div class="trigger"><a class="page-link" href="/myblog/about/">About Me</a><a class="page-link" href="/myblog/search/">Search</a><a class="page-link" href="/myblog/categories/">Tags</a></div>
-      </nav></div>
-</header>
-<main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-
-  <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">[Do it 자연어] 6. 질문에 답하는 웹 서비스 만들기</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-12-28T00:00:00-06:00" itemprop="datePublished">
-        Dec 28, 2021
-      </time>• 
-          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <span class="p-author h-card" itemprop="name">Seong Yeon Kim</span></span>
-       • <span class="read-time" title="Estimated read time">
-    
-    
-      67 min read
-    
-</span></p>
-
-    
-      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
-      
-        <a class="category-tags-link" href="/myblog/categories/#book">book</a>
-        &nbsp;
-      
-        <a class="category-tags-link" href="/myblog/categories/#jupyter">jupyter</a>
-        &nbsp;
-      
-        <a class="category-tags-link" href="/myblog/categories/#Do it">Do it</a>
-        &nbsp;
-      
-        <a class="category-tags-link" href="/myblog/categories/#natural language">natural language</a>
-        &nbsp;
-      
-        <a class="category-tags-link" href="/myblog/categories/#BERT">BERT</a>
-        &nbsp;
-      
-        <a class="category-tags-link" href="/myblog/categories/#tokenizer">tokenizer</a>
-        &nbsp;
-      
-        <a class="category-tags-link" href="/myblog/categories/#web">web</a>
-        &nbsp;
-      
-        <a class="category-tags-link" href="/myblog/categories/#answer">answer</a>
-        
-      
-      </p>
-    
-
-    
-      
-        <div class="pb-5 d-flex flex-wrap flex-justify-end">
-          
-          
-          
-        </div>
-      </header>
-
-  <div class="post-content e-content" itemprop="articleBody">
-    <!--
-#################################################
-### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
-#################################################
-# file to edit: _notebooks/2021-12-28-Do_natural_language6.ipynb
--->
-
-<div class="container" id="notebook-container">
-        
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><a href="https://colab.research.google.com/github/KSY1526/myblog/blob/master/_notebooks/2021-12-28-Do_natural_language6.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="&#47784;&#45944;-&#54872;&#44221;&#49444;&#51221;">&#47784;&#45944; &#54872;&#44221;&#49444;&#51221;<a class="anchor-link" href="#&#47784;&#45944;-&#54872;&#44221;&#49444;&#51221;"> </a></h1>
-</div>
-</div>
-</div>
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">ratsnlp</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Collecting ratsnlp
+<!DOCTYPE html> <html lang="en-US"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title>Your Brand - [Do it 자연어] 6. 질문에 답하는 웹 서비스 만들기</title> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"> <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" media="print" onload="this.media='all'"> <noscript> <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"> </noscript> <link rel="shortcut icon" href="/myblog/assets/img/favicons/favicon.ico"> <link rel="icon" type="image/png" sizes="32x32" href="/myblog/assets/img/favicons/favicon-32x32.png"> <link rel="icon" type="image/png" sizes="16x16" href="/myblog/assets/img/favicons/favicon-16x16.png"> <link rel="apple-touch-icon" sizes="180x180" href="/myblog/assets/img/favicons/apple-touch-icon.png"> <link rel="manifest" href="/myblog/assets/manifest.json"> <meta name="mobile-web-app-capable" content="yes"> <meta name="theme-color" content="#f0f0f0"> <meta name="apple-mobile-web-app-capable" content="yes"> <meta name="apple-mobile-web-app-title" content="Your Brand's App"> <meta name="apple-mobile-web-app-status-bar-style" content="default"> <meta name="msapplication-TileColor" content="#2d89ef"> <meta name="msapplication-starturl" content="/myblog/"> <meta name="application-name" content="Your Brand's App"> <meta name="msapplication-config" content="/myblog/assets/img/favicons/browserconfig.xml"> <meta name="keywords" content=""> <meta name="description" content="Your meta description."> <meta name="robots" content="index, follow"> <meta name="twitter:card" content="summary"> <meta name="twitter:title" content="[Do it 자연어] 6. 질문에 답하는 웹 서비스 만들기"> <meta name="twitter:description" content="Your meta description."> <meta name="twitter:image" content="https://ksy1526.github.io/myblog/assets/img/about/about.jpg"> <meta property="og:site_name" content="Your Brand"> <meta property="og:type" content="website"> <meta property="og:title" content="[Do it 자연어] 6. 질문에 답하는 웹 서비스 만들기"> <meta property="og:description" content="Your meta description."> <meta property="og:url" content="https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/tokenizer/web/answer/2021/12/28/Do_natural_language6.html"> <meta property="og:image" content="https://ksy1526.github.io/myblog/assets/img/about/about.jpg"> <script type="application/ld+json">{ "@context": "https://schema.org" ,"@graph": [ { "@type": "Person" ,"@id": "https://ksy1526.github.io/myblog/#person" ,"name": "Seong Yeon Kim" ,"url": "" ,"image": "https://ksy1526.github.io/myblog/assets/img/about/about.jpg" ,"description": "Your meta description." },{ "@type": "WebSite" ,"@id": "https://ksy1526.github.io/myblog/#website" ,"url": "https://ksy1526.github.io/myblog/" ,"name": "Your Brand" ,"description": "Your meta description." ,"publisher": {"@id": "https://ksy1526.github.io/myblog/#person"} ,"inLanguage": "en-US" ,"copyrightHolder" : {"@id": "https://ksy1526.github.io/myblog/#person"} ,"copyrightYear" : "2022" },{ "@type": "WebPage" ,"@id": "https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/tokenizer/web/answer/2021/12/28/Do_natural_language6.html#webpage" ,"url": "https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/tokenizer/web/answer/2021/12/28/Do_natural_language6.html" ,"name": "[Do it 자연어] 6. 질문에 답하는 웹 서비스 만들기" ,"isPartOf": {"@id": "https://ksy1526.github.io/myblog/#website"} ,"breadcrumb": {"@id": "https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/tokenizer/web/answer/2021/12/28/Do_natural_language6.html#breadcrumb"} ,"primaryImageOfPage": "https://ksy1526.github.io/myblog/assets/img/about/about.jpg" ,"description": "Your meta description." ,"inLanguage": "en-US" ,"potentialAction": { "@type": "ReadAction" ,"target": "https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/tokenizer/web/answer/2021/12/28/Do_natural_language6.html" } },{ "@type": "BreadcrumbList", "@id": "https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/tokenizer/web/answer/2021/12/28/Do_natural_language6.html#breadcrumb", "itemListElement": [ { "@type": "ListItem" ,"position": 1 ,"name": "Home" ,"item": "https://ksy1526.github.io/myblog/" }, { "@type": "ListItem" ,"position": 2 ,"name": "[Do it 자연어] 6. 질문에 답하는 웹 서비스 만들기" } ] } ] }</script> <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <link href="/myblog/assets/css/main.css" rel="stylesheet"><link href="/myblog/assets/css/nav-media.css" rel="stylesheet"> </head> <body > <script src="/myblog/assets/js/color-scheme-attr-init.js" data-mode="false"></script> <nav class="navbar navbar-default top-nav"> <div class="navbar-header"> <button type="button" class="navbar-toggle collapsed pull-left top-nav-menu-toggle" data-toggle="collapse" data-target="#id_top-nav-menu-toggle" aria-expanded="false"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand top-nav-brand" href="/myblog/" translate="no">Your Brand</a> </div> <div class="color_scheme_switch_top_holder" data-toggle="tooltip" data-placement="bottom" title="Color scheme"> <label class="color-scheme-switch hover-effect"> <input type="checkbox" class="checkbox_color_switch" /> <span></span> </label> </div> </nav> <nav id="side-nav-container"> <div class="side-nav"> <div class="side-nav-brand"> <img src="/myblog/assets/img/posts/post_pic1.jpg" alt=""> <div class="brand-holder"> <a href="/myblog/" translate="no">Your Brand</a> </div> <p>&nbsp;Sample</p> <br> </div> <br> <a href="javascript:void(0);" class="side-nav-close"> <i class="fa fa-angle-double-left fa-2x" aria-hidden="true"></i> </a> <hr> <br> <div class="side-nav-buttons"> <ul class="nav nav-pills nav-stacked"> <li ><a href="/myblog/" class=" hover-effect"><i class="fa-fw fa fa-home" aria-hidden="true"></i>Home</a></li><li ><a href="/myblog/page2/" class=" hover-effect"><i class="fa-fw fa fa-home" aria-hidden="true"></i>Home</a></li><li ><a href="/myblog/page3/" class=" hover-effect"><i class="fa-fw fa fa-home" aria-hidden="true"></i>Home</a></li><li ><a href="/myblog/page4/" class=" hover-effect"><i class="fa-fw fa fa-home" aria-hidden="true"></i>Home</a></li><li ><a href="/myblog/page5/" class=" hover-effect"><i class="fa-fw fa fa-home" aria-hidden="true"></i>Home</a></li><li ><a href="/myblog/page6/" class=" hover-effect"><i class="fa-fw fa fa-home" aria-hidden="true"></i>Home</a></li></ul> </div> <br> <br> <hr id="toc-view-top"> <div class="side-nav-footer" translate="no"> <p>&copy; 2022 Your Brand.</p> </div> </div> <div class="side-nav-bottom-buttons-container"> <hr> <ul> <li><div class="color_scheme_switch_side_holder" data-toggle="tooltip" data-placement="top" title="Color scheme"> <label class="color-scheme-switch hover-effect"> <input type="checkbox" class="checkbox_color_switch" /> <span></span> </label> </div> </li><li><div class="cookie-icon hover-effect" onclick="CookieConsent.showSettings();" data-toggle="tooltip" data-placement="top" title="Cookie settings"> <div class="cookie-wrapper"> <i class="fa fa-circle bitten-cookie" aria-hidden="true"></i> <i class="fa fa-circle small-ellipse-icon" aria-hidden="true"></i> <i class="fa fa-spinner inner-icon" aria-hidden="true"></i> <i class="fa fa-circle-thin outer-icon" aria-hidden="true"></i> </div> </div> </li></ul> </div></nav> <div id="main-wrapper"> <div class="main-container"><article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting"> <header class="post-header"> <h1 class="post-title p-name" itemprop="name headline">[Do it 자연어] 6. 질문에 답하는 웹 서비스 만들기</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-12-28T00:00:00-06:00" itemprop="datePublished"> Dec 28, 2021 </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"> <span class="p-author h-card" itemprop="name">Seong Yeon Kim</span></span> • <span class="read-time" title="Estimated read time"> 67 min read </span></p> <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> <a class="category-tags-link" href="/myblog/categories/#book">book</a> &nbsp; <a class="category-tags-link" href="/myblog/categories/#jupyter">jupyter</a> &nbsp; <a class="category-tags-link" href="/myblog/categories/#Do it">Do it</a> &nbsp; <a class="category-tags-link" href="/myblog/categories/#natural language">natural language</a> &nbsp; <a class="category-tags-link" href="/myblog/categories/#BERT">BERT</a> &nbsp; <a class="category-tags-link" href="/myblog/categories/#tokenizer">tokenizer</a> &nbsp; <a class="category-tags-link" href="/myblog/categories/#web">web</a> &nbsp; <a class="category-tags-link" href="/myblog/categories/#answer">answer</a> </p> <div class="pb-5 d-flex flex-wrap flex-justify-end"> </div> </header> <div class="post-content e-content" itemprop="articleBody"> <!-- ################################################# ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ### ################################################# # file to edit: _notebooks/2021-12-28-Do_natural_language6.ipynb --> <div class="container" id="notebook-container"> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p><a href="https://colab.research.google.com/github/KSY1526/myblog/blob/master/_notebooks/2021-12-28-Do_natural_language6.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a></p> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h1 id="&#47784;&#45944;-&#54872;&#44221;&#49444;&#51221;">&#47784;&#45944; &#54872;&#44221;&#49444;&#51221;<a class="anchor-link" href="#&#47784;&#45944;-&#54872;&#44221;&#49444;&#51221;"> </a></h1> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">ratsnlp</span>
+</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_subarea output_stream output_stdout output_text"><pre>Collecting ratsnlp
   Downloading ratsnlp-0.0.9999-py3-none-any.whl (53 kB)
      |████████████████████████████████| 53 kB 1.4 MB/s 
 Collecting Korpora&gt;=0.2.0
@@ -305,56 +122,10 @@ Installing collected packages: multidict, frozenlist, yarl, asynctest, async-tim
     Uninstalling future-0.16.0:
       Successfully uninstalled future-0.16.0
 Successfully installed Korpora-0.2.0 PyYAML-5.4.1 aiohttp-3.8.1 aiosignal-1.2.0 async-timeout-4.0.2 asynctest-0.13.0 dataclasses-0.6 flask-cors-3.0.10 flask-ngrok-0.0.25 frozenlist-1.2.0 fsspec-2021.11.1 future-0.18.2 huggingface-hub-0.2.1 multidict-5.2.0 pyDeprecate-0.3.0 pytorch-lightning-1.3.4 ratsnlp-0.0.9999 sacremoses-0.0.46 tokenizers-0.10.3 torchmetrics-0.6.2 transformers-4.10.0 xlrd-2.0.1 yarl-1.7.2
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    
-
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
 <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/gdrive&#39;</span><span class="p">,</span> <span class="n">force_remount</span><span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Mounted at /gdrive
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    
-
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">torch.cuda</span> <span class="kn">import</span> <span class="n">is_available</span>
+</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_subarea output_stream output_stdout output_text"><pre>Mounted at /gdrive
+</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">torch.cuda</span> <span class="kn">import</span> <span class="n">is_available</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">ratsnlp.nlpbook.qa</span> <span class="kn">import</span> <span class="n">QATrainArguments</span>
 
@@ -371,160 +142,21 @@ Successfully installed Korpora-0.2.0 PyYAML-5.4.1 aiohttp-3.8.1 aiosignal-1.2.0 
     <span class="n">tpu_cores</span><span class="o">=</span><span class="mi">0</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="mi">8</span><span class="p">,</span>
     <span class="n">seed</span> <span class="o">=</span> <span class="mi">7</span><span class="p">,</span>
 <span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>kcbert-base 모델로 프리트레인을 하였습니다.</p>
-<p>LG CNS가 공개한 korqued 1.0 데이터를 활용해 모델을 구축하겠습니다.</p>
-<p>여기서 doc_stride은 만약 입력문장이 128보다 클 경우 지문 앞 부분을 입력값(64)만큼 제거하고 잘린 뒷부분을 가져와 붙입니다.</p>
-
-</div>
-</div>
-</div>
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">ratsnlp</span> <span class="kn">import</span> <span class="n">nlpbook</span>
+</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>kcbert-base 모델로 프리트레인을 하였습니다.</p> <p>LG CNS가 공개한 korqued 1.0 데이터를 활용해 모델을 구축하겠습니다.</p> <p>여기서 doc_stride은 만약 입력문장이 128보다 클 경우 지문 앞 부분을 입력값(64)만큼 제거하고 잘린 뒷부분을 가져와 붙입니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">ratsnlp</span> <span class="kn">import</span> <span class="n">nlpbook</span>
 <span class="n">nlpbook</span><span class="o">.</span><span class="n">set_seed</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
 <span class="n">nlpbook</span><span class="o">.</span><span class="n">set_logger</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>INFO:ratsnlp:Training/evaluation parameters QATrainArguments(pretrained_model_name=&#39;beomi/kcbert-base&#39;, downstream_corpus_name=&#39;korquad-v1&#39;, downstream_corpus_root_dir=&#39;/root/Korpora&#39;, downstream_model_dir=&#39;/gdrive/My Drive/nlpbook/checkpoing-qa&#39;, max_seq_length=128, doc_stride=64, max_query_length=32, threads=4, cpu_workers=2, save_top_k=1, monitor=&#39;min val_loss&#39;, seed=7, overwrite_cache=False, force_download=False, test_mode=False, learning_rate=5e-05, epochs=3, batch_size=32, fp16=False, tpu_cores=0, tqdm_enabled=True)
+</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_subarea output_stream output_stderr output_text"><pre>INFO:ratsnlp:Training/evaluation parameters QATrainArguments(pretrained_model_name=&#39;beomi/kcbert-base&#39;, downstream_corpus_name=&#39;korquad-v1&#39;, downstream_corpus_root_dir=&#39;/root/Korpora&#39;, downstream_model_dir=&#39;/gdrive/My Drive/nlpbook/checkpoing-qa&#39;, max_seq_length=128, doc_stride=64, max_query_length=32, threads=4, cpu_workers=2, save_top_k=1, monitor=&#39;min val_loss&#39;, seed=7, overwrite_cache=False, force_download=False, test_mode=False, learning_rate=5e-05, epochs=3, batch_size=32, fp16=False, tpu_cores=0, tqdm_enabled=True)
 INFO:ratsnlp:Training/evaluation parameters QATrainArguments(pretrained_model_name=&#39;beomi/kcbert-base&#39;, downstream_corpus_name=&#39;korquad-v1&#39;, downstream_corpus_root_dir=&#39;/root/Korpora&#39;, downstream_model_dir=&#39;/gdrive/My Drive/nlpbook/checkpoing-qa&#39;, max_seq_length=128, doc_stride=64, max_query_length=32, threads=4, cpu_workers=2, save_top_k=1, monitor=&#39;min val_loss&#39;, seed=7, overwrite_cache=False, force_download=False, test_mode=False, learning_rate=5e-05, epochs=3, batch_size=32, fp16=False, tpu_cores=0, tqdm_enabled=True)
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>set seed: 7
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>랜덤시드와 로거를 설정했습니다.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="&#47568;&#47945;&#52824;-&#45236;&#47140;&#48155;&#44592;">&#47568;&#47945;&#52824; &#45236;&#47140;&#48155;&#44592;<a class="anchor-link" href="#&#47568;&#47945;&#52824;-&#45236;&#47140;&#48155;&#44592;"> </a></h1>
-</div>
-</div>
-</div>
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">nlpbook</span><span class="o">.</span><span class="n">download_downstream_dataset</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Downloading: 38.5MB [00:00, 71.7MB/s]
+</pre></div> </div> <div class="output_area"> <div class="output_subarea output_stream output_stdout output_text"><pre>set seed: 7
+</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>랜덤시드와 로거를 설정했습니다.</p> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h1 id="&#47568;&#47945;&#52824;-&#45236;&#47140;&#48155;&#44592;">&#47568;&#47945;&#52824; &#45236;&#47140;&#48155;&#44592;<a class="anchor-link" href="#&#47568;&#47945;&#52824;-&#45236;&#47140;&#48155;&#44592;"> </a></h1> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">nlpbook</span><span class="o">.</span><span class="n">download_downstream_dataset</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_subarea output_stream output_stderr output_text"><pre>Downloading: 38.5MB [00:00, 71.7MB/s]
 Downloading: 3.88MB [00:00, 60.6MB/s]                  
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>downstream_corpus_name='korquad-v1' 로 선언된 데이터를 내려받습니다.</p>
-
-</div>
-</div>
-</div>
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BertTokenizer</span>
+</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>downstream_corpus_name='korquad-v1' 로 선언된 데이터를 내려받습니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BertTokenizer</span>
 <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">BertTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
     <span class="n">args</span><span class="o">.</span><span class="n">pretrained_model_name</span><span class="p">,</span>
     <span class="n">do_lower_case</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>pretrained_model_name= 'beomi/kcbert-base' 로 프리트레인을 해서 토크나이저를 생성합니다.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="&#54617;&#49845;-&#45936;&#51060;&#53552;-&#44396;&#52629;">&#54617;&#49845; &#45936;&#51060;&#53552; &#44396;&#52629;<a class="anchor-link" href="#&#54617;&#49845;-&#45936;&#51060;&#53552;-&#44396;&#52629;"> </a></h1>
-</div>
-</div>
-</div>
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">ratsnlp.nlpbook.qa</span> <span class="kn">import</span> <span class="n">KorQuADV1Corpus</span><span class="p">,</span> <span class="n">QADataset</span>
+</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>pretrained_model_name= 'beomi/kcbert-base' 로 프리트레인을 해서 토크나이저를 생성합니다.</p> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h1 id="&#54617;&#49845;-&#45936;&#51060;&#53552;-&#44396;&#52629;">&#54617;&#49845; &#45936;&#51060;&#53552; &#44396;&#52629;<a class="anchor-link" href="#&#54617;&#49845;-&#45936;&#51060;&#53552;-&#44396;&#52629;"> </a></h1> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">ratsnlp.nlpbook.qa</span> <span class="kn">import</span> <span class="n">KorQuADV1Corpus</span><span class="p">,</span> <span class="n">QADataset</span>
 <span class="n">corpus</span> <span class="o">=</span> <span class="n">KorQuADV1Corpus</span><span class="p">()</span> <span class="c1"># JSON 포멧의 KorQuAD 데이터를 읽어옴.</span>
 <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">QADataset</span><span class="p">(</span>
     <span class="n">args</span> <span class="o">=</span> <span class="n">args</span><span class="p">,</span>
@@ -532,19 +164,7 @@ Downloading: 3.88MB [00:00, 60.6MB/s]
     <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">,</span>
     <span class="n">mode</span> <span class="o">=</span> <span class="s1">&#39;train&#39;</span>
 <span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>INFO:ratsnlp:Creating features from train dataset file at /root/Korpora/korquad-v1
+</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_subarea output_stream output_stderr output_text"><pre>INFO:ratsnlp:Creating features from train dataset file at /root/Korpora/korquad-v1
 INFO:ratsnlp:Creating features from train dataset file at /root/Korpora/korquad-v1
 100%|██████████| 1420/1420 [00:00&lt;00:00, 4333.43it/s]
 convert squad examples to features: 100%|██████████| 57688/57688 [07:46&lt;00:00, 123.67it/s]
@@ -632,34 +252,7 @@ INFO:ratsnlp:Saving features into cached file, it could take a lot of time...
 INFO:ratsnlp:Saving features into cached file, it could take a lot of time...
 INFO:ratsnlp:Saving features into cached file /root/Korpora/korquad-v1/cached_train_BertTokenizer_maxlen-128_maxquerylen-32_docstride-64_korquad-v1_question-answering [took 33.918 s]
 INFO:ratsnlp:Saving features into cached file /root/Korpora/korquad-v1/cached_train_BertTokenizer_maxlen-128_maxquerylen-32_docstride-64_korquad-v1_question-answering [took 33.918 s]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>KorQuADV1Corpus 클레스로 KorQuAD 데이터를 QAExample 형식으로 읽어옵니다.</p>
-<p>여기서 QAExample은 질문, 지문, 정답, 정답의 시작 인덱스로 구성됩니다.</p>
-<p>QADataset에서는 QAExample 형식으로 입력된 값들을 QAFeatures 형태로 가공해서 모델이 학습할 수 있도록 변환해줍니다.</p>
-<p>여기서 QAFeatures은 input_ids(입력 시퀀스), attention_mask(패딩 여부), token_type_ids(세그먼트 정보, 질문은 0/지문은 1), start(or end)_positions(정답 문장 위치) 총 5개로 구성됩니다.</p>
-
-</div>
-</div>
-</div>
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span><span class="p">,</span> <span class="n">RandomSampler</span>
+</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>KorQuADV1Corpus 클레스로 KorQuAD 데이터를 QAExample 형식으로 읽어옵니다.</p> <p>여기서 QAExample은 질문, 지문, 정답, 정답의 시작 인덱스로 구성됩니다.</p> <p>QADataset에서는 QAExample 형식으로 입력된 값들을 QAFeatures 형태로 가공해서 모델이 학습할 수 있도록 변환해줍니다.</p> <p>여기서 QAFeatures은 input_ids(입력 시퀀스), attention_mask(패딩 여부), token_type_ids(세그먼트 정보, 질문은 0/지문은 1), start(or end)_positions(정답 문장 위치) 총 5개로 구성됩니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span><span class="p">,</span> <span class="n">RandomSampler</span>
 <span class="n">train_dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span>
     <span class="n">train_dataset</span><span class="p">,</span>
     <span class="n">batch_size</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span>
@@ -668,36 +261,7 @@ INFO:ratsnlp:Saving features into cached file /root/Korpora/korquad-v1/cached_tr
     <span class="n">drop_last</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">num_workers</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">cpu_workers</span><span class="p">,</span>
 <span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>데이터 로더를 구축했습니다. 일정 배치 크기만큼 뽑아서 모델을 학습시킬 수 있어요.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="&#54217;&#44032;-&#45936;&#51060;&#53552;-&#44396;&#52629;">&#54217;&#44032; &#45936;&#51060;&#53552; &#44396;&#52629;<a class="anchor-link" href="#&#54217;&#44032;-&#45936;&#51060;&#53552;-&#44396;&#52629;"> </a></h1>
-</div>
-</div>
-</div>
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">SequentialSampler</span>
+</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>데이터 로더를 구축했습니다. 일정 배치 크기만큼 뽑아서 모델을 학습시킬 수 있어요.</p> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h1 id="&#54217;&#44032;-&#45936;&#51060;&#53552;-&#44396;&#52629;">&#54217;&#44032; &#45936;&#51060;&#53552; &#44396;&#52629;<a class="anchor-link" href="#&#54217;&#44032;-&#45936;&#51060;&#53552;-&#44396;&#52629;"> </a></h1> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">SequentialSampler</span>
 
 <span class="n">val_dataset</span> <span class="o">=</span> <span class="n">QADataset</span><span class="p">(</span>
     <span class="n">args</span> <span class="o">=</span> <span class="n">args</span><span class="p">,</span>
@@ -714,51 +278,9 @@ INFO:ratsnlp:Saving features into cached file /root/Korpora/korquad-v1/cached_tr
     <span class="n">drop_last</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="n">num_workers</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">cpu_workers</span><span class="p">,</span>
 <span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>INFO:ratsnlp:Loading features from cached file /root/Korpora/korquad-v1/cached_val_BertTokenizer_maxlen-128_maxquerylen-32_docstride-64_korquad-v1_question-answering [took 4.527 s]
+</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_subarea output_stream output_stderr output_text"><pre>INFO:ratsnlp:Loading features from cached file /root/Korpora/korquad-v1/cached_val_BertTokenizer_maxlen-128_maxquerylen-32_docstride-64_korquad-v1_question-answering [took 4.527 s]
 INFO:ratsnlp:Loading features from cached file /root/Korpora/korquad-v1/cached_val_BertTokenizer_maxlen-128_maxquerylen-32_docstride-64_korquad-v1_question-answering [took 4.527 s]
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>테스트용 데이터와 로더를 만들었습니다.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="&#47784;&#45944;-&#54617;&#49845;">&#47784;&#45944; &#54617;&#49845;<a class="anchor-link" href="#&#47784;&#45944;-&#54617;&#49845;"> </a></h1>
-</div>
-</div>
-</div>
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BertConfig</span><span class="p">,</span> <span class="n">BertForQuestionAnswering</span>
+</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>테스트용 데이터와 로더를 만들었습니다.</p> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h1 id="&#47784;&#45944;-&#54617;&#49845;">&#47784;&#45944; &#54617;&#49845;<a class="anchor-link" href="#&#47784;&#45944;-&#54617;&#49845;"> </a></h1> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BertConfig</span><span class="p">,</span> <span class="n">BertForQuestionAnswering</span>
 <span class="n">pretrained_model_config</span> <span class="o">=</span> <span class="n">BertConfig</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
     <span class="n">args</span><span class="o">.</span><span class="n">pretrained_model_name</span><span class="p">,</span>
 <span class="p">)</span>
@@ -767,108 +289,22 @@ INFO:ratsnlp:Loading features from cached file /root/Korpora/korquad-v1/cached_v
     <span class="n">args</span><span class="o">.</span><span class="n">pretrained_model_name</span><span class="p">,</span>
     <span class="n">config</span> <span class="o">=</span> <span class="n">pretrained_model_config</span><span class="p">,</span>
 <span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Some weights of the model checkpoint at beomi/kcbert-base were not used when initializing BertForQuestionAnswering: [&#39;cls.seq_relationship.weight&#39;, &#39;cls.predictions.decoder.bias&#39;, &#39;cls.predictions.transform.dense.weight&#39;, &#39;cls.predictions.transform.LayerNorm.weight&#39;, &#39;cls.predictions.bias&#39;, &#39;cls.predictions.transform.LayerNorm.bias&#39;, &#39;cls.seq_relationship.bias&#39;, &#39;cls.predictions.decoder.weight&#39;, &#39;cls.predictions.transform.dense.bias&#39;]
+</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_subarea output_stream output_stderr output_text"><pre>Some weights of the model checkpoint at beomi/kcbert-base were not used when initializing BertForQuestionAnswering: [&#39;cls.seq_relationship.weight&#39;, &#39;cls.predictions.decoder.bias&#39;, &#39;cls.predictions.transform.dense.weight&#39;, &#39;cls.predictions.transform.LayerNorm.weight&#39;, &#39;cls.predictions.bias&#39;, &#39;cls.predictions.transform.LayerNorm.bias&#39;, &#39;cls.seq_relationship.bias&#39;, &#39;cls.predictions.decoder.weight&#39;, &#39;cls.predictions.transform.dense.bias&#39;]
 - This IS expected if you are initializing BertForQuestionAnswering from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
 - This IS NOT expected if you are initializing BertForQuestionAnswering from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
 Some weights of BertForQuestionAnswering were not initialized from the model checkpoint at beomi/kcbert-base and are newly initialized: [&#39;qa_outputs.bias&#39;, &#39;qa_outputs.weight&#39;]
 You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>윗 코드는 BERT 모델을 프리트레인 했고, 아랫 코드는 윗 코드로 만든 모델에 질의응답용 태스크 모듈을 덧붙힌 모델을 만들었습니다.</p>
-<p>지금 만든 모델은 빈 껍데기(초기 모델) 입니다.</p>
-
-</div>
-</div>
-</div>
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">ratsnlp.nlpbook.qa</span> <span class="kn">import</span> <span class="n">QATask</span>
+</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>윗 코드는 BERT 모델을 프리트레인 했고, 아랫 코드는 윗 코드로 만든 모델에 질의응답용 태스크 모듈을 덧붙힌 모델을 만들었습니다.</p> <p>지금 만든 모델은 빈 껍데기(초기 모델) 입니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">ratsnlp.nlpbook.qa</span> <span class="kn">import</span> <span class="n">QATask</span>
 <span class="n">task</span> <span class="o">=</span> <span class="n">QATask</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
 <span class="n">trainer</span> <span class="o">=</span> <span class="n">nlpbook</span><span class="o">.</span><span class="n">get_trainer</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>GPU available: True, used: True
+</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_subarea output_stream output_stderr output_text"><pre>GPU available: True, used: True
 TPU available: False, using: 0 TPU cores
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>옵티마이저와 러닝레이트를 정한 태스크를 만들어줍니다.</p>
-<p>그 후 트레이너를 정의하는데 모델에 세부 설정을 해줍니다.(GPU, 체크포인트 등)</p>
-
-</div>
-</div>
-</div>
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>옵티마이저와 러닝레이트를 정한 태스크를 만들어줍니다.</p> <p>그 후 트레이너를 정의하는데 모델에 세부 설정을 해줍니다.(GPU, 체크포인트 등)</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
     <span class="n">task</span><span class="p">,</span>
     <span class="n">train_dataloader</span> <span class="o">=</span> <span class="n">train_dataloader</span><span class="p">,</span>
     <span class="n">val_dataloaders</span> <span class="o">=</span> <span class="n">val_dataloader</span><span class="p">,</span>
 <span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+</pre></div> </div> </div> </div> <div class="output_wrapper"> <div class="output"> <div class="output_area"> <div class="output_subarea output_stream output_stderr output_text"><pre>LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
 
   | Name  | Type                     | Params
 ---------------------------------------------------
@@ -878,81 +314,19 @@ TPU available: False, using: 0 TPU cores
 0         Non-trainable params
 108 M     Total params
 433.318   Total estimated model params size (MB)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="&#51656;&#47928;&#50640;-&#45813;&#54616;&#45716;-&#50937;-&#49436;&#48708;&#49828;-&#47564;&#46308;&#44592;">&#51656;&#47928;&#50640; &#45813;&#54616;&#45716; &#50937; &#49436;&#48708;&#49828; &#47564;&#46308;&#44592;<a class="anchor-link" href="#&#51656;&#47928;&#50640;-&#45813;&#54616;&#45716;-&#50937;-&#49436;&#48708;&#49828;-&#47564;&#46308;&#44592;"> </a></h1>
-</div>
-</div>
-</div>
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">ratsnlp.nlpbook.ner</span> <span class="kn">import</span> <span class="n">QADeployArguments</span>
+</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <h1 id="&#51656;&#47928;&#50640;-&#45813;&#54616;&#45716;-&#50937;-&#49436;&#48708;&#49828;-&#47564;&#46308;&#44592;">&#51656;&#47928;&#50640; &#45813;&#54616;&#45716; &#50937; &#49436;&#48708;&#49828; &#47564;&#46308;&#44592;<a class="anchor-link" href="#&#51656;&#47928;&#50640;-&#45813;&#54616;&#45716;-&#50937;-&#49436;&#48708;&#49828;-&#47564;&#46308;&#44592;"> </a></h1> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">ratsnlp.nlpbook.ner</span> <span class="kn">import</span> <span class="n">QADeployArguments</span>
 <span class="n">args</span> <span class="o">=</span> <span class="n">QADeployArguments</span><span class="p">(</span>
     <span class="n">pretrained_model_name</span><span class="o">=</span> <span class="s1">&#39;beomi/kcbert-base&#39;</span><span class="p">,</span>
     <span class="n">downstream_model_dir</span><span class="o">=</span><span class="s1">&#39;/gdrive/My Drive/nlpbook/checkpoint-ner&#39;</span><span class="p">,</span>
     <span class="n">max_seq_length</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>
     <span class="n">max_query_length</span> <span class="o">=</span> <span class="mi">32</span><span class="p">,</span>
 <span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    
-
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BertTokenizer</span>
+</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BertTokenizer</span>
 <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">BertTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
     <span class="n">args</span><span class="o">.</span><span class="n">pretrained_model_name</span><span class="p">,</span>
     <span class="n">do_lower_case</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
 <span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>인퍼런스 설정, 토크나이저 초기화를 합니다.</p>
-
-</div>
-</div>
-</div>
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>인퍼런스 설정, 토크나이저 초기화를 합니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
 <span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">BertConfig</span><span class="p">,</span> <span class="n">BertForQuestionAnswering</span>
 <span class="n">fine_tuned_model_ckpt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span>
     <span class="n">args</span><span class="o">.</span><span class="n">downstream_model_checkpoint_fpath</span><span class="p">,</span>
@@ -964,55 +338,9 @@ TPU available: False, using: 0 TPU cores
 <span class="p">)</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">BertForQuestionAnswering</span><span class="p">(</span><span class="n">pretrained_model_config</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>체크포인트 로드, BERT 설정 로드, BERT 모델 초기화를 했습니다.</p>
-
-</div>
-</div>
-</div>
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">({</span><span class="n">k</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;model.&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">):</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">fine_tuned_model_ckpt</span><span class="p">[</span><span class="s1">&#39;state_dict&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">ithes</span><span class="p">()})</span>
+</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>체크포인트 로드, BERT 설정 로드, BERT 모델 초기화를 했습니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">({</span><span class="n">k</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;model.&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">):</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">fine_tuned_model_ckpt</span><span class="p">[</span><span class="s1">&#39;state_dict&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">ithes</span><span class="p">()})</span>
 <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>체크포인트를 주입하고 모델을 평가모드로 바꿉니다.</p>
-
-</div>
-</div>
-</div>
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">inference_fn</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>체크포인트를 주입하고 모델을 평가모드로 바꿉니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">inference_fn</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">question</span> <span class="ow">and</span> <span class="n">context</span><span class="p">:</span>
         <span class="c1"># 질문을 토큰화하고 인덱싱. max_query_length보다 길면 자르기</span>
         <span class="n">truncated_query</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span>
@@ -1046,94 +374,7 @@ TPU available: False, using: 0 TPU cores
         <span class="s1">&#39;context&#39;</span><span class="p">:</span><span class="n">context</span><span class="p">,</span>
         <span class="s1">&#39;answer&#39;</span><span class="p">:</span><span class="n">pred_text</span><span class="p">,</span>
     <span class="p">}</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>실제 값이 들어왔을때 처리해주는 함수입니다.</p>
-
-</div>
-</div>
-</div>
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">ratsnlp.nlpbook.ner</span> <span class="kn">import</span> <span class="n">get_web_service_app</span>
+</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>실제 값이 들어왔을때 처리해주는 함수입니다.</p> </div> </div> </div> <div class="cell border-box-sizing code_cell rendered"> <div class="input"> <div class="inner_cell"> <div class="input_area"> <div class=" highlight hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">ratsnlp.nlpbook.ner</span> <span class="kn">import</span> <span class="n">get_web_service_app</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">get_web_service_app</span><span class="p">(</span><span class="n">inference_fn</span><span class="p">)</span>
 <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>웹 서비스를 구현합니다.</p>
-<p>(이쪽 개념을 잘 몰라서 실제 구현에는 실패했습니다.)</p>
-
-</div>
-</div>
-</div>
-</div>
-
-<script type="application/vnd.jupyter.widget-state+json">
-{"46696850ce2a4d68aaa60d600079fb92": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_a9a02725ee8b4eadb92fb8ea9a7f0b8f", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_d87580695a3040779a071dbb2e40e8a0", "IPY_MODEL_3e7228911cf74f298cbd4f85714a3022", "IPY_MODEL_a1951c84165d4a99b6ba8fd16258e849"]}}, "a9a02725ee8b4eadb92fb8ea9a7f0b8f": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "d87580695a3040779a071dbb2e40e8a0": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_b8a352f8905a43628d2dc00a2e26054e", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Downloading: 100%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_8623a6f0762a472181eb05536bae3751"}}, "3e7228911cf74f298cbd4f85714a3022": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_99f71831998b4268ab015941f8d9b485", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "success", "max": 249928, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 249928, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_3abb8da492fd44089e35561f50a56b4d"}}, "a1951c84165d4a99b6ba8fd16258e849": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_7bcb5f3313e2497da81bb0f59d3f602f", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 250k/250k [00:00&lt;00:00, 1.13MB/s]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_01d4ac73ad8442aeb1ea782547451fac"}}, "b8a352f8905a43628d2dc00a2e26054e": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "8623a6f0762a472181eb05536bae3751": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "99f71831998b4268ab015941f8d9b485": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "3abb8da492fd44089e35561f50a56b4d": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "7bcb5f3313e2497da81bb0f59d3f602f": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "01d4ac73ad8442aeb1ea782547451fac": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "5b008a106dff48e28151eb3e69f5312c": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_d5808f1374fd4115a64375f0cf409698", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_6d4e7b013b0147ba8355e37c1a616c1b", "IPY_MODEL_dd607abc4f064f2e9eec82fbea06eeb3", "IPY_MODEL_f44e307d9ce9489396161cd88b7c8e5e"]}}, "d5808f1374fd4115a64375f0cf409698": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "6d4e7b013b0147ba8355e37c1a616c1b": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_0fe8f3fbbb6749e08416b9fa95a882a5", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Downloading: 100%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_f6e76c79a44e4249a1a439b3eae5d262"}}, "dd607abc4f064f2e9eec82fbea06eeb3": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_abb0e4940ffb4a0695adb89964c3390f", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "success", "max": 49, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 49, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_bb20f976fe8149a59bbc17e6f617b41f"}}, "f44e307d9ce9489396161cd88b7c8e5e": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_a1fb0ca078a44564a547459c4c260c35", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 49.0/49.0 [00:00&lt;00:00, 645B/s]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_5f090b2c932c4bd3a412d62297b44e3d"}}, "0fe8f3fbbb6749e08416b9fa95a882a5": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "f6e76c79a44e4249a1a439b3eae5d262": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "abb0e4940ffb4a0695adb89964c3390f": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "bb20f976fe8149a59bbc17e6f617b41f": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "a1fb0ca078a44564a547459c4c260c35": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "5f090b2c932c4bd3a412d62297b44e3d": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "fc0e234784674729bc75102b6e09ad3a": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_6f3065d68230488e82ca8f87d0f6db42", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_1f8b3066de6e4916b6b547f6972241fe", "IPY_MODEL_5c9a0acd0d3141139b738456b933d070", "IPY_MODEL_8bbf51333b5f4e7385048b0224c7515a"]}}, "6f3065d68230488e82ca8f87d0f6db42": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "1f8b3066de6e4916b6b547f6972241fe": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_ad649a8d4f2946849ff9b2959d1e1a13", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Downloading: 100%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_a794f9caf8fe432699294356f5562437"}}, "5c9a0acd0d3141139b738456b933d070": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_a1faa535f66e4f2b9cdf447009e01fc2", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "success", "max": 619, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 619, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_15c859d8e3da45518238295c2decb98a"}}, "8bbf51333b5f4e7385048b0224c7515a": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_9eb6fba608eb405ab56632e52f79a54d", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 619/619 [00:00&lt;00:00, 4.91kB/s]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_83f746cee3ad43a1ae9690c0691f0792"}}, "ad649a8d4f2946849ff9b2959d1e1a13": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "a794f9caf8fe432699294356f5562437": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "a1faa535f66e4f2b9cdf447009e01fc2": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "15c859d8e3da45518238295c2decb98a": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "9eb6fba608eb405ab56632e52f79a54d": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "83f746cee3ad43a1ae9690c0691f0792": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "ed8f3d17762146659b25ddf39d0c7ada": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_576366fdf2cf4c10b713fcd75403049b", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_922536f37f8f41b68ed23de0dbf1c3d3", "IPY_MODEL_aa73eb82730d4a8580f37ff2e3df878c", "IPY_MODEL_badcc6a9dc0744319af31ec64e7e1fa6"]}}, "576366fdf2cf4c10b713fcd75403049b": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "922536f37f8f41b68ed23de0dbf1c3d3": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_63301f587e09459d8ba555857087b59e", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Downloading: 100%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_148516eefd4d4ae78b8129bc3467083d"}}, "aa73eb82730d4a8580f37ff2e3df878c": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_b03f526de0d746bd8b90fc52d5ae0d7d", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "success", "max": 438218004, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 438218004, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_a95f75654a114e8b94e76978cc5d40df"}}, "badcc6a9dc0744319af31ec64e7e1fa6": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_8489f71a9bbe49c29c886edec0f64e11", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 438M/438M [00:26&lt;00:00, 17.6MB/s]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_8334da008b694a2d8947106bd49eca9b"}}, "63301f587e09459d8ba555857087b59e": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "148516eefd4d4ae78b8129bc3467083d": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "b03f526de0d746bd8b90fc52d5ae0d7d": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "a95f75654a114e8b94e76978cc5d40df": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "8489f71a9bbe49c29c886edec0f64e11": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "8334da008b694a2d8947106bd49eca9b": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "6971d9fcf02d45a6b1ed2ac65262fc12": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_291e0c24cf0c4997ad690f8e517c6d3b", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_8ecfebe4e0624ee6959b0d7197a68069", "IPY_MODEL_ca46563235604b61892273f76da63306", "IPY_MODEL_9910af2a8d72460fbebe512a692a0f31"]}}, "291e0c24cf0c4997ad690f8e517c6d3b": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": "row wrap", "width": "100%", "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": "inline-flex", "left": null}}, "8ecfebe4e0624ee6959b0d7197a68069": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_34eb698b44d94f8c8118c6bcce44eba7", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Epoch 0:  11%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_f50b1ab3af3a405d81e5838cac0fb74a"}}, "ca46563235604b61892273f76da63306": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_76e9346ef56a4afd9c4178dc17d41fe5", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "", "max": 7688, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 880, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_c179f760bfa74b57998acfde4659fb00"}}, "9910af2a8d72460fbebe512a692a0f31": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_a13ba714615c49e7929b8b97fa7be101", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 880/7688 [23:00&lt;2:57:59,  1.57s/it, loss=0.727, v_num=0, acc=0.797]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_c120066249084b458819fef57b5835b7"}}, "34eb698b44d94f8c8118c6bcce44eba7": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "f50b1ab3af3a405d81e5838cac0fb74a": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "76e9346ef56a4afd9c4178dc17d41fe5": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "c179f760bfa74b57998acfde4659fb00": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": "2", "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "a13ba714615c49e7929b8b97fa7be101": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "c120066249084b458819fef57b5835b7": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}}
-</script>
-
-
-
-  </div><script src="https://utteranc.es/client.js"
-        repo="KSY1526/myblog"
-        issue-term="pathname"
-        theme="github-dark"
-        crossorigin="anonymous"
-        async>
-</script>
-  <a class="u-url" href="/myblog/book/jupyter/do%20it/natural%20language/bert/tokenizer/web/answer/2021/12/28/Do_natural_language6.html" hidden></a>
-</article>
-
-      </div>
-    </main><footer class="site-footer h-card">
-  <data class="u-url" href="/myblog/"></data>
-
-  <div class="wrapper">
-
-    <div class="footer-col-wrapper">
-      <div class="footer-col">
-        <p class="feed-subscribe">
-          <a href="/myblog/feed.xml">
-            <svg class="svg-icon orange">
-              <use xlink:href="/myblog/assets/minima-social-icons.svg#rss"></use>
-            </svg><span>Subscribe</span>
-          </a>
-        </p>
-      </div>
-      <div class="footer-col">
-        <p>다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다.</p>
-      </div>
-    </div>
-
-    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/https%3A%2F%2Fgithub.com%2FKSY1526%2FMyProject" target="_blank" title="https://github.com/KSY1526/MyProject"><svg class="svg-icon grey"><use xlink:href="/myblog/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
-</div>
-
-  </div>
-
-</footer>
-</body>
-
-</html>
+</pre></div> </div> </div> </div> </div> <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell"> <div class="text_cell_render border-box-sizing rendered_html"> <p>웹 서비스를 구현합니다.</p> <p>(이쪽 개념을 잘 몰라서 실제 구현에는 실패했습니다.)</p> </div> </div> </div> </div> <script type="application/vnd.jupyter.widget-state+json"> {"46696850ce2a4d68aaa60d600079fb92": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_a9a02725ee8b4eadb92fb8ea9a7f0b8f", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_d87580695a3040779a071dbb2e40e8a0", "IPY_MODEL_3e7228911cf74f298cbd4f85714a3022", "IPY_MODEL_a1951c84165d4a99b6ba8fd16258e849"]}}, "a9a02725ee8b4eadb92fb8ea9a7f0b8f": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "d87580695a3040779a071dbb2e40e8a0": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_b8a352f8905a43628d2dc00a2e26054e", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Downloading: 100%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_8623a6f0762a472181eb05536bae3751"}}, "3e7228911cf74f298cbd4f85714a3022": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_99f71831998b4268ab015941f8d9b485", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "success", "max": 249928, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 249928, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_3abb8da492fd44089e35561f50a56b4d"}}, "a1951c84165d4a99b6ba8fd16258e849": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_7bcb5f3313e2497da81bb0f59d3f602f", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 250k/250k [00:00&lt;00:00, 1.13MB/s]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_01d4ac73ad8442aeb1ea782547451fac"}}, "b8a352f8905a43628d2dc00a2e26054e": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "8623a6f0762a472181eb05536bae3751": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "99f71831998b4268ab015941f8d9b485": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "3abb8da492fd44089e35561f50a56b4d": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "7bcb5f3313e2497da81bb0f59d3f602f": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "01d4ac73ad8442aeb1ea782547451fac": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "5b008a106dff48e28151eb3e69f5312c": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_d5808f1374fd4115a64375f0cf409698", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_6d4e7b013b0147ba8355e37c1a616c1b", "IPY_MODEL_dd607abc4f064f2e9eec82fbea06eeb3", "IPY_MODEL_f44e307d9ce9489396161cd88b7c8e5e"]}}, "d5808f1374fd4115a64375f0cf409698": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "6d4e7b013b0147ba8355e37c1a616c1b": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_0fe8f3fbbb6749e08416b9fa95a882a5", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Downloading: 100%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_f6e76c79a44e4249a1a439b3eae5d262"}}, "dd607abc4f064f2e9eec82fbea06eeb3": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_abb0e4940ffb4a0695adb89964c3390f", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "success", "max": 49, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 49, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_bb20f976fe8149a59bbc17e6f617b41f"}}, "f44e307d9ce9489396161cd88b7c8e5e": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_a1fb0ca078a44564a547459c4c260c35", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 49.0/49.0 [00:00&lt;00:00, 645B/s]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_5f090b2c932c4bd3a412d62297b44e3d"}}, "0fe8f3fbbb6749e08416b9fa95a882a5": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "f6e76c79a44e4249a1a439b3eae5d262": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "abb0e4940ffb4a0695adb89964c3390f": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "bb20f976fe8149a59bbc17e6f617b41f": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "a1fb0ca078a44564a547459c4c260c35": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "5f090b2c932c4bd3a412d62297b44e3d": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "fc0e234784674729bc75102b6e09ad3a": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_6f3065d68230488e82ca8f87d0f6db42", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_1f8b3066de6e4916b6b547f6972241fe", "IPY_MODEL_5c9a0acd0d3141139b738456b933d070", "IPY_MODEL_8bbf51333b5f4e7385048b0224c7515a"]}}, "6f3065d68230488e82ca8f87d0f6db42": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "1f8b3066de6e4916b6b547f6972241fe": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_ad649a8d4f2946849ff9b2959d1e1a13", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Downloading: 100%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_a794f9caf8fe432699294356f5562437"}}, "5c9a0acd0d3141139b738456b933d070": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_a1faa535f66e4f2b9cdf447009e01fc2", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "success", "max": 619, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 619, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_15c859d8e3da45518238295c2decb98a"}}, "8bbf51333b5f4e7385048b0224c7515a": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_9eb6fba608eb405ab56632e52f79a54d", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 619/619 [00:00&lt;00:00, 4.91kB/s]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_83f746cee3ad43a1ae9690c0691f0792"}}, "ad649a8d4f2946849ff9b2959d1e1a13": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "a794f9caf8fe432699294356f5562437": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "a1faa535f66e4f2b9cdf447009e01fc2": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "15c859d8e3da45518238295c2decb98a": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "9eb6fba608eb405ab56632e52f79a54d": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "83f746cee3ad43a1ae9690c0691f0792": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "ed8f3d17762146659b25ddf39d0c7ada": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_576366fdf2cf4c10b713fcd75403049b", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_922536f37f8f41b68ed23de0dbf1c3d3", "IPY_MODEL_aa73eb82730d4a8580f37ff2e3df878c", "IPY_MODEL_badcc6a9dc0744319af31ec64e7e1fa6"]}}, "576366fdf2cf4c10b713fcd75403049b": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "922536f37f8f41b68ed23de0dbf1c3d3": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_63301f587e09459d8ba555857087b59e", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Downloading: 100%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_148516eefd4d4ae78b8129bc3467083d"}}, "aa73eb82730d4a8580f37ff2e3df878c": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_b03f526de0d746bd8b90fc52d5ae0d7d", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "success", "max": 438218004, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 438218004, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_a95f75654a114e8b94e76978cc5d40df"}}, "badcc6a9dc0744319af31ec64e7e1fa6": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_8489f71a9bbe49c29c886edec0f64e11", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 438M/438M [00:26&lt;00:00, 17.6MB/s]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_8334da008b694a2d8947106bd49eca9b"}}, "63301f587e09459d8ba555857087b59e": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "148516eefd4d4ae78b8129bc3467083d": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "b03f526de0d746bd8b90fc52d5ae0d7d": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "a95f75654a114e8b94e76978cc5d40df": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "8489f71a9bbe49c29c886edec0f64e11": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "8334da008b694a2d8947106bd49eca9b": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "6971d9fcf02d45a6b1ed2ac65262fc12": {"model_module": "@jupyter-widgets/controls", "model_name": "HBoxModel", "model_module_version": "1.5.0", "state": {"_view_name": "HBoxView", "_dom_classes": [], "_model_name": "HBoxModel", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.5.0", "box_style": "", "layout": "IPY_MODEL_291e0c24cf0c4997ad690f8e517c6d3b", "_model_module": "@jupyter-widgets/controls", "children": ["IPY_MODEL_8ecfebe4e0624ee6959b0d7197a68069", "IPY_MODEL_ca46563235604b61892273f76da63306", "IPY_MODEL_9910af2a8d72460fbebe512a692a0f31"]}}, "291e0c24cf0c4997ad690f8e517c6d3b": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": "row wrap", "width": "100%", "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": "inline-flex", "left": null}}, "8ecfebe4e0624ee6959b0d7197a68069": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_34eb698b44d94f8c8118c6bcce44eba7", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": "Epoch 0: 11%", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_f50b1ab3af3a405d81e5838cac0fb74a"}}, "ca46563235604b61892273f76da63306": {"model_module": "@jupyter-widgets/controls", "model_name": "FloatProgressModel", "model_module_version": "1.5.0", "state": {"_view_name": "ProgressView", "style": "IPY_MODEL_76e9346ef56a4afd9c4178dc17d41fe5", "_dom_classes": [], "description": "", "_model_name": "FloatProgressModel", "bar_style": "", "max": 7688, "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": 880, "_view_count": null, "_view_module_version": "1.5.0", "orientation": "horizontal", "min": 0, "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_c179f760bfa74b57998acfde4659fb00"}}, "9910af2a8d72460fbebe512a692a0f31": {"model_module": "@jupyter-widgets/controls", "model_name": "HTMLModel", "model_module_version": "1.5.0", "state": {"_view_name": "HTMLView", "style": "IPY_MODEL_a13ba714615c49e7929b8b97fa7be101", "_dom_classes": [], "description": "", "_model_name": "HTMLModel", "placeholder": "\u200b", "_view_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "value": " 880/7688 [23:00&lt;2:57:59, 1.57s/it, loss=0.727, v_num=0, acc=0.797]", "_view_count": null, "_view_module_version": "1.5.0", "description_tooltip": null, "_model_module": "@jupyter-widgets/controls", "layout": "IPY_MODEL_c120066249084b458819fef57b5835b7"}}, "34eb698b44d94f8c8118c6bcce44eba7": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "f50b1ab3af3a405d81e5838cac0fb74a": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "76e9346ef56a4afd9c4178dc17d41fe5": {"model_module": "@jupyter-widgets/controls", "model_name": "ProgressStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "ProgressStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "bar_color": null, "_model_module": "@jupyter-widgets/controls"}}, "c179f760bfa74b57998acfde4659fb00": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": "2", "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}, "a13ba714615c49e7929b8b97fa7be101": {"model_module": "@jupyter-widgets/controls", "model_name": "DescriptionStyleModel", "model_module_version": "1.5.0", "state": {"_view_name": "StyleView", "_model_name": "DescriptionStyleModel", "description_width": "", "_view_module": "@jupyter-widgets/base", "_model_module_version": "1.5.0", "_view_count": null, "_view_module_version": "1.2.0", "_model_module": "@jupyter-widgets/controls"}}, "c120066249084b458819fef57b5835b7": {"model_module": "@jupyter-widgets/base", "model_name": "LayoutModel", "model_module_version": "1.2.0", "state": {"_view_name": "LayoutView", "grid_template_rows": null, "right": null, "justify_content": null, "_view_module": "@jupyter-widgets/base", "overflow": null, "_model_module_version": "1.2.0", "_view_count": null, "flex_flow": null, "width": null, "min_width": null, "border": null, "align_items": null, "bottom": null, "_model_module": "@jupyter-widgets/base", "top": null, "grid_column": null, "overflow_y": null, "overflow_x": null, "grid_auto_flow": null, "grid_area": null, "grid_template_columns": null, "flex": null, "_model_name": "LayoutModel", "justify_items": null, "grid_row": null, "max_height": null, "align_content": null, "visibility": null, "align_self": null, "height": null, "min_height": null, "padding": null, "grid_auto_rows": null, "grid_gap": null, "max_width": null, "order": null, "_view_module_version": "1.2.0", "grid_template_areas": null, "object_position": null, "object_fit": null, "grid_auto_columns": null, "margin": null, "display": null, "left": null}}} </script> </div><script src="https://utteranc.es/client.js" repo="KSY1526/myblog" issue-term="pathname" theme="github-dark" crossorigin="anonymous" async> </script> <a class="u-url" href="/myblog/book/jupyter/do%20it/natural%20language/bert/tokenizer/web/answer/2021/12/28/Do_natural_language6.html" hidden></a> </article> </div><div class="footer-wrapper"> <div class="footer-container"> <footer translate="no"> <div class="footer-text footer-text-centered long-copyright"> <p>&copy; 2022 Your Brand. </p><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en" target="_blank" rel="noopener noreferrer" data-toggle="tooltip" data-placement="top" data-tooltip-no-hide title="Except where otherwise noted, content on this web site is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License."> <img src="/myblog/assets/img/default/cc/cc.svg" alt="cc" width="12" height="12">&nbsp;<img src="/myblog/assets/img/default/cc/by.svg" alt="by" width="12" height="12">&nbsp;<img src="/myblog/assets/img/default/cc/sa.svg" alt="sa" width="12" height="12">&nbsp;<p>Some rights reserved.</p> </a></div> <p class="footer-powered"><span>Pwrd by </span><a href="https://github.com/MrGreensWorkshop/MrGreen-JekyllTheme" target="_blank" rel="noopener noreferrer">Mr. Green</a></p> </footer> </div> </div> <div class="scroll-to-top-container"> <a id="scroll-to-top" href="#main-wrapper" class="hover-effect"><i class="fa fa-angle-up"></i></a> </div></div> <div class="searchbox-container"> <form id="searchbox-form" autocomplete="off"> <input type="search" id="search-box" placeholder="Search" onkeyup="if(this.value!==''){document.getElementById('search-results').style.display = 'block';}" onfocusout="this.value='';" onblur="setTimeout(function(){ document.getElementById('search-results').style.display = 'none'; }, 100);"> <ul id="search-results" ></ul> </form> </div> <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> <script src="/myblog/assets/js/main.js"></script> <script src="/myblog/assets/js/simple-jekyll-search-1.9.2.min.js"></script><script> function loadSearch(jsonData, searchParam) { if (!jsonData) jsonData = '/myblog'; var searchInput = document.getElementById('search-box'); const simpleJekyllSearch = SimpleJekyllSearch({ searchInput: searchInput ,resultsContainer: document.getElementById('search-results') ,json: jsonData ,searchResultTemplate: '<li> <a href="{url}"> <div> <div class="title">{title}</div> <div class="date">{date}</div> <div style="clear: both;"></div> </div> </a></li>' ,noResultsText: '<li>No results found.</li>' ,limit: 10 ,fuzzy: false ,formSubmit: document.getElementById('searchbox-form') }); if (searchParam) { searchInput.value = searchParam; searchInput.focus(); searchInput.disabled=false; setTimeout(function(){ simpleJekyllSearch.search(searchParam); }, 400); } } </script> <script> function isEmpty(value) { if (value === "" || value === null || typeof value === "undefined") return true; return false; } function getQueryParam (param, mach = true) { var queryString = window.location.search.substring(1); if (isEmpty(queryString)) return null; var queries = queryString.split("&"); for (var i in queries) { var pair = decodeURIComponent(queries[i]).split("="); if (mach == true){ if (pair[0] == param) { if (isEmpty(pair[1]) === false) return pair[1]; } }else{ return pair; } break; } return null; } const searchParam = getQueryParam('search'); (async () => { let resp = await fetch('/myblog'); if (!resp.ok) return; let jsonData = await resp.json(); loadSearch(jsonData, searchParam); })(); </script> <script> CookieConsent.consentSettingHtml = "<h5>Cookie settings</h5> <br> <p class=\"info-text\">This website uses cookies to optimize site functionality. It will be activated with your approval. Please click each item below for cookie policy. </p> <table> <tr> <td onclick=\"$('.info[data-consent-info=necessary]').slideToggle();$(this).children('i').toggleClass('fa-plus-square-o').toggleClass('fa-minus-square-o')\"> <i class=\"fa-fw fa fa-plus-square-o\" aria-hidden=\"true\"></i> <p>Strictly necessary cookies</p> </td> <td> <span class=\"active_text\">Always active</span></td> </tr> </table> <div class=\"info\" data-consent-info=\"necessary\"> <p>These cookies are essential for the website function and cannot be disable. They are usually set when site function like color scheme etc. is changed. These cookies do not store any personally identifiable information. Enables storage related to security such as authentication functionality, fraud prevention, and other user protection. </p> </div> <table> <tr> <td onclick=\"$('.info[data-consent-info=analytics]').slideToggle();$(this).children('i').toggleClass('fa-plus-square-o').toggleClass('fa-minus-square-o')\"> <i class=\"fa-fw fa fa-plus-square-o\" aria-hidden=\"true\"></i> <p>Performance cookies</p> </td> <td> <label class=\"slide-switch\"> <input type=\"checkbox\" class=\"checkbox_switch\" checked=\"checked\" data-consent=\"analytics\"> <span class=\"slider\"></span> </label></td> </tr> </table> <div class=\"info\" data-consent-info=\"analytics\"> <p>Enables storage (such as cookies) related to analytics e.g. visit duration. </p> </div> <table> <tr> <td onclick=\"$('.info[data-consent-info=preferences]').slideToggle();$(this).children('i').toggleClass('fa-plus-square-o').toggleClass('fa-minus-square-o')\"> <i class=\"fa-fw fa fa-plus-square-o\" aria-hidden=\"true\"></i> <p>Functionality cookies</p> </td> <td> <label class=\"slide-switch\"> <input type=\"checkbox\" class=\"checkbox_switch\" data-consent=\"preferences\"> <span class=\"slider\"></span> </label></td> </tr> </table> <div class=\"info\" data-consent-info=\"preferences\"> <p>Enables storage that supports the functionality of the website or app e.g. language settings. Enables storage related to personalization e.g. video recommendations. </p> </div> <table> <tr> <td onclick=\"$('.info[data-consent-info=advertising]').slideToggle();$(this).children('i').toggleClass('fa-plus-square-o').toggleClass('fa-minus-square-o')\"> <i class=\"fa-fw fa fa-plus-square-o\" aria-hidden=\"true\"></i> <p>Targeting and advertising cookies</p> </td> <td> <label class=\"slide-switch\"> <input type=\"checkbox\" class=\"checkbox_switch\" data-consent=\"advertising\"> <span class=\"slider\"></span> </label></td> </tr> </table> <div class=\"info\" data-consent-info=\"advertising\"> <p>Enables storage (such as cookies) related to advertising. </p> </div> <br> <div class=\"button-holder\"> <a href=\"javascript:void(0);\" class=\"btn-base btn-left\" onclick=\"CookieConsent.consentSettingDone('deny');\" role=\"button\">Deny</a> <a href=\"javascript:void(0);\" class=\"btn-base btn-priority\" onclick=\"CookieConsent.consentSettingDone('accept');\" role=\"button\">Allow all</a> <a href=\"javascript:void(0);\" class=\"btn-base \" onclick=\"CookieConsent.consentSettingDone('save');\" role=\"button\">Allow selection</a> </div>"; CookieConsent.consentBarHtml = "<div class=\"consent-bar\"> <a class=\"close-button\" href=\"javascript:void(0);\" onclick=\"CookieConsent.hideConsentBar();\"><i class=\"fa-fw fa fa-times\"></i></a> <p>This website uses cookies to optimize site functionality. It will be activated with your approval. </p> <a href=\"javascript:void(0);\" class=\"btn-base \" onclick=\"CookieConsent.consentBarDone('deny');\" role=\"button\">Deny</a> <a href=\"javascript:void(0);\" class=\"btn-base \" onclick=\"CookieConsent.consentBarDone('settings');\" role=\"button\">Customize</a> <a href=\"javascript:void(0);\" class=\"btn-base btn-priority\" onclick=\"CookieConsent.consentBarDone('accept');\" role=\"button\">Allow all</a> </div>"; CookieConsent.consent_items = JSON.parse('{"necessary":{"group":["security_storage"],"value":"granted","wait_for_update":500,"cookie_domain":"","no_check_box":true},"analytics":{"group":["analytics_storage"],"value":"denied"},"preferences":{"group":["functionality_storage","personalization_storage"],"value":"denied"},"advertising":{"group":["ad_storage"],"value":"denied"}}'); CookieConsent.hideConsentBarWithSaveButton = true; const consent_settings = CookieConsent.getConsentSettings(); const default_configs = JSON.parse('{"anonymize_ip":true,"ads_data_redaction":true,"cookie_flags":"SameSite=None;Secure"}'); </script> <script> SlidingMsgBox.html = "<div class=\"slideBox slideBoxTopToDown\"> <a class=\"close-button\" href=\"javascript:void(0);\"><i class=\"fa-fw fa fa-times\"></i></a> </div>"; </script> <script> LangOfferMsgBox.currentPageLng = "en"; LangOfferMsgBox.supportedLngList = [["en","En","/myblog/","View this page in English.","To English home page","Language"],["ja","Jp","/myblog/ja","このページを日本語で表示する。","日本語ホームへ","言語"]]; LangOfferMsgBox.existLng = []; LangOfferMsgBox.disableExtTranslationOffer = true; </script> </body> </html>
