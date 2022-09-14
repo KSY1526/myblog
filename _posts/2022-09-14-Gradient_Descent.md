@@ -1,7 +1,7 @@
 ---
 toc: true
 layout: post
-description: 부스트캠프 1주차 경사하강법 소개.
+description: BoostCamp
 categories: [BoostCamp, Gradient Descent, math, markdown]
 title: [BoostCamp]Gradient Descent
 ---
