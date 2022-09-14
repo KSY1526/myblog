@@ -47,7 +47,7 @@ $\nabla _ \beta {(\bold y - \bold X\beta)}^2 =(\partial_ {\beta _1} {(\bold y - 
 앞 벡터 중 k번째 값을 뽑으면, 
 
 
-$\partial_{\beta_k}$
+$\partial_{\beta_k} (\bold y - \bold X\beta)^2 = \partial_{\beta _k} (\displaystyle\frac 1 n\displaystyle\sum_{i=1}^{n}(y_i-\displaystyle\sum_{j=1}^d X_{ij}\beta _j)^2) =$
 
 $=\displaystyle\frac 1 n \displaystyle\sum_{i=1}^{n}(-2y_iX_{ik}\beta_k +2X_{ik}(\beta_1X_{i1}+\beta_2X_{i2}+ ... + \beta_dX_{id})) =-\frac 2 n(\beta_k\displaystyle\sum_{i=1}^{n}(y_iX_{ik}) - \displaystyle\sum_{i=1}^{n}X_{ik}(\bold X_{i.} \bold\beta))$
 
