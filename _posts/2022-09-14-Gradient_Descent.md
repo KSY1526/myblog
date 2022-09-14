@@ -12,7 +12,7 @@ title: "[BoostCamp]Gradient Descent"
 *볼드체 소문자는 벡터, 볼드체 대문자는 행렬을 의미합니다.*
 
 
-${\partial_{x_i}}f(\bold x) = \displaystyle\lim_{h\to 0}\frac{f(\bold x+h\bold e_i)-f(\bold x)}{h}$
+$\partial_{x_i}f(\bold x) = \displaystyle\lim_{h\to 0}\frac{f(\bold x+h\bold e_i)-f(\bold x)}{h}$
 
 i번째 변수만을 편미분한 수식입니다.
 
