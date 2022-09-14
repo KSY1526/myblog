@@ -5,7 +5,6 @@ description: BoostCamp
 categories: [BoostCamp, Gradient Descent, math, markdown]
 title: [BoostCamp]Gradient Descent
 ---
-
 # 경사하강법 (Gradient Descent)
 ###### 편의상 백터는 볼드체 소문자, 행렬은 볼드체 대문자로 표기합니다.
 <br/> 
