@@ -11,7 +11,7 @@ title: "[BoostCamp]Gradient Descent"
 
 *볼드체 소문자는 벡터, 볼드체 대문자는 행렬을 의미합니다.*
 
-$\partial _{x_i}f(\bold{x}) = \displaystyle\lim_{h\to0}\frac{f(\bold{x}+h\bold{e}_i)-f(\bold{x})}{h}$
+$\partial _{x_i}f(\bold x) = \displaystyle\lim_{h\to0}\frac{f(\bold x+h\bold e_i)-f(\bold x)}{h}$
 
 i번째 변수만을 편미분한 수식입니다.
 
@@ -23,7 +23,7 @@ $\nabla f = (\partial_{x_1}f,\partial_{x_2}f,\partial_{x_3}f, ...)$
 
 벡터 내 각 값마다 편미분 한 값을 다시 벡터 형태로 나타냅니다.
 
-이 벡터를 '그레이던트 벡터'라고 부르며 경사하강법에 직접 사용됩니다.
+이 벡터를 '그레디언트 벡터'라고 부르며 경사하강법에 직접 사용됩니다.
 
 <br/> 
 
