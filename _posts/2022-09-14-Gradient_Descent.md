@@ -12,7 +12,7 @@ title: "[BoostCamp]Gradient Descent"
 *볼드체 소문자는 벡터, 볼드체 대문자는 행렬을 의미합니다.*
 
 
-${\partial _{x_i}}f(\bold x) = \displaystyle\lim_{h\to 0}\frac{f(\bold x+h\bold e_i)-f(\bold x)}{h}$
+${\partial_{x_i}}f(\bold x) = \displaystyle\lim_{h\to 0}\frac{f(\bold x+h\bold e_i)-f(\bold x)}{h}$
 
 i번째 변수만을 편미분한 수식입니다.
 
@@ -42,12 +42,12 @@ $\nabla f = (\partial_{x_1}f,\partial_{x_2}f,\partial_{x_3}f, ...)$
 
 ## 선형회귀에서의 경사하강법
 
-$\nabla _ \beta {(\bold y - \bold X\beta)}^2 =(\partial _ {\beta _1} {(\bold y - \bold X\beta)}^2, \partial _ {\beta _2} {(\bold y - \bold X\beta)}^2, ..., \partial _ {\beta _d} {(\bold y - \bold X\beta)}^2)$
+$\nabla _ \beta {(\bold y - \bold X\beta)}^2 =(\partial_ {\beta _1} {(\bold y - \bold X\beta)}^2, \partial _ {\beta _2} {(\bold y - \bold X\beta)}^2, ..., \partial _ {\beta _d} {(\bold y - \bold X\beta)}^2)$
 
 앞 벡터 중 k번째 값을 뽑으면, 
 
 
-${\partial _ {\beta _k}} {(\bold y - \bold X\beta)}^2 = \partial _ {\beta _k} (\displaystyle\frac 1 n\displaystyle\sum_{i=1}^{n}(y_i-\displaystyle\sum_{j=1}^d X_{ij}\beta _j)^2) = \partial _ {\beta _k} (\frac 1 n \displaystyle\sum_{i=1}^{n}(y_i^2-2y_i\displaystyle\sum_{j=1}^d X_{ij}\beta _j + (\displaystyle\sum_{j=1}^d X_{ij}\beta _j)^2))$
+${\partial_{\beta _k}} {(\bold y - \bold X\beta)}^2 = \partial _ {\beta _k} (\displaystyle\frac 1 n\displaystyle\sum_{i=1}^{n}(y_i-\displaystyle\sum_{j=1}^d X_{ij}\beta _j)^2) = \partial _ {\beta _k} (\frac 1 n \displaystyle\sum_{i=1}^{n}(y_i^2-2y_i\displaystyle\sum_{j=1}^d X_{ij}\beta _j + (\displaystyle\sum_{j=1}^d X_{ij}\beta _j)^2))$
 
 $=\displaystyle\frac 1 n \displaystyle\sum_{i=1}^{n}(-2y_iX_{ik}\beta_k +2X_{ik}(\beta_1X_{i1}+\beta_2X_{i2}+ ... + \beta_dX_{id})) =-\frac 2 n(\beta_k\displaystyle\sum_{i=1}^{n}(y_iX_{ik}) - \displaystyle\sum_{i=1}^{n}X_{ik}(\bold X_{i.} \bold\beta))$
 
