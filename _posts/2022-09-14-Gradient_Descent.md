@@ -2,7 +2,7 @@
 toc: true
 layout: post
 description: boost
-categories: [markdown]
+categories: [markdown, Gradient Descent]
 title: Gradient Descent
 ---
 # Gradient Descent 
