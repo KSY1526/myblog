@@ -2,8 +2,8 @@
 toc: true
 layout: post
 description: boost
-categories: [BoostCamp, Gradient Descent, math, markdown]
-title: [BoostCamp]Gradient Descent
+categories: [markdown]
+title: Gradient Descent
 ---
 # Gradient Descent 
 
