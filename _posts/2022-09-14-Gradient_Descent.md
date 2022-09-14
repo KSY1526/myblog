@@ -1,11 +1,11 @@
 ---
-#toc: true
+toc: true
 layout: post
-description: . #부스트캠프 1주차 경사하강법 소개.
+description: boost
 categories: [BoostCamp, Gradient Descent, math, markdown]
 title: [BoostCamp]Gradient Descent
 ---
-# 경사하강법 (Gradient Descent)
+# Gradient Descent 
 
 ## 백터 변수의 미분
 ###### 편의상 백터는 볼드체 소문자, 행렬은 볼드체 대문자로 표기합니다.
