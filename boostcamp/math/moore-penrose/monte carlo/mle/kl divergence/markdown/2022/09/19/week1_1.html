@@ -229,9 +229,9 @@ window.onload = wrap_img;
 
 <p>정답레이블을 P, 모델 예측을 Q라 두면 쿨백-라이블러 발산의 정의는</p>
 
-<p>$KL(PQ) = \int_XP(\bold x)log(\frac{P(\bold x)}{Q(\bold x)})d\bold x$ 입니다.</p>
+<p>$KL(P\parallel Q) = \int_XP(\bold x)log(\frac{P(\bold x)}{Q(\bold x)})d\bold x$ 입니다.</p>
 
-<p>또 $KL(PQ) = -E_{\bold x \sim  P(\bold x)}[log Q(\bold x)] + E_{\bold x \sim  P(\bold x)}[log P(\bold x)]$</p>
+<p>또 $KL(P\parallel Q) = -E_{\bold x \sim  P(\bold x)}[log Q(\bold x)] + E_{\bold x \sim  P(\bold x)}[log P(\bold x)]$</p>
 
 <p>로 분해할 수 있으며 왼쪽식은 크로스 엔트로피, 오른쪽 식은 엔트로피로 해석할 수 있습니다.</p>
 
