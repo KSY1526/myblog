@@ -160,40 +160,38 @@ window.onload = wrap_img;
 
 <p>예시를 통해 이해하면 쉬운데요. 윗 함수의 [-1,1] 범위 내 적분값을 구하는 것을 몬테카를로 샘플링을 이용해보겠습니다.</p>
 
-<p>’'’python</p>
+<pre><code class="language-Python">
+    import numpy as np
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import numpy as np
+    # 범위 내 함수 적분 값 구하는 몬테카를로 샘플링 함수(시뮬레이션)
+    def mc_int(fun, low, high, sample_size = 100, repeat = 10):
+        int_len = np.abs(high - low) # x축 길이(범위)
+        stat = []
 
-# 범위 내 함수 적분 값 구하는 몬테카를로 샘플링 함수(시뮬레이션)
-def mc_int(fun, low, high, sample_size = 100, repeat = 10):
-    int_len = np.abs(high - low) # x축 길이(범위)
-    stat = []
+        # 이 행위 repeat만큼 반복
+        for _ in range(repeat):
+            # 범위 내 값 sample_size 만큼 뽑기.
+            x = np.random.uniform(low = low, high = high, size = sample_size)
+            # y 값 추출
+            fun_x = fun(x)
+            # x축길이(가로) + 평균 구하기(세로)
+            int_val = int_len * np.mean(fun_x)
+            stat.append(int_val)
+        
+        # 평균 뿐만 아니라 반복 수행했기 때문에 표준편차도 구할 수 있음.
+        # 표준편차로 이 값의 오차범위를 알 수 있음.
+        return np.mean(stat), np.std(stat)
 
-    # 이 행위 repeat만큼 반복
-    for _ in range(repeat):
-        # 범위 내 값 sample_size 만큼 뽑기.
-        x = np.random.uniform(low = low, high = high, size = sample_size)
-        # y 값 추출
-        fun_x = fun(x)
-        # x축길이(가로) + 평균 구하기(세로)
-        int_val = int_len * np.mean(fun_x)
-        stat.append(int_val)
-    
-    # 평균 뿐만 아니라 반복 수행했기 때문에 표준편차도 구할 수 있음.
-    # 표준편차로 이 값의 오차범위를 알 수 있음.
-    return np.mean(stat), np.std(stat)
+    def f_x(x):
+        return np.exp(-x**2)
 
-def f_x(x):
-    return np.exp(-x**2)
+    print(mc_int(f_x, low = -1, high = 1, sample_size=10000, repeat=100))
+    # (1.4941721073750045, 0.0043400930289970545)
+    # 다른방법으로 계산한 값 : 1.49364
 
-print(mc_int(f_x, low = -1, high = 1, sample_size=10000, repeat=100))
-# (1.4941721073750045, 0.0043400930289970545)
-# 다른방법으로 계산한 값 : 1.49364
-</code></pre></div></div>
+</code></pre>
 
-<p>’’’</p>
-
-<p>참고 : https://velog.io/@minchoul2/%EB%AA%AC%ED%85%8C%EC%B9%B4%EB%A5%BC%EB%A1%9C-%EC%83%98%ED%94%8C%EB%A7%81-for-AI</p>
+<p><a href="https://velog.io/@minchoul2/%EB%AA%AC%ED%85%8C%EC%B9%B4%EB%A5%BC%EB%A1%9C-%EC%83%98%ED%94%8C%EB%A7%81-for-AI">참고링크</a></p>
 
   </div><script src="https://utteranc.es/client.js"
         repo="KSY1526/myblog"
