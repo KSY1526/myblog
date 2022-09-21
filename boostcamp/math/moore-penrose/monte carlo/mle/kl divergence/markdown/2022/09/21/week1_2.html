@@ -4,12 +4,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>[BoostCamp]Day2 | 나의 빅데이터 공부 기록</title>
+<title>[BoostCamp]Day3 파이썬 | 나의 빅데이터 공부 기록</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="[BoostCamp]Day2" />
+<meta property="og:title" content="[BoostCamp]Day3 파이썬" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="부스트캠프 2일차 공부 정리." />
-<meta property="og:description" content="부스트캠프 2일차 공부 정리." />
+<meta name="description" content="부스트캠프 3일차 공부 정리." />
+<meta property="og:description" content="부스트캠프 3일차 공부 정리." />
 <link rel="canonical" href="https://ksy1526.github.io/myblog/boostcamp/math/moore-penrose/monte%20carlo/mle/kl%20divergence/markdown/2022/09/21/week1_2.html" />
 <meta property="og:url" content="https://ksy1526.github.io/myblog/boostcamp/math/moore-penrose/monte%20carlo/mle/kl%20divergence/markdown/2022/09/21/week1_2.html" />
 <meta property="og:site_name" content="나의 빅데이터 공부 기록" />
@@ -17,7 +17,7 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2022-09-21T00:00:00-05:00" />
 <script type="application/ld+json">
-{"datePublished":"2022-09-21T00:00:00-05:00","url":"https://ksy1526.github.io/myblog/boostcamp/math/moore-penrose/monte%20carlo/mle/kl%20divergence/markdown/2022/09/21/week1_2.html","@type":"BlogPosting","image":"https://ksy1526.github.io/myblog/images/220127.png","headline":"[BoostCamp]Day2","dateModified":"2022-09-21T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://ksy1526.github.io/myblog/boostcamp/math/moore-penrose/monte%20carlo/mle/kl%20divergence/markdown/2022/09/21/week1_2.html"},"description":"부스트캠프 2일차 공부 정리.","@context":"https://schema.org"}</script>
+{"datePublished":"2022-09-21T00:00:00-05:00","url":"https://ksy1526.github.io/myblog/boostcamp/math/moore-penrose/monte%20carlo/mle/kl%20divergence/markdown/2022/09/21/week1_2.html","@type":"BlogPosting","image":"https://ksy1526.github.io/myblog/images/220127.png","headline":"[BoostCamp]Day3 파이썬","dateModified":"2022-09-21T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://ksy1526.github.io/myblog/boostcamp/math/moore-penrose/monte%20carlo/mle/kl%20divergence/markdown/2022/09/21/week1_2.html"},"description":"부스트캠프 3일차 공부 정리.","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/myblog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://ksy1526.github.io/myblog/feed.xml" title="나의 빅데이터 공부 기록" /><link rel="shortcut icon" type="image/x-icon" href="/myblog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -88,13 +88,13 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">[BoostCamp]Day2</h1><p class="page-description">부스트캠프 2일차 공부 정리.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-09-21T00:00:00-05:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">[BoostCamp]Day3 파이썬</h1><p class="page-description">부스트캠프 3일차 공부 정리.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-09-21T00:00:00-05:00" itemprop="datePublished">
         Sep 21, 2022
       </time>
        • <span class="read-time" title="Estimated read time">
     
     
-      1 min read
+      3 min read
     
 </span></p>
 
@@ -129,15 +129,30 @@ window.onload = wrap_img;
 
   <div class="post-content e-content" itemprop="articleBody">
     <ul class="section-nav">
-<li class="toc-entry toc-h1"><a href="#2일차-공부-정리-업데이트중">2일차 공부 정리 (업데이트중)</a>
+<li class="toc-entry toc-h1"><a href="#3일차-공부-정리-업데이트중">3일차 공부 정리 (업데이트중)</a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#python-리스트-특징">Python 리스트 특징</a></li>
+<li class="toc-entry toc-h2"><a href="#파이썬-리스트">파이썬 리스트</a></li>
+<li class="toc-entry toc-h2"><a href="#파이썬-함수">파이썬 함수</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#call-by-reference">Call by Reference</a></li>
+<li class="toc-entry toc-h3"><a href="#스와핑">스와핑</a></li>
+<li class="toc-entry toc-h3"><a href="#지역변수-전역변수">지역변수, 전역변수</a></li>
+<li class="toc-entry toc-h3"><a href="#가변인자">가변인자</a></li>
+<li class="toc-entry toc-h3"><a href="#일등함수">일등함수</a></li>
 </ul>
 </li>
-</ul><h1 id="2일차-공부-정리-업데이트중">
-<a class="anchor" href="#2%EC%9D%BC%EC%B0%A8-%EA%B3%B5%EB%B6%80-%EC%A0%95%EB%A6%AC-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8%EC%A4%91" aria-hidden="true"><span class="octicon octicon-link"></span></a>2일차 공부 정리 (업데이트중)</h1>
-<h2 id="python-리스트-특징">
-<a class="anchor" href="#python-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%ED%8A%B9%EC%A7%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>Python 리스트 특징</h2>
+<li class="toc-entry toc-h2"><a href="#파이썬-내-알아두면-좋을-것들">파이썬 내 알아두면 좋을 것들</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#docstring">docstring</a></li>
+<li class="toc-entry toc-h3"><a href="#코딩-컨벤션">코딩 컨벤션</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul><h1 id="3일차-공부-정리-업데이트중">
+<a class="anchor" href="#3%EC%9D%BC%EC%B0%A8-%EA%B3%B5%EB%B6%80-%EC%A0%95%EB%A6%AC-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8%EC%A4%91" aria-hidden="true"><span class="octicon octicon-link"></span></a>3일차 공부 정리 (업데이트중)</h1>
+<h2 id="파이썬-리스트">
+<a class="anchor" href="#%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EB%A6%AC%EC%8A%A4%ED%8A%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>파이썬 리스트</h2>
 
 <p><img src="https://softvanilla.github.io/assets/images/python/5/listinlist.png" alt="리스트"></p>
 
@@ -145,7 +160,173 @@ window.onload = wrap_img;
 
 <p>이게 가능한 이유는 리스트 변수에는 리스트 주소값이 저장되기 때문입니다. 그러므로 형식이 자유로워 집니다.</p>
 
-<p><img src="images/220920list.png" alt="리스트2"></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+
+<span class="c1"># 같은 리스트 값을 복제하는 방식으로 b에 할당하고 싶을때
+</span><span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">[:]</span> 
+</code></pre></div></div>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/191219321-665e42fe-1f36-4f46-8471-620cc290a4bd.png" alt="리스트2"></p>
+
+<p>다음 코드를 실행하게 되면(b = a) 컴퓨터 내부적으로 윗 그림과 같은 일이 벌어집니다. 두 변수 모두 서로 같은 리스트를 가리키게 되죠.</p>
+
+<p>변수는 리스트를 입력받을 때 리스트의 주소 값을 할당하는 방식으로 입력받기 때문입니다.</p>
+
+<p>같은 리스트를 할당하지 않고, 리스트를 복제하여 할당하고 싶을 때는 밑 코드(b = a[:])을 실행해야 합니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">copy</span>
+
+<span class="n">kor_score</span> <span class="o">=</span> <span class="p">[</span><span class="mi">49</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">80</span><span class="p">]</span>
+<span class="n">math_score</span> <span class="o">=</span> <span class="p">[</span><span class="mi">43</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">90</span><span class="p">]</span>
+<span class="n">eng_score</span> <span class="o">=</span> <span class="p">[</span><span class="mi">49</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">100</span><span class="p">]</span>
+<span class="n">midterm_score</span> <span class="o">=</span> <span class="p">[</span><span class="n">kor_score</span><span class="p">,</span> <span class="n">math_score</span><span class="p">,</span> <span class="n">eng_score</span><span class="p">]</span>
+
+<span class="c1"># 아래 식은 복제가 되지 않음. (일차원 리스트와 다릅니다.)
+# midterm_copy = midterm_score[:]
+# copy 패키지 내 deepcopy를 사용해야함.
+</span><span class="n">midterm_copy</span> <span class="o">=</span> <span class="n">copy</span><span class="p">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">midterm_score</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>이차원 리스트는 일차원 리스트와 또 다르게 복제하려면 위와 같이 다른 방법을 사용해야 합니다.</p>
+
+<h2 id="파이썬-함수">
+<a class="anchor" href="#%ED%8C%8C%EC%9D%B4%EC%8D%AC-%ED%95%A8%EC%88%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>파이썬 함수</h2>
+
+<h3 id="call-by-reference">
+<a class="anchor" href="#call-by-reference" aria-hidden="true"><span class="octicon octicon-link"></span></a>Call by Reference</h3>
+
+<p>파이썬 함수 호출 방식은 ‘Call by Reference’ 입니다. 함수에 인자를 넘길 때 메모리 주소를 넘기고, 함수 내에 인자 값 변경 시 호출자의 값도 변경됩니다.</p>
+
+<p>이 사실을 잘 모르고 있다면 함수를 사용한 코드를 디버깅 할 때 혼란스러울 수 있습니다.</p>
+
+<p>개인적으로 예전에 코딩테스트 시험를 볼 때 함수를 거친 것 뿐인데 값이 도대체 왜 바뀌는 지에 대한 의문이 풀립니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">spam</span><span class="p">(</span><span class="n">eggs</span><span class="p">):</span> <span class="c1"># 인자로 넘어온 주소값을 eggs에 넣음.
+</span>    <span class="n">eggs</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># 기존 객체의 주소 값에 [1] 추가.
+</span>    <span class="n">eggs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="c1"># 새로운 객체 생성.
+</span>
+<span class="n">ham</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">spam</span><span class="p">(</span><span class="n">ham</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">ham</span><span class="p">)</span>  <span class="c1"># 결과 : [0, 1]
+# ham 값이 spam 함수를 거치니 달라졌음.
+</span></code></pre></div></div>
+
+<p>‘함수에 인자를 넘길 때 메모리 주소를 넘기고, 함수 내에 인자 값 변경 시 호출자의 값도 변경됩니다.’ 를 잘 보여주는 예시 코드 입니다.</p>
+
+<h3 id="스와핑">
+<a class="anchor" href="#%EC%8A%A4%EC%99%80%ED%95%91" aria-hidden="true"><span class="octicon octicon-link"></span></a>스와핑</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">swap_value</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">y</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">temp</span>
+
+<span class="k">def</span> <span class="nf">swap_reference</span><span class="p">(</span><span class="n">list_ex</span><span class="p">,</span> <span class="n">offset_x</span><span class="p">,</span> <span class="n">offset_y</span><span class="p">):</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">list_ex</span><span class="p">[</span><span class="n">offset_x</span><span class="p">]</span>
+    <span class="n">list_ex</span><span class="p">[</span><span class="n">offset_x</span><span class="p">]</span> <span class="o">=</span> <span class="n">list_ex</span><span class="p">[</span><span class="n">offset_y</span><span class="p">]</span>
+    <span class="n">list_ex</span><span class="p">[</span><span class="n">offset_y</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>
+
+<span class="n">ex</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">swap_value</span><span class="p">(</span><span class="n">ex</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ex</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span> <span class="c1"># [1,2,3,4,5], 리스트 값이 안 바뀐다.
+</span><span class="n">swap_reference</span><span class="p">(</span><span class="n">ex</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span> <span class="c1"># [2,1,3,4,5], 리스트 값이 바뀐다.
+</span></code></pre></div></div>
+
+<p>윗 함수는 변수 스와핑이 일어나지 않고 아랫 함수는 변수 스와핑이 일어납니다. 리스트 내 변수 스와핑을 할 때 유의해야 합니다.</p>
+
+<p>또 참고할 점은 파이썬에서 연산 속도를 위해 자주쓰는 -5~256 까지의 숫자의 주소 값은 미리 할당했다는 것을 기억하면 좋겠습니다.</p>
+
+<h3 id="지역변수-전역변수">
+<a class="anchor" href="#%EC%A7%80%EC%97%AD%EB%B3%80%EC%88%98-%EC%A0%84%EC%97%AD%EB%B3%80%EC%88%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>지역변수, 전역변수</h3>
+
+<p>다음으로 함수 내 변수를 새로 선언하면 지역변수로써 그 함수 내에서만 사용이 가능합니다. 함수 바깥에 있는 변수는 전역변수로써 함수에서도 차용해서 사용이 가능하구요.</p>
+
+<p>다만 함수 내에 전역변수와 이름이 같은 변수를 선언하면 새로운 지역 변수가 생깁니다.</p>
+
+<p>만약 함수 내에서 전역변수로 사용하고 싶다면 global 키워드를 이용하면 좋겠습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">s</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="s">'I love Hanam!'</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="c1"># 'I love Hanam!'
+</span>
+<span class="n">s</span> <span class="o">=</span> <span class="s">'I love Seoul!'</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="c1"># 'I love Seoul!'
+</span><span class="n">f</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="c1"># 'I love Hanam!'
+</span></code></pre></div></div>
+
+<h3 id="가변인자">
+<a class="anchor" href="#%EA%B0%80%EB%B3%80%EC%9D%B8%EC%9E%90" aria-hidden="true"><span class="octicon octicon-link"></span></a>가변인자</h3>
+
+<p>개수가 정해지지 않는 변수를 함수의 파라미터로 사용할 때 사용합니다.</p>
+
+<p>Asterisk(*) 기호를 사용하고 가변인자는 맨 마지막 파라미터 위치에서 한 개만 사용 가능합니다. 그리고 입력된 값은 튜플로 사용됩니다.</p>
+
+<p>또 Asterisk(*) 기호를 2개 사용하는 키워드 가변인자도 존재합니다. 입력 값은 dict 타입을 사용해야합니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">asterisk_test</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="o">+</span><span class="nb">sum</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">kwargs_test_3</span><span class="p">(</span><span class="n">one</span><span class="p">,</span><span class="n">two</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">one</span><span class="o">+</span><span class="n">two</span><span class="o">+</span><span class="nb">sum</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">asterisk_test</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">kwargs_test_3</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span> <span class="n">first</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">second</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">third</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="일등함수">
+<a class="anchor" href="#%EC%9D%BC%EB%93%B1%ED%95%A8%EC%88%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>일등함수</h3>
+
+<p>파이썬의 함수는 일등함수 입니다. 일등함수란 변수나 데이터 구조에 할당이 가능한 객체이고, 파라미터로 전달이 가능하며 리턴 값으로도 사용할 수 있어야 합니다.</p>
+
+<p>개인적으로 이전에 R을 배웠었는데 R과 작동 원리가 똑같은 것 같습니다.</p>
+
+<p>일등함수 성질을 사용하면 다음과 같은 응용이 가능합니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">print_msg</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">printer</span><span class="p">():</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">printer</span>
+
+<span class="n">another</span> <span class="o">=</span> <span class="n">print_msg</span><span class="p">(</span><span class="s">"Hello, Python"</span><span class="p">)</span>
+<span class="n">another</span><span class="p">()</span> <span class="c1"># another 함수는 'Hello, Python'을 프린트 해주는 함수.
+# 위와 같이 함수를 찍어내는 함수를 만들 수 있음. 이를 클로저 라고 함.
+</span></code></pre></div></div>
+
+<h2 id="파이썬-내-알아두면-좋을-것들">
+<a class="anchor" href="#%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EB%82%B4-%EC%95%8C%EC%95%84%EB%91%90%EB%A9%B4-%EC%A2%8B%EC%9D%84-%EA%B2%83%EB%93%A4" aria-hidden="true"><span class="octicon octicon-link"></span></a>파이썬 내 알아두면 좋을 것들</h2>
+
+<h3 id="docstring">
+<a class="anchor" href="#docstring" aria-hidden="true"><span class="octicon octicon-link"></span></a>docstring</h3>
+
+<p>docstring 이란? 함수에 대한 상세스펙을 함수명 아래에 작성하는 것 입니다.</p>
+
+<p>vscode 내 docstring 을 설치하고 명령창에 docstring을 쓰면 쉽게 사용 가능합니다.</p>
+
+<p><img src="https://i.stack.imgur.com/EE8MB.png" alt="docstring"></p>
+
+<h3 id="코딩-컨벤션">
+<a class="anchor" href="#%EC%BD%94%EB%94%A9-%EC%BB%A8%EB%B2%A4%EC%85%98" aria-hidden="true"><span class="octicon octicon-link"></span></a>코딩 컨벤션</h3>
+
+<p>협업을 진행할 때 쉽게 이해하도록 개인의 코딩 습관을 자제하고, 정해진 코딩 규칙을 지키는 것 입니다.</p>
+
+<p>일반적인 코딩 규칙으로</p>
+
+<ul>
+  <li>들어쓰기 4칸</li>
+  <li>한 줄은 최대 79자(화면 크기가 작은 사람 배려)</li>
+  <li>불필요한 공백은 피함</li>
+  <li>코드 마지막엔 항상 한 줄 추가</li>
+</ul>
+
+<p>등이 있습니다.</p>
+
+<p>참고로 파이썬 내 black 모듈을 사용하면 pep8 like 라는 수준을 준수하는 코드로 자동 변경 되니 협업 하는 경우 한번 돌리고 사용해도 좋을 것 같네요.</p>
 
   </div><script src="https://utteranc.es/client.js"
         repo="KSY1526/myblog"
