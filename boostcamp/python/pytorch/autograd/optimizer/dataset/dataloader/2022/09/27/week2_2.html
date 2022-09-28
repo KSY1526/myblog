@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>[BoostCamp]Day7 RNN | 나의 빅데이터 공부 기록</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="[BoostCamp]Day7 RNN" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="부스트캠프 7일차 공부 정리." />
+<meta property="og:description" content="부스트캠프 7일차 공부 정리." />
+<link rel="canonical" href="https://ksy1526.github.io/myblog/boostcamp/python/pytorch/autograd/optimizer/dataset/dataloader/2022/09/27/week2_2.html" />
+<meta property="og:url" content="https://ksy1526.github.io/myblog/boostcamp/python/pytorch/autograd/optimizer/dataset/dataloader/2022/09/27/week2_2.html" />
+<meta property="og:site_name" content="나의 빅데이터 공부 기록" />
+<meta property="og:image" content="https://ksy1526.github.io/myblog/images/220928.PNG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-09-27T00:00:00-05:00" />
+<script type="application/ld+json">
+{"datePublished":"2022-09-27T00:00:00-05:00","url":"https://ksy1526.github.io/myblog/boostcamp/python/pytorch/autograd/optimizer/dataset/dataloader/2022/09/27/week2_2.html","@type":"BlogPosting","image":"https://ksy1526.github.io/myblog/images/220928.PNG","headline":"[BoostCamp]Day7 RNN","dateModified":"2022-09-27T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://ksy1526.github.io/myblog/boostcamp/python/pytorch/autograd/optimizer/dataset/dataloader/2022/09/27/week2_2.html"},"description":"부스트캠프 7일차 공부 정리.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/myblog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://ksy1526.github.io/myblog/feed.xml" title="나의 빅데이터 공부 기록" /><link rel="shortcut icon" type="image/x-icon" href="/myblog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/myblog/">나의 빅데이터 공부 기록</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/myblog/about/">About Me</a><a class="page-link" href="/myblog/search/">Search</a><a class="page-link" href="/myblog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">[BoostCamp]Day7 RNN</h1><p class="page-description">부스트캠프 7일차 공부 정리.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-09-27T00:00:00-05:00" itemprop="datePublished">
+        Sep 27, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      2 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/myblog/categories/#BoostCamp">BoostCamp</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#Python">Python</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#Pytorch">Pytorch</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#AutoGrad">AutoGrad</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#Optimizer">Optimizer</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#Dataset">Dataset</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#DataLoader">DataLoader</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#7일차-공부-정리">7일차 공부 정리</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#layer">Layer</a></li>
+<li class="toc-entry toc-h2"><a href="#backward">Backward</a></li>
+<li class="toc-entry toc-h2"><a href="#dataset-dataloader">Dataset, DataLoader</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#dataset">Dataset</a></li>
+<li class="toc-entry toc-h3"><a href="#dataloader">DataLoader</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#느낀점">느낀점</a></li>
+</ul>
+</li>
+</ul><h1 id="7일차-공부-정리">
+<a class="anchor" href="#7%EC%9D%BC%EC%B0%A8-%EA%B3%B5%EB%B6%80-%EC%A0%95%EB%A6%AC" aria-hidden="true"><span class="octicon octicon-link"></span></a>7일차 공부 정리</h1>
+<h2 id="layer">
+<a class="anchor" href="#layer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Layer</h2>
+
+<p>딥러닝을 구성하는 Layer의 base 클래스로 torch.nn.Module 이 존재합니다.</p>
+
+<p>torch.nn.Module 내에 입/출력값, Forward, Backward가 정의되고 학습의 대상이 되는 파라미터도 정의됩니다.</p>
+
+<p>모듈 내 텐서가 학습이 되기 위해서는 required_grad를 True로 선언해주어야 합니다. 때문에 파라미터 변수는 Tensor객체를 상속한 nn.Parameter 객체를 사용합니다.</p>
+
+<p>nn.Parameter 객체는 nn.Module 내 attribute가 될 때 required_grad가 True로 바뀌어 파라미터 변수는 이 객체를 사용해야합니다. 다만 low-level을 다루지 않는다면 직접 다루지 않습니다.</p>
+
+<h2 id="backward">
+<a class="anchor" href="#backward" aria-hidden="true"><span class="octicon octicon-link"></span></a>Backward</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+    <span class="p">...</span>
+    <span class="p">...</span>
+    <span class="p">...</span>
+    <span class="c1"># 1) 옵티마이저를 초기화함.
+</span>    <span class="n">optimizer</span><span class="p">.</span><span class="n">zero_grad</span><span class="p">()</span>
+
+    <span class="c1"># 2) 모델에 입력값을 넣어 출력물을 저장함.
+</span>    <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+
+    <span class="c1"># 3) 출력값과 실제 y값을 사용해 손실함수 값을 계산함.
+</span>    <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+
+    <span class="c1"># 4) 손실함수를 사용해 backward(역전파)를 진행함. 
+</span>    <span class="n">loss</span><span class="p">.</span><span class="n">backward</span><span class="p">()</span>
+
+    <span class="c1"># 5) 옵티마이저를 이용해 가중치 업데이트를 함.
+</span>    <span class="n">optimizer</span><span class="p">.</span><span class="n">step</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>이렇게 총 5단계 스텝을 거처 학습이 진행됩니다. 자주 쓰는 코드이니 순서대로 잘 기억하면 좋겠습니다.</p>
+
+<h2 id="dataset-dataloader">
+<a class="anchor" href="#dataset-dataloader" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dataset, DataLoader</h2>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/192254173-331f6e4c-548a-418b-8fc1-cd0db3930c7d.png" alt="model"></p>
+
+<p>다양한 종류에 데이터들을 표준화 시키는 곳이 Dataset, 배치를 생성하는 곳이 DataLoader 입니다.</p>
+
+<h3 id="dataset">
+<a class="anchor" href="#dataset" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dataset</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">Dataset</span>
+
+<span class="k">class</span> <span class="nc">CustomDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span> <span class="c1"># Dataset을 상속받은 커스텀 데이터셋
+</span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span> 
+        <span class="c1"># 생성자. 초기 데이터 생성 방법.
+</span>        <span class="c1"># 데이터의 위치나 파일명과 같은 초기화 작업을 위해 동작
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">labels</span> <span class="o">=</span> <span class="n">labels</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">text</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> 
+        <span class="c1"># 데이터 전체 길이 반환 함수
+</span>        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">labels</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span> 
+        <span class="c1"># 데이터셋의 idx번째 데이터를 반환하는데 사용
+</span>        <span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">labels</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Text'</span> <span class="p">:</span> <span class="n">text</span><span class="p">,</span> <span class="s">'Class'</span> <span class="p">:</span> <span class="n">label</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">sample</span>
+
+</code></pre></div></div>
+
+<p>심플한 데이터 셋 코드 입니다. 이미지의 텐서변화와 같은 것을 꼭 데이터 생성시점에 처리할 필요는 없고 학습이 필요한 시점에 변환합니다.</p>
+
+<h3 id="dataloader">
+<a class="anchor" href="#dataloader" aria-hidden="true"><span class="octicon octicon-link"></span></a>DataLoader</h3>
+
+<p>데이터로더는 앞서 정의한 데이터 셋을 사용해 미니배치형태로 제공하여 모델학습을 용이하게 합니다.</p>
+
+<p>하이퍼 파라미터는 다음과 같습니다.</p>
+
+<pre><code class="language-Python">DataLoader(
+    dataset, # Dataset 인스턴스가 들어감
+    batch_size = 1 # 배치 사이즈 설정
+    shuffle = False # 데이터를 섞는지 유무. 트레인 할때는 섞어야함
+    sampler = None 
+    batch_sampler = None # index를 컨트롤 하는 도구
+    num_workers = 0 # 데이터 불러올때 사용하는 프로세스 개수
+    collate_fn = None # 데이터 셋 크기가 일정하지 않을 때 배치 단위로 적용할 함수 입력
+    drop_last = False # 마지막 배치 사용 여부
+    timeout = 0 # 데이터를 불러오는데 제한 시간
+
+)
+</code></pre>
+
+<h2 id="느낀점">
+<a class="anchor" href="#%EB%8A%90%EB%82%80%EC%A0%90" aria-hidden="true"><span class="octicon octicon-link"></span></a>느낀점</h2>
+
+<p>무심코 썼던 파이토치 라이브러리 내 다양한 클래스와 함수들이 설계하는 사람 입장에서 정말 체계적으로 제작했구나 알게 되었습니다.</p>
+
+<p>제가 많이 부족해 파이토치 내 기능을 아직 많이 못쓰는구나 생각했고 많이 배웠습니다.</p>
+
+<p>특히 공식문서 읽는법, Parameter 객체, collate_fn 적용 등 과제를 통해 많이 성장한 것 같습니다.</p>
+
+<p>다만.. 많이 힘드네요. 아직 7일차지만 장기 레이스임을 인지하고 꾸준히 열심히 해야겠습니다.</p>
+
+<p>** 위 수식과 그림은은 부스트캠프 AI Tech 교육 자료를 참고하였습니다.</p>
+
+
+  </div><script src="https://utteranc.es/client.js"
+        repo="KSY1526/myblog"
+        issue-term="pathname"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+  <a class="u-url" href="/myblog/boostcamp/python/pytorch/autograd/optimizer/dataset/dataloader/2022/09/27/week2_2.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/myblog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/myblog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/myblog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/KSY1526" target="_blank" title="KSY1526"><svg class="svg-icon grey"><use xlink:href="/myblog/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
