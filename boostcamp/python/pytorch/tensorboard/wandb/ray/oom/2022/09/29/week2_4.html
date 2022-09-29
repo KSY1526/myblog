@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>[BoostCamp]Day9 파이토치 꿀팁들 | 나의 빅데이터 공부 기록</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="[BoostCamp]Day9 파이토치 꿀팁들" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="부스트캠프 9일차 공부 정리." />
+<meta property="og:description" content="부스트캠프 9일차 공부 정리." />
+<link rel="canonical" href="https://ksy1526.github.io/myblog/boostcamp/python/pytorch/tensorboard/wandb/ray/oom/2022/09/29/week2_4.html" />
+<meta property="og:url" content="https://ksy1526.github.io/myblog/boostcamp/python/pytorch/tensorboard/wandb/ray/oom/2022/09/29/week2_4.html" />
+<meta property="og:site_name" content="나의 빅데이터 공부 기록" />
+<meta property="og:image" content="https://ksy1526.github.io/myblog/images/220929.PNG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-09-29T00:00:00-05:00" />
+<script type="application/ld+json">
+{"datePublished":"2022-09-29T00:00:00-05:00","url":"https://ksy1526.github.io/myblog/boostcamp/python/pytorch/tensorboard/wandb/ray/oom/2022/09/29/week2_4.html","@type":"BlogPosting","image":"https://ksy1526.github.io/myblog/images/220929.PNG","headline":"[BoostCamp]Day9 파이토치 꿀팁들","dateModified":"2022-09-29T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://ksy1526.github.io/myblog/boostcamp/python/pytorch/tensorboard/wandb/ray/oom/2022/09/29/week2_4.html"},"description":"부스트캠프 9일차 공부 정리.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/myblog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://ksy1526.github.io/myblog/feed.xml" title="나의 빅데이터 공부 기록" /><link rel="shortcut icon" type="image/x-icon" href="/myblog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/myblog/">나의 빅데이터 공부 기록</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/myblog/about/">About Me</a><a class="page-link" href="/myblog/search/">Search</a><a class="page-link" href="/myblog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">[BoostCamp]Day9 파이토치 꿀팁들</h1><p class="page-description">부스트캠프 9일차 공부 정리.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-09-29T00:00:00-05:00" itemprop="datePublished">
+        Sep 29, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      3 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/myblog/categories/#BoostCamp">BoostCamp</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#Python">Python</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#Pytorch">Pytorch</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#tensorboard">tensorboard</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#wandb">wandb</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#ray">ray</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#OOM">OOM</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#9일차-공부-정리">9일차 공부 정리</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#텐서보드">텐서보드</a></li>
+<li class="toc-entry toc-h2"><a href="#wandb">wandb</a></li>
+<li class="toc-entry toc-h2"><a href="#ray">ray</a></li>
+<li class="toc-entry toc-h2"><a href="#oom">OOM</a></li>
+<li class="toc-entry toc-h2"><a href="#느낀점">느낀점</a></li>
+</ul>
+</li>
+</ul><h1 id="9일차-공부-정리">
+<a class="anchor" href="#9%EC%9D%BC%EC%B0%A8-%EA%B3%B5%EB%B6%80-%EC%A0%95%EB%A6%AC" aria-hidden="true"><span class="octicon octicon-link"></span></a>9일차 공부 정리</h1>
+<h2 id="텐서보드">
+<a class="anchor" href="#%ED%85%90%EC%84%9C%EB%B3%B4%EB%93%9C" aria-hidden="true"><span class="octicon octicon-link"></span></a>텐서보드</h2>
+
+<p>파이토치를 사용해 모델을 학습하면 모델이 어느정도 학습되었는지 알기 위한 시각화 툴의 필요성을 느낍니다.</p>
+
+<p>텐서플로우에서 먼저 사용됬던 텐서보드가 파이토치에도 적용되는데, 사용법을 간단히 공부했습니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">### 코렙 환경
+</span>
+<span class="c1">## 1) 폴더 만들어주기
+</span><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">logs_base_dir</span> <span class="o">=</span> <span class="s">"logs"</span>
+<span class="n">os</span><span class="p">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">logs_base_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c1">## 2) 텐서보드 객체 만들고 값 넣기
+</span><span class="kn">from</span> <span class="nn">torch.utils.tensorboard</span> <span class="kn">import</span> <span class="n">SummaryWriter</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="n">exp</span>  <span class="o">=</span> <span class="s">f"</span><span class="si">{</span><span class="n">logs_base_dir</span><span class="si">}</span><span class="s">/ex3"</span>
+<span class="c1"># SummaryWriter(경로)로 객체 선언
+</span><span class="n">writer</span> <span class="o">=</span> <span class="n">SummaryWriter</span><span class="p">(</span><span class="n">exp</span><span class="p">)</span>
+<span class="c1"># 값 입력 
+</span><span class="k">for</span> <span class="n">n_iter</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="c1"># writer.add_scalar('트리/구조', 값, 순서)
+</span>    <span class="c1"># add_histogram, add_images, add_hparams 등이 존재
+</span>    <span class="n">writer</span><span class="p">.</span><span class="n">add_scalar</span><span class="p">(</span><span class="s">'Loss/train'</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random</span><span class="p">(),</span> <span class="n">n_iter</span><span class="p">)</span>
+    <span class="n">writer</span><span class="p">.</span><span class="n">add_scalar</span><span class="p">(</span><span class="s">'Loss/test'</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random</span><span class="p">(),</span> <span class="n">n_iter</span><span class="p">)</span>
+    <span class="n">writer</span><span class="p">.</span><span class="n">add_scalar</span><span class="p">(</span><span class="s">'Accuracy/train'</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random</span><span class="p">(),</span> <span class="n">n_iter</span><span class="p">)</span>
+    <span class="n">writer</span><span class="p">.</span><span class="n">add_scalar</span><span class="p">(</span><span class="s">'Accuracy/test'</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">random</span><span class="p">(),</span> <span class="n">n_iter</span><span class="p">)</span>
+
+<span class="c1"># 버퍼 내 값 파일에 기록(disk에 쓰기)
+</span><span class="n">writer</span><span class="p">.</span><span class="n">flush</span><span class="p">()</span>
+<span class="c1"># 입력을 닫음
+</span><span class="n">writer</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1">## 3) 텐서보드 실행하기
+# jupyter 상에서 텐서보드 수행 알림
+</span><span class="o">%</span><span class="n">load_ext</span> <span class="n">tensorboard</span>
+<span class="c1"># 파일 위치 지정해서 텐서보드 실행
+</span><span class="o">%</span><span class="n">tensorboard</span> <span class="o">--</span><span class="n">logdir</span> <span class="s">"logs"</span>
+</code></pre></div></div>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/192917916-69192028-f227-4f80-bd10-d2efdc11e381.png" alt="tensorboard"></p>
+
+<p>실제 텐서보드를 실행해보니 이 도구를 잘 사용 한다면 효율이 굉장하겠구나 생각했습니다. 다양한 기능들은 실제 필요시 더 공부해보겠습니다.</p>
+
+<h2 id="wandb">
+<a class="anchor" href="#wandb" aria-hidden="true"><span class="octicon octicon-link"></span></a>wandb</h2>
+
+<p>딥러닝 모델을 사용하다 보면 하이퍼 파라미터에 따른 모델의 성능지표를 시각적으로 확인하는 것이 중요합니다.</p>
+
+<p>제 경험에 빗대어 얘기해보면 분명 더 좋은 성능을 냈었는데.. 어떻게 돌렸었는지 하는 사례가 많았어요. 재현에 문제이죠.</p>
+
+<p>또 팀 프로젝트를 하게될 때도 모델 비교가 쉽지 않았습니다. 개인이 각자 프로젝트를 진행하는 느낌이였죠.</p>
+
+<p>이러한 필요성 때문에 wandb를 사용합니다. 공식 홈페이지에서 회원가입을 하면 쉽게 사용가능합니다.( https://wandb.ai/site )</p>
+
+<p>간단한 사용법은 코드를 참고하시면 됩니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 설치
+</span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">wandb</span> <span class="o">-</span><span class="n">q</span>
+<span class="kn">import</span> <span class="nn">wandb</span>
+
+<span class="c1"># wandb 시작. 이 부분에서 홈페이지 내 개인 키 값 입력 필요
+</span><span class="n">wandb</span><span class="p">.</span><span class="n">init</span><span class="p">(</span><span class="n">project</span><span class="o">=</span><span class="s">"프로젝트명"</span><span class="p">,</span> <span class="n">entity</span><span class="o">=</span><span class="s">'계정명'</span><span class="p">)</span>
+
+<span class="c1"># 하이퍼 파라미터 값을 넣어줍니다.
+</span><span class="n">wandb</span><span class="p">.</span><span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">"learning_rate"</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span>
+  <span class="s">"epochs"</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+  <span class="s">"batch_size"</span><span class="p">:</span> <span class="mi">128</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">EPOCHS</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+    <span class="p">...</span>
+    <span class="p">...</span>
+    <span class="p">...</span>
+    <span class="c1"># wandb에 기록합니다.
+</span>    <span class="n">wandb</span><span class="p">.</span><span class="n">log</span><span class="p">({</span><span class="s">'accuracy'</span><span class="p">:</span> <span class="n">train_acc</span><span class="p">,</span> <span class="s">'loss'</span><span class="p">:</span> <span class="n">train_loss</span><span class="p">})</span>
+</code></pre></div></div>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/192943467-bb10927a-5db3-4dea-9223-fc449ddc0b0c.png" alt="wandb"></p>
+
+<p>실제 wandb 사용 사진입니다. 시각적으로 훌륭해 모델 프로젝트 관리가 용이합니다.</p>
+
+<h2 id="ray">
+<a class="anchor" href="#ray" aria-hidden="true"><span class="octicon octicon-link"></span></a>ray</h2>
+
+<p>병렬처리 패키지이면서 하이퍼 파라미터 튜닝을 쉽게 도와주는 ray를 간단하게 소개합니다.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 패키지 설치, 불러오기
+</span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">ray</span> 
+<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">tensorboardX</span>
+
+<span class="kn">from</span> <span class="nn">ray</span> <span class="kn">import</span> <span class="n">tune</span>
+<span class="kn">from</span> <span class="nn">ray.tune</span> <span class="kn">import</span> <span class="n">CLIReporter</span>
+<span class="kn">from</span> <span class="nn">ray.tune.schedulers</span> <span class="kn">import</span> <span class="n">ASHAScheduler</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+
+<span class="c1"># ray 사용시 학습하는 과정이 하나의 함수로 이뤄져 있어야함.
+</span><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">num_samples</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_num_epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">gpus_per_trial</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    
+    <span class="n">data_dir</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">abspath</span><span class="p">(</span><span class="s">"./data"</span><span class="p">)</span>
+    <span class="n">load_data</span><span class="p">(</span><span class="n">data_dir</span><span class="p">)</span>
+    <span class="c1"># (1번)데이터를 tune.sample_from 등을 활용해 그리드/랜덤 서치 선언
+</span>    <span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">"l1"</span><span class="p">:</span> <span class="n">tune</span><span class="p">.</span><span class="n">sample_from</span><span class="p">(</span><span class="k">lambda</span> <span class="n">_</span><span class="p">:</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">)),</span>
+        <span class="s">"l2"</span><span class="p">:</span> <span class="n">tune</span><span class="p">.</span><span class="n">sample_from</span><span class="p">(</span><span class="k">lambda</span> <span class="n">_</span><span class="p">:</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">)),</span>
+        <span class="s">"lr"</span><span class="p">:</span> <span class="n">tune</span><span class="p">.</span><span class="n">loguniform</span><span class="p">(</span><span class="mf">1e-4</span><span class="p">,</span> <span class="mf">1e-1</span><span class="p">),</span>
+        <span class="s">"batch_size"</span><span class="p">:</span> <span class="n">tune</span><span class="p">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">])</span>
+    <span class="p">}</span>
+
+    <span class="c1"># (2번)가망이 없을 것 같은 파라미터는 더 이상 학습하지 않고 짤라냄
+</span>    <span class="n">scheduler</span> <span class="o">=</span> <span class="n">ASHAScheduler</span><span class="p">(</span>
+        <span class="n">metric</span><span class="o">=</span><span class="s">"loss"</span><span class="p">,</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s">"min"</span><span class="p">,</span>
+        <span class="n">max_t</span><span class="o">=</span><span class="n">max_num_epochs</span><span class="p">,</span>
+        <span class="n">grace_period</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">reduction_factor</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="c1"># (3번)결과 출력 양식 정함
+</span>    <span class="n">reporter</span> <span class="o">=</span> <span class="n">CLIReporter</span><span class="p">(</span>
+        <span class="c1"># parameter_columns=["l1", "l2", "lr", "batch_size"],
+</span>        <span class="n">metric_columns</span><span class="o">=</span><span class="p">[</span><span class="s">"loss"</span><span class="p">,</span> <span class="s">"accuracy"</span><span class="p">,</span> <span class="s">"training_iteration"</span><span class="p">])</span>
+    
+    <span class="c1"># 병렬처리 과정 진행
+</span>    <span class="n">result</span> <span class="o">=</span> <span class="n">tune</span><span class="p">.</span><span class="n">run</span><span class="p">(</span>
+        <span class="c1"># train_cifar 함수, data_dir 데이터를 사용해서 병렬처리.
+</span>        <span class="n">partial</span><span class="p">(</span><span class="n">train_cifar</span><span class="p">,</span> <span class="n">data_dir</span><span class="o">=</span><span class="n">data_dir</span><span class="p">),</span>
+        <span class="n">resources_per_trial</span><span class="o">=</span><span class="p">{</span><span class="s">"cpu"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s">"gpu"</span><span class="p">:</span> <span class="n">gpus_per_trial</span><span class="p">},</span>
+        <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span> <span class="c1"># 1번
+</span>        <span class="n">num_samples</span><span class="o">=</span><span class="n">num_samples</span><span class="p">,</span>
+        <span class="n">scheduler</span><span class="o">=</span><span class="n">scheduler</span><span class="p">,</span> <span class="c1"># 2번
+</span>        <span class="n">progress_reporter</span><span class="o">=</span><span class="n">reporter</span><span class="p">)</span> <span class="c1"># 3번
+</span>
+    <span class="n">best_trial</span> <span class="o">=</span> <span class="n">result</span><span class="p">.</span><span class="n">get_best_trial</span><span class="p">(</span><span class="s">"loss"</span><span class="p">,</span> <span class="s">"min"</span><span class="p">,</span> <span class="s">"last"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Best trial config: {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">best_trial</span><span class="p">.</span><span class="n">config</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Best trial final validation loss: {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span>
+        <span class="n">best_trial</span><span class="p">.</span><span class="n">last_result</span><span class="p">[</span><span class="s">"loss"</span><span class="p">]))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Best trial final validation accuracy: {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span>
+        <span class="n">best_trial</span><span class="p">.</span><span class="n">last_result</span><span class="p">[</span><span class="s">"accuracy"</span><span class="p">]))</span>
+
+</code></pre></div></div>
+
+<h2 id="oom">
+<a class="anchor" href="#oom" aria-hidden="true"><span class="octicon octicon-link"></span></a>OOM</h2>
+
+<p>딥러닝 모델을 사용하다 보면(제 기준에선 코렙!..) 메모리를 많이 사용해서 터지는 경우가 정말 허다합니다.</p>
+
+<p>향후 더 큰 데이터를 다루게 되면 이러한 오류를 계속 겪을텐데 나름의 대처법을 정리했습니다.</p>
+
+<p>배치 사이즈를 최대한 낮추면서 다른 옵션을 건드리는 방향으로 접근합니다. 배치사이즈만 조금 낮춰도 문제가 대부분 해결됩니다.</p>
+
+<p>GPU 내 메모리를 얼마나 사용하는지 알기 위해 GPUUtil 모듈을 사용하는 것도 좋습니다. iter마다 메모리가 얼마나 늘어나는지 확인해보고 코드를 보안합니다.</p>
+
+<p>또 torch.cuda.empty_cache()나 del을 이용해 사용하지 않는 GPU 내 캐쉬를 정리해 메모리를 확보하는 방식도 좋습니다.</p>
+
+<p>다음으로 루프 안에 tensor로 축척되는 변수가 있는지를 확인합니다. 1차원 텐서는 파이썬 기본객체로 변환합니다.</p>
+
+<p>그리고 역전파시 쌓이는 메모리에서 자유로워지기 위해 with torch.no_grad() 구문을 학습하지 않을 때 잊지 않고 사용합니다.</p>
+
+<p>CNN의 경우 크기가 안맞아서 생기는 오류인지 확인해보고 LSTM같은 큰 모델은 사용을 피합니다.</p>
+
+<p>마지막으로 float 변수를 16bit로 줄여서 전반적인 데이터 크기를 감소시키는 것도 고려해봅니다.</p>
+
+<h2 id="느낀점">
+<a class="anchor" href="#%EB%8A%90%EB%82%80%EC%A0%90" aria-hidden="true"><span class="octicon octicon-link"></span></a>느낀점</h2>
+
+<p>오늘 정리한 내용이 꽤 많은 내용이고 실제 모델을 만들 때 사용되는 부분이여서 디테일한 코드 정리까지는 힘듭니다.</p>
+
+<p>하지만 키워드와 간단한 사용예시 정도를 잘 정리해놓으면 향후 프로젝트 수행 시 다시 이 페이지를 확인한다면 많은 도움이 되야한다 생각하고 작성했습니다.</p>
+
+<p>** 위 수식과 그림은은 부스트캠프 AI Tech 교육 자료를 참고하였습니다.</p>
+
+  </div><script src="https://utteranc.es/client.js"
+        repo="KSY1526/myblog"
+        issue-term="pathname"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+  <a class="u-url" href="/myblog/boostcamp/python/pytorch/tensorboard/wandb/ray/oom/2022/09/29/week2_4.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/myblog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/myblog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/myblog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/KSY1526" target="_blank" title="KSY1526"><svg class="svg-icon grey"><use xlink:href="/myblog/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
