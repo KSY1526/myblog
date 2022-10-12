@@ -267,14 +267,7 @@ window.onload = wrap_img;
 
 <p>다음으로 confidence는 Y의 X에 대한 조건부 확률로 식은 다음과 같습니다. (X와 Y가 동시에 포함된 개수 / X 개수, X와Y는 itemset임)</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>$c(X\xrightarrow{}Y) = \frac{n(X\cup Y)}{n(X)} =P(Y</td>
-      <td>X)$</td>
-    </tr>
-  </tbody>
-</table>
+<p>$c(X\xrightarrow{}Y) = \frac{n(X\cup Y)}{n(X)} =P(Y\mid X)$</p>
 
 <p>다만 confidence는 너무 적게 사는 item에 경우 보정이 미흡하기 때문에 이를 극복하기 위해 lift를 사용합니다.</p>
 

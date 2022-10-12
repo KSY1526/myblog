@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>[BoostCamp]Day18 Collaborative Filtering | 나의 빅데이터 공부 기록</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="[BoostCamp]Day18 Collaborative Filtering" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="부스트캠프 18일차 공부 정리." />
+<meta property="og:description" content="부스트캠프 18일차 공부 정리." />
+<link rel="canonical" href="https://ksy1526.github.io/myblog/boostcamp/collaborative%20filtering/recommender%20system/svd/2022/10/12/week4_3.html" />
+<meta property="og:url" content="https://ksy1526.github.io/myblog/boostcamp/collaborative%20filtering/recommender%20system/svd/2022/10/12/week4_3.html" />
+<meta property="og:site_name" content="나의 빅데이터 공부 기록" />
+<meta property="og:image" content="https://ksy1526.github.io/myblog/images/221012.png" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-12T00:00:00-05:00" />
+<script type="application/ld+json">
+{"datePublished":"2022-10-12T00:00:00-05:00","url":"https://ksy1526.github.io/myblog/boostcamp/collaborative%20filtering/recommender%20system/svd/2022/10/12/week4_3.html","@type":"BlogPosting","image":"https://ksy1526.github.io/myblog/images/221012.png","headline":"[BoostCamp]Day18 Collaborative Filtering","dateModified":"2022-10-12T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://ksy1526.github.io/myblog/boostcamp/collaborative%20filtering/recommender%20system/svd/2022/10/12/week4_3.html"},"description":"부스트캠프 18일차 공부 정리.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/myblog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://ksy1526.github.io/myblog/feed.xml" title="나의 빅데이터 공부 기록" /><link rel="shortcut icon" type="image/x-icon" href="/myblog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/myblog/">나의 빅데이터 공부 기록</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/myblog/about/">About Me</a><a class="page-link" href="/myblog/search/">Search</a><a class="page-link" href="/myblog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">[BoostCamp]Day18 Collaborative Filtering</h1><p class="page-description">부스트캠프 18일차 공부 정리.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-10-12T00:00:00-05:00" itemprop="datePublished">
+        Oct 12, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      5 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/myblog/categories/#BoostCamp">BoostCamp</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#Collaborative Filtering">Collaborative Filtering</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#Recommender system">Recommender system</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#SVD">SVD</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#18일차-공부-정리">18일차 공부 정리</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#collaborative-filtering">Collaborative Filtering</a></li>
+<li class="toc-entry toc-h2"><a href="#neighborhood-based-cf">Neighborhood-based CF</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#user-based-cf">User-based CF</a></li>
+<li class="toc-entry toc-h3"><a href="#item-based-cf">Item-based CF</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#유사도-측정법">유사도 측정법</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#mean-squared-difference-similarity">Mean Squared Difference Similarity</a></li>
+<li class="toc-entry toc-h3"><a href="#cosine-similarity">Cosine Similarity</a></li>
+<li class="toc-entry toc-h3"><a href="#pearson-similarity">Pearson Similarity</a></li>
+<li class="toc-entry toc-h3"><a href="#jaccard-similarity">Jaccard Similarity</a></li>
+<li class="toc-entry toc-h3"><a href="#코사인-유사도를-이용한-ubcf-적용">코사인 유사도를 이용한 UBCF 적용</a></li>
+<li class="toc-entry toc-h3"><a href="#ubcf--relative-rating">UBCF – Relative Rating</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#model-based-collaborative-filtering">Model Based Collaborative Filtering</a></li>
+<li class="toc-entry toc-h2"><a href="#svd">SVD</a></li>
+<li class="toc-entry toc-h2"><a href="#matrix-factorization">Matrix Factorization</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#adding-biases">Adding Biases</a></li>
+<li class="toc-entry toc-h3"><a href="#adding-confidence-level">Adding Confidence Level</a></li>
+<li class="toc-entry toc-h3"><a href="#adding-temporal-dynamics">Adding Temporal Dynamics</a></li>
+<li class="toc-entry toc-h3"><a href="#implicit-feedback">Implicit Feedback</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#alternative-least-square">Alternative Least Square</a></li>
+<li class="toc-entry toc-h2"><a href="#느낀점">느낀점</a></li>
+</ul>
+</li>
+</ul><h1 id="18일차-공부-정리">
+<a class="anchor" href="#18%EC%9D%BC%EC%B0%A8-%EA%B3%B5%EB%B6%80-%EC%A0%95%EB%A6%AC" aria-hidden="true"><span class="octicon octicon-link"></span></a>18일차 공부 정리</h1>
+
+<h2 id="collaborative-filtering">
+<a class="anchor" href="#collaborative-filtering" aria-hidden="true"><span class="octicon octicon-link"></span></a>Collaborative Filtering</h2>
+
+<p>Collaborative Filtering(이하 CF), 협업 필터링 모델은 16일차에 학습한 컨텐츠 기반 추천와 다르게 다른 사용자로부터 얻은 정보를 반영합니다.</p>
+
+<p>이 정보를 이용해 유저의 관심사를 예측하는 방법인데요. 다시말해 유저A와 비슷한 취향을 가진 유저들이 선호하는 아이템을 추천하는 것 입니다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/195227633-f9ddbdcf-5527-4bc4-95f6-094e84f1111d.png" alt="Collaborative Filtering"></p>
+
+<p>유저 A와 유저 B는 공통 관심사 아이템으로 빨간색 도형을 가지고 있습니다. 이때 유저 B가 파란색 사각형 아이템에 관심 있다면 유저 A에게도 추천하는 것 입니다.</p>
+
+<p>모델의 목적을 보다 분명히 말하면 유저u가 아이템 i에 부여할 평점을 예측하는 것으로 말할 수 있습니다.</p>
+
+<h2 id="neighborhood-based-cf">
+<a class="anchor" href="#neighborhood-based-cf" aria-hidden="true"><span class="octicon octicon-link"></span></a>Neighborhood-based CF</h2>
+
+<p>Neighborhood-based CF(이하 NBCF), 이웃 기반 협업 필터링 모델은 유저 혹은 아이템을 중심으로 하여 타겟 값을 채우는 기법입니다.</p>
+
+<p>이 방법은 구현이 쉽고 이해도 쉬우나 유저나 아이템이 늘어날 수록 연산량이 늘어나는 등 확장성(Scalability)이 떨어지고 주어진 유저-아이템 행렬은 희소(Sparsity)행렬인 경우가 많은데 이 경우에 모델 안정성이 많이 떨어집니다. (비어있는 원소 비율이 99.5를 넘지 않아야 함)</p>
+
+<p>확장성 문제를 일부 해결하고자 타겟 유저와 가장 유사한 K명의 유저를 이용하는 KNN방법을 이용한 KNN CF도 기법도 사용할 수 있습니다.</p>
+
+<h3 id="user-based-cf">
+<a class="anchor" href="#user-based-cf" aria-hidden="true"><span class="octicon octicon-link"></span></a>User-based CF</h3>
+
+<p>User-based CF(이하 UBCF), 유저 기반 협업 필터링은 NBCF의 한 종류로 타겟 유저에 대해 유사도가 높은 유저들을 구해 이를 바탕으로 타겟 값을 채우는 기법입니다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/195230940-fd46c981-54c5-41bb-8fa4-d43f0a5f10a8.png" alt="UBCF"></p>
+
+<p>유저 B의 스타워즈 평점이 타겟값일 때 유저B와 유사도가 높은 유저가 유저A라고 판단하면 유저A의 스타워즈 평점을 이용하여 타겟값을 예측하는 방식입니다.</p>
+
+<h3 id="item-based-cf">
+<a class="anchor" href="#item-based-cf" aria-hidden="true"><span class="octicon octicon-link"></span></a>Item-based CF</h3>
+
+<p>Item-based CF(이하 IBCF), 아이템 기반 협업 필터링은 NBCF의 한 종류로 타겟 아이템에 대해 유사도가 높은 아이템들을 구해 이를 바탕으로 타겟 값을 채우는 기법입니다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/195231072-dbe0ca07-0f47-4462-9350-ac4c6a17c308.png" alt="IBCF"></p>
+
+<p>윗 상황과 같은 타겟값입니다. IBCF는 스타워즈가 아이언맨, 헐크와 유사도가 높다고 판단하고 이들의 평점을 이용해 타겟값을 채우는 기법입니다.</p>
+
+<h2 id="유사도-측정법">
+<a class="anchor" href="#%EC%9C%A0%EC%82%AC%EB%8F%84-%EC%B8%A1%EC%A0%95%EB%B2%95" aria-hidden="true"><span class="octicon octicon-link"></span></a>유사도 측정법</h2>
+
+<p>앞선 예시에서도 살펴보았지만 유사도를 임의에 기준 없이 눈대중으로 사용하는 것 보다는 측정하는 도구를 사용하는 것이 여러가지 이유로 좋겠죠. 유사도 측정 도구를 알아봅시다.</p>
+
+<h3 id="mean-squared-difference-similarity">
+<a class="anchor" href="#mean-squared-difference-similarity" aria-hidden="true"><span class="octicon octicon-link"></span></a>Mean Squared Difference Similarity</h3>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/195232262-9e552e30-4562-49f8-9169-14f88a9aef55.png" alt="Mean Squared Difference Similarity"></p>
+
+<p>MSD는 유저나 아이템의 거리를 단순히 구해 제곱한 뒤 더한 값에 역수를 취해준 방식입니다.</p>
+
+<p>유사도는 유클리드 거리에 반비례한다는 가정을 사용한 측정 방식으로 분모가 0이 되는 것을 방지하기 위해 분모에 1을 더해주었습니다.</p>
+
+<h3 id="cosine-similarity">
+<a class="anchor" href="#cosine-similarity" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cosine Similarity</h3>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/195232640-1e99984a-4c72-4939-b030-a4264d9a65c1.png" alt="Cosine Similarity"></p>
+
+<p>자주 쓰이는 코사인 유사도 입니다. 직관적으로 두 벡터가 가리키는 방향이 얼마나 유사한지를 의미합니다. 이 때 크기아 아닌 방향만을 고려하는 것을 잘 기억하면 좋습니다.</p>
+
+<h3 id="pearson-similarity">
+<a class="anchor" href="#pearson-similarity" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pearson Similarity</h3>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/195232802-777370b3-0c7b-4961-8651-15cc5c5395c2.png" alt="Pearson Similarity"></p>
+
+<p>피어슨 유사도 입니다. 저에게는 피어슨 상관계수가 친숙하기 때문에 받아드리기 편한 측도인 것 같습니다.</p>
+
+<p>코사인 유사도에서 표본평균 값을 빼준 작업을 진행했다고도 볼 수 있고 상관관계로도 해석할 수 있습니다.</p>
+
+<h3 id="jaccard-similarity">
+<a class="anchor" href="#jaccard-similarity" aria-hidden="true"><span class="octicon octicon-link"></span></a>Jaccard Similarity</h3>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/195233100-77651f50-35ae-4218-adcf-7537260db94a.png" alt="Jaccard Similarity"></p>
+
+<p>집합 개념을 사용하였습니다. 두 유저가 사용한 아이템이 몇개나 같은지를 기준으로 판단합니다. 장점으로는 다른 유사도 측정 방식과 달리 차원이 달라도 이론적으로는 유사도 계산이 가능하다는 점 입니다.</p>
+
+<h3 id="코사인-유사도를-이용한-ubcf-적용">
+<a class="anchor" href="#%EC%BD%94%EC%82%AC%EC%9D%B8-%EC%9C%A0%EC%82%AC%EB%8F%84%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-ubcf-%EC%A0%81%EC%9A%A9" aria-hidden="true"><span class="octicon octicon-link"></span></a>코사인 유사도를 이용한 UBCF 적용</h3>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/195233422-7417c6eb-2732-4b39-a2ed-2f771f51b565.png" alt="UBCF2"></p>
+
+<p>코사인 유사도를 이용해 유저 B와 다른 유저 간 유사도를 구하고(0.95, 0.6, 0.85) 그 유사도를 바탕으로 스타워즈 평점을 가중평균하여 구한 결과입니다.</p>
+
+<p>이 과정은 UBCF이 아니라 IBCF에도 동일하게 적용 가능합니다.</p>
+
+<p>다만 만약 B가 영화 평점 자체를 높게 주거나 낮게 주는 등 평점을 주는데 다른 유저 대비 치우쳐저 있다면 이 과정에서는 그 부분을 고려하지 못합니다.</p>
+
+<h3 id="ubcf--relative-rating">
+<a class="anchor" href="#ubcf--relative-rating" aria-hidden="true"><span class="octicon octicon-link"></span></a>UBCF – Relative Rating</h3>
+
+<p>윗 문제를 해결하기 위해 상대적 평점 개념을 사용합니다. 해당 유저의 평균 평점에서 얼마나 높은지 혹은 낮은지, 그 편차(Deviation)를 사용합니다.</p>
+
+<p>모든 평점 데이터를 deviation 값으로 바꾼 뒤 원래의 rating이 아닌 deviation을 예측합니다. 이 때 예측값은 타겟 유저의 평균 평점 + 예측 deviation이 되겠죠.</p>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/195235266-36b49452-80fb-4506-9302-ebca12b93fbe.png" alt="UBCF3"></p>
+
+<p>바로 위 그림의 점수를 이용해 Deviation을 구한 그래프 입니다. 유사도 사용 방식은 동일하며 예측값은 타겟 유저의 평균 평점을 더해주는 과정이 추가됩니다.</p>
+
+<h2 id="model-based-collaborative-filtering">
+<a class="anchor" href="#model-based-collaborative-filtering" aria-hidden="true"><span class="octicon octicon-link"></span></a>Model Based Collaborative Filtering</h2>
+
+<p>지금까지 사용한 NBCF는 앞서 말했지만 희소성(Sparsity), 확장성(Scalability), 그리고 오버피팅(특정 주변 이웃에 영향력이 커지는) 문제들이 발생합니다.</p>
+
+<p>항목간 유사성을 단순히 비교하는 것이 아니라 데이터 내 잠재된 파라미터를 사용해 추천하는 CF 모델을 Model Based Collaborative Filtering(이하 MBCF), 모델 기반 협업 필터링 이라고 합니다.</p>
+
+<p>MBCF는 모델 내 파라미터를 학습하는 과정으로 진행되기 때문에 서빙 속도가 빠릅니다. 또 Sparsity, Scalability 문제를 해결할 수 있으며 전체 데이터의 패턴을 학습하기 때문에 오버피팅이 많이 방지됩니다.</p>
+
+<p>추천모델에 사용되는 데이터는 Implicit feedback 인 경우가 많은데 이 경우에도 MF가 유리합니다.</p>
+
+<ul>
+  <li>Implicit feedback : 클릭 여부, 시청 여부 등 간접적인 데이터</li>
+  <li>Explicit feedback : 영화 평점, 맛집 별점 등 직접적인 데이터</li>
+</ul>
+
+<h2 id="svd">
+<a class="anchor" href="#svd" aria-hidden="true"><span class="octicon octicon-link"></span></a>SVD</h2>
+
+<p>SVD가 MF에 직접적으로 사용되진 않지만 차원축소의 개념을 잘 이해해야 MF를 이해할 수 있으므로 간단히 알아봅니다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/195238280-ce78b159-f9ba-41a8-af58-ce76691a25bf.png" alt="SVD"></p>
+
+<p>우리가 흔히 생각하는 유저-아이템 행렬을 R로 생각하면 R은 U$\sum V^T$로 분해할 수 있습니다. 이 때 U는 사용자 행렬(행 기준으로 사용자 특성이 m차원 기록되어 있는 벡터), V는 아이템 행렬(행 기준으로 아이템 특성이 n차원 기록되어 있는 벡터), 시그마는 잠재 요소가 있는 행렬로 대각 원소만 값이 정해져 있고(크기 순서대로 있음) 나머지 값은 모두 0인 행렬입니다.</p>
+
+<p>이 중 중요도가 높은 K개 특성만을 사용하여 R을 다시 추정하는 방식인데요. R은 정확도가 다소 떨어지게 되지만 차원을 축소했음에도 핵심 잠재 변수를 이용해 R을 복구하였다는 것에 의미를 갖습니다.</p>
+
+<p>다만 이 방식은 R이 완전히 채워져 있는 경우 사용이 가능한데 일반적인 유저-아이템 행렬은 Sparsity 하므로 적용이 불가능합니다. 우리는 SVD 원리를 적용한 다른 접근 방법인 MF을 사용해보겠습니다.</p>
+
+<h2 id="matrix-factorization">
+<a class="anchor" href="#matrix-factorization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Matrix Factorization</h2>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/195239264-608ff736-722a-45e3-a5c4-d6a238f01f64.png" alt="MF"></p>
+
+<p>Matrix Factorization(이하 MF)는 위와 같이 R을 P, Q 행렬로 분해합니다. P는 유저의 latent factor(임베딩) 행렬, Q는 아이템의 latent factor 행렬입니다.</p>
+
+<p>이 때 P, Q 행렬 값은 모두 학습 대상이 되는 파라미터로 취급하며 관측된 선호도(평점)만 모델링에 활용합니다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/195239791-328ad72b-7e65-4705-846f-07dd48495db6.png" alt="MF2"></p>
+
+<p>MF의 가장 기본적인 목적함수 입니다. 관측된 R 자료를 이용해 P와 Q 행렬 값을 목적함수가 최적이 되도록(최적의 R 행렬을 만들도록) 업데이트 합니다.</p>
+
+<p>이 때 과적합 방지를 위해 뒷 항을 추가했는데요. L2 정규화를 사용한 것 입니다.</p>
+
+<h3 id="adding-biases">
+<a class="anchor" href="#adding-biases" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding Biases</h3>
+
+<p>앞서 NBCF에서 다룬 Relative Rating과 유사하게 편향이 있는 유저를 고려한 기법입니다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/195247597-6f2c11f6-b456-41d0-ab2e-046a110d22d9.png" alt="Adding Biases"></p>
+
+<p>수식에서 $\mu$는 고정된 값이고 $b_u, b_i$는 업데이트 되는 파라미터 입니다. 즉 편향 정도 또한 모델에서 학습하여 유저, 아이템 별 편향된 값을 잘 추정할 수 있습니다.</p>
+
+<h3 id="adding-confidence-level">
+<a class="anchor" href="#adding-confidence-level" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding Confidence Level</h3>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/195247878-7cd8b210-bdb3-4a5f-8e39-a000c40bd517.png" alt="Adding Confidence Level"></p>
+
+<p>데이터 별로 동일한 신뢰도를 가지지 않거나 특정 데이터를 비중 높거나 낮게 다루고 싶을 때 사용하는 목적함수 입니다.</p>
+
+<h3 id="adding-temporal-dynamics">
+<a class="anchor" href="#adding-temporal-dynamics" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding Temporal Dynamics</h3>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/195248070-42ffc63b-714a-4adc-8823-2ebf027e67f3.png" alt="Adding Temporal Dynamics"></p>
+
+<p>시간에 따라 변하는 유저나 아이템의 특성을 반영한 예측치를 구하고 싶을 때 사용합니다.</p>
+
+<h3 id="implicit-feedback">
+<a class="anchor" href="#implicit-feedback" aria-hidden="true"><span class="octicon octicon-link"></span></a>Implicit Feedback</h3>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/195248697-fb3fb79b-ceec-4da2-a21b-ba72627f1efc.png" alt="image"></p>
+
+<p>유저 u가 아이템 i를 선호하는 지 여부를 1,0으로 표현한 수식입니다.</p>
+
+<p>$C_{ui} = 1 + \alpha * r_{ui}$</p>
+
+<p>$\alpha$에 따라 정도를 조절할 수 있는, 아이템의 평점이 높아질 수록 커지는 수식입니다.</p>
+
+<p>위 두 식을 사용해 아래 목적함수를 사용하면 Implicit Feedback을 고려했다고 할 수 있습니다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/195248876-94c07ce1-21a4-4c08-b0c1-cb718c015e17.png" alt="image"></p>
+
+<p>Implicit Feedback을 이용한 목적함수를 사용하면 클릭을 할지 여부를 예측 할 수 있으며 더 큰 $r_{ui}$ 값인 경우 목적함수에 큰 가중치를 둔다고 해석이 가능합니다. 이후 언급할 ALS 행렬 연산으로 사용이 용이한 것도 장점입니다.</p>
+
+<h2 id="alternative-least-square">
+<a class="anchor" href="#alternative-least-square" aria-hidden="true"><span class="octicon octicon-link"></span></a>Alternative Least Square</h2>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/195248248-6afa0522-96ce-4ae5-b66f-b982b763d26f.png" alt="Alternative Least Square"></p>
+
+<p>Alternative Least Square(이하 ALS)은 유저와 아이템 행렬을 번갈아가면서 업데이트 하는 방식 입니다.</p>
+
+<p>조금 상세히 말하면 $p_u, q_i$ 가운데 하나를 고정으로 하고 다른 하나로 least-square 문제를 푸는 것입니다.</p>
+
+<p>회귀분석에서 사용하는 최소제곱법과 비슷하게 한번에 값을 업데이트 하는 것이며 한 값을 고정 해야 깔끔하게 수식으로 표현이 가능합니다. 자세한 수식은 생략하겠습니다.</p>
+
+<h2 id="느낀점">
+<a class="anchor" href="#%EB%8A%90%EB%82%80%EC%A0%90" aria-hidden="true"><span class="octicon octicon-link"></span></a>느낀점</h2>
+
+<p>방대한 분량을 잘 정리했다는 점이 뿌듯합니다.</p>
+
+<p>다소 이해가 부족하고 표현도 부족하지만 나만의 언어로 잘 정리했다는 점이 좋네요.</p>
+
+<p>Bayesian Personalized Ranking 부분도 학습했는데 이해가 많이 부족해 시간이 허락한다면 추후 보강하겠습니다.</p>
+
+<p>** 위 수식과 그림은 부스트캠프 AI Tech 교육 자료를 참고하였습니다.</p>
+
+  </div><script src="https://utteranc.es/client.js"
+        repo="KSY1526/myblog"
+        issue-term="pathname"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+  <a class="u-url" href="/myblog/boostcamp/collaborative%20filtering/recommender%20system/svd/2022/10/12/week4_3.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/myblog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/myblog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/myblog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/KSY1526" target="_blank" title="KSY1526"><svg class="svg-icon grey"><use xlink:href="/myblog/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
