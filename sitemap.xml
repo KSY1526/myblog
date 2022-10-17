@@ -1,328 +1,1158 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
-<loc>https://ksy1526.github.io/myblog/markdown/2020/01/14/test-markdown-post.html</loc>
-<lastmod>2020-01-14T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/jupyter/2020/02/20/test.html</loc>
-<lastmod>2020-02-20T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/ssuda/jupyter/kaggle/ridge/lasso/regression/2021/09/15/kagglessu1.html</loc>
-<lastmod>2021-09-15T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/book/jupyter/guide/math/regression/2021/09/20/PythonMachine5_1.html</loc>
-<lastmod>2021-09-20T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/ssuda/jupyter/kaggle/logistic/scale/keras/regression/2021/09/24/kagglessu2.html</loc>
-<lastmod>2021-09-24T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/book/jupyter/guide/poly/ridge/lasso/regression/2021/09/25/PythonMachine5_2.html</loc>
-<lastmod>2021-09-25T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/book/jupyter/guide/logistic/randomforest/boost/regression/2021/09/30/PythonMachine5_3.html</loc>
-<lastmod>2021-09-30T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/ssuda/jupyter/kaggle/randomforest/scale/boxcox/xgboost/regression/2021/10/01/kagglessu3.html</loc>
-<lastmod>2021-10-01T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/book/jupyter/guide/datetime/scale/randomforest/boost/regression/2021/10/02/PythonMachine5_4.html</loc>
-<lastmod>2021-10-02T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/book/jupyter/guide/pca/scale/randomforest/2021/10/06/PythonMachine6_1.html</loc>
-<lastmod>2021-10-06T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/ssuda/jupyter/kaggle/datetime/scale/location/regression/2021/10/07/kagglestudy3.html</loc>
-<lastmod>2021-10-07T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/school/jupyter/simulation/r/bootstrap/2021/10/21/%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98_%EA%B3%BC%EB%AA%A9_%EB%B3%B5%EC%8A%B5.html</loc>
-<lastmod>2021-10-21T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/ssuda/jupyter/kaggle/time%20series/lstm/datetime/clip/2021/10/28/kagglessu4.html</loc>
-<lastmod>2021-10-28T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/ssuda/jupyter/dacon/datetime/xgboost/regression/2021/11/04/kagglessu5_plus.html</loc>
-<lastmod>2021-11-04T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/ssuda/jupyter/kaggle/visualization/onehotencoder/lgm/classifier/2021/11/14/kagglessu6.html</loc>
-<lastmod>2021-11-14T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/ssuda/jupyter/kaggle/labelencoder/randomforest/xgboost/svm/mlp/classifier/2021/11/27/kagglessu7.html</loc>
-<lastmod>2021-11-27T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/ssuda/jupyter/kaggle/visualization/survey/2021/12/19/kagglessu8.html</loc>
-<lastmod>2021-12-19T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/gpt/bert/token/2021/12/20/Do_natural_language1.html</loc>
-<lastmod>2021-12-20T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/self-attention/tokenizer/2021/12/21/Do_natural_language2.html</loc>
-<lastmod>2021-12-21T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/tokenizer/sentiment/web/classifier/2021/12/22/Do_natural_language3.html</loc>
-<lastmod>2021-12-22T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/dacon/jupyter/eda/heart/xgboost/randomforest/classifier/2021/12/22/dacon_heart.html</loc>
-<lastmod>2021-12-22T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/tokenizer/web/classifier/2021/12/23/Do_natural_language4.html</loc>
-<lastmod>2021-12-23T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/book/jupyter/timeseries/r/eda/2021/12/23/TimeSeries1.html</loc>
-<lastmod>2021-12-23T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/tokenizer/web/classifier/2021/12/24/Do_natural_language5.html</loc>
-<lastmod>2021-12-24T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/book/jupyter/deep%20learning/foundation/matrix/math/2021/12/26/FirstDeep1.html</loc>
-<lastmod>2021-12-26T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/dacon/jupyter/eda/ridge/scale/regression/2021/12/27/dacon_penguin.html</loc>
-<lastmod>2021-12-27T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/book/jupyter/do%20it/natural%20language/bert/tokenizer/web/answer/2021/12/28/Do_natural_language6.html</loc>
-<lastmod>2021-12-28T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/book/jupyter/timeseries/r/arima/2021/12/28/TimeSeries2.html</loc>
-<lastmod>2021-12-28T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/book/jupyter/deep%20learning/matrix/math/class/2021/12/29/FirstDeep2.html</loc>
-<lastmod>2021-12-29T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/ssuda/book/jupyter/deep%20learning/hands/karas/classifier/regression/2022/01/02/handssu1.html</loc>
-<lastmod>2022-01-02T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/ssuda/book/jupyter/deep%20learning/hands/math/2022/01/05/handssu2.html</loc>
-<lastmod>2022-01-05T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/ssuda/book/jupyter/deep%20learning/hands/math/2022/01/12/handssu3.html</loc>
-<lastmod>2022-01-12T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/ssuda/book/jupyter/deep%20learning/hands/math/2022/01/14/handssu4.html</loc>
-<lastmod>2022-01-14T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/book/jupyter/deep%20learning/matrix/math/class/2022/01/23/FirstDeep3.html</loc>
-<lastmod>2022-01-23T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/book/jupyter/deep%20learning/matrix/math/class/2022/01/27/FirstDeep4.html</loc>
-<lastmod>2022-01-27T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/dacon/jupyter/eda/scale/regression/2022/01/30/dacon_house.html</loc>
-<lastmod>2022-01-30T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/dacon/jupyter/ssuda/natural%20language/bert/tokenizer/classifier/2022/02/03/dacon_sentence.html</loc>
-<lastmod>2022-02-03T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/dacon/jupyter/eda/classifier/2022/02/08/dacon_airport.html</loc>
-<lastmod>2022-02-08T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/ssuda/book/jupyter/deep%20learning/pytorch/autoencoder/2022/02/11/handssu5.html</loc>
-<lastmod>2022-02-11T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/ssuda/book/jupyter/deep%20learning/tensorflow/gan/2022/02/15/handssu6.html</loc>
-<lastmod>2022-02-15T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/ssuda/jupyter/deep%20learning/pytorch/2022/02/16/torch1.html</loc>
-<lastmod>2022-02-16T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/ssuda/jupyter/deep%20learning/pytorch/dacon/2022/02/19/torch2.html</loc>
-<lastmod>2022-02-19T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/jupyter/deep%20learning/pytorch/dacon/natural%20language/bert/tokenizer/classifier/2022/02/21/torch3.html</loc>
-<lastmod>2022-02-21T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/jupyter/deep%20learning/pytorch/dacon/classifier/conputer%20vision/2022/02/24/torch4.html</loc>
-<lastmod>2022-02-24T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/ssuda/book/deep%20learning/natural%20language/2022/03/04/SSUDA22_1.html</loc>
-<lastmod>2022-03-04T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/jupyter/book/deep%20learning/pytorch/dacon/classifier/2022/03/07/dacon_hands.html</loc>
-<lastmod>2022-03-07T00:00:00-06:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/ssuda/book/deep%20learning/natural%20language/bert/tokenizer/2022/03/18/SSUDA22_4.html</loc>
-<lastmod>2022-03-18T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/ssuda/2022/04/25/bigdata1.html</loc>
-<lastmod>2022-04-25T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/ssuda/transformer/deep%20learning/natural%20language/dacon/2022/06/01/dacon_coding.html</loc>
-<lastmod>2022-06-01T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/ssuda/jupyter/deep%20learning/matrix/svd/recommended%20system/kaggle/2022/07/14/movie.html</loc>
-<lastmod>2022-07-14T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/dacon/jupyter/eda/regression/2022/07/23/dacon_shop.html</loc>
-<lastmod>2022-07-23T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/ssuda/jupyter/unsupervised%20learning/2022/07/27/unsupervised_learning.html</loc>
-<lastmod>2022-07-27T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/dacon/jupyter/ssuda/pytorch/deep%20learning/lstm/2022/07/31/SSUDA_sun.html</loc>
-<lastmod>2022-07-31T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/boostcamp/gradient%20descent/math/markdown/2022/09/14/Gradient_Descent.html</loc>
-<lastmod>2022-09-14T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/boostcamp/math/moore-penrose/monte%20carlo/mle/kl%20divergence/markdown/2022/09/19/week1_1.html</loc>
-<lastmod>2022-09-19T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/boostcamp/python/list/function/generator/2022/09/21/week1_2.html</loc>
-<lastmod>2022-09-21T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/boostcamp/python/rnn/2022/09/22/week1_3.html</loc>
-<lastmod>2022-09-22T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/boostcamp/colab/pytorch/vscode/project/setting/2022/09/26/week2_1.html</loc>
-<lastmod>2022-09-26T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/boostcamp/python/pytorch/autograd/optimizer/dataset/dataloader/2022/09/27/week2_2.html</loc>
-<lastmod>2022-09-27T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/boostcamp/python/pytorch/torchsummary/multi-gpu/model/pre-train/2022/09/28/week2_3.html</loc>
-<lastmod>2022-09-28T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/boostcamp/python/pytorch/tensorboard/wandb/ray/oom/2022/09/29/week2_4.html</loc>
-<lastmod>2022-09-29T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/boostcamp/python/pytorch/ray/pre-train/2022/09/30/pytorch_%EC%8B%A4%EC%8A%B5.html</loc>
-<lastmod>2022-09-30T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/boostcamp/pytorch/deeplearning/optimizer/2022/10/03/week3_1.html</loc>
-<lastmod>2022-10-03T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/boostcamp/pytorch/deeplearning/cnn/2022/10/04/week3_2.html</loc>
-<lastmod>2022-10-04T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/boostcamp/pytorch/deeplearning/rnn/lstm/gru/transformer/2022/10/05/week3_3.html</loc>
-<lastmod>2022-10-05T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/boostcamp/pytorch/deeplearning/generative%20models/gan/2022/10/06/week3_4.html</loc>
-<lastmod>2022-10-06T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/boostcamp/matplotlib/visualization/2022/10/07/boost_viz.html</loc>
-<lastmod>2022-10-07T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/boostcamp/deeplearning/recommender%20system/tf-idf/basic/2022/10/10/week4_1.html</loc>
-<lastmod>2022-10-10T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/boostcamp/git/basic/2022/10/11/week4_2.html</loc>
-<lastmod>2022-10-11T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/boostcamp/collaborative%20filtering/recommender%20system/svd/2022/10/12/week4_3.html</loc>
-<lastmod>2022-10-12T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/boostcamp/collaborative%20filtering/recommender%20system/item2vec/ann/annoy/deep%20learning/youtube/autoencoder/cdae/2022/10/13/week4_4.html</loc>
-<lastmod>2022-10-13T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/boostcamp/matplotlib/seaborn/visualization/2022/10/14/boost_viz2.html</loc>
-<lastmod>2022-10-14T00:00:00-05:00</lastmod>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/about/</loc>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/</loc>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/search/</loc>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/categories/</loc>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/page2/</loc>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/page3/</loc>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/page4/</loc>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/page5/</loc>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/page6/</loc>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/page7/</loc>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/page8/</loc>
-</url>
-<url>
-<loc>https://ksy1526.github.io/myblog/google52ca4187aa3538b2.html</loc>
-<lastmod>2022-10-16T23:53:18-05:00</lastmod>
-</url>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+        xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    
+    <url>
+        <loc>https://KSY1526.github.io/boostcamp/matplotlib/seaborn/visualization/2022/10/14/boost_viz2.html</loc>
+        
+        <lastmod>2022-10-14T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/boostcamp/collaborative%20filtering/recommender%20system/item2vec/ann/annoy/deep%20learning/youtube/autoencoder/cdae/2022/10/13/week4_4.html</loc>
+        
+        <lastmod>2022-10-13T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/boostcamp/collaborative%20filtering/recommender%20system/svd/2022/10/12/week4_3.html</loc>
+        
+        <lastmod>2022-10-12T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/boostcamp/git/basic/2022/10/11/week4_2.html</loc>
+        
+        <lastmod>2022-10-11T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/boostcamp/deeplearning/recommender%20system/tf-idf/basic/2022/10/10/week4_1.html</loc>
+        
+        <lastmod>2022-10-10T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/boostcamp/matplotlib/visualization/2022/10/07/boost_viz.html</loc>
+        
+        <lastmod>2022-10-07T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/boostcamp/pytorch/deeplearning/generative%20models/gan/2022/10/06/week3_4.html</loc>
+        
+        <lastmod>2022-10-06T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/boostcamp/pytorch/deeplearning/rnn/lstm/gru/transformer/2022/10/05/week3_3.html</loc>
+        
+        <lastmod>2022-10-05T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/boostcamp/pytorch/deeplearning/cnn/2022/10/04/week3_2.html</loc>
+        
+        <lastmod>2022-10-04T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/boostcamp/pytorch/deeplearning/optimizer/2022/10/03/week3_1.html</loc>
+        
+        <lastmod>2022-10-03T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/boostcamp/python/pytorch/ray/pre-train/2022/09/30/pytorch_%EC%8B%A4%EC%8A%B5.html</loc>
+        
+        <lastmod>2022-09-30T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/boostcamp/python/pytorch/tensorboard/wandb/ray/oom/2022/09/29/week2_4.html</loc>
+        
+        <lastmod>2022-09-29T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/boostcamp/python/pytorch/torchsummary/multi-gpu/model/pre-train/2022/09/28/week2_3.html</loc>
+        
+        <lastmod>2022-09-28T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/boostcamp/python/pytorch/autograd/optimizer/dataset/dataloader/2022/09/27/week2_2.html</loc>
+        
+        <lastmod>2022-09-27T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/boostcamp/colab/pytorch/vscode/project/setting/2022/09/26/week2_1.html</loc>
+        
+        <lastmod>2022-09-26T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/boostcamp/python/rnn/2022/09/22/week1_3.html</loc>
+        
+        <lastmod>2022-09-22T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/boostcamp/python/list/function/generator/2022/09/21/week1_2.html</loc>
+        
+        <lastmod>2022-09-21T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/boostcamp/math/moore-penrose/monte%20carlo/mle/kl%20divergence/markdown/2022/09/19/week1_1.html</loc>
+        
+        <lastmod>2022-09-19T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/boostcamp/gradient%20descent/math/markdown/2022/09/14/Gradient_Descent.html</loc>
+        
+        <lastmod>2022-09-14T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/dacon/jupyter/ssuda/pytorch/deep%20learning/lstm/2022/07/31/SSUDA_sun.html</loc>
+        
+        <lastmod>2022-07-31T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/ssuda/jupyter/unsupervised%20learning/2022/07/27/unsupervised_learning.html</loc>
+        
+        <lastmod>2022-07-27T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/dacon/jupyter/eda/regression/2022/07/23/dacon_shop.html</loc>
+        
+        <lastmod>2022-07-23T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/ssuda/jupyter/deep%20learning/matrix/svd/recommended%20system/kaggle/2022/07/14/movie.html</loc>
+        
+        <lastmod>2022-07-14T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/ssuda/transformer/deep%20learning/natural%20language/dacon/2022/06/01/dacon_coding.html</loc>
+        
+        <lastmod>2022-06-01T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/ssuda/2022/04/25/bigdata1.html</loc>
+        
+        <lastmod>2022-04-25T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/ssuda/book/deep%20learning/natural%20language/bert/tokenizer/2022/03/18/SSUDA22_4.html</loc>
+        
+        <lastmod>2022-03-18T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/jupyter/book/deep%20learning/pytorch/dacon/classifier/2022/03/07/dacon_hands.html</loc>
+        
+        <lastmod>2022-03-07T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/ssuda/book/deep%20learning/natural%20language/2022/03/04/SSUDA22_1.html</loc>
+        
+        <lastmod>2022-03-04T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/jupyter/deep%20learning/pytorch/dacon/classifier/conputer%20vision/2022/02/24/torch4.html</loc>
+        
+        <lastmod>2022-02-24T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/jupyter/deep%20learning/pytorch/dacon/natural%20language/bert/tokenizer/classifier/2022/02/21/torch3.html</loc>
+        
+        <lastmod>2022-02-21T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/ssuda/jupyter/deep%20learning/pytorch/dacon/2022/02/19/torch2.html</loc>
+        
+        <lastmod>2022-02-19T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/ssuda/jupyter/deep%20learning/pytorch/2022/02/16/torch1.html</loc>
+        
+        <lastmod>2022-02-16T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/ssuda/book/jupyter/deep%20learning/tensorflow/gan/2022/02/15/handssu6.html</loc>
+        
+        <lastmod>2022-02-15T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/ssuda/book/jupyter/deep%20learning/pytorch/autoencoder/2022/02/11/handssu5.html</loc>
+        
+        <lastmod>2022-02-11T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/dacon/jupyter/eda/classifier/2022/02/08/dacon_airport.html</loc>
+        
+        <lastmod>2022-02-08T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/dacon/jupyter/ssuda/natural%20language/bert/tokenizer/classifier/2022/02/03/dacon_sentence.html</loc>
+        
+        <lastmod>2022-02-03T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/dacon/jupyter/eda/scale/regression/2022/01/30/dacon_house.html</loc>
+        
+        <lastmod>2022-01-30T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/book/jupyter/deep%20learning/matrix/math/class/2022/01/27/FirstDeep4.html</loc>
+        
+        <lastmod>2022-01-27T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/book/jupyter/deep%20learning/matrix/math/class/2022/01/23/FirstDeep3.html</loc>
+        
+        <lastmod>2022-01-23T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/ssuda/book/jupyter/deep%20learning/hands/math/2022/01/14/handssu4.html</loc>
+        
+        <lastmod>2022-01-14T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/ssuda/book/jupyter/deep%20learning/hands/math/2022/01/12/handssu3.html</loc>
+        
+        <lastmod>2022-01-12T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/ssuda/book/jupyter/deep%20learning/hands/math/2022/01/05/handssu2.html</loc>
+        
+        <lastmod>2022-01-05T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/ssuda/book/jupyter/deep%20learning/hands/karas/classifier/regression/2022/01/02/handssu1.html</loc>
+        
+        <lastmod>2022-01-02T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/book/jupyter/deep%20learning/matrix/math/class/2021/12/29/FirstDeep2.html</loc>
+        
+        <lastmod>2021-12-29T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/book/jupyter/timeseries/r/arima/2021/12/28/TimeSeries2.html</loc>
+        
+        <lastmod>2021-12-28T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/book/jupyter/do%20it/natural%20language/bert/tokenizer/web/answer/2021/12/28/Do_natural_language6.html</loc>
+        
+        <lastmod>2021-12-28T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/dacon/jupyter/eda/ridge/scale/regression/2021/12/27/dacon_penguin.html</loc>
+        
+        <lastmod>2021-12-27T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/book/jupyter/deep%20learning/foundation/matrix/math/2021/12/26/FirstDeep1.html</loc>
+        
+        <lastmod>2021-12-26T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/book/jupyter/do%20it/natural%20language/bert/tokenizer/web/classifier/2021/12/24/Do_natural_language5.html</loc>
+        
+        <lastmod>2021-12-24T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/book/jupyter/timeseries/r/eda/2021/12/23/TimeSeries1.html</loc>
+        
+        <lastmod>2021-12-23T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/book/jupyter/do%20it/natural%20language/bert/tokenizer/web/classifier/2021/12/23/Do_natural_language4.html</loc>
+        
+        <lastmod>2021-12-23T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/dacon/jupyter/eda/heart/xgboost/randomforest/classifier/2021/12/22/dacon_heart.html</loc>
+        
+        <lastmod>2021-12-22T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/book/jupyter/do%20it/natural%20language/bert/tokenizer/sentiment/web/classifier/2021/12/22/Do_natural_language3.html</loc>
+        
+        <lastmod>2021-12-22T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/book/jupyter/do%20it/natural%20language/bert/self-attention/tokenizer/2021/12/21/Do_natural_language2.html</loc>
+        
+        <lastmod>2021-12-21T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/book/jupyter/do%20it/natural%20language/gpt/bert/token/2021/12/20/Do_natural_language1.html</loc>
+        
+        <lastmod>2021-12-20T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/ssuda/jupyter/kaggle/visualization/survey/2021/12/19/kagglessu8.html</loc>
+        
+        <lastmod>2021-12-19T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/ssuda/jupyter/kaggle/labelencoder/randomforest/xgboost/svm/mlp/classifier/2021/11/27/kagglessu7.html</loc>
+        
+        <lastmod>2021-11-27T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/ssuda/jupyter/kaggle/visualization/onehotencoder/lgm/classifier/2021/11/14/kagglessu6.html</loc>
+        
+        <lastmod>2021-11-14T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/ssuda/jupyter/dacon/datetime/xgboost/regression/2021/11/04/kagglessu5_plus.html</loc>
+        
+        <lastmod>2021-11-04T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/ssuda/jupyter/kaggle/time%20series/lstm/datetime/clip/2021/10/28/kagglessu4.html</loc>
+        
+        <lastmod>2021-10-28T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/school/jupyter/simulation/r/bootstrap/2021/10/21/%EC%8B%9C%EB%AE%AC%EB%A0%88%EC%9D%B4%EC%85%98_%EA%B3%BC%EB%AA%A9_%EB%B3%B5%EC%8A%B5.html</loc>
+        
+        <lastmod>2021-10-21T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/ssuda/jupyter/kaggle/datetime/scale/location/regression/2021/10/07/kagglestudy3.html</loc>
+        
+        <lastmod>2021-10-07T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/book/jupyter/guide/pca/scale/randomforest/2021/10/06/PythonMachine6_1.html</loc>
+        
+        <lastmod>2021-10-06T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/book/jupyter/guide/datetime/scale/randomforest/boost/regression/2021/10/02/PythonMachine5_4.html</loc>
+        
+        <lastmod>2021-10-02T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/ssuda/jupyter/kaggle/randomforest/scale/boxcox/xgboost/regression/2021/10/01/kagglessu3.html</loc>
+        
+        <lastmod>2021-10-01T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/book/jupyter/guide/logistic/randomforest/boost/regression/2021/09/30/PythonMachine5_3.html</loc>
+        
+        <lastmod>2021-09-30T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/book/jupyter/guide/poly/ridge/lasso/regression/2021/09/25/PythonMachine5_2.html</loc>
+        
+        <lastmod>2021-09-25T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/ssuda/jupyter/kaggle/logistic/scale/keras/regression/2021/09/24/kagglessu2.html</loc>
+        
+        <lastmod>2021-09-24T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/book/jupyter/guide/math/regression/2021/09/20/PythonMachine5_1.html</loc>
+        
+        <lastmod>2021-09-20T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/ssuda/jupyter/kaggle/ridge/lasso/regression/2021/09/15/kagglessu1.html</loc>
+        
+        <lastmod>2021-09-15T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/jupyter/2020/02/20/test.html</loc>
+        
+        <lastmod>2020-02-20T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
+        <loc>https://KSY1526.github.io/markdown/2020/01/14/test-markdown-post.html</loc>
+        
+        <lastmod>2020-01-14T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
 </urlset>
