@@ -842,15 +842,4 @@
   
   
 
-  
-      ,"page17": {
-          "title": "",
-          "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
-          "url": "https://ksy1526.github.io/myblog/robots.txt",
-          "relUrl": "/robots.txt",
-          "date": ""
-      }
-      
-  
-
 }
