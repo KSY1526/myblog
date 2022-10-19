@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>[BoostCamp]Day23 Recommender system3 | 나의 빅데이터 공부 기록</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="[BoostCamp]Day23 Recommender system3" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="부스트캠프 23일차 공부 정리." />
+<meta property="og:description" content="부스트캠프 23일차 공부 정리." />
+<link rel="canonical" href="https://ksy1526.github.io/myblog/boostcamp/recommender%20system/deep%20learning/ctr/deepfm/din/mab/linucb/2022/10/19/week5_3.html" />
+<meta property="og:url" content="https://ksy1526.github.io/myblog/boostcamp/recommender%20system/deep%20learning/ctr/deepfm/din/mab/linucb/2022/10/19/week5_3.html" />
+<meta property="og:site_name" content="나의 빅데이터 공부 기록" />
+<meta property="og:image" content="https://ksy1526.github.io/myblog/images/221019.PNG" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-19T00:00:00-05:00" />
+<script type="application/ld+json">
+{"datePublished":"2022-10-19T00:00:00-05:00","url":"https://ksy1526.github.io/myblog/boostcamp/recommender%20system/deep%20learning/ctr/deepfm/din/mab/linucb/2022/10/19/week5_3.html","@type":"BlogPosting","image":"https://ksy1526.github.io/myblog/images/221019.PNG","headline":"[BoostCamp]Day23 Recommender system3","dateModified":"2022-10-19T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://ksy1526.github.io/myblog/boostcamp/recommender%20system/deep%20learning/ctr/deepfm/din/mab/linucb/2022/10/19/week5_3.html"},"description":"부스트캠프 23일차 공부 정리.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/myblog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://ksy1526.github.io/myblog/feed.xml" title="나의 빅데이터 공부 기록" /><link rel="shortcut icon" type="image/x-icon" href="/myblog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/myblog/">나의 빅데이터 공부 기록</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/myblog/about/">About Me</a><a class="page-link" href="/myblog/search/">Search</a><a class="page-link" href="/myblog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">[BoostCamp]Day23 Recommender system3</h1><p class="page-description">부스트캠프 23일차 공부 정리.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-10-19T00:00:00-05:00" itemprop="datePublished">
+        Oct 19, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/myblog/categories/#BoostCamp">BoostCamp</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#Recommender system">Recommender system</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#Deep Learning">Deep Learning</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#CTR">CTR</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#DeepFM">DeepFM</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#DIN">DIN</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#MAB">MAB</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#LinUCB">LinUCB</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#23일차-공부-정리">23일차 공부 정리</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#memorization--generalization">Memorization &amp; Generalization</a></li>
+<li class="toc-entry toc-h2"><a href="#deepfm">DeepFM</a></li>
+<li class="toc-entry toc-h2"><a href="#deep-interest-network">Deep Interest Network</a></li>
+<li class="toc-entry toc-h2"><a href="#behavior-sequence-transformer">Behavior Sequence Transformer</a></li>
+<li class="toc-entry toc-h2"><a href="#multi-armed-bandit">Multi-Armed Bandit</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#epsilon-greedy-algorithm">Epsilon-Greedy Algorithm</a></li>
+<li class="toc-entry toc-h3"><a href="#upper-confidence-bound">Upper Confidence Bound</a></li>
+<li class="toc-entry toc-h3"><a href="#thompson-sampling">Thompson Sampling</a></li>
+<li class="toc-entry toc-h3"><a href="#mab를-이용한-추천시스템-모델">MAB를 이용한 추천시스템 모델</a></li>
+<li class="toc-entry toc-h3"><a href="#linucb">LinUCB</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#느낀점">느낀점</a></li>
+</ul>
+</li>
+</ul><h1 id="23일차-공부-정리">
+<a class="anchor" href="#23%EC%9D%BC%EC%B0%A8-%EA%B3%B5%EB%B6%80-%EC%A0%95%EB%A6%AC" aria-hidden="true"><span class="octicon octicon-link"></span></a>23일차 공부 정리</h1>
+
+<h2 id="memorization--generalization">
+<a class="anchor" href="#memorization--generalization" aria-hidden="true"><span class="octicon octicon-link"></span></a>Memorization &amp; Generalization</h2>
+
+<p>머신러닝 모델은 기본적으로 Memorization와 Generalization 두 문제를 해결하는 것이 목적입니다.</p>
+
+<p>Memorization(암기)은 함께 빈번히 등장하는 특성 관계를 과거 데이터로부터 학습하는 것이고, Generalization(일반화)은 발생한 적 없는 아이템/특성 조합을 기존 관계로부터 발견한 것 입니다.</p>
+
+<p>추천 시스템 모델에도 마찬가지로 이 문제들을 해결해야 하는데 Memorization은 자주 함께 등장한 아이템을 잘 기억하는 방식으로 Logistic Regression(LR)과 같은 선형 모델이 이를 잘 수행합니다.</p>
+
+<p>일반적으로 Memorization은 오프라인 테스트에서, Generalization은 온라인 테스트에서 중요한 요소입니다.</p>
+
+<p>Generalization은 이전에 잘 등장하지 않은 아이템 조합을 다른 아이템 관계를 잘 분석하였을 때 임베딩을 잘 하여 예측하는 방식으로 FM, DNN과 같은 임베딩 기반 모델이 이를 잘 수행합니다.</p>
+
+<p>좋은 추천시스템 모델을 만들기 위해선 두 문제를 동시에 해결해야 한다는 것에 초점을 맞춰 다음 모델을 살펴보겠습니다.</p>
+
+<h2 id="deepfm">
+<a class="anchor" href="#deepfm" aria-hidden="true"><span class="octicon octicon-link"></span></a>DeepFM</h2>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/196593186-729350b6-59a0-453a-a9f6-84802b1d5ba8.png" alt="DeepFM"></p>
+
+<p>DeepFM은 Memorization와 Generalization을 동시에 고려하는 것을 목표로 한 모델입니다.</p>
+
+<p>먼저 필드로 구분된 피처들을 동일한 차원으로 임베딩 합니다. 왼쪽부분은 임베딩 한 벡터를 $V_i$로 취급하는 FM 모델로 Memorization 부분을 담당합니다. 오른쪽 부분은 임베딩한 벡터를 모두 ANN(딥러닝) 연산을 수행합니다.</p>
+
+<p>최종 출력값으로 $Y_{FM}, Y_{DNN}$ 두 값이 나오는데 두 값의 합을 sigmoid에 넣어 최종 y 값을 출력합니다.</p>
+
+<p>본 모델은 CTR(주어진 아이템을 클릭할 확률)을 예측하는 문제로 y는 0과 1로 주어지며 성능이 우수합니다.</p>
+
+<p>왼쪽 모델 부분을 조금 수정한 Wide &amp; Deep 모델도 존재하나 feature engineering이 필요하다는 단점이 있습니다.</p>
+
+<h2 id="deep-interest-network">
+<a class="anchor" href="#deep-interest-network" aria-hidden="true"><span class="octicon octicon-link"></span></a>Deep Interest Network</h2>
+
+<p>Deep Interest Network(이하 DIN)은 사용자가 기존에 소비한 아이템의 리스트를 사용해 예측 대상 아이템과 이미 소비한 아이템 사이의 관련성을 학습하는 방식입니다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/196597474-0cde1d8e-f245-4e61-92d6-fc585be0d438.png" alt="DIN"></p>
+
+<p>관심있게 볼 부분은 역시 User Behaviors 입니다. 후보군과 이전에 소비했던 아이템을 입력값으로 한 Activation Unit을 통과합니다.</p>
+
+<p>이때 Activation Unit은 트렌스포머 구조에 일부를 본따온 것으로 두 아이템 간 상호작용을 구합니다.</p>
+
+<p>Activation Unit을 통과한 뒤 시간을 기준으로 가중합을 구한 뒤 다른 특성들과 합쳐줍니다.</p>
+
+<h2 id="behavior-sequence-transformer">
+<a class="anchor" href="#behavior-sequence-transformer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Behavior Sequence Transformer</h2>
+
+<p>Behavior Sequence Transformer(이하 BST)는 User Behaviors을 트렌스포머를 이용해 분석한 모델 입니다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/196598152-c15e0768-2e4c-4298-bb3f-1d1cefece6c1.png" alt="BST"></p>
+
+<p>트렌스포머의 인코더 부분을 채용했습니다. User Behaviors 부분의 시퀀스를 고려해 입력값으로 넣었습니다.</p>
+
+<p>트렌스포머의 핵심 기능인 어텐션을 통해 상호 관계성을 모델이 잘 학습하는 것이 장점입니다.</p>
+
+<p>기존 트렌스포머와 차이점은 dropout을 사용했으며 활성화함수로 leakyReLU을 선택했고 인코더 레이어를 여러개 쌓지 않고 1개만 쌓았습니다. User Behaviors의 시퀀셜한 정보가 언어보단 훨씬 덜 중요하기 때문입니다.</p>
+
+<p>또 Positional Encoding은 사인/코사인을 이용한 값을 넣지 않고 아이템 간 시간 차이를 사용하였습니다. 긴 기간을 사이에 두고 구매한 아이템인지 짧은 기간을 두고 구매한 아이템인지에 대한 정보가 중요하기 때문입니다.</p>
+
+<p>앞서 설명한 여러가지 장점 덕분에 BST은 CTR Prediction Task에서 SOTA의 성능을 거두고 있습니다.</p>
+
+<h2 id="multi-armed-bandit">
+<a class="anchor" href="#multi-armed-bandit" aria-hidden="true"><span class="octicon octicon-link"></span></a>Multi-Armed Bandit</h2>
+
+<p>성능이 각기다른 K개의 슬롯머신을 N번 선택할 수 있다면 어느 전략이 가장 좋을 것 같습니까?</p>
+
+<p>가치관에 따라 다르겠지만 크게는 슬롯머신을 exploration(탐색) 하는 것과 탐색한 결과를 바탕으로 가장 좋은 슬롯머신을 선택하는 exploitation(활용) 부분으로 나눌 수 있고 탐색에 힘을 얼마나 주는지는 사용자의 선택입니다.</p>
+
+<p>exploration(탐색)을 적게 할 경우 가장 좋은 슬롯머신을 착각할 확률이 늘어나 손해를 볼 가능성이 생기고 exploration(탐색)을 많이 할 경우 가장 좋은 슬롯머신을 선택할 확률이 늘어나지만 실제로 이득을 얻는 exploitation(활용) 횟수가 줄어든다는 단점이 있습니다.</p>
+
+<p>exploration와 exploitation의 trade-off 관계를 최소화 하기 위한 Epsilon-Greedy Algorithm을 소개합니다.</p>
+
+<h3 id="epsilon-greedy-algorithm">
+<a class="anchor" href="#epsilon-greedy-algorithm" aria-hidden="true"><span class="octicon octicon-link"></span></a>Epsilon-Greedy Algorithm</h3>
+
+<p>Epsilon-Greedy Algorithm은 exploration(탐색)이 부족할 수도 있다는 가정 하에 나온 알고리즘 입니다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/196599948-fe30657b-cff8-4a41-8ba1-6a185be08d7f.png" alt="Epsilon-Greedy Algorithm"></p>
+
+<p>a는 슬롯머신을 나타내는 변수, 입실론은 하이퍼파라미터 입니다. 입실론 만큼의 확률로 exploitation(활용)만 하는 것이 아니라 exploration(탐색)도 수행하는 알고리즘 입니다. 심플하면서도 강력하죠.</p>
+
+<h3 id="upper-confidence-bound">
+<a class="anchor" href="#upper-confidence-bound" aria-hidden="true"><span class="octicon octicon-link"></span></a>Upper Confidence Bound</h3>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/196600137-3ee4a121-e522-401f-bff3-4aa580faed15.png" alt="Upper Confidence Bound"></p>
+
+<p>이 알고리즘은 적절한 표본을 얻기 전까지 $Q_t(a)$ 결과를 신뢰하지 않겠다는 생각으로 나왔습니다.</p>
+
+<p>$N_t(a)$는 a 슬롯머신의 t 시점 사용 개수로 이 값이 커질수록 전체 값이 작아지는데요.</p>
+
+<p>모든 슬롯머신을 일정 횟수 exploration(탐색) 하고 싶어하는 의지가 담겨있습니다.</p>
+
+<h3 id="thompson-sampling">
+<a class="anchor" href="#thompson-sampling" aria-hidden="true"><span class="octicon octicon-link"></span></a>Thompson Sampling</h3>
+
+<p>베타 분포를 이용한 방법입니다. 베타 분포가 일정 표본이 있을 때 확률의 기대 분포를 나타내는 분포인 점을 이용합니다.</p>
+
+<p>각 슬롯머신 별 표본으로 베타분포 $\alpha, \beta$을 채웁니다. 그 베타분포를 따르는 랜덤 값을 추출한 뒤 가장 높은 값을 추출한 슬롯머신을 누르는 방식입니다.</p>
+
+<p>슬롯머신을 누르면 또 슬롯머신 별 표본이 쌓일 것이고 가장 좋은 성능을 내는 슬롯머신으로 추측되는 것을 누를 확률이 높아지면서 지속적으로 exploration(탐색)도 진행하는 유용한 방식 입니다.</p>
+
+<h3 id="mab를-이용한-추천시스템-모델">
+<a class="anchor" href="#mab%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%B6%94%EC%B2%9C%EC%8B%9C%EC%8A%A4%ED%85%9C-%EB%AA%A8%EB%8D%B8" aria-hidden="true"><span class="octicon octicon-link"></span></a>MAB를 이용한 추천시스템 모델</h3>
+
+<p>유저에게 추천하는 아이템 후보 리스트를 슬롯머신이라고 생각한다면 추천시스템 문제은 앞서 설명한 MAB 문제를 푸는 것과 비슷하게 생각할 수 있습니다.</p>
+
+<p>exploration(탐색)은 지속적으로 변하는 유저의 취향 탐색으로, exploitation(활용)은 유저의 취향에 맞는 아이템 추천으로 생각할 수 있겠네요.</p>
+
+<p>다만 슬롯머신과 다르게 아이템 개수가 상당히 많으므로 클러스터링을 통해 비슷한 유저끼리 그룹화를 한 뒤 해당 그룹 내에서 인기도 기반이나 CF 등 다양한 방법으로 아이템 군을 추린 뒤 MAB 방법을 사용합니다.</p>
+
+<p>또 다른 사용방법으로 유사 아이템 추천이 있습니다. 주어진 아이템과 유사한 아이템을 추천할 때 MF나 Content-Based 기반 모델을 사용해 유사 아이템 후보군을 추린 뒤 MAB 방법을 사용하는 것 입니다.</p>
+
+<h3 id="linucb">
+<a class="anchor" href="#linucb" aria-hidden="true"><span class="octicon octicon-link"></span></a>LinUCB</h3>
+
+<p>LinUCB은 유저의 context 정보에 따라 동일한 action이더라도 다른 reward를 가진다는 것을 가정한 모델입니다.</p>
+
+<p>어떻게 생각하면 추천시스템에서 개인화 추천이 진행되지 않을 수가 없겠죠.</p>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/196603478-28a51004-0c35-4e88-b6cf-9d5e4f86a0ac.png" alt="LinUCB"></p>
+
+<p>$x^T_{t,a}\theta_a$에서 x는 유저의 context 정보, 세타는 학습 파라미터를 의미합니다. 뒷 항은 계산은 다소 복잡하지만 a가 커질수록 작아지는 항 입니다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/196604064-461ca899-f906-40f7-be90-c436289e4eb6.png" alt="LinUCB2"></p>
+
+<p>LinUCB의 간단한 예시 입니다. 각 아이템이 유저의 어떤 특성을 담고 있는지를 세타가 나타내도록 학습합니다.</p>
+
+<p>이 방법은 Naver AiRS 추천 시스템에도 이용됩니다. 구체적으로 설명하면 인기도 기반 필터링으로 exploration(탐색) 대상을 축소한 뒤 LinUCB 방식을 사용해 유저의 취향을 탐색하고 또 활용한다고 합니다.</p>
+
+<h2 id="느낀점">
+<a class="anchor" href="#%EB%8A%90%EB%82%80%EC%A0%90" aria-hidden="true"><span class="octicon octicon-link"></span></a>느낀점</h2>
+
+<p>계속 비슷하게 느끼는 것인데 추천 시스템에 다양한 방식으 많은 것 같습니다.</p>
+
+<p>지속적으로 어떤 차이가 있는지 고민할 때 스스로가 성장을 할 수 있을 것 같아요.</p>
+
+<p>이번 주 계속 컨디션이 영 별로인데 몸관리도 잘 했으면 좋겠습니다. 화이팅!</p>
+
+<p>** 위 수식과 그림은 부스트캠프 AI Tech 교육 자료를 참고하였습니다.</p>
+
+  </div><script src="https://utteranc.es/client.js"
+        repo="KSY1526/myblog"
+        issue-term="pathname"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+  <a class="u-url" href="/myblog/boostcamp/recommender%20system/deep%20learning/ctr/deepfm/din/mab/linucb/2022/10/19/week5_3.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/myblog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/myblog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/myblog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/KSY1526" target="_blank" title="KSY1526"><svg class="svg-icon grey"><use xlink:href="/myblog/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
