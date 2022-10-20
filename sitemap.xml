@@ -4,6 +4,22 @@
         xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
+        <loc>https://KSY1526.github.io/boostcamp/git/basic/2022/10/20/week5_4.html</loc>
+        
+        <lastmod>2022-10-20T00:00:00-05:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
         <loc>https://KSY1526.github.io/boostcamp/recommender%20system/deep%20learning/ctr/deepfm/din/mab/linucb/2022/10/19/week5_3.html</loc>
         
         <lastmod>2022-10-19T00:00:00-05:00</lastmod>
