@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>[BoostCamp]Day29 PStage4 | 나의 빅데이터 공부 기록</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="[BoostCamp]Day29 PStage4" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="부스트캠프 29일차 간단한 회고." />
+<meta property="og:description" content="부스트캠프 29일차 간단한 회고." />
+<link rel="canonical" href="https://ksy1526.github.io/myblog/boostcamp/recommender%20system/pstage/2022/10/27/week6_4.html" />
+<meta property="og:url" content="https://ksy1526.github.io/myblog/boostcamp/recommender%20system/pstage/2022/10/27/week6_4.html" />
+<meta property="og:site_name" content="나의 빅데이터 공부 기록" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-27T00:00:00-05:00" />
+<script type="application/ld+json">
+{"datePublished":"2022-10-27T00:00:00-05:00","url":"https://ksy1526.github.io/myblog/boostcamp/recommender%20system/pstage/2022/10/27/week6_4.html","@type":"BlogPosting","headline":"[BoostCamp]Day29 PStage4","dateModified":"2022-10-27T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://ksy1526.github.io/myblog/boostcamp/recommender%20system/pstage/2022/10/27/week6_4.html"},"description":"부스트캠프 29일차 간단한 회고.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/myblog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://ksy1526.github.io/myblog/feed.xml" title="나의 빅데이터 공부 기록" /><link rel="shortcut icon" type="image/x-icon" href="/myblog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/myblog/">나의 빅데이터 공부 기록</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/myblog/about/">About Me</a><a class="page-link" href="/myblog/search/">Search</a><a class="page-link" href="/myblog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">[BoostCamp]Day29 PStage4</h1><p class="page-description">부스트캠프 29일차 간단한 회고.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-10-27T00:00:00-05:00" itemprop="datePublished">
+        Oct 27, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      1 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/myblog/categories/#BoostCamp">BoostCamp</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#Recommender system">Recommender system</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#PStage">PStage</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#29일차-간단한-회고">29일차 간단한 회고</a></li>
+</ul><h1 id="29일차-간단한-회고">
+<a class="anchor" href="#29%EC%9D%BC%EC%B0%A8-%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%9A%8C%EA%B3%A0" aria-hidden="true"><span class="octicon octicon-link"></span></a>29일차 간단한 회고</h1>
+
+<p>대회 4일차입니다. DeepCoNN 모델이 왜 잘 안돌아갈지 계속 고민하며 시작했습니다.</p>
+
+<p>분명히 valid rmse은 1.0 인데 test rmse은 3.0 인 스코어는 무언가 원인이 있어야합니다.</p>
+
+<p>고민을 안고 코드 돌아가는 상황을 보며 추측한 결과 다음과 같은 결론을 내렸습니다.</p>
+
+<p>베이스라인 내 유저 별 book summary은 각각의 train이나 test 테이블 유저 중 요약 길이 기준 상위 5개를 추출하는데요.</p>
+
+<p>이 과정에서 valid는 결국 train 내 속하기 때문에 스코어가 잘 나오게 되고 모델 학습은 결국 train 기준으로 진행하기 때문에 test는 모델 적용시 이상한 값이 나오기도 합니다.</p>
+
+<p>사실 이런 원인일 것이라고 생각하고 여러 실험을 해봤는데 성능 개선이 잘 되지는 못하는 것 같습니다.</p>
+
+<p>분명 원인 중 하나인 것은 맞다고 생각하는데 다른 원인이 있는건지 조금 더 살펴봐야겠습니다.</p>
+
+<p>다음으로 CatBoost 모델을 사용해보았습니다. 부스팅 기반 머신러닝 모델을 써야지 생각은 했는데 오늘 적극적으로 도전해본 이유는 어제 실험에서 rating에 7을 그냥 넣었는데도 rmse가 2.4가 나오는 것을 보고 딥러닝 모델이 생각보다 힘을 못쓰고 있구나 생각했습니다.</p>
+
+<p>book과 user id를 제외한 채로 머신러닝 모델을 돌렸을 때는 valid 기준 rmse가 2.3정도 나왔습니다.</p>
+
+<p>book과 user id를 적은 개수가 있는 데이터를 others 취급 하고 넣었더니 valid 기준 rmse가 2.17정도 나옵니다.</p>
+
+<p>실제 리더보드에 제출하니 test rmse도 2.17로 valid에서 예측했던 것과 같은 결과가 나왔습니다.</p>
+
+<p>일단 좋은 결과가 드디어 나왔다(실시간 1등, 현재 2등)는 점이 가장 기뻤고 만든 모델에 valid와 test score가 차이가 미비하다는 점도 모델 일반화가 잘됬다는 생각에 좋았습니다.</p>
+
+<p>오늘 피어세션에서는 다음 이야기를 했습니다.</p>
+
+<ul>
+  <li>K-fold 방법 관련 정리 및 발표</li>
+  <li>CatBoost 방법 소개 및 코드 설명</li>
+  <li>coldstart conditional ensemble 접근 방법 소개</li>
+</ul>
+
+<p>내일 목표한 할 일은 다음과 같습니다.</p>
+
+<ul>
+  <li>MF 모델 만들어보기</li>
+  <li>Graph 그래프 기반 모델 (LightGCN 등) 구현해보기</li>
+  <li>DeepCoNN 모델 train과 test concat 해서 구현해보기 (리키지 허용하기 때문)</li>
+</ul>
+
+<p>어제까지 무리를 좀 했는데 오늘은 일찍 쉬는게 목표입니다.</p>
+
+<p>다음 주 목요일까지 달리니 조금은 여유를 가져야겠죠.</p>
+
+<p>내일은 오프라인으로 다른 RecSys 캠퍼분들을 만나는데요. 저희 조원 제외하고 실제로 만나는 첫 자리라 기대와 긴장이 됩니다. Level 2 부터 같이 진행하는 팀원과도 첫 만남이네요.</p>
+
+<p>집보단 공부하기 힘든 환경 이외에도 멘토링, 코딩테스트 스터디 발표 등을 진행해서 내일은 힘 빼고 진행하지 않을까 생각합니다.</p>
+
+<p>그래도 꽤 좋은 스코어를 찍었고 올릴 방안도 더 존재하니 몸은 힘들지만 마음은 많이 가볍네요.</p>
+
+<p>내일만 하면 주말이니 조금만 화이팅 해서 성장해보겠습니다!</p>
+
+  </div><script src="https://utteranc.es/client.js"
+        repo="KSY1526/myblog"
+        issue-term="pathname"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+  <a class="u-url" href="/myblog/boostcamp/recommender%20system/pstage/2022/10/27/week6_4.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/myblog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/myblog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/myblog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/KSY1526" target="_blank" title="KSY1526"><svg class="svg-icon grey"><use xlink:href="/myblog/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
