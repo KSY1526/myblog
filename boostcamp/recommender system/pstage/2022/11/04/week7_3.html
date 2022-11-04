@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>[BoostCamp]Day35 PStage8,9,10 | 나의 빅데이터 공부 기록</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="[BoostCamp]Day35 PStage8,9,10" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="부스트캠프 33, 34, 35일차 간단한 회고." />
+<meta property="og:description" content="부스트캠프 33, 34, 35일차 간단한 회고." />
+<link rel="canonical" href="https://ksy1526.github.io/myblog/boostcamp/recommender%20system/pstage/2022/11/04/week7_3.html" />
+<meta property="og:url" content="https://ksy1526.github.io/myblog/boostcamp/recommender%20system/pstage/2022/11/04/week7_3.html" />
+<meta property="og:site_name" content="나의 빅데이터 공부 기록" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-11-04T00:00:00-05:00" />
+<script type="application/ld+json">
+{"datePublished":"2022-11-04T00:00:00-05:00","url":"https://ksy1526.github.io/myblog/boostcamp/recommender%20system/pstage/2022/11/04/week7_3.html","@type":"BlogPosting","headline":"[BoostCamp]Day35 PStage8,9,10","dateModified":"2022-11-04T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://ksy1526.github.io/myblog/boostcamp/recommender%20system/pstage/2022/11/04/week7_3.html"},"description":"부스트캠프 33, 34, 35일차 간단한 회고.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/myblog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://ksy1526.github.io/myblog/feed.xml" title="나의 빅데이터 공부 기록" /><link rel="shortcut icon" type="image/x-icon" href="/myblog/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.css" integrity="sha512-h7nl+xz8wgDlNM4NqKEM4F1NkIRS17M9+uJwIGwuo8vGqIl4BhuCKdxjWEINm+xyrUjNCnK5dCrhM0sj+wTIXw==" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/katex.min.js" integrity="sha512-/CMIhXiDA3m2c9kzRyd97MTb3MC6OVnx4TElQ7fkkoRghwDf6gi41gaT1PwF270W6+J60uTmwgeRpNpJdRV6sg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.12.0/contrib/auto-render.min.js" integrity="sha512-Do7uJAaHZm5OLrIv/yN4w0iG1dbu01kzdMNnFfu/mAqgUk6Nniv2JYHcwH+cNwjqgLcqcuBBk+JRvprLVI8azg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha512-0doc9hKxR3PYwso42RD1p5ySZpzzuDiOwMrdCEh2WdJZCjcmFKc/wEnL+z8fBQrnHoiNWbo+3fiGkOYXBdQp4A==" crossorigin="anonymous"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement( document.body, {
+        delimiters: [
+            {left: "$$", right: "$$", display: true},
+            {left: "[%", right: "%]", display: true},
+            {left: "$", right: "$", display: false}
+        ]}
+        );
+    });
+    </script>
+
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/myblog/">나의 빅데이터 공부 기록</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/myblog/about/">About Me</a><a class="page-link" href="/myblog/search/">Search</a><a class="page-link" href="/myblog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">[BoostCamp]Day35 PStage8,9,10</h1><p class="page-description">부스트캠프 33, 34, 35일차 간단한 회고.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-11-04T00:00:00-05:00" itemprop="datePublished">
+        Nov 4, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      2 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/myblog/categories/#BoostCamp">BoostCamp</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#Recommender system">Recommender system</a>
+        &nbsp;
+      
+        <a class="category-tags-link" href="/myblog/categories/#PStage">PStage</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#33-34-35일차-간단한-회고">33, 34, 35일차 간단한 회고</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#33일차">33일차</a></li>
+<li class="toc-entry toc-h2"><a href="#34일차">34일차</a></li>
+<li class="toc-entry toc-h2"><a href="#35일차">35일차</a></li>
+<li class="toc-entry toc-h2"><a href="#다음-주">다음 주</a></li>
+</ul>
+</li>
+</ul><h1 id="33-34-35일차-간단한-회고">
+<a class="anchor" href="#33-34-35%EC%9D%BC%EC%B0%A8-%EA%B0%84%EB%8B%A8%ED%95%9C-%ED%9A%8C%EA%B3%A0" aria-hidden="true"><span class="octicon octicon-link"></span></a>33, 34, 35일차 간단한 회고</h1>
+
+<p>대회에 계속 집중하느라 개인 블로그에 매일 기록하던 습관도 끊겼군요.</p>
+
+<p>수요일엔 여러 작업을 계속 도전하느라, 목요일은 오프라인으로 작업하느라 미뤄왔습니다.</p>
+
+<p>매일매일 적는것 보다 회고 능률이 떨어지지만 기억을 되살려서 적어보겠습니다.</p>
+
+<h2 id="33일차">
+<a class="anchor" href="#33%EC%9D%BC%EC%B0%A8" aria-hidden="true"><span class="octicon octicon-link"></span></a>33일차</h2>
+
+<p>CatBoost에서 많지 않은 범주에 대해 Others 처리를 하지 ‘않은’ 것이 좋았었는데요. 범주형 데이터를 처리하는데 특화된 CatBoost와 달리 오버피팅이 쉽게 발생하는 딥러닝 모델 특성상 세심하게 다뤄주는 것이 중요합니다.</p>
+
+<p>즉 CatBoost와 달리 딥러닝 모델에선 많지 않는 범주에 대해 Others 처리를 해주면 어떤가 아이디어가 떠올랐습니다.</p>
+
+<p>단순한 FM 모델에 이 사실을 적용시켜서 이전과 비교했을 때 rmse score가 어떤지 살펴봤는데요. Test 기준 약 2.24로 뛰어나진 않지만 이전보다는 효과가 있음을 느꼈습니다.</p>
+
+<p>이 부분에서 용기를 얻고 이전부터 도입을 고려한 (아이디어를 제공하신 분 너무 감사합니다) FFM + DCN을 적용하였습니다.</p>
+
+<p>이 과정에서 Wandb 내 Sweep 기능을 사용했는데요. 단순 FM 모델보다 하이퍼파라미터 튜닝을 할 값이 많아졌고 시각적으로 인사이트를 얻기 좋았습니다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/79916736/199975732-b30adf2c-9d45-4e6e-a077-d1936e4940e4.png" alt="wandb"></p>
+
+<p>Sweep에는 다양한 기능 중 하나를 소개하면 하이퍼파라미터 별 변수 중요도, 상관계수를 표시해주는 기능입니다. 어느 하이퍼파라미터를 튜닝해야할 지 직관적으로 알게됩니다.</p>
+
+<p>이 과정에서 범주형 변수별로 Others를 적용하는 기준 N 값을 하이퍼파라미터로 적용시켜봤습니다.</p>
+
+<p>이 모델을 리더보드에 적용했는데요. Valid Score와 다르게 Test Score는 약 2.3으로 노말 FM보다는 떨어진 모습입니다.</p>
+
+<p>왜 그런지 원인을 모르겠네요.</p>
+
+<h2 id="34일차">
+<a class="anchor" href="#34%EC%9D%BC%EC%B0%A8" aria-hidden="true"><span class="octicon octicon-link"></span></a>34일차</h2>
+
+<p>왜 FFM+DCN 모델이 잘 작동하지 않을 까 고민하면서 코드를 계속 검정해봤습니다.</p>
+
+<p>확실하진 않지만 검수 과정에서 .py 디렉토리 구조에 어색해서 실수한 부분이 있는 것 같습니다.</p>
+
+<p>같은 작업을 진행중인 팀원 중 한명은 주피터노트북을 이용해 전 과정을 한번에 정리했는데요.</p>
+
+<p>.py 파일에 적응 해야지 하면서도 이런 상황에서는 주피터노트북이 편하긴 하구나 생각이 들었습니다.</p>
+
+<p>그 팀원 덕분에 FFM+DCN 모델이 수준급 성능을 뽑아낼 수 있었습니다. 다만 아직 딥러닝이라는 벽을 내 손으로 극복하지 못햇다는 아쉬움이 있네요.</p>
+
+<p>나머지 시간에는 K-Fold와 Optuna를 이용해 컴퓨터 자원으로 리더보드를 조금이라도 올리고자 노력했습니다.</p>
+
+<p>이전에 구현했던 CatBoost와 팀원이 개발한 FFM+DCN 모델에 10 K-Fold + Optuna를 적용한 결과 2등 팀과 꽤 스코어를 벌리는 2.10x 값이 나오게 되었습니다.</p>
+
+<p>최종 1등을 달성하게 되었고 아쉬운 점도 많이 있지만 정말 뿌듯했습니다.</p>
+
+<p>이 날 오프라인으로 팀원을 모두 만나 같이 작업진행했는데 성과도 잘 나오고 소통도 더 잘 되는 느낌이라 만나길 잘했다는 생각이 들었고 같이 저녁 먹으니깐 제대로 뒷풀이 느낌이 나서 너무 좋았습니다.</p>
+
+<h2 id="35일차">
+<a class="anchor" href="#35%EC%9D%BC%EC%B0%A8" aria-hidden="true"><span class="octicon octicon-link"></span></a>35일차</h2>
+
+<p>괜히 발표하고 싶다고 해서 아침부터 팀원들에게 발표자료 만들자고 고생시킨 것 같습니다. 단기간에 고퀄리티 발표자료를 만들어줘서 너무 고마웠습니다.</p>
+
+<p>Level 2 팀원을 한명 더 구했습니다. 분위기 해치는 사람만 아니면 사람 한명 더 있는게 무조건 좋을 것 같아요.</p>
+
+<p>Wrap up (‘렙’업) 리포트도 쓰기 참 귀찮았지만 어제 미리 써놔서 그나마 꾸역꾸역 썼던 것 같습니다.</p>
+
+<p>마스터 클래스에서 1등 팀이라는 부담스러운 칭호로 발표를 진행했는데 생각보다 다들 좋은 말도 많이해주시고 설명이 부족했지만 이해도 잘해주시고 마스터님에게도 긍정적인 피드벡을 많이 받았습니다. 이외에도 팀원들도 격려해주고 DM으로 발표 잘 들었다고 연락도 받고 엄청 뿌듯했습니다.</p>
+
+<p>대회 기간 고생했던 것을 보상받는 느낌이라 너무 좋았고 아쉬운 것도 분명 많지만 내가 가고 있는 방향이 틀린 방향은 아니구나, 열심히만 하면 되겠구나 라는 자신감을 얻었습니다.</p>
+
+<h2 id="다음-주">
+<a class="anchor" href="#%EB%8B%A4%EC%9D%8C-%EC%A3%BC" aria-hidden="true"><span class="octicon octicon-link"></span></a>다음 주</h2>
+
+<p>다음 주에는 AI 서비스 개발 기초 강의를 진행합니다. 멘토님도 그렇고 한 숨 돌리는 주라고 하는데요.</p>
+
+<p>개인적으로 분량이 안 빡세도 많이 배우고 싶었던 부분이기도 하고 제가 가장 못하는 부분이기도 해서 고생하는 내 자신이 벌써 보이는 것 같아요.</p>
+
+<p>그래도 최고의 환경 속에서 한 걸음씩 나아간다 생각하고 주말에 리프래쉬 잘 하고 다시 돌아오겠습니다.</p>
+
+  </div><script src="https://utteranc.es/client.js"
+        repo="KSY1526/myblog"
+        issue-term="pathname"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+  <a class="u-url" href="/myblog/boostcamp/recommender%20system/pstage/2022/11/04/week7_3.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/myblog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/myblog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/myblog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>다양한 머신러닝/딥러닝 코드들이 기록되어 있습니다.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/KSY1526" target="_blank" title="KSY1526"><svg class="svg-icon grey"><use xlink:href="/myblog/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
