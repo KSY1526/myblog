@@ -4,6 +4,22 @@
         xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
+        <loc>https://KSY1526.github.io/boostcamp/mlops/model%20serving/2022/11/07/week8_1.html</loc>
+        
+        <lastmod>2022-11-07T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
         <loc>https://KSY1526.github.io/boostcamp/recommender%20system/pstage/2022/11/04/week7_3.html</loc>
         
         <lastmod>2022-11-04T00:00:00-05:00</lastmod>
