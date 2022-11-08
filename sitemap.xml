@@ -4,6 +4,22 @@
         xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
+        <loc>https://KSY1526.github.io/boostcamp/streamlit/voila/model%20serving/2022/11/08/week8_2.html</loc>
+        
+        <lastmod>2022-11-08T00:00:00-06:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
         <loc>https://KSY1526.github.io/boostcamp/mlops/model%20serving/2022/11/07/week8_1.html</loc>
         
         <lastmod>2022-11-07T00:00:00-06:00</lastmod>
